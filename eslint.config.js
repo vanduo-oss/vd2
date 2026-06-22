@@ -43,6 +43,9 @@ export default [
         MouseEvent: 'readonly',
         URL: 'readonly',
         CSS: 'readonly',
+        HTMLElementTagNameMap: 'readonly',
+        SVGElementTagNameMap: 'readonly',
+        ElementTagNameMap: 'readonly',
       },
     },
     rules: {

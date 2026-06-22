@@ -5,6 +5,7 @@ import VdFooter from '@/layout/VdFooter.vue';
 import VdThemeSwitcher from '@/overlays/VdThemeSwitcher.vue';
 import VdThemeCustomizer from '@/overlays/VdThemeCustomizer.vue';
 import GlobalSearchModal from '@/overlays/GlobalSearchModal.vue';
+import VdToastContainer from '@/components/VdToastContainer.vue';
 </script>
 
 <template>
@@ -20,5 +21,6 @@ import GlobalSearchModal from '@/overlays/GlobalSearchModal.vue';
     <VdFooter />
     <VdThemeCustomizer />
     <GlobalSearchModal />
+    <VdToastContainer />
   </div>
 </template>
