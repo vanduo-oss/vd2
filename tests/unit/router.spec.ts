@@ -1,12 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { routes } from '@/router';
+import { buildRoutes } from '@/router';
+import { nav, flattenNav } from '@/nav';
 
 describe('router', () => {
-  it('exports a non-empty route array', () => {
-    expect(routes.length).toBeGreaterThan(0);
+  it('buildRoutes emits one route per page plus one per section', () => {
+    const routes = buildRoutes();
+    const sectionCount = flattenNav(nav).length;
+    expect(routes.length).toBe(nav.pages.length + sectionCount + 1);
   });
 
   it('every route has a meta.title', () => {
+    const routes = buildRoutes();
     for (const route of routes) {
       expect(route.meta?.title).toBeTypeOf('string');
     }

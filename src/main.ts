@@ -1,14 +1,16 @@
 import { ViteSSG } from 'vite-ssg';
 import { createPinia } from 'pinia';
 import App from './App.vue';
-import { routes } from './router';
+import { buildRoutes } from './router';
 import '@vanduo-oss/framework/css';
 import './styles/app.css';
+
+const routes = buildRoutes();
 
 export const createApp = ViteSSG(
   App,
   { routes },
-  ({ app, router, isClient, initialState }) => {
+  ({ app, router, initialState }) => {
     app.use(createPinia());
 
     router.afterEach((to) => {
@@ -20,7 +22,5 @@ export const createApp = ViteSSG(
     if (import.meta.env.SSR && initialState) {
       initialState.pinia = {};
     }
-
-    void isClient;
   },
 );
