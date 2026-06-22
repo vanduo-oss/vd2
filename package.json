@@ -1,0 +1,74 @@
+{
+  "name": "@vanduo-oss/vd2",
+  "version": "0.1.0",
+  "description": "Vue 3 + vite-ssg documentation site for @vanduo-oss/framework",
+  "private": true,
+  "type": "module",
+  "homepage": "https://vanduo.dev",
+  "license": "MIT",
+  "author": "vanduo-oss",
+  "exports": {
+    ".": "./src/main.ts"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build",
+    "preview": "vite preview --port 8787 --host",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --project='Chromium Desktop'",
+    "test:e2e:full": "playwright test",
+    "format": "prettier --write \"src/**/*.{ts,vue,css}\""
+  },
+  "dependencies": {
+    "@unhead/vue": "3.1.4",
+    "@vanduo-oss/framework": "1.5.1",
+    "pinia": "^2.2.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/parser": "8.61.1",
+    "@vitejs/plugin-vue": "^5.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.5.1",
+    "eslint": "^9.10.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "jsdom": "^25.0.0",
+    "prettier": "^3.3.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "8.61.1",
+    "vite": "^5.4.0",
+    "vite-ssg": "^0.24.0",
+    "vitest": "^2.1.0",
+    "vue-eslint-parser": "10.4.1",
+    "vue-tsc": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "pnpm": {
+    "allowedBuilds": {
+      "esbuild": true,
+      "@playwright/test": true
+    },
+    "overrides": {
+      "brace-expansion": "5.0.6",
+      "picomatch": "2.3.2",
+      "flatted@<=3.4.1": ">=3.4.2"
+    }
+  }
+}

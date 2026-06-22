@@ -1,0 +1,24 @@
+/* vd2 docs shell layout — the only stylesheet allowed to define
+   selectors outside the @vanduo-oss/framework bundle. Component
+   styling lives in the framework; this file owns layout only. */
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.vd-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-app > main {
+  flex: 1 1 auto;
+}
