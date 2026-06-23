@@ -61,6 +61,23 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/effects/parallax', label: 'effects-parallax' },
   { vd2Path: '/components/theme-switcher', label: 'components-theme-switcher' },
   { vd2Path: '/components/theme-customizer', label: 'components-theme-customizer' },
+  { vd2Path: '/guides/getting-started', label: 'guides-getting-started' },
+  { vd2Path: '/guides/first-layout', label: 'guides-first-layout' },
+  { vd2Path: '/guides/framework-integration', label: 'guides-framework-integration' },
+  { vd2Path: '/guides/esm-vs-iife', label: 'guides-esm-vs-iife' },
+  { vd2Path: '/guides/runtime-architecture', label: 'guides-runtime-architecture' },
+  { vd2Path: '/guides/lifecycle-manager', label: 'guides-lifecycle-manager' },
+  { vd2Path: '/guides/lazy-loading', label: 'guides-lazy-loading' },
+  { vd2Path: '/guides/css-variables', label: 'guides-css-variables' },
+  { vd2Path: '/guides/theme-customizer', label: 'guides-theme-customizer' },
+  { vd2Path: '/guides/fibonacci', label: 'guides-fibonacci' },
+  { vd2Path: '/guides/accessibility', label: 'guides-accessibility' },
+  { vd2Path: '/guides/security', label: 'guides-security' },
+  { vd2Path: '/guides/production', label: 'guides-production' },
+  { vd2Path: '/guides/migration', label: 'guides-migration' },
+  { vd2Path: '/guides/troubleshooting', label: 'guides-troubleshooting' },
+  { vd2Path: '/guides/utilities-cheat-sheet', label: 'guides-utilities-cheat-sheet' },
+  { vd2Path: '/guides/vanduo-ecosystem', label: 'guides-vanduo-ecosystem' },
 ];
 
 test.describe('Visual parity', () => {

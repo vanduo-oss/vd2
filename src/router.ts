@@ -49,6 +49,23 @@ import ColorPalettePage from '@/pages/core/ColorPalette.vue';
 import GlassPage from '@/pages/effects/Glass.vue';
 import ThemeSwitcherPage from '@/pages/components/ThemeSwitcher.vue';
 import ThemeCustomizerPage from '@/pages/components/ThemeCustomizer.vue';
+import GettingStartedPage from '@/pages/guides/GettingStarted.vue';
+import FirstLayoutPage from '@/pages/guides/FirstLayout.vue';
+import FrameworkIntegrationPage from '@/pages/guides/FrameworkIntegration.vue';
+import EsmVsIifePage from '@/pages/guides/EsmVsIife.vue';
+import RuntimeArchitecturePage from '@/pages/guides/RuntimeArchitecture.vue';
+import LifecycleManagerPage from '@/pages/guides/LifecycleManager.vue';
+import LazyLoadingPage from '@/pages/guides/LazyLoading.vue';
+import CssVariablesPage from '@/pages/guides/CssVariables.vue';
+import ThemeCustomizerGuidePage from '@/pages/guides/ThemeCustomizerGuide.vue';
+import FibonacciPage from '@/pages/guides/Fibonacci.vue';
+import AccessibilityPage from '@/pages/guides/Accessibility.vue';
+import SecurityPage from '@/pages/guides/SecurityPractices.vue';
+import ProductionPage from '@/pages/guides/ProductionBestPractices.vue';
+import MigrationPage from '@/pages/guides/MigrationComparison.vue';
+import TroubleshootingPage from '@/pages/guides/Troubleshooting.vue';
+import UtilitiesCheatSheetPage from '@/pages/guides/UtilitiesCheatSheet.vue';
+import VanduoEcosystemPage from '@/pages/guides/VanduoEcosystem.vue';
 import MorphPage from '@/pages/effects/Morph.vue';
 import ParallaxPage from '@/pages/effects/Parallax.vue';
 import TypographyPage from '@/pages/core/Typography.vue';
@@ -109,6 +126,23 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   parallax: ParallaxPage,
   'theme-switcher': ThemeSwitcherPage,
   'theme-customizer': ThemeCustomizerPage,
+  'getting-started': GettingStartedPage,
+  'first-layout': FirstLayoutPage,
+  'framework-integration': FrameworkIntegrationPage,
+  'esm-vs-iife': EsmVsIifePage,
+  'runtime-architecture': RuntimeArchitecturePage,
+  'lifecycle-manager': LifecycleManagerPage,
+  'lazy-loading': LazyLoadingPage,
+  'css-variables': CssVariablesPage,
+  'theme-customizer-guide': ThemeCustomizerGuidePage,
+  fibonacci: FibonacciPage,
+  accessibility: AccessibilityPage,
+  security: SecurityPage,
+  production: ProductionPage,
+  migration: MigrationPage,
+  troubleshooting: TroubleshootingPage,
+  'utilities-cheat-sheet': UtilitiesCheatSheetPage,
+  'vanduo-ecosystem': VanduoEcosystemPage,
 };
 
 function definePage<T>(component: T): T {

@@ -37,7 +37,10 @@ const customizerHtml = '<button class="vd-btn vd-btn-ghost" data-customizer-trig
         >
           Open customizer
         </VdButton>
-        <VdThemeCustomizer v-if="open" @close="open = false" />
+        <VdThemeCustomizer
+          v-if="open"
+          @close="open = false"
+        />
       </section>
 
       <section

@@ -56,8 +56,10 @@ const variants = [
         <h2 class="vd-h2">
           In use
         </h2>
-        <p>The navbar at the top of every page uses
-          <code>vd-glass-contrast</code> for its frosted background.</p>
+        <p>
+          The navbar at the top of every page uses
+          <code>vd-glass-contrast</code> for its frosted background.
+        </p>
         <div
           class="vd-glass"
           style="padding: 1rem; border-radius: 8px;"
