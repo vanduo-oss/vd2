@@ -51,6 +51,7 @@ const onSearchClick = (): void => {
           <VdIcon name="magnifying-glass" />
         </button>
         <slot name="theme-switcher" />
+        <slot name="actions" />
       </div>
     </nav>
   </header>

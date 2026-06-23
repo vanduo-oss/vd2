@@ -26,6 +26,12 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/components/spinner', label: 'components-spinner' },
   { vd2Path: '/components/code-snippet', label: 'components-code-snippet' },
   { vd2Path: '/components/icon', label: 'components-icon' },
+  { vd2Path: '/components/sidenav', label: 'components-sidenav' },
+  { vd2Path: '/components/sticky', label: 'components-sticky' },
+  { vd2Path: '/components/scrollspy', label: 'components-scrollspy' },
+  { vd2Path: '/components/offcanvas', label: 'components-offcanvas' },
+  { vd2Path: '/components/navbar', label: 'components-navbar' },
+  { vd2Path: '/components/footer', label: 'components-footer' },
 ];
 
 test.describe('Visual parity', () => {

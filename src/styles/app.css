@@ -72,6 +72,33 @@ body {
   outline: none;
 }
 
+/* Footer V2 multi-column layout. The framework ships .vd-footer-section
+   as a single block; vd2's V2 VdFooter composes sections into a grid via
+   .vd-footer-columns. */
+.vd-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--vd-footer-section-spacing, 2.125rem);
+  margin-bottom: var(--vd-footer-section-spacing, 2.125rem);
+}
+
+.vd-footer-copyright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: var(--vd-footer-section-spacing, 2.125rem);
+  border-top: 1px solid var(--vd-border-color, currentColor);
+}
+
+.vd-footer-copyright .vd-footer-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.3125rem;
+}
+
 /* vd2-specific override of the framework's .vd-navbar-brand. The framework
    already ships this selector; this local rule layers a `gap` and tweaks
    the color token so the brand mark + name sit side-by-side with vd2's

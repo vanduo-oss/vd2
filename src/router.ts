@@ -21,6 +21,12 @@ import ProgressPage from '@/pages/components/Progress.vue';
 import SpinnerPage from '@/pages/components/Spinner.vue';
 import CodeSnippetPage from '@/pages/components/CodeSnippet.vue';
 import IconPage from '@/pages/components/Icon.vue';
+import SidenavPage from '@/pages/components/Sidenav.vue';
+import StickyPage from '@/pages/components/Sticky.vue';
+import ScrollspyPage from '@/pages/components/Scrollspy.vue';
+import OffcanvasPage from '@/pages/components/Offcanvas.vue';
+import NavbarPage from '@/pages/components/Navbar.vue';
+import FooterPage from '@/pages/components/Footer.vue';
 
 import { nav } from '@/nav';
 
@@ -39,6 +45,12 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   spinner: SpinnerPage,
   'code-snippet': CodeSnippetPage,
   icon: IconPage,
+  sidenav: SidenavPage,
+  sticky: StickyPage,
+  scrollspy: ScrollspyPage,
+  offcanvas: OffcanvasPage,
+  navbar: NavbarPage,
+  footer: FooterPage,
 };
 
 function definePage<T>(component: T): T {
