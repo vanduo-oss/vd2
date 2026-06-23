@@ -27,6 +27,10 @@ import ScrollspyPage from '@/pages/components/Scrollspy.vue';
 import OffcanvasPage from '@/pages/components/Offcanvas.vue';
 import NavbarPage from '@/pages/components/Navbar.vue';
 import FooterPage from '@/pages/components/Footer.vue';
+import AvatarPage from '@/pages/components/Avatar.vue';
+import TablePage from '@/pages/components/Table.vue';
+import CollectionPage from '@/pages/components/Collection.vue';
+import BreadcrumbPage from '@/pages/components/Breadcrumb.vue';
 
 import { nav } from '@/nav';
 
@@ -51,6 +55,10 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   offcanvas: OffcanvasPage,
   navbar: NavbarPage,
   footer: FooterPage,
+  avatar: AvatarPage,
+  table: TablePage,
+  collection: CollectionPage,
+  breadcrumb: BreadcrumbPage,
 };
 
 function definePage<T>(component: T): T {
