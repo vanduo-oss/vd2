@@ -34,6 +34,17 @@ import BreadcrumbPage from '@/pages/components/Breadcrumb.vue';
 import ChipPage from '@/pages/components/Chip.vue';
 import SkeletonPage from '@/pages/components/Skeleton.vue';
 import PreloaderPage from '@/pages/components/Preloader.vue';
+import FormsPage from '@/pages/components/Forms.vue';
+import FormValidationPage from '@/pages/components/FormValidation.vue';
+import DatepickerPage from '@/pages/components/Datepicker.vue';
+import TimepickerPage from '@/pages/components/Timepicker.vue';
+import RatingPage from '@/pages/components/Rating.vue';
+import StepperPage from '@/pages/components/Stepper.vue';
+import AutocompletePage from '@/pages/components/Autocomplete.vue';
+import TransferPage from '@/pages/components/Transfer.vue';
+import TreePage from '@/pages/components/Tree.vue';
+import PaginationPage from '@/pages/components/Pagination.vue';
+import ButtonGroupsPage from '@/pages/components/ButtonGroups.vue';
 
 import { nav } from '@/nav';
 
@@ -65,6 +76,17 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   chip: ChipPage,
   skeleton: SkeletonPage,
   preloader: PreloaderPage,
+  forms: FormsPage,
+  'form-validation': FormValidationPage,
+  datepicker: DatepickerPage,
+  timepicker: TimepickerPage,
+  rating: RatingPage,
+  stepper: StepperPage,
+  autocomplete: AutocompletePage,
+  transfer: TransferPage,
+  tree: TreePage,
+  pagination: PaginationPage,
+  'button-groups': ButtonGroupsPage,
 };
 
 function definePage<T>(component: T): T {

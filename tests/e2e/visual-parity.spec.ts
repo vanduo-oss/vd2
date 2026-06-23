@@ -39,6 +39,17 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/components/chip', label: 'components-chip' },
   { vd2Path: '/components/skeleton', label: 'components-skeleton' },
   { vd2Path: '/components/preloader', label: 'components-preloader' },
+  { vd2Path: '/components/forms', label: 'components-forms' },
+  { vd2Path: '/components/form-validation', label: 'components-form-validation' },
+  { vd2Path: '/components/datepicker', label: 'components-datepicker' },
+  { vd2Path: '/components/timepicker', label: 'components-timepicker' },
+  { vd2Path: '/components/rating', label: 'components-rating' },
+  { vd2Path: '/components/stepper', label: 'components-stepper' },
+  { vd2Path: '/components/autocomplete', label: 'components-autocomplete' },
+  { vd2Path: '/components/transfer', label: 'components-transfer' },
+  { vd2Path: '/components/tree', label: 'components-tree' },
+  { vd2Path: '/components/pagination', label: 'components-pagination' },
+  { vd2Path: '/components/button-groups', label: 'components-button-groups' },
 ];
 
 test.describe('Visual parity', () => {
