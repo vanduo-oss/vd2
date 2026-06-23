@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import VdIcon from './VdIcon.vue';
+import VdIcon from "./VdIcon.vue";
 
 export interface ToastDescriptor {
   id: string;
   message: string;
-  variant?: 'info' | 'success' | 'warning' | 'danger';
+  variant?: "info" | "success" | "warning" | "danger";
   duration?: number;
 }
 
@@ -17,7 +17,7 @@ defineProps<Props>();
 const emit = defineEmits<{ dismiss: [id: string] }>();
 
 const onDismiss = (id: string): void => {
-  emit('dismiss', id);
+  emit("dismiss", id);
 };
 </script>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-type Size = 'sm' | 'md' | 'lg';
-type Variant = 'default' | 'error' | 'success';
+type Size = "sm" | "md" | "lg";
+type Variant = "default" | "error" | "success";
 
 interface Props {
   modelValue: string;
@@ -20,30 +20,30 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  placeholder: '',
-  size: 'md',
-  variant: 'default',
+  type: "text",
+  placeholder: "",
+  size: "md",
+  variant: "default",
   disabled: false,
   readonly: false,
   required: false,
-  name: '',
-  id: '',
+  name: "",
+  id: "",
   minlength: undefined,
   maxlength: undefined,
-  pattern: '',
-  autocomplete: '',
+  pattern: "",
+  autocomplete: "",
 });
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
+  "update:modelValue": [value: string];
   blur: [event: FocusEvent];
   focus: [event: FocusEvent];
 }>();
 
 const onInput = (event: Event): void => {
   const target = event.target as HTMLInputElement;
-  emit('update:modelValue', target.value);
+  emit("update:modelValue", target.value);
 };
 
 // Workaround for typed optional number props
@@ -74,5 +74,5 @@ void numberOrUndefined(props.maxlength);
     @input="onInput"
     @blur="(e) => emit('blur', e)"
     @focus="(e) => emit('focus', e)"
-  >
+  />
 </template>

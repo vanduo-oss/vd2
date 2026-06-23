@@ -1,15 +1,15 @@
-import { ref, computed } from 'vue';
-import { defineStore } from 'pinia';
-import { flattenNav, type NavSection, type NavTree } from '@/nav';
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
+import { flattenNav, type NavSection, type NavTree } from "@/nav";
 
 export interface SearchResult {
   section: NavSection;
   score: number;
 }
 
-export const useSearchStore = defineStore('search', () => {
+export const useSearchStore = defineStore("search", () => {
   const isOpen = ref(false);
-  const query = ref('');
+  const query = ref("");
   let cachedNav: NavTree | null = null;
   let cachedSections: NavSection[] | null = null;
 
@@ -26,7 +26,9 @@ export const useSearchStore = defineStore('search', () => {
     const out: SearchResult[] = [];
     for (const section of cachedSections) {
       const titleHit = section.title.toLowerCase().includes(q);
-      const keywordHit = section.keywords.some((k) => k.toLowerCase().includes(q));
+      const keywordHit = section.keywords.some((k) =>
+        k.toLowerCase().includes(q),
+      );
       const routeHit = section.route.toLowerCase().includes(q);
       if (titleHit || keywordHit || routeHit) {
         const score = titleHit ? 3 : keywordHit ? 2 : 1;
@@ -43,7 +45,7 @@ export const useSearchStore = defineStore('search', () => {
 
   const close = (): void => {
     isOpen.value = false;
-    query.value = '';
+    query.value = "";
   };
 
   return { isOpen, query, results, open, close, index };

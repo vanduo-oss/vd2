@@ -1,11 +1,11 @@
 <script setup lang="ts">
-type Aspect = 'square' | 'video' | 'portrait' | 'wide';
+type Aspect = "square" | "video" | "portrait" | "wide";
 
 interface Props {
   aspect?: Aspect;
 }
 
-withDefaults(defineProps<Props>(), { aspect: 'video' });
+withDefaults(defineProps<Props>(), { aspect: "video" });
 </script>
 
 <template>

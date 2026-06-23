@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useThemeStore } from '@/stores/theme';
-import VdIcon from '@/components/VdIcon.vue';
+import { useThemeStore } from "@/stores/theme";
+import VdIcon from "@/components/VdIcon.vue";
 
 const theme = useThemeStore();
 
 const themes = [
-  { id: 'light', label: 'Light', icon: 'sun' },
-  { id: 'dark', label: 'Dark', icon: 'moon' },
-  { id: 'high-contrast', label: 'High contrast', icon: 'circle-half' },
+  { id: "light", label: "Light", icon: "sun" },
+  { id: "dark", label: "Dark", icon: "moon" },
+  { id: "high-contrast", label: "High contrast", icon: "circle-half" },
 ] as const;
 </script>
 
@@ -30,11 +30,7 @@ const themes = [
       role="menu"
       data-theme-menu
     >
-      <li
-        v-for="opt in themes"
-        :key="opt.id"
-        role="none"
-      >
+      <li v-for="opt in themes" :key="opt.id" role="none">
         <button
           type="button"
           role="menuitemradio"

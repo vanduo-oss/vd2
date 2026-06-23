@@ -5,20 +5,14 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  brand: 'Vanduo',
-  href: '/',
+  brand: "Vanduo",
+  href: "/",
 });
 </script>
 
 <template>
-  <a
-    class="vd-navbar-brand"
-    :href="href"
-  >
-    <span
-      class="vd-navbar-brand-mark"
-      aria-hidden="true"
-    >V</span>
+  <a class="vd-navbar-brand" :href="href">
+    <span class="vd-navbar-brand-mark" aria-hidden="true">V</span>
     <span class="vd-navbar-brand-name">{{ brand }}</span>
   </a>
 </template>

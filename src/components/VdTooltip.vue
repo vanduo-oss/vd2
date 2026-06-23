@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Position = 'top' | 'bottom' | 'left' | 'right';
+type Position = "top" | "bottom" | "left" | "right";
 
 interface Props {
   text: string;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  position: 'top',
+  position: "top",
 });
 </script>
 

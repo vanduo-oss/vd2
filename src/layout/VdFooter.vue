@@ -25,22 +25,16 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const legalLinks: readonly FooterLink[] = [
-  { label: 'GitHub', href: 'https://github.com/vanduo-oss', external: true },
-  { label: 'vanduo.dev', href: 'https://vanduo.dev', external: true },
-  { label: 'Changelog', href: '/changelog' },
+  { label: "GitHub", href: "https://github.com/vanduo-oss", external: true },
+  { label: "vanduo.dev", href: "https://vanduo.dev", external: true },
+  { label: "Changelog", href: "/changelog" },
 ];
 </script>
 
 <template>
-  <footer
-    class="vd-footer"
-    role="contentinfo"
-  >
+  <footer class="vd-footer" role="contentinfo">
     <div class="vd-container vd-footer-container">
-      <div
-        v-if="props.sections.length > 0"
-        class="vd-footer-columns"
-      >
+      <div v-if="props.sections.length > 0" class="vd-footer-columns">
         <div
           v-for="section in props.sections"
           :key="section.title"
@@ -68,16 +62,10 @@ const legalLinks: readonly FooterLink[] = [
         </div>
       </div>
       <div class="vd-footer-copyright">
-        <p
-          v-if="props.showCopyright"
-          class="vd-muted vd-text-sm"
-        >
+        <p v-if="props.showCopyright" class="vd-muted vd-text-sm">
           © {{ year }} vanduo-oss — MIT license
         </p>
-        <ul
-          v-if="props.showLegalLinks"
-          class="vd-footer-list"
-        >
+        <ul v-if="props.showLegalLinks" class="vd-footer-list">
           <li
             v-for="link in legalLinks"
             :key="link.href"

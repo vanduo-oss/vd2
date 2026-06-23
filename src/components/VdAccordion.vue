@@ -13,7 +13,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<{ 'update:modelValue': [value: string | string[]] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string | string[]] }>();
 
 const isOpen = (id: string): boolean => {
   if (props.exclusive) {
@@ -24,14 +24,14 @@ const isOpen = (id: string): boolean => {
 
 const toggle = (id: string): void => {
   if (props.exclusive) {
-    emit('update:modelValue', props.modelValue === id ? '' : id);
+    emit("update:modelValue", props.modelValue === id ? "" : id);
     return;
   }
   const current = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
   const idx = current.indexOf(id);
   if (idx >= 0) current.splice(idx, 1);
   else current.push(id);
-  emit('update:modelValue', current);
+  emit("update:modelValue", current);
 };
 </script>
 
@@ -50,10 +50,9 @@ const toggle = (id: string): void => {
         @click="toggle(item.id)"
       >
         <span>{{ item.title }}</span>
-        <span
-          class="vd-accordion-icon"
-          aria-hidden="true"
-        >{{ isOpen(item.id) ? '−' : '+' }}</span>
+        <span class="vd-accordion-icon" aria-hidden="true">{{
+          isOpen(item.id) ? "−" : "+"
+        }}</span>
       </button>
       <div
         v-show="isOpen(item.id)"
@@ -61,10 +60,7 @@ const toggle = (id: string): void => {
         class="vd-accordion-panel"
         role="region"
       >
-        <slot
-          :name="item.id"
-          :item="item"
-        >
+        <slot :name="item.id" :item="item">
           {{ item.content }}
         </slot>
       </div>

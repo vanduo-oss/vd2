@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VdIcon from './VdIcon.vue';
+import VdIcon from "./VdIcon.vue";
 
-type Size = 'sm' | 'md' | 'lg';
+type Size = "sm" | "md" | "lg";
 
 interface Props {
   size?: Size;
@@ -9,8 +9,8 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  size: 'md',
-  label: '',
+  size: "md",
+  label: "",
 });
 </script>
 

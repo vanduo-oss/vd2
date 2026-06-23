@@ -1,38 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import DocsLayout from '@/layout/DocsLayout.vue';
-import VdStack from '@/components/primitives/VdStack.vue';
-import VdCodeSnippet from '@/components/VdCodeSnippet.vue';
+import { ref } from "vue";
+import DocsLayout from "@/layout/DocsLayout.vue";
+import VdStack from "@/components/primitives/VdStack.vue";
+import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
 
 const page = ref(1);
 
-const paginationHtml = '<nav class="vd-pagination">\n  <button class="vd-pagination-prev">‹</button>\n</nav>';
+const paginationHtml =
+  '<nav class="vd-pagination">\n  <button class="vd-pagination-prev">‹</button>\n</nav>';
 </script>
 
 <template>
   <DocsLayout>
     <VdStack gap="xl">
       <header>
-        <h1 class="vd-h1">
-          Pagination
-        </h1>
+        <h1 class="vd-h1">Pagination</h1>
         <p class="vd-lead">
-          Page-by-page navigation for lists, tables, and search
-          results.
+          Page-by-page navigation for lists, tables, and search results.
         </p>
       </header>
 
-      <section
-        id="basic"
-        class="vd-stack vd-stack-md"
-      >
-        <h2 class="vd-h2">
-          Basic
-        </h2>
-        <nav
-          class="vd-pagination"
-          aria-label="Pagination"
-        >
+      <section id="basic" class="vd-stack vd-stack-md">
+        <h2 class="vd-h2">Basic</h2>
+        <nav class="vd-pagination" aria-label="Pagination">
           <button
             type="button"
             class="vd-pagination-prev"
@@ -63,17 +53,9 @@ const paginationHtml = '<nav class="vd-pagination">\n  <button class="vd-paginat
         <p>Page: {{ page }}</p>
       </section>
 
-      <section
-        id="ellipsis"
-        class="vd-stack vd-stack-md"
-      >
-        <h2 class="vd-h2">
-          With ellipsis
-        </h2>
-        <nav
-          class="vd-pagination"
-          aria-label="Pagination"
-        >
+      <section id="ellipsis" class="vd-stack vd-stack-md">
+        <h2 class="vd-h2">With ellipsis</h2>
+        <nav class="vd-pagination" aria-label="Pagination">
           <button
             type="button"
             class="vd-pagination-prev"
@@ -90,10 +72,7 @@ const paginationHtml = '<nav class="vd-pagination">\n  <button class="vd-paginat
           >
             1
           </button>
-          <span
-            class="vd-pagination-ellipsis"
-            aria-hidden="true"
-          >…</span>
+          <span class="vd-pagination-ellipsis" aria-hidden="true">…</span>
           <button
             type="button"
             class="vd-pagination-link"
@@ -118,15 +97,8 @@ const paginationHtml = '<nav class="vd-pagination">\n  <button class="vd-paginat
           >
             5
           </button>
-          <span
-            class="vd-pagination-ellipsis"
-            aria-hidden="true"
-          >…</span>
-          <button
-            type="button"
-            class="vd-pagination-link"
-            @click="page = 20"
-          >
+          <span class="vd-pagination-ellipsis" aria-hidden="true">…</span>
+          <button type="button" class="vd-pagination-link" @click="page = 20">
             20
           </button>
           <button
@@ -140,17 +112,9 @@ const paginationHtml = '<nav class="vd-pagination">\n  <button class="vd-paginat
         </nav>
       </section>
 
-      <section
-        id="usage"
-        class="vd-stack vd-stack-md"
-      >
-        <h2 class="vd-h2">
-          Usage
-        </h2>
-        <VdCodeSnippet
-          language="html"
-          :code="paginationHtml"
-        />
+      <section id="usage" class="vd-stack vd-stack-md">
+        <h2 class="vd-h2">Usage</h2>
+        <VdCodeSnippet language="html" :code="paginationHtml" />
       </section>
     </VdStack>
   </DocsLayout>

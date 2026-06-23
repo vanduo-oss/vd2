@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch } from "vue";
 
 interface DateParts {
   year: number;
@@ -15,21 +15,31 @@ interface Props {
   placeholder?: string;
 }
 
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 
 const props = withDefaults(defineProps<Props>(), {
-  min: '',
-  max: '',
+  min: "",
+  max: "",
   disabled: false,
-  placeholder: 'YYYY-MM-DD',
+  placeholder: "YYYY-MM-DD",
 });
 
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-const WEEKDAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+const WEEKDAYS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
 const parse = (s: string): DateParts | null => {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
@@ -38,7 +48,7 @@ const parse = (s: string): DateParts | null => {
 };
 
 const format = (p: DateParts): string =>
-  `${p.year}-${String(p.month).padStart(2, '0')}-${String(p.day).padStart(2, '0')}`;
+  `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
 
 const internal = ref<DateParts | null>(parse(props.modelValue));
 const viewYear = ref(internal.value?.year ?? new Date().getFullYear());
@@ -58,7 +68,7 @@ watch(
 );
 
 watch(internal, (v) => {
-  if (v) emit('update:modelValue', format(v));
+  if (v) emit("update:modelValue", format(v));
 });
 
 const daysInMonth = (year: number, month: number): number =>
@@ -104,8 +114,12 @@ const nextMonth = (): void => {
   }
 };
 
-const prevYear = (): void => { viewYear.value -= 1; };
-const nextYear = (): void => { viewYear.value += 1; };
+const prevYear = (): void => {
+  viewYear.value -= 1;
+};
+const nextYear = (): void => {
+  viewYear.value += 1;
+};
 
 const onBlur = (): void => {
   window.setTimeout(() => {
@@ -121,18 +135,11 @@ const isInRange = (day: number): boolean => {
   return true;
 };
 
-const display = computed(() =>
-  internal.value
-    ? format(internal.value)
-    : '',
-);
+const display = computed(() => (internal.value ? format(internal.value) : ""));
 </script>
 
 <template>
-  <div
-    class="vd-datepicker"
-    :class="{ 'is-open': open }"
-  >
+  <div class="vd-datepicker" :class="{ 'is-open': open }">
     <input
       type="text"
       class="vd-input"
@@ -142,7 +149,7 @@ const display = computed(() =>
       readonly
       @focus="open = true"
       @blur="onBlur"
-    >
+    />
     <div
       v-if="open"
       class="vd-datepicker-popup"
@@ -190,10 +197,7 @@ const display = computed(() =>
         >
           ‹
         </button>
-        <button
-          type="button"
-          class="vd-datepicker-title"
-        >
+        <button type="button" class="vd-datepicker-title">
           {{ MONTHS[viewMonth - 1] }} {{ viewYear }}
         </button>
         <button
@@ -206,21 +210,11 @@ const display = computed(() =>
         </button>
       </div>
       <div class="vd-datepicker-grid">
-        <div
-          v-for="d in WEEKDAYS"
-          :key="d"
-          class="vd-datepicker-weekdays"
-        >
+        <div v-for="d in WEEKDAYS" :key="d" class="vd-datepicker-weekdays">
           {{ d }}
         </div>
-        <template
-          v-for="(cell, idx) in grid"
-          :key="idx"
-        >
-          <div
-            v-if="cell === null"
-            class="vd-datepicker-day is-empty"
-          />
+        <template v-for="(cell, idx) in grid" :key="idx">
+          <div v-if="cell === null" class="vd-datepicker-day is-empty" />
           <button
             v-else
             type="button"

@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import VdSidebar from './VdSidebar.vue';
-import VdBreadcrumb from './VdBreadcrumb.vue';
-import { nav } from '@/nav';
+import { useRoute } from "vue-router";
+import VdSidebar from "./VdSidebar.vue";
+import VdBreadcrumb from "./VdBreadcrumb.vue";
+import { nav } from "@/nav";
 
 const route = useRoute();
 
 const breadcrumbItems = (): { label: string; href?: string }[] => {
   const items: { label: string; href?: string }[] = [];
-  if (route.path.startsWith('/components/')) {
-    const id = route.path.replace('/components/', '');
-    const tab = nav.tabs.find((t) => t.id === 'components');
-    if (tab) items.push({ label: tab.title, href: tab.categories[0] ? '/components' : undefined });
+  if (route.path.startsWith("/components/")) {
+    const id = route.path.replace("/components/", "");
+    const tab = nav.tabs.find((t) => t.id === "components");
+    if (tab)
+      items.push({
+        label: tab.title,
+        href: tab.categories[0] ? "/components" : undefined,
+      });
     for (const category of tab?.categories ?? []) {
       for (const section of category.sections) {
         if (section.id === id) {

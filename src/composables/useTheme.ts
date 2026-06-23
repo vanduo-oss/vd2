@@ -1,8 +1,8 @@
-import { onMounted, ref, type Ref } from 'vue';
+import { onMounted, ref, type Ref } from "vue";
 
-export type ThemeName = 'light' | 'dark' | 'high-contrast';
-export type RadiusName = 'compact' | 'normal' | 'loose';
-export type FontName = 'inter' | 'system' | 'mono';
+export type ThemeName = "light" | "dark" | "high-contrast";
+export type RadiusName = "compact" | "normal" | "loose";
+export type FontName = "inter" | "system" | "mono";
 
 export interface ThemePreference {
   theme: ThemeName;
@@ -12,17 +12,17 @@ export interface ThemePreference {
   font: FontName;
 }
 
-const STORAGE_KEY = 'vanduo-theme-preference';
+const STORAGE_KEY = "vanduo-theme-preference";
 
 const DEFAULTS: ThemePreference = {
-  theme: 'light',
-  primary: 'default',
-  neutral: 'default',
-  radius: 'normal',
-  font: 'inter',
+  theme: "light",
+  primary: "default",
+  neutral: "default",
+  radius: "normal",
+  font: "inter",
 };
 
-const isClient = (): boolean => typeof window !== 'undefined';
+const isClient = (): boolean => typeof window !== "undefined";
 
 const readFromStorage = (): ThemePreference | null => {
   if (!isClient()) return null;
@@ -50,11 +50,11 @@ const writeToStorage = (prefs: ThemePreference): void => {
 const applyToHtml = (prefs: ThemePreference): void => {
   if (!isClient()) return;
   const root = document.documentElement;
-  root.setAttribute('data-theme', prefs.theme);
-  root.setAttribute('data-primary', prefs.primary);
-  root.setAttribute('data-neutral', prefs.neutral);
-  root.setAttribute('data-radius', prefs.radius);
-  root.setAttribute('data-font', prefs.font);
+  root.setAttribute("data-theme", prefs.theme);
+  root.setAttribute("data-primary", prefs.primary);
+  root.setAttribute("data-neutral", prefs.neutral);
+  root.setAttribute("data-radius", prefs.radius);
+  root.setAttribute("data-font", prefs.font);
 };
 
 export interface ThemeApi {

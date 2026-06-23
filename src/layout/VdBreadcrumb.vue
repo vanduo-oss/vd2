@@ -10,30 +10,19 @@ withDefaults(defineProps<{ items: Crumb[] }>(), {
 </script>
 
 <template>
-  <nav
-    class="vd-breadcrumb"
-    aria-label="Breadcrumb"
-  >
+  <nav class="vd-breadcrumb" aria-label="Breadcrumb">
     <ol class="vd-breadcrumb-list">
-      <li
-        v-for="(item, idx) in items"
-        :key="idx"
-        class="vd-breadcrumb-item"
-      >
-        <a
-          v-if="item.href"
-          :href="item.href"
-          class="vd-breadcrumb-link"
-        >{{ item.label }}</a>
-        <span
-          v-else
-          aria-current="page"
-        >{{ item.label }}</span>
+      <li v-for="(item, idx) in items" :key="idx" class="vd-breadcrumb-item">
+        <a v-if="item.href" :href="item.href" class="vd-breadcrumb-link">{{
+          item.label
+        }}</a>
+        <span v-else aria-current="page">{{ item.label }}</span>
         <span
           v-if="idx < items.length - 1"
           class="vd-breadcrumb-sep"
           aria-hidden="true"
-        >/</span>
+          >/</span
+        >
       </li>
     </ol>
   </nav>

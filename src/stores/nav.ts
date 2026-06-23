@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-export const useNavStore = defineStore('nav', () => {
-  const filter = ref('');
+export const useNavStore = defineStore("nav", () => {
+  const filter = ref("");
   const activeCategoryId = ref<string | null>(null);
 
   const setFilter = (value: string): void => {

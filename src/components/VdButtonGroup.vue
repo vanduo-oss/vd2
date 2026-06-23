@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Size = 'sm' | 'md' | 'lg';
+type Size = "sm" | "md" | "lg";
 
 interface Props {
   size?: Size;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  size: 'md',
+  size: "md",
   vertical: false,
   fullWidth: false,
 });

@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, watch } from 'vue';
+import { onBeforeUnmount, onMounted, watch } from "vue";
 
 interface Props {
   modelValue: boolean;
-  placement?: 'left' | 'right' | 'top' | 'bottom';
+  placement?: "left" | "right" | "top" | "bottom";
   title?: string;
   closeOnBackdrop?: boolean;
   closeOnEsc?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  placement: 'left',
-  title: '',
+  placement: "left",
+  title: "",
   closeOnBackdrop: true,
   closeOnEsc: true,
 });
 
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  "update:modelValue": [value: boolean];
   close: [];
 }>();
 
 const close = (): void => {
-  emit('update:modelValue', false);
-  emit('close');
+  emit("update:modelValue", false);
+  emit("close");
 };
 
 const onBackdrop = (): void => {
@@ -32,27 +32,27 @@ const onBackdrop = (): void => {
 
 const onKeydown = (event: KeyboardEvent): void => {
   if (!props.modelValue) return;
-  if (event.key === 'Escape' && props.closeOnEsc) {
+  if (event.key === "Escape" && props.closeOnEsc) {
     event.preventDefault();
     close();
   }
 };
 
 onMounted(() => {
-  if (typeof window === 'undefined') return;
-  window.addEventListener('keydown', onKeydown);
+  if (typeof window === "undefined") return;
+  window.addEventListener("keydown", onKeydown);
 });
 
 onBeforeUnmount(() => {
-  if (typeof window === 'undefined') return;
-  window.removeEventListener('keydown', onKeydown);
+  if (typeof window === "undefined") return;
+  window.removeEventListener("keydown", onKeydown);
 });
 
 watch(
   () => props.modelValue,
   (open) => {
-    if (typeof document === 'undefined') return;
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (typeof document === "undefined") return;
+    document.body.style.overflow = open ? "hidden" : "";
   },
 );
 </script>
@@ -70,14 +70,8 @@ watch(
       :class="[`vd-sidenav-${placement}`, 'is-open']"
       :aria-label="title || 'Side navigation'"
     >
-      <header
-        v-if="title || $slots.header"
-        class="vd-sidenav-header"
-      >
-        <h3
-          v-if="title"
-          class="vd-sidenav-title"
-        >
+      <header v-if="title || $slots.header" class="vd-sidenav-header">
+        <h3 v-if="title" class="vd-sidenav-title">
           {{ title }}
         </h3>
         <slot name="header" />
@@ -93,10 +87,7 @@ watch(
       <div class="vd-sidenav-body">
         <slot />
       </div>
-      <footer
-        v-if="$slots.footer"
-        class="vd-sidenav-footer"
-      >
+      <footer v-if="$slots.footer" class="vd-sidenav-footer">
         <slot name="footer" />
       </footer>
     </aside>

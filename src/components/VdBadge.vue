@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Variant = 'default' | 'success' | 'warning' | 'danger';
+type Variant = "default" | "success" | "warning" | "danger";
 
 interface Props {
   variant?: Variant;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  variant: 'default',
+  variant: "default",
   pill: false,
 });
 </script>
@@ -15,7 +15,10 @@ withDefaults(defineProps<Props>(), {
 <template>
   <span
     class="vd-badge"
-    :class="[variant !== 'default' ? `vd-badge-${variant}` : null, pill ? 'vd-badge-pill' : null]"
+    :class="[
+      variant !== 'default' ? `vd-badge-${variant}` : null,
+      pill ? 'vd-badge-pill' : null,
+    ]"
   >
     <slot />
   </span>

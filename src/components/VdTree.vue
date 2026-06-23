@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export interface TreeNode {
   id: string | number;
@@ -44,11 +44,7 @@ const toggleCheck = (n: TreeNode, e: Event): void => {
 </script>
 
 <template>
-  <ul
-    class="vd-tree"
-    :class="{ 'vd-tree-lines': lines }"
-    role="tree"
-  >
+  <ul class="vd-tree" :class="{ 'vd-tree-lines': lines }" role="tree">
     <li
       v-for="node in nodes"
       :key="node.id"
@@ -64,7 +60,7 @@ const toggleCheck = (n: TreeNode, e: Event): void => {
           :aria-label="expanded.has(node.id) ? 'Collapse' : 'Expand'"
           @click="toggle(node.id)"
         >
-          {{ expanded.has(node.id) ? '▾' : '▸' }}
+          {{ expanded.has(node.id) ? "▾" : "▸" }}
         </button>
         <span
           v-else
@@ -77,19 +73,17 @@ const toggleCheck = (n: TreeNode, e: Event): void => {
           class="vd-tree-checkbox"
           :checked="checked.has(node.id)"
           @change="(e) => toggleCheck(node, e)"
-        >
+        />
         <span class="vd-tree-label">{{ node.label }}</span>
       </div>
       <ul
-        v-if="node.children && node.children.length > 0 && expanded.has(node.id)"
+        v-if="
+          node.children && node.children.length > 0 && expanded.has(node.id)
+        "
         class="vd-tree-children"
         role="group"
       >
-        <VdTree
-          :nodes="node.children"
-          :lines="lines"
-          :checkbox="checkbox"
-        />
+        <VdTree :nodes="node.children" :lines="lines" :checkbox="checkbox" />
       </ul>
     </li>
   </ul>

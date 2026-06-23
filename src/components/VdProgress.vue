@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
   value: 0,
   max: 100,
   indeterminate: false,
-  label: '',
+  label: "",
 });
 
 const pct = (): number => {

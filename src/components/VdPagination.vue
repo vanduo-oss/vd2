@@ -1,37 +1,37 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from "vue";
 
-type Size = 'sm' | 'md' | 'lg';
+type Size = "sm" | "md" | "lg";
 
 interface Props {
   modelValue: number;
   total: number;
   siblingCount?: number;
   size?: Size;
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
   disabled?: boolean;
 }
 
-const emit = defineEmits<{ 'update:modelValue': [value: number] }>();
+const emit = defineEmits<{ "update:modelValue": [value: number] }>();
 
 const props = withDefaults(defineProps<Props>(), {
   siblingCount: 1,
-  size: 'md',
-  align: 'left',
+  size: "md",
+  align: "left",
   disabled: false,
 });
 
-const pageNumbers = computed((): (number | 'ellipsis')[] => {
+const pageNumbers = computed((): (number | "ellipsis")[] => {
   const { modelValue, total, siblingCount } = props;
   if (total <= 7) {
     return Array.from({ length: total }, (_, i) => i + 1);
   }
   const left = Math.max(modelValue - siblingCount, 2);
   const right = Math.min(modelValue + siblingCount, total - 1);
-  const items: (number | 'ellipsis')[] = [1];
-  if (left > 2) items.push('ellipsis');
+  const items: (number | "ellipsis")[] = [1];
+  if (left > 2) items.push("ellipsis");
   for (let i = left; i <= right; i++) items.push(i);
-  if (right < total - 1) items.push('ellipsis');
+  if (right < total - 1) items.push("ellipsis");
   items.push(total);
   return items;
 });
@@ -39,17 +39,14 @@ const pageNumbers = computed((): (number | 'ellipsis')[] => {
 const go = (page: number): void => {
   if (props.disabled) return;
   if (page < 1 || page > props.total || page === props.modelValue) return;
-  emit('update:modelValue', page);
+  emit("update:modelValue", page);
 };
 </script>
 
 <template>
   <nav
     class="vd-pagination"
-    :class="[
-      `vd-pagination-${size}`,
-      `vd-pagination-${align}`,
-    ]"
+    :class="[`vd-pagination-${size}`, `vd-pagination-${align}`]"
     aria-label="Pagination"
   >
     <button
@@ -61,15 +58,13 @@ const go = (page: number): void => {
     >
       ‹
     </button>
-    <template
-      v-for="(item, idx) in pageNumbers"
-      :key="idx"
-    >
+    <template v-for="(item, idx) in pageNumbers" :key="idx">
       <span
         v-if="item === 'ellipsis'"
         class="vd-pagination-ellipsis"
         aria-hidden="true"
-      >…</span>
+        >…</span
+      >
       <button
         v-else
         type="button"

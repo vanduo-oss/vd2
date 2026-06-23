@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import VdNavbarBrand from './VdNavbarBrand.vue';
-import VdIcon from '@/components/VdIcon.vue';
-import { nav } from '@/nav';
+import { useRouter } from "vue-router";
+import VdNavbarBrand from "./VdNavbarBrand.vue";
+import VdIcon from "@/components/VdIcon.vue";
+import { nav } from "@/nav";
 
 const router = useRouter();
 
@@ -12,25 +12,16 @@ const navTo = (route: string): void => {
 };
 
 const onSearchClick = (): void => {
-  window.dispatchEvent(new CustomEvent('vd:open-search'));
+  window.dispatchEvent(new CustomEvent("vd:open-search"));
 };
 </script>
 
 <template>
-  <header
-    class="vd-navbar vd-navbar-glass vd-glass-contrast"
-    role="banner"
-  >
-    <nav
-      class="vd-navbar-container vd-container"
-      aria-label="Primary"
-    >
+  <header class="vd-navbar vd-navbar-glass vd-glass-contrast" role="banner">
+    <nav class="vd-navbar-container vd-container" aria-label="Primary">
       <VdNavbarBrand />
       <ul class="vd-navbar-nav">
-        <li
-          v-for="page in nav.pages"
-          :key="page.id"
-        >
+        <li v-for="page in nav.pages" :key="page.id">
           <a
             class="vd-nav-link"
             :href="page.route"

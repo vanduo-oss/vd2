@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useScrollspy } from '@/composables/useScrollspy';
+import { useScrollspy } from "@/composables/useScrollspy";
 
 interface Section {
   id: string;
@@ -19,14 +19,9 @@ const { activeId } = useScrollspy(props.sections.map((s) => s.id));
     class="vd-section-nav"
     aria-label="On this page"
   >
-    <h4 class="vd-section-nav-title">
-      On this page
-    </h4>
+    <h4 class="vd-section-nav-title">On this page</h4>
     <ul class="vd-section-nav-list">
-      <li
-        v-for="section in sections"
-        :key="section.id"
-      >
+      <li v-for="section in sections" :key="section.id">
         <a
           :href="`#${section.id}`"
           class="vd-section-nav-link"

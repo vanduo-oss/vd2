@@ -13,8 +13,8 @@ interface Props {
 }
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number];
-  'item-click': [value: string | number];
+  "update:modelValue": [value: string | number];
+  "item-click": [value: string | number];
 }>();
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,16 +34,13 @@ const onClick = (id: string | number, idx: number): void => {
   if (!props.clickable) return;
   const currentIdx = props.items.findIndex((it) => it.id === props.modelValue);
   if (idx > currentIdx) return;
-  emit('update:modelValue', id);
-  emit('item-click', id);
+  emit("update:modelValue", id);
+  emit("item-click", id);
 };
 </script>
 
 <template>
-  <ol
-    class="vd-stepper"
-    :class="{ 'vd-stepper-vertical': vertical }"
-  >
+  <ol class="vd-stepper" :class="{ 'vd-stepper-vertical': vertical }">
     <li
       v-for="(item, idx) in items"
       :key="item.id"
@@ -64,19 +61,14 @@ const onClick = (id: string | number, idx: number): void => {
       >
         {{ idx + 1 }}
       </button>
-      <span
-        v-else
-        class="vd-stepper-circle"
-        aria-hidden="true"
-      >{{ idx + 1 }}</span>
+      <span v-else class="vd-stepper-circle" aria-hidden="true">{{
+        idx + 1
+      }}</span>
       <div class="vd-stepper-content">
         <div class="vd-stepper-label">
           {{ item.label }}
         </div>
-        <div
-          v-if="item.description"
-          class="vd-stepper-description"
-        >
+        <div v-if="item.description" class="vd-stepper-description">
           {{ item.description }}
         </div>
       </div>

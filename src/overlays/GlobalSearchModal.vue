@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import { useSearchStore } from '@/stores/search';
-import { useFocusTrap } from '@/composables/useFocusTrap';
-import { nav } from '@/nav';
-import VdIcon from '@/components/VdIcon.vue';
+import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import { useSearchStore } from "@/stores/search";
+import { useFocusTrap } from "@/composables/useFocusTrap";
+import { nav } from "@/nav";
+import VdIcon from "@/components/VdIcon.vue";
 
 const search = useSearchStore();
 const router = useRouter();
@@ -27,7 +27,7 @@ const onSelect = (route: string): void => {
 };
 
 const onKeydown = (event: KeyboardEvent): void => {
-  if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+  if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
     event.preventDefault();
     search.open(nav);
     void nextTick(() => inputRef.value?.focus());
@@ -46,16 +46,16 @@ watch(
 );
 
 onMounted(() => {
-  if (typeof window !== 'undefined') {
-    window.addEventListener('vd:open-search', openFromEvent);
-    window.addEventListener('keydown', onKeydown);
+  if (typeof window !== "undefined") {
+    window.addEventListener("vd:open-search", openFromEvent);
+    window.addEventListener("keydown", onKeydown);
   }
 });
 
 onUnmounted(() => {
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('vd:open-search', openFromEvent);
-    window.removeEventListener('keydown', onKeydown);
+  if (typeof window !== "undefined") {
+    window.removeEventListener("vd:open-search", openFromEvent);
+    window.removeEventListener("keydown", onKeydown);
   }
 });
 </script>
@@ -69,19 +69,12 @@ onUnmounted(() => {
       aria-modal="true"
       aria-label="Global search"
     >
-      <div
-        class="vd-modal-backdrop"
-        @click="onClose"
-      />
-      <div
-        ref="container"
-        class="vd-modal-panel vd-modal-panel-md vd-stack"
-      >
+      <div class="vd-modal-backdrop" @click="onClose" />
+      <div ref="container" class="vd-modal-panel vd-modal-panel-md vd-stack">
         <div class="vd-search-input-row vd-stack vd-stack-sm">
-          <label
-            for="vd-search-input"
-            class="vd-visually-hidden"
-          >Search docs</label>
+          <label for="vd-search-input" class="vd-visually-hidden"
+            >Search docs</label
+          >
           <div class="vd-input-group">
             <VdIcon name="magnifying-glass" />
             <input
@@ -93,7 +86,7 @@ onUnmounted(() => {
               placeholder="Search docs…"
               autocomplete="off"
               data-search-input
-            >
+            />
           </div>
           <button
             type="button"
@@ -121,21 +114,19 @@ onUnmounted(() => {
               :data-route="result.section.route"
               @click="onSelect(result.section.route)"
             >
-              <span class="vd-search-result-title">{{ result.section.title }}</span>
-              <span class="vd-search-result-route vd-text-sm vd-muted">{{ result.section.route }}</span>
+              <span class="vd-search-result-title">{{
+                result.section.title
+              }}</span>
+              <span class="vd-search-result-route vd-text-sm vd-muted">{{
+                result.section.route
+              }}</span>
             </button>
           </li>
         </ul>
-        <p
-          v-else-if="search.query.length >= 2"
-          class="vd-muted vd-text-sm"
-        >
+        <p v-else-if="search.query.length >= 2" class="vd-muted vd-text-sm">
           No results for “{{ search.query }}”.
         </p>
-        <p
-          v-else
-          class="vd-muted vd-text-sm"
-        >
+        <p v-else class="vd-muted vd-text-sm">
           Type at least 2 characters to search.
         </p>
       </div>

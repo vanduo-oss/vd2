@@ -10,15 +10,15 @@ interface Props {
   modelValue: string;
   name: string;
   inline?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   disabled?: boolean;
 }
 
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 
 withDefaults(defineProps<Props>(), {
   inline: false,
-  size: 'md',
+  size: "md",
   disabled: false,
 });
 </script>
@@ -33,10 +33,7 @@ withDefaults(defineProps<Props>(), {
       v-for="opt in options"
       :key="opt.value"
       class="vd-form-radio"
-      :class="[
-        `vd-form-radio-${size}`,
-        { 'vd-form-radio-inline': inline },
-      ]"
+      :class="[`vd-form-radio-${size}`, { 'vd-form-radio-inline': inline }]"
     >
       <input
         :id="`${name}-${opt.value}`"
@@ -47,11 +44,8 @@ withDefaults(defineProps<Props>(), {
         :disabled="disabled || opt.disabled"
         class="vd-form-radio-input"
         @change="emit('update:modelValue', opt.value)"
-      >
-      <label
-        :for="`${name}-${opt.value}`"
-        class="vd-form-radio-label"
-      >
+      />
+      <label :for="`${name}-${opt.value}`" class="vd-form-radio-label">
         {{ opt.label }}
       </label>
     </div>

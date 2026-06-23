@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useNavStore } from '@/stores/nav';
-import { nav } from '@/nav';
+import { computed, ref } from "vue";
+import { useNavStore } from "@/stores/nav";
+import { nav } from "@/nav";
 
 const store = useNavStore();
 const query = ref(store.filter);
@@ -12,15 +12,14 @@ const onInput = (event: Event): void => {
   store.setFilter(value);
 };
 
-const placeholder = computed(() => `Filter ${nav.tabs[0]?.title ?? 'sections'}…`);
+const placeholder = computed(
+  () => `Filter ${nav.tabs[0]?.title ?? "sections"}…`,
+);
 </script>
 
 <template>
   <div class="vd-sidebar-filter">
-    <label
-      class="vd-sidebar-filter-label"
-      for="vd-sidebar-filter-input"
-    >
+    <label class="vd-sidebar-filter-label" for="vd-sidebar-filter-input">
       <span class="vd-visually-hidden">Filter sections</span>
     </label>
     <input
@@ -32,6 +31,6 @@ const placeholder = computed(() => `Filter ${nav.tabs[0]?.title ?? 'sections'}�
       autocomplete="off"
       data-sidebar-filter
       @input="onInput"
-    >
+    />
   </div>
 </template>

@@ -1,10 +1,10 @@
-import { ref } from 'vue';
-import { defineStore } from 'pinia';
+import { ref } from "vue";
+import { defineStore } from "pinia";
 
 export interface ToastEntry {
   id: string;
   message: string;
-  variant?: 'info' | 'success' | 'warning' | 'danger';
+  variant?: "info" | "success" | "warning" | "danger";
   duration: number;
 }
 
@@ -14,19 +14,22 @@ const nextId = (): string => {
   return `toast-${Date.now().toString(36)}-${counter}`;
 };
 
-export const useToastStore = defineStore('toast', () => {
+export const useToastStore = defineStore("toast", () => {
   const queue = ref<ToastEntry[]>([]);
 
-  const show = (message: string, opts: Partial<Omit<ToastEntry, 'id' | 'message'>> = {}): string => {
+  const show = (
+    message: string,
+    opts: Partial<Omit<ToastEntry, "id" | "message">> = {},
+  ): string => {
     const id = nextId();
     const entry: ToastEntry = {
       id,
       message,
-      variant: opts.variant ?? 'info',
+      variant: opts.variant ?? "info",
       duration: opts.duration ?? 4000,
     };
     queue.value.push(entry);
-    if (entry.duration > 0 && typeof window !== 'undefined') {
+    if (entry.duration > 0 && typeof window !== "undefined") {
       window.setTimeout(() => dismiss(id), entry.duration);
     }
     return id;

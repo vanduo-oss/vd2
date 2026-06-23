@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch } from "vue";
 
 interface SelectOption {
   value: string;
@@ -18,14 +18,14 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  name: '',
-  id: '',
-  placeholder: '',
+  name: "",
+  id: "",
+  placeholder: "",
   disabled: false,
   required: false,
 });
 
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 
 const internal = ref(props.modelValue);
 
@@ -37,7 +37,7 @@ watch(
 );
 
 const currentLabel = computed(
-  () => props.options.find((o) => o.value === internal.value)?.label ?? '',
+  () => props.options.find((o) => o.value === internal.value)?.label ?? "",
 );
 </script>
 
@@ -49,17 +49,15 @@ const currentLabel = computed(
     :disabled="disabled"
     :required="required"
     class="vd-input"
-    @change="(e) => {
-      const v = (e.target as HTMLSelectElement).value;
-      internal = v;
-      emit('update:modelValue', v);
-    }"
+    @change="
+      (e) => {
+        const v = (e.target as HTMLSelectElement).value;
+        internal = v;
+        emit('update:modelValue', v);
+      }
+    "
   >
-    <option
-      v-if="placeholder"
-      value=""
-      disabled
-    >
+    <option v-if="placeholder" value="" disabled>
       {{ placeholder }}
     </option>
     <option

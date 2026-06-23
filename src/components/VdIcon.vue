@@ -2,22 +2,22 @@
 interface Props {
   name: string;
   filled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
 const props = withDefaults(defineProps<Props>(), {
   filled: false,
-  size: 'md',
+  size: "md",
 });
 
 const sizeClass = (): string => {
   switch (props.size) {
-    case 'sm':
-      return 'vd-text-base';
-    case 'lg':
-      return 'vd-text-2xl';
+    case "sm":
+      return "vd-text-base";
+    case "lg":
+      return "vd-text-2xl";
     default:
-      return 'vd-text-xl';
+      return "vd-text-xl";
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import VdIcon from './VdIcon.vue';
+import { ref } from "vue";
+import VdIcon from "./VdIcon.vue";
 
 interface Props {
   code: string;
@@ -9,14 +9,14 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  language: 'html',
+  language: "html",
   copyable: true,
 });
 
 const copied = ref(false);
 
 const onCopy = async (code: string): Promise<void> => {
-  if (typeof navigator === 'undefined' || !navigator.clipboard) return;
+  if (typeof navigator === "undefined" || !navigator.clipboard) return;
   try {
     await navigator.clipboard.writeText(code);
     copied.value = true;
@@ -43,7 +43,7 @@ const onCopy = async (code: string): Promise<void> => {
       @click="onCopy(code)"
     >
       <VdIcon :name="copied ? 'check' : 'copy'" />
-      <span>{{ copied ? 'Copied' : 'Copy' }}</span>
+      <span>{{ copied ? "Copied" : "Copy" }}</span>
     </button>
   </figure>
 </template>

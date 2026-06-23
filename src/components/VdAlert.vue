@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VdIcon from './VdIcon.vue';
+import VdIcon from "./VdIcon.vue";
 
-type Variant = 'info' | 'success' | 'warning' | 'danger';
+type Variant = "info" | "success" | "warning" | "danger";
 
 interface Props {
   variant?: Variant;
@@ -10,45 +10,36 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  variant: 'info',
+  variant: "info",
   dismissible: false,
-  title: '',
+  title: "",
 });
 
 const emit = defineEmits<{ dismiss: [] }>();
 
 const onDismiss = (): void => {
-  emit('dismiss');
+  emit("dismiss");
 };
 
 const iconName = (): string => {
   switch (props.variant) {
-    case 'success':
-      return 'check-circle';
-    case 'warning':
-      return 'warning';
-    case 'danger':
-      return 'x-circle';
+    case "success":
+      return "check-circle";
+    case "warning":
+      return "warning";
+    case "danger":
+      return "x-circle";
     default:
-      return 'info';
+      return "info";
   }
 };
 </script>
 
 <template>
-  <div
-    :class="['vd-alert', `vd-alert-${variant}`]"
-    role="alert"
-  >
-    <VdIcon
-      :name="iconName()"
-      class="vd-alert-icon"
-    />
+  <div :class="['vd-alert', `vd-alert-${variant}`]" role="alert">
+    <VdIcon :name="iconName()" class="vd-alert-icon" />
     <div class="vd-alert-body">
-      <p
-        v-if="title"
-        class="vd-alert-title"
-      >
+      <p v-if="title" class="vd-alert-title">
         {{ title }}
       </p>
       <div class="vd-alert-content">

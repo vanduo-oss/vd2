@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, ref, type Ref } from 'vue';
+import { onMounted, onUnmounted, ref, type Ref } from "vue";
 
 export const useScrollspy = (
   ids: string[],
@@ -10,8 +10,8 @@ export const useScrollspy = (
   let observer: IntersectionObserver | null = null;
 
   onMounted(() => {
-    if (typeof window === 'undefined') return;
-    if (!('IntersectionObserver' in window)) return;
+    if (typeof window === "undefined") return;
+    if (!("IntersectionObserver" in window)) return;
 
     const visible = new Set<string>();
 

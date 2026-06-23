@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Size = 'sm' | 'md' | 'lg';
+type Size = "sm" | "md" | "lg";
 
 interface CollectionItem {
   id: string | number;
@@ -18,10 +18,10 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  header: '',
+  header: "",
   hoverable: false,
   bordered: false,
-  size: 'md',
+  size: "md",
 });
 </script>
 
@@ -36,42 +36,25 @@ withDefaults(defineProps<Props>(), {
       },
     ]"
   >
-    <div
-      v-if="header"
-      class="vd-collection-header"
-    >
+    <div v-if="header" class="vd-collection-header">
       <h3 class="vd-collection-title">
         {{ header }}
       </h3>
     </div>
     <ul class="vd-collection-list">
-      <li
-        v-for="item in items"
-        :key="item.id"
-        class="vd-collection-item"
-      >
-        <div
-          v-if="item.avatar"
-          class="vd-collection-avatar"
-        >
-          <img
-            :src="item.avatar"
-            :alt="item.subtitle || item.title"
-          >
+      <li v-for="item in items" :key="item.id" class="vd-collection-item">
+        <div v-if="item.avatar" class="vd-collection-avatar">
+          <img :src="item.avatar" :alt="item.subtitle || item.title" />
         </div>
         <div class="vd-collection-content">
           <div class="vd-collection-text">
             <strong class="vd-collection-title">{{ item.title }}</strong>
-            <span
-              v-if="item.subtitle"
-              class="vd-collection-text-secondary"
-            >{{ item.subtitle }}</span>
+            <span v-if="item.subtitle" class="vd-collection-text-secondary">{{
+              item.subtitle
+            }}</span>
           </div>
         </div>
-        <div
-          v-if="item.action"
-          class="vd-collection-action"
-        >
+        <div v-if="item.action" class="vd-collection-action">
           {{ item.action }}
         </div>
       </li>

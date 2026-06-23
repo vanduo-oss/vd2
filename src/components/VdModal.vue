@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue';
-import VdIcon from './VdIcon.vue';
+import { computed, nextTick, ref, watch } from "vue";
+import VdIcon from "./VdIcon.vue";
 
 interface Props {
   open: boolean;
   title?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   closeOnBackdrop?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: '',
-  size: 'md',
+  title: "",
+  size: "md",
   closeOnBackdrop: true,
 });
 
 const emit = defineEmits<{
-  'update:open': [value: boolean];
+  "update:open": [value: boolean];
   close: [];
 }>();
 
@@ -25,8 +25,8 @@ const panel = ref<HTMLElement | null>(null);
 const sizeClass = computed(() => `vd-modal-panel-${props.size}`);
 
 const close = (): void => {
-  emit('update:open', false);
-  emit('close');
+  emit("update:open", false);
+  emit("close");
 };
 
 const onBackdrop = (): void => {
@@ -35,7 +35,7 @@ const onBackdrop = (): void => {
 
 const onKeydown = (event: KeyboardEvent): void => {
   if (!props.open) return;
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     event.preventDefault();
     close();
   }
@@ -44,13 +44,13 @@ const onKeydown = (event: KeyboardEvent): void => {
 watch(
   () => props.open,
   async (open) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     if (open) {
-      window.addEventListener('keydown', onKeydown);
+      window.addEventListener("keydown", onKeydown);
       await nextTick();
       panel.value?.focus();
     } else {
-      window.removeEventListener('keydown', onKeydown);
+      window.removeEventListener("keydown", onKeydown);
     }
   },
   { immediate: true },
@@ -67,23 +67,10 @@ watch(
       :aria-label="title || 'Dialog'"
       data-vd-modal
     >
-      <div
-        class="vd-modal-backdrop"
-        @click="onBackdrop"
-      />
-      <div
-        ref="panel"
-        :class="['vd-modal-panel', sizeClass]"
-        tabindex="-1"
-      >
-        <header
-          v-if="title || $slots.header"
-          class="vd-modal-header"
-        >
-          <h2
-            v-if="title"
-            class="vd-modal-title"
-          >
+      <div class="vd-modal-backdrop" @click="onBackdrop" />
+      <div ref="panel" :class="['vd-modal-panel', sizeClass]" tabindex="-1">
+        <header v-if="title || $slots.header" class="vd-modal-header">
+          <h2 v-if="title" class="vd-modal-title">
             {{ title }}
           </h2>
           <slot name="header" />
@@ -99,10 +86,7 @@ watch(
         <div class="vd-modal-body">
           <slot />
         </div>
-        <footer
-          v-if="$slots.footer"
-          class="vd-modal-footer"
-        >
+        <footer v-if="$slots.footer" class="vd-modal-footer">
           <slot name="footer" />
         </footer>
       </div>

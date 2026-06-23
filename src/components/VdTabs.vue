@@ -11,22 +11,16 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 
 const select = (id: string): void => {
-  if (id !== props.modelValue) emit('update:modelValue', id);
+  if (id !== props.modelValue) emit("update:modelValue", id);
 };
 </script>
 
 <template>
-  <div
-    class="vd-tabs"
-    role="tablist"
-  >
-    <div
-      class="vd-tab-list"
-      role="presentation"
-    >
+  <div class="vd-tabs" role="tablist">
+    <div class="vd-tab-list" role="presentation">
       <button
         v-for="tab in tabs"
         :key="tab.id"

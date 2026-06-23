@@ -1,6 +1,6 @@
 <script setup lang="ts">
-type Gap = 'sm' | 'md' | 'lg';
-type Align = 'start' | 'center' | 'end' | 'baseline';
+type Gap = "sm" | "md" | "lg";
+type Align = "start" | "center" | "end" | "baseline";
 
 interface Props {
   gap?: Gap;
@@ -8,8 +8,8 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  gap: 'md',
-  align: 'center',
+  gap: "md",
+  align: "center",
 });
 </script>
 

@@ -41,22 +41,51 @@ pnpm run build        # vite-ssg -> dist/
 pnpm run preview      # static preview at http://localhost:8787
 pnpm run typecheck    # vue-tsc --noEmit
 pnpm run lint         # ESLint (flat config)
+pnpm run stylelint    # Stylelint
+pnpm run format       # Prettier write
+pnpm run format:check # Prettier check (CI)
 pnpm test             # Vitest (unit)
+pnpm run test:size    # gzipped bundle-size reporter
 pnpm run test:e2e     # Playwright Chromium Desktop smoke
-pnpm run format       # Prettier
 ```
 
 ## Layout
 
-```
+```text
 src/
   main.ts             # vite-ssg app factory
   App.vue             # <RouterView /> shell
-  router.ts           # route table (placeholder for now)
+  router.ts           # route table
+  nav.ts              # navigation tree
+  components/         # Vd* SFCs (primitives, layout, overlays, etc.)
+  components/primitives/
+  composables/        # reusable composition functions
+  layout/             # navbar, footer, sidenav, sticky, waypoint
+  overlays/           # offcanvas, search modal
   pages/              # one SFC per route
-  styles/app.css      # shell layout only — no component styling
+  stores/             # Pinia setup-style stores
+  styles/             # CSS (app.css shell only)
+
+tests/
+  unit/               # Vitest specs
+  e2e/                # Playwright specs
+  scripts/size.mjs    # bundle-size reporter
+
+openspec/
+  changes/            # OpenSpec change proposals
+  specs/              # normative specs
 ```
 
-Component primitives, the theme system, the global search modal, and the
-full navigation tree land in follow-up OpenSpec change proposals
-(`app-shell`, `core-components`, `docs-routing-and-content`).
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the OpenSpec change-folder
+convention, branch/no-push policy, validation commands, and release
+process.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the release history.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

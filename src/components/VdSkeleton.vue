@@ -1,6 +1,6 @@
 <script setup lang="ts">
-type Shape = 'text' | 'circle' | 'rect' | 'card' | 'button';
-type Size = 'sm' | 'md' | 'lg' | 'xl';
+type Shape = "text" | "circle" | "rect" | "card" | "button";
+type Size = "sm" | "md" | "lg" | "xl";
 
 interface Props {
   shape?: Shape;
@@ -10,9 +10,9 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  shape: 'text',
-  size: 'md',
-  width: '',
+  shape: "text",
+  size: "md",
+  width: "",
   lines: 1,
 });
 </script>
@@ -40,10 +40,7 @@ withDefaults(defineProps<Props>(), {
     class="vd-skeleton vd-skeleton-circle"
     :class="`vd-skeleton-circle-${size}`"
   />
-  <div
-    v-else-if="lines > 1"
-    class="vd-skeleton-lines"
-  >
+  <div v-else-if="lines > 1" class="vd-skeleton-lines">
     <div
       v-for="n in lines"
       :key="n"

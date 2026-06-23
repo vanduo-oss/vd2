@@ -1,15 +1,17 @@
-import { onMounted, onUnmounted, ref, type Ref } from 'vue';
+import { onMounted, onUnmounted, ref, type Ref } from "vue";
 
 const FOCUSABLE_SELECTOR = [
-  'a[href]',
-  'button:not([disabled])',
-  'input:not([disabled])',
-  'select:not([disabled])',
-  'textarea:not([disabled])',
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
   '[tabindex]:not([tabindex="-1"])',
-].join(',');
+].join(",");
 
-export const useFocusTrap = (container: Ref<HTMLElement | null>): {
+export const useFocusTrap = (
+  container: Ref<HTMLElement | null>,
+): {
   active: Ref<boolean>;
   activate: () => void;
   deactivate: () => void;
@@ -17,10 +19,10 @@ export const useFocusTrap = (container: Ref<HTMLElement | null>): {
   const active = ref(false);
 
   const onKeydown = (event: KeyboardEvent): void => {
-    if (!active.value || event.key !== 'Tab' || !container.value) return;
+    if (!active.value || event.key !== "Tab" || !container.value) return;
     const focusables = Array.from(
       container.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
-    ).filter((el) => !el.hasAttribute('disabled') && el.tabIndex !== -1);
+    ).filter((el) => !el.hasAttribute("disabled") && el.tabIndex !== -1);
     if (focusables.length === 0) {
       event.preventDefault();
       return;
@@ -40,7 +42,8 @@ export const useFocusTrap = (container: Ref<HTMLElement | null>): {
   const activate = (): void => {
     active.value = true;
     if (container.value) {
-      const first = container.value.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
+      const first =
+        container.value.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
       first?.focus();
     }
   };
@@ -50,14 +53,14 @@ export const useFocusTrap = (container: Ref<HTMLElement | null>): {
   };
 
   onMounted(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('keydown', onKeydown);
+    if (typeof window !== "undefined") {
+      window.addEventListener("keydown", onKeydown);
     }
   });
 
   onUnmounted(() => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('keydown', onKeydown);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("keydown", onKeydown);
     }
   });
 

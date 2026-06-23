@@ -1,6 +1,6 @@
 {
   "name": "@vanduo-oss/vd2",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Vue 3 + vite-ssg documentation site for @vanduo-oss/framework",
   "private": true,
   "type": "module",
@@ -11,7 +11,11 @@
     ".": "./src/main.ts"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "dev": "vite",
@@ -19,12 +23,15 @@
     "preview": "vite preview --port 8787 --host",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "format": "prettier --write \"src/**/*.{ts,vue,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,vue,css}\"",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:size": "node tests/scripts/size.mjs",
     "test:e2e": "playwright test --project='Chromium Desktop'",
-    "test:e2e:full": "playwright test",
-    "format": "prettier --write \"src/**/*.{ts,vue,css}\""
+    "test:e2e:full": "playwright test"
   },
   "dependencies": {
     "@unhead/vue": "3.1.4",

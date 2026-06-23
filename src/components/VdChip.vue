@@ -1,6 +1,12 @@
 <script setup lang="ts">
-type Size = 'sm' | 'md' | 'lg';
-type Variant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+type Size = "sm" | "md" | "lg";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
 
 interface Props {
   variant?: Variant;
@@ -17,17 +23,17 @@ const emit = defineEmits<{
 }>();
 
 withDefaults(defineProps<Props>(), {
-  variant: 'primary',
-  size: 'md',
+  variant: "primary",
+  size: "md",
   outline: false,
   dismissible: false,
-  avatar: '',
+  avatar: "",
   clickable: false,
 });
 
 const onDismiss = (event: MouseEvent): void => {
   event.stopPropagation();
-  emit('dismiss');
+  emit("dismiss");
 };
 </script>
 
@@ -46,12 +52,7 @@ const onDismiss = (event: MouseEvent): void => {
     role="status"
     @click="clickable && emit('click', $event)"
   >
-    <img
-      v-if="avatar"
-      :src="avatar"
-      class="vd-chip-avatar"
-      alt=""
-    >
+    <img v-if="avatar" :src="avatar" class="vd-chip-avatar" alt="" />
     <slot />
     <button
       v-if="dismissible"

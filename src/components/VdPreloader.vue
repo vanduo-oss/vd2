@@ -1,7 +1,13 @@
 <script setup lang="ts">
-type Variant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-type Size = 'sm' | 'md' | 'lg' | 'xl';
-type Theme = 'light' | 'dark';
+type Variant =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
+type Size = "sm" | "md" | "lg" | "xl";
+type Theme = "light" | "dark";
 
 interface Props {
   variant?: Variant;
@@ -11,10 +17,10 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  variant: 'primary',
-  size: 'md',
-  theme: 'light',
-  text: '',
+  variant: "primary",
+  size: "md",
+  theme: "light",
+  text: "",
 });
 </script>
 
@@ -27,16 +33,10 @@ withDefaults(defineProps<Props>(), {
   >
     <div
       class="vd-preloader"
-      :class="[
-        `vd-preloader-${variant}`,
-        `vd-preloader-${size}`,
-      ]"
+      :class="[`vd-preloader-${variant}`, `vd-preloader-${size}`]"
     >
       <div class="vd-preloader-spinner" />
     </div>
-    <span
-      v-if="text"
-      class="vd-preloader-text"
-    >{{ text }}</span>
+    <span v-if="text" class="vd-preloader-text">{{ text }}</span>
   </div>
 </template>

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
-type Size = 'sm' | 'md' | 'lg';
+type Variant = "primary" | "secondary" | "ghost" | "danger";
+type Size = "sm" | "md" | "lg";
 
 interface Props {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
   disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  variant: 'primary',
-  size: 'md',
+  variant: "primary",
+  size: "md",
   loading: false,
   disabled: false,
-  type: 'button',
+  type: "button",
 });
 
 const emit = defineEmits<{ click: [event: MouseEvent] }>();
@@ -25,7 +25,7 @@ const onClick = (event: MouseEvent): void => {
     event.preventDefault();
     return;
   }
-  emit('click', event);
+  emit("click", event);
 };
 </script>
 
@@ -41,11 +41,7 @@ const onClick = (event: MouseEvent): void => {
     ]"
     @click="onClick"
   >
-    <span
-      v-if="loading"
-      class="vd-btn-spinner"
-      aria-hidden="true"
-    />
+    <span v-if="loading" class="vd-btn-spinner" aria-hidden="true" />
     <slot />
   </button>
 </template>

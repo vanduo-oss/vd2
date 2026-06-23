@@ -1,80 +1,80 @@
-import type { RouteRecordRaw } from 'vue-router';
-import HomePage from '@/pages/home.vue';
-import AboutPage from '@/pages/about.vue';
-import ChangelogPage from '@/pages/changelog.vue';
-import KiloOssPage from '@/pages/kilo-oss.vue';
-import DocsLandingPage from '@/pages/docs-landing.vue';
-import QuickStartPage from '@/pages/quick-start.vue';
-import PlaceholderPage from '@/pages/_placeholder.vue';
+import type { RouteRecordRaw } from "vue-router";
+import HomePage from "@/pages/home.vue";
+import AboutPage from "@/pages/about.vue";
+import ChangelogPage from "@/pages/changelog.vue";
+import KiloOssPage from "@/pages/kilo-oss.vue";
+import DocsLandingPage from "@/pages/docs-landing.vue";
+import QuickStartPage from "@/pages/quick-start.vue";
+import PlaceholderPage from "@/pages/_placeholder.vue";
 
-import ButtonPage from '@/pages/components/Button.vue';
-import BadgePage from '@/pages/components/Badge.vue';
-import AlertPage from '@/pages/components/Alert.vue';
-import CardPage from '@/pages/components/Card.vue';
-import ModalPage from '@/pages/components/Modal.vue';
-import ToastPage from '@/pages/components/Toast.vue';
-import TooltipPage from '@/pages/components/Tooltip.vue';
-import TabsPage from '@/pages/components/Tabs.vue';
-import AccordionPage from '@/pages/components/Accordion.vue';
-import FlowPage from '@/pages/components/Flow.vue';
-import ProgressPage from '@/pages/components/Progress.vue';
-import SpinnerPage from '@/pages/components/Spinner.vue';
-import CodeSnippetPage from '@/pages/components/CodeSnippet.vue';
-import IconPage from '@/pages/components/Icon.vue';
-import SidenavPage from '@/pages/components/Sidenav.vue';
-import StickyPage from '@/pages/components/Sticky.vue';
-import ScrollspyPage from '@/pages/components/Scrollspy.vue';
-import OffcanvasPage from '@/pages/components/Offcanvas.vue';
-import NavbarPage from '@/pages/components/Navbar.vue';
-import FooterPage from '@/pages/components/Footer.vue';
-import AvatarPage from '@/pages/components/Avatar.vue';
-import TablePage from '@/pages/components/Table.vue';
-import CollectionPage from '@/pages/components/Collection.vue';
-import BreadcrumbPage from '@/pages/components/Breadcrumb.vue';
-import ChipPage from '@/pages/components/Chip.vue';
-import SkeletonPage from '@/pages/components/Skeleton.vue';
-import PreloaderPage from '@/pages/components/Preloader.vue';
-import FormsPage from '@/pages/components/Forms.vue';
-import FormValidationPage from '@/pages/components/FormValidation.vue';
-import DatepickerPage from '@/pages/components/Datepicker.vue';
-import TimepickerPage from '@/pages/components/Timepicker.vue';
-import RatingPage from '@/pages/components/Rating.vue';
-import StepperPage from '@/pages/components/Stepper.vue';
-import AutocompletePage from '@/pages/components/Autocomplete.vue';
-import TransferPage from '@/pages/components/Transfer.vue';
-import TreePage from '@/pages/components/Tree.vue';
-import PaginationPage from '@/pages/components/Pagination.vue';
-import ButtonGroupsPage from '@/pages/components/ButtonGroups.vue';
-import ColorPalettePage from '@/pages/core/ColorPalette.vue';
-import GlassPage from '@/pages/effects/Glass.vue';
-import ThemeSwitcherPage from '@/pages/components/ThemeSwitcher.vue';
-import ThemeCustomizerPage from '@/pages/components/ThemeCustomizer.vue';
-import GettingStartedPage from '@/pages/guides/GettingStarted.vue';
-import FirstLayoutPage from '@/pages/guides/FirstLayout.vue';
-import FrameworkIntegrationPage from '@/pages/guides/FrameworkIntegration.vue';
-import EsmVsIifePage from '@/pages/guides/EsmVsIife.vue';
-import RuntimeArchitecturePage from '@/pages/guides/RuntimeArchitecture.vue';
-import LifecycleManagerPage from '@/pages/guides/LifecycleManager.vue';
-import LazyLoadingPage from '@/pages/guides/LazyLoading.vue';
-import CssVariablesPage from '@/pages/guides/CssVariables.vue';
-import ThemeCustomizerGuidePage from '@/pages/guides/ThemeCustomizerGuide.vue';
-import FibonacciPage from '@/pages/guides/Fibonacci.vue';
-import AccessibilityPage from '@/pages/guides/Accessibility.vue';
-import SecurityPage from '@/pages/guides/SecurityPractices.vue';
-import ProductionPage from '@/pages/guides/ProductionBestPractices.vue';
-import MigrationPage from '@/pages/guides/MigrationComparison.vue';
-import TroubleshootingPage from '@/pages/guides/Troubleshooting.vue';
-import UtilitiesCheatSheetPage from '@/pages/guides/UtilitiesCheatSheet.vue';
-import VanduoEcosystemPage from '@/pages/guides/VanduoEcosystem.vue';
-import MorphPage from '@/pages/effects/Morph.vue';
-import ParallaxPage from '@/pages/effects/Parallax.vue';
-import TypographyPage from '@/pages/core/Typography.vue';
-import IconsPage from '@/pages/core/Icons.vue';
-import GoldenRatioPage from '@/pages/core/GoldenRatio.vue';
-import GridSystemPage from '@/pages/core/GridSystem.vue';
-import ShadowsGlowPage from '@/pages/core/ShadowsGlow.vue';
+import ButtonPage from "@/pages/components/Button.vue";
+import BadgePage from "@/pages/components/Badge.vue";
+import AlertPage from "@/pages/components/Alert.vue";
+import CardPage from "@/pages/components/Card.vue";
+import ModalPage from "@/pages/components/Modal.vue";
+import ToastPage from "@/pages/components/Toast.vue";
+import TooltipPage from "@/pages/components/Tooltip.vue";
+import TabsPage from "@/pages/components/Tabs.vue";
+import AccordionPage from "@/pages/components/Accordion.vue";
+import FlowPage from "@/pages/components/Flow.vue";
+import ProgressPage from "@/pages/components/Progress.vue";
+import SpinnerPage from "@/pages/components/Spinner.vue";
+import CodeSnippetPage from "@/pages/components/CodeSnippet.vue";
+import IconPage from "@/pages/components/Icon.vue";
+import SidenavPage from "@/pages/components/Sidenav.vue";
+import StickyPage from "@/pages/components/Sticky.vue";
+import ScrollspyPage from "@/pages/components/Scrollspy.vue";
+import OffcanvasPage from "@/pages/components/Offcanvas.vue";
+import NavbarPage from "@/pages/components/Navbar.vue";
+import FooterPage from "@/pages/components/Footer.vue";
+import AvatarPage from "@/pages/components/Avatar.vue";
+import TablePage from "@/pages/components/Table.vue";
+import CollectionPage from "@/pages/components/Collection.vue";
+import BreadcrumbPage from "@/pages/components/Breadcrumb.vue";
+import ChipPage from "@/pages/components/Chip.vue";
+import SkeletonPage from "@/pages/components/Skeleton.vue";
+import PreloaderPage from "@/pages/components/Preloader.vue";
+import FormsPage from "@/pages/components/Forms.vue";
+import FormValidationPage from "@/pages/components/FormValidation.vue";
+import DatepickerPage from "@/pages/components/Datepicker.vue";
+import TimepickerPage from "@/pages/components/Timepicker.vue";
+import RatingPage from "@/pages/components/Rating.vue";
+import StepperPage from "@/pages/components/Stepper.vue";
+import AutocompletePage from "@/pages/components/Autocomplete.vue";
+import TransferPage from "@/pages/components/Transfer.vue";
+import TreePage from "@/pages/components/Tree.vue";
+import PaginationPage from "@/pages/components/Pagination.vue";
+import ButtonGroupsPage from "@/pages/components/ButtonGroups.vue";
+import ColorPalettePage from "@/pages/core/ColorPalette.vue";
+import GlassPage from "@/pages/effects/Glass.vue";
+import ThemeSwitcherPage from "@/pages/components/ThemeSwitcher.vue";
+import ThemeCustomizerPage from "@/pages/components/ThemeCustomizer.vue";
+import GettingStartedPage from "@/pages/guides/GettingStarted.vue";
+import FirstLayoutPage from "@/pages/guides/FirstLayout.vue";
+import FrameworkIntegrationPage from "@/pages/guides/FrameworkIntegration.vue";
+import EsmVsIifePage from "@/pages/guides/EsmVsIife.vue";
+import RuntimeArchitecturePage from "@/pages/guides/RuntimeArchitecture.vue";
+import LifecycleManagerPage from "@/pages/guides/LifecycleManager.vue";
+import LazyLoadingPage from "@/pages/guides/LazyLoading.vue";
+import CssVariablesPage from "@/pages/guides/CssVariables.vue";
+import ThemeCustomizerGuidePage from "@/pages/guides/ThemeCustomizerGuide.vue";
+import FibonacciPage from "@/pages/guides/Fibonacci.vue";
+import AccessibilityPage from "@/pages/guides/Accessibility.vue";
+import SecurityPage from "@/pages/guides/SecurityPractices.vue";
+import ProductionPage from "@/pages/guides/ProductionBestPractices.vue";
+import MigrationPage from "@/pages/guides/MigrationComparison.vue";
+import TroubleshootingPage from "@/pages/guides/Troubleshooting.vue";
+import UtilitiesCheatSheetPage from "@/pages/guides/UtilitiesCheatSheet.vue";
+import VanduoEcosystemPage from "@/pages/guides/VanduoEcosystem.vue";
+import MorphPage from "@/pages/effects/Morph.vue";
+import ParallaxPage from "@/pages/effects/Parallax.vue";
+import TypographyPage from "@/pages/core/Typography.vue";
+import IconsPage from "@/pages/core/Icons.vue";
+import GoldenRatioPage from "@/pages/core/GoldenRatio.vue";
+import GridSystemPage from "@/pages/core/GridSystem.vue";
+import ShadowsGlowPage from "@/pages/core/ShadowsGlow.vue";
 
-import { nav } from '@/nav';
+import { nav } from "@/nav";
 
 const componentPages: Record<string, ReturnType<typeof definePage>> = {
   button: ButtonPage,
@@ -89,7 +89,7 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   flow: FlowPage,
   progress: ProgressPage,
   spinner: SpinnerPage,
-  'code-snippet': CodeSnippetPage,
+  "code-snippet": CodeSnippetPage,
   icon: IconPage,
   sidenav: SidenavPage,
   sticky: StickyPage,
@@ -105,7 +105,7 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   skeleton: SkeletonPage,
   preloader: PreloaderPage,
   forms: FormsPage,
-  'form-validation': FormValidationPage,
+  "form-validation": FormValidationPage,
   datepicker: DatepickerPage,
   timepicker: TimepickerPage,
   rating: RatingPage,
@@ -114,35 +114,35 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   transfer: TransferPage,
   tree: TreePage,
   pagination: PaginationPage,
-  'button-groups': ButtonGroupsPage,
-  'color-palette': ColorPalettePage,
+  "button-groups": ButtonGroupsPage,
+  "color-palette": ColorPalettePage,
   typography: TypographyPage,
   icons: IconsPage,
-  'golden-ratio': GoldenRatioPage,
-  'grid-system': GridSystemPage,
-  'shadows-glow': ShadowsGlowPage,
+  "golden-ratio": GoldenRatioPage,
+  "grid-system": GridSystemPage,
+  "shadows-glow": ShadowsGlowPage,
   glass: GlassPage,
   morph: MorphPage,
   parallax: ParallaxPage,
-  'theme-switcher': ThemeSwitcherPage,
-  'theme-customizer': ThemeCustomizerPage,
-  'getting-started': GettingStartedPage,
-  'first-layout': FirstLayoutPage,
-  'framework-integration': FrameworkIntegrationPage,
-  'esm-vs-iife': EsmVsIifePage,
-  'runtime-architecture': RuntimeArchitecturePage,
-  'lifecycle-manager': LifecycleManagerPage,
-  'lazy-loading': LazyLoadingPage,
-  'css-variables': CssVariablesPage,
-  'theme-customizer-guide': ThemeCustomizerGuidePage,
+  "theme-switcher": ThemeSwitcherPage,
+  "theme-customizer": ThemeCustomizerPage,
+  "getting-started": GettingStartedPage,
+  "first-layout": FirstLayoutPage,
+  "framework-integration": FrameworkIntegrationPage,
+  "esm-vs-iife": EsmVsIifePage,
+  "runtime-architecture": RuntimeArchitecturePage,
+  "lifecycle-manager": LifecycleManagerPage,
+  "lazy-loading": LazyLoadingPage,
+  "css-variables": CssVariablesPage,
+  "theme-customizer-guide": ThemeCustomizerGuidePage,
   fibonacci: FibonacciPage,
   accessibility: AccessibilityPage,
   security: SecurityPage,
   production: ProductionPage,
   migration: MigrationPage,
   troubleshooting: TroubleshootingPage,
-  'utilities-cheat-sheet': UtilitiesCheatSheetPage,
-  'vanduo-ecosystem': VanduoEcosystemPage,
+  "utilities-cheat-sheet": UtilitiesCheatSheetPage,
+  "vanduo-ecosystem": VanduoEcosystemPage,
 };
 
 function definePage<T>(component: T): T {
@@ -153,9 +153,9 @@ const pageComponents: Record<string, ReturnType<typeof definePage>> = {
   home: HomePage,
   about: AboutPage,
   changelog: ChangelogPage,
-  'kilo-oss': KiloOssPage,
-  'docs-landing': DocsLandingPage,
-  'quick-start': QuickStartPage,
+  "kilo-oss": KiloOssPage,
+  "docs-landing": DocsLandingPage,
+  "quick-start": QuickStartPage,
 };
 
 export const buildRoutes = (): RouteRecordRaw[] => {
@@ -193,10 +193,10 @@ export const buildRoutes = (): RouteRecordRaw[] => {
   }
 
   routes.push({
-    path: '/:pathMatch(.*)*',
-    name: 'placeholder',
+    path: "/:pathMatch(.*)*",
+    name: "placeholder",
     component: PlaceholderPage,
-    meta: { title: 'Coming soon', keywords: [] },
+    meta: { title: "Coming soon", keywords: [] },
   });
 
   return routes;

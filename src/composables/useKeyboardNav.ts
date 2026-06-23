@@ -1,4 +1,4 @@
-import { ref, type Ref } from 'vue';
+import { ref, type Ref } from "vue";
 
 export interface UseKeyboardNavOptions {
   itemSelector: string;
@@ -15,7 +15,9 @@ export const useKeyboardNav = (
 
   const items = (): HTMLElement[] => {
     if (!container.value) return [];
-    return Array.from(container.value.querySelectorAll<HTMLElement>(options.itemSelector));
+    return Array.from(
+      container.value.querySelectorAll<HTMLElement>(options.itemSelector),
+    );
   };
 
   const focusItem = (index: number): void => {
@@ -33,24 +35,24 @@ export const useKeyboardNav = (
     const max = list.length - 1;
     let next = activeIndex.value;
     switch (event.key) {
-      case 'ArrowDown':
-      case 'ArrowRight':
+      case "ArrowDown":
+      case "ArrowRight":
         next = Math.min(max, activeIndex.value + 1);
         break;
-      case 'ArrowUp':
-      case 'ArrowLeft':
+      case "ArrowUp":
+      case "ArrowLeft":
         next = Math.max(0, activeIndex.value - 1);
         break;
-      case 'Home':
+      case "Home":
         next = 0;
         break;
-      case 'End':
+      case "End":
         next = max;
         break;
-      case 'Enter':
+      case "Enter":
         options.onSelect?.(activeIndex.value);
         return;
-      case 'Escape':
+      case "Escape":
         options.onEscape?.();
         return;
       default:
@@ -60,8 +62,8 @@ export const useKeyboardNav = (
     focusItem(next);
   };
 
-  if (typeof window !== 'undefined' && container.value) {
-    container.value.addEventListener('keydown', onKeydown);
+  if (typeof window !== "undefined" && container.value) {
+    container.value.addEventListener("keydown", onKeydown);
   }
 
   const setItems = (next: number): void => {

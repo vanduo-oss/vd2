@@ -10,15 +10,15 @@ interface Props {
   modelValue: readonly string[];
   name: string;
   inline?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   disabled?: boolean;
 }
 
-const emit = defineEmits<{ 'update:modelValue': [value: string[]] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string[]] }>();
 
 withDefaults(defineProps<Props>(), {
   inline: false,
-  size: 'md',
+  size: "md",
   disabled: false,
 });
 
@@ -34,7 +34,7 @@ const toggle = (current: readonly string[], value: string): string[] => {
 };
 
 const onChange = (props: Props, value: string): void => {
-  emit('update:modelValue', toggle(props.modelValue, value));
+  emit("update:modelValue", toggle(props.modelValue, value));
 };
 </script>
 
@@ -48,10 +48,7 @@ const onChange = (props: Props, value: string): void => {
       v-for="opt in options"
       :key="opt.value"
       class="vd-form-check"
-      :class="[
-        `vd-form-check-${size}`,
-        { 'vd-form-check-inline': inline },
-      ]"
+      :class="[`vd-form-check-${size}`, { 'vd-form-check-inline': inline }]"
     >
       <input
         :id="`${name}-${opt.value}`"
@@ -62,11 +59,8 @@ const onChange = (props: Props, value: string): void => {
         :disabled="disabled || opt.disabled"
         class="vd-form-check-input"
         @change="onChange($props, opt.value)"
-      >
-      <label
-        :for="`${name}-${opt.value}`"
-        class="vd-form-check-label"
-      >
+      />
+      <label :for="`${name}-${opt.value}`" class="vd-form-check-label">
         {{ opt.label }}
       </label>
     </div>

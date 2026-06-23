@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch } from "vue";
 
 interface TimeParts {
   hour: number;
@@ -13,12 +13,12 @@ interface Props {
   placeholder?: string;
 }
 
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 
 const props = withDefaults(defineProps<Props>(), {
   minuteStep: 1,
   disabled: false,
-  placeholder: 'HH:MM',
+  placeholder: "HH:MM",
 });
 
 const parse = (s: string): TimeParts | null => {
@@ -31,7 +31,7 @@ const parse = (s: string): TimeParts | null => {
 };
 
 const format = (p: TimeParts): string =>
-  `${String(p.hour).padStart(2, '0')}:${String(p.minute).padStart(2, '0')}`;
+  `${String(p.hour).padStart(2, "0")}:${String(p.minute).padStart(2, "0")}`;
 
 const internal = ref<TimeParts | null>(parse(props.modelValue));
 const open = ref(false);
@@ -44,10 +44,10 @@ watch(
 );
 
 watch(internal, (v) => {
-  if (v) emit('update:modelValue', format(v));
+  if (v) emit("update:modelValue", format(v));
 });
 
-const display = computed(() => (internal.value ? format(internal.value) : ''));
+const display = computed(() => (internal.value ? format(internal.value) : ""));
 
 const hours = computed(() => Array.from({ length: 24 }, (_, i) => i));
 const minutes = computed(() => {
@@ -74,10 +74,7 @@ const onBlur = (): void => {
 </script>
 
 <template>
-  <div
-    class="vd-datepicker"
-    :class="{ 'is-open': open }"
-  >
+  <div class="vd-datepicker" :class="{ 'is-open': open }">
     <input
       type="text"
       class="vd-input"
@@ -87,7 +84,7 @@ const onBlur = (): void => {
       readonly
       @focus="open = true"
       @blur="onBlur"
-    >
+    />
     <div
       v-if="open"
       class="vd-datepicker-popup"
@@ -96,13 +93,11 @@ const onBlur = (): void => {
     >
       <div
         class="vd-datepicker-grid"
-        style="grid-template-columns: 1fr 1fr; gap: 0.5rem;"
+        style="grid-template-columns: 1fr 1fr; gap: 0.5rem"
       >
         <div>
-          <div class="vd-datepicker-weekdays">
-            Hour
-          </div>
-          <div style="max-height: 200px; overflow-y: auto;">
+          <div class="vd-datepicker-weekdays">Hour</div>
+          <div style="max-height: 200px; overflow-y: auto">
             <button
               v-for="h in hours"
               :key="h"
@@ -111,15 +106,13 @@ const onBlur = (): void => {
               :class="{ 'is-selected': internal?.hour === h }"
               @click="setHour(h)"
             >
-              {{ String(h).padStart(2, '0') }}
+              {{ String(h).padStart(2, "0") }}
             </button>
           </div>
         </div>
         <div>
-          <div class="vd-datepicker-weekdays">
-            Minute
-          </div>
-          <div style="max-height: 200px; overflow-y: auto;">
+          <div class="vd-datepicker-weekdays">Minute</div>
+          <div style="max-height: 200px; overflow-y: auto">
             <button
               v-for="m in minutes"
               :key="m"
@@ -128,7 +121,7 @@ const onBlur = (): void => {
               :class="{ 'is-selected': internal?.minute === m }"
               @click="setMinute(m)"
             >
-              {{ String(m).padStart(2, '0') }}
+              {{ String(m).padStart(2, "0") }}
             </button>
           </div>
         </div>
