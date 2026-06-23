@@ -312,6 +312,37 @@ export const nav: NavTree = {
           ],
         },
         {
+          id: 'effects',
+          title: 'Effects',
+          icon: 'sparkle',
+          sections: [
+            {
+              id: 'glass',
+              title: 'Glass',
+              route: '/effects/glass',
+              icon: 'drop',
+              keywords: ['glass', 'blur', 'frosted'],
+              file: 'effects/glass.html',
+            },
+            {
+              id: 'morph',
+              title: 'Morph',
+              route: '/effects/morph',
+              icon: 'shapes',
+              keywords: ['morph', 'shape', 'animation'],
+              file: 'effects/morph.html',
+            },
+            {
+              id: 'parallax',
+              title: 'Parallax',
+              route: '/effects/parallax',
+              icon: 'mountains',
+              keywords: ['parallax', 'scroll', 'background'],
+              file: 'effects/parallax.html',
+            },
+          ],
+        },
+        {
           id: 'forms',
           title: 'Forms',
           icon: 'textbox',

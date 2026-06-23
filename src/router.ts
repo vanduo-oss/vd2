@@ -46,6 +46,9 @@ import TreePage from '@/pages/components/Tree.vue';
 import PaginationPage from '@/pages/components/Pagination.vue';
 import ButtonGroupsPage from '@/pages/components/ButtonGroups.vue';
 import ColorPalettePage from '@/pages/core/ColorPalette.vue';
+import GlassPage from '@/pages/effects/Glass.vue';
+import MorphPage from '@/pages/effects/Morph.vue';
+import ParallaxPage from '@/pages/effects/Parallax.vue';
 import TypographyPage from '@/pages/core/Typography.vue';
 import IconsPage from '@/pages/core/Icons.vue';
 import GoldenRatioPage from '@/pages/core/GoldenRatio.vue';
@@ -99,6 +102,9 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   'golden-ratio': GoldenRatioPage,
   'grid-system': GridSystemPage,
   'shadows-glow': ShadowsGlowPage,
+  glass: GlassPage,
+  morph: MorphPage,
+  parallax: ParallaxPage,
 };
 
 function definePage<T>(component: T): T {

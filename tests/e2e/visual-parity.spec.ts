@@ -56,6 +56,9 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/core/golden-ratio', label: 'core-golden-ratio' },
   { vd2Path: '/core/grid-system', label: 'core-grid-system' },
   { vd2Path: '/core/shadows-glow', label: 'core-shadows-glow' },
+  { vd2Path: '/effects/glass', label: 'effects-glass' },
+  { vd2Path: '/effects/morph', label: 'effects-morph' },
+  { vd2Path: '/effects/parallax', label: 'effects-parallax' },
 ];
 
 test.describe('Visual parity', () => {
