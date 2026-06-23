@@ -36,6 +36,9 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/components/table', label: 'components-table' },
   { vd2Path: '/components/collection', label: 'components-collection' },
   { vd2Path: '/components/breadcrumb', label: 'components-breadcrumb' },
+  { vd2Path: '/components/chip', label: 'components-chip' },
+  { vd2Path: '/components/skeleton', label: 'components-skeleton' },
+  { vd2Path: '/components/preloader', label: 'components-preloader' },
 ];
 
 test.describe('Visual parity', () => {

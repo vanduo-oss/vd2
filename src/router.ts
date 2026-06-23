@@ -31,6 +31,9 @@ import AvatarPage from '@/pages/components/Avatar.vue';
 import TablePage from '@/pages/components/Table.vue';
 import CollectionPage from '@/pages/components/Collection.vue';
 import BreadcrumbPage from '@/pages/components/Breadcrumb.vue';
+import ChipPage from '@/pages/components/Chip.vue';
+import SkeletonPage from '@/pages/components/Skeleton.vue';
+import PreloaderPage from '@/pages/components/Preloader.vue';
 
 import { nav } from '@/nav';
 
@@ -59,6 +62,9 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   table: TablePage,
   collection: CollectionPage,
   breadcrumb: BreadcrumbPage,
+  chip: ChipPage,
+  skeleton: SkeletonPage,
+  preloader: PreloaderPage,
 };
 
 function definePage<T>(component: T): T {
