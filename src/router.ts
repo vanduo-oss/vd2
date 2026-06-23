@@ -47,6 +47,8 @@ import PaginationPage from '@/pages/components/Pagination.vue';
 import ButtonGroupsPage from '@/pages/components/ButtonGroups.vue';
 import ColorPalettePage from '@/pages/core/ColorPalette.vue';
 import GlassPage from '@/pages/effects/Glass.vue';
+import ThemeSwitcherPage from '@/pages/components/ThemeSwitcher.vue';
+import ThemeCustomizerPage from '@/pages/components/ThemeCustomizer.vue';
 import MorphPage from '@/pages/effects/Morph.vue';
 import ParallaxPage from '@/pages/effects/Parallax.vue';
 import TypographyPage from '@/pages/core/Typography.vue';
@@ -105,6 +107,8 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   glass: GlassPage,
   morph: MorphPage,
   parallax: ParallaxPage,
+  'theme-switcher': ThemeSwitcherPage,
+  'theme-customizer': ThemeCustomizerPage,
 };
 
 function definePage<T>(component: T): T {

@@ -59,6 +59,8 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/effects/glass', label: 'effects-glass' },
   { vd2Path: '/effects/morph', label: 'effects-morph' },
   { vd2Path: '/effects/parallax', label: 'effects-parallax' },
+  { vd2Path: '/components/theme-switcher', label: 'components-theme-switcher' },
+  { vd2Path: '/components/theme-customizer', label: 'components-theme-customizer' },
 ];
 
 test.describe('Visual parity', () => {

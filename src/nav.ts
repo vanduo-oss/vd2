@@ -148,6 +148,29 @@ export const nav: NavTree = {
       icon: 'squares-four',
       categories: [
         {
+          id: 'theme',
+          title: 'Theme',
+          icon: 'paint-brush',
+          sections: [
+            {
+              id: 'theme-switcher',
+              title: 'Theme switcher',
+              route: '/components/theme-switcher',
+              icon: 'palette',
+              keywords: ['theme', 'dark', 'light', 'contrast'],
+              file: 'components/theme-switcher.html',
+            },
+            {
+              id: 'theme-customizer',
+              title: 'Theme customizer',
+              route: '/components/theme-customizer',
+              icon: 'sliders',
+              keywords: ['customizer', 'tokens', 'live-edit'],
+              file: 'components/theme-customizer.html',
+            },
+          ],
+        },
+        {
           id: 'core',
           title: 'Core',
           icon: 'cube',
