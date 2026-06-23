@@ -81,6 +81,68 @@ export const nav: NavTree = {
   ],
   tabs: [
     {
+      id: 'core-foundation',
+      title: 'Core',
+      icon: 'cube',
+      categories: [
+        {
+          id: 'foundation',
+          title: 'Foundation',
+          icon: 'shapes',
+          sections: [
+            {
+              id: 'color-palette',
+              title: 'Color palette',
+              route: '/core/color-palette',
+              icon: 'palette',
+              keywords: ['color', 'palette', 'tokens'],
+              file: 'core/color-palette.html',
+            },
+            {
+              id: 'typography',
+              title: 'Typography',
+              route: '/core/typography',
+              icon: 'text-aa',
+              keywords: ['typography', 'font', 'type'],
+              file: 'core/typography.html',
+            },
+            {
+              id: 'icons',
+              title: 'Icons',
+              route: '/core/icons',
+              icon: 'icons',
+              keywords: ['icons', 'phosphor', 'glyph'],
+              file: 'core/icons.html',
+            },
+            {
+              id: 'golden-ratio',
+              title: 'Golden ratio',
+              route: '/core/golden-ratio',
+              icon: 'shapes',
+              keywords: ['ratio', 'phi', 'fibonacci'],
+              file: 'core/golden-ratio.html',
+            },
+            {
+              id: 'grid-system',
+              title: 'Grid system',
+              route: '/core/grid-system',
+              icon: 'grid-four',
+              keywords: ['grid', 'layout', 'columns'],
+              file: 'core/grid-system.html',
+            },
+            {
+              id: 'shadows-glow',
+              title: 'Shadows & glow',
+              route: '/core/shadows-glow',
+              icon: 'square',
+              keywords: ['shadow', 'elevation', 'glow'],
+              file: 'core/shadows-glow.html',
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: 'components',
       title: 'Components',
       icon: 'squares-four',

@@ -45,6 +45,12 @@ import TransferPage from '@/pages/components/Transfer.vue';
 import TreePage from '@/pages/components/Tree.vue';
 import PaginationPage from '@/pages/components/Pagination.vue';
 import ButtonGroupsPage from '@/pages/components/ButtonGroups.vue';
+import ColorPalettePage from '@/pages/core/ColorPalette.vue';
+import TypographyPage from '@/pages/core/Typography.vue';
+import IconsPage from '@/pages/core/Icons.vue';
+import GoldenRatioPage from '@/pages/core/GoldenRatio.vue';
+import GridSystemPage from '@/pages/core/GridSystem.vue';
+import ShadowsGlowPage from '@/pages/core/ShadowsGlow.vue';
 
 import { nav } from '@/nav';
 
@@ -87,6 +93,12 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   tree: TreePage,
   pagination: PaginationPage,
   'button-groups': ButtonGroupsPage,
+  'color-palette': ColorPalettePage,
+  typography: TypographyPage,
+  icons: IconsPage,
+  'golden-ratio': GoldenRatioPage,
+  'grid-system': GridSystemPage,
+  'shadows-glow': ShadowsGlowPage,
 };
 
 function definePage<T>(component: T): T {

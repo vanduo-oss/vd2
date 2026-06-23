@@ -50,6 +50,12 @@ const ROUTES: readonly Route[] = [
   { vd2Path: '/components/tree', label: 'components-tree' },
   { vd2Path: '/components/pagination', label: 'components-pagination' },
   { vd2Path: '/components/button-groups', label: 'components-button-groups' },
+  { vd2Path: '/core/color-palette', label: 'core-color-palette' },
+  { vd2Path: '/core/typography', label: 'core-typography' },
+  { vd2Path: '/core/icons', label: 'core-icons' },
+  { vd2Path: '/core/golden-ratio', label: 'core-golden-ratio' },
+  { vd2Path: '/core/grid-system', label: 'core-grid-system' },
+  { vd2Path: '/core/shadows-glow', label: 'core-shadows-glow' },
 ];
 
 test.describe('Visual parity', () => {
