@@ -404,7 +404,7 @@ export const nav: NavTree = {
               file: 'guides/css-variables-theming.html',
             },
             {
-              id: 'theme-customizer',
+              id: 'theme-customizer-guide',
               title: 'Theme customizer',
               route: '/guides/theme-customizer',
               icon: 'paint-brush',
