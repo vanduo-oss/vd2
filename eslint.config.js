@@ -80,6 +80,15 @@ export default [
     },
   },
   {
+    files: ['**/*.mjs', '**/*.cjs'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+      },
+    },
+  },
+  {
     ignores: ['dist/**', 'node_modules/**', 'playwright-report/**', 'test-results/**'],
   },
 ];

@@ -22,17 +22,17 @@ const onSearchClick = (): void => {
     role="banner"
   >
     <nav
-      class="vd-navbar-inner vd-container"
+      class="vd-navbar-container vd-container"
       aria-label="Primary"
     >
       <VdNavbarBrand />
-      <ul class="vd-navbar-links">
+      <ul class="vd-navbar-nav">
         <li
           v-for="page in nav.pages"
           :key="page.id"
         >
           <a
-            class="vd-navbar-link"
+            class="vd-nav-link"
             :href="page.route"
             @click.prevent="navTo(page.route)"
           >

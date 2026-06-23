@@ -7,11 +7,11 @@ const year = new Date().getFullYear();
     class="vd-footer"
     role="contentinfo"
   >
-    <div class="vd-container vd-footer-inner">
+    <div class="vd-container vd-footer-container">
       <p class="vd-muted vd-text-sm">
         © {{ year }} vanduo-oss — MIT license
       </p>
-      <ul class="vd-footer-links">
+      <ul class="vd-footer-list">
         <li>
           <a
             href="https://github.com/vanduo-oss"

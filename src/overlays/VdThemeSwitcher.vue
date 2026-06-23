@@ -26,7 +26,7 @@ const themes = [
       <VdIcon name="paint-brush" />
     </button>
     <ul
-      class="vd-menu vd-menu-end vd-shadow-md"
+      class="vd-dropdown-menu vd-dropdown-menu-end vd-shadow-md"
       role="menu"
       data-theme-menu
     >
@@ -40,7 +40,7 @@ const themes = [
           role="menuitemradio"
           :aria-checked="theme.theme() === opt.id"
           :data-theme-value="opt.id"
-          class="vd-menu-item"
+          class="vd-dropdown-item"
           :class="{ 'is-active': theme.theme() === opt.id }"
           @click="theme.setTheme(opt.id)"
         >

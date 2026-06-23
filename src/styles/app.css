@@ -1,6 +1,15 @@
 /* vd2 docs shell layout — the only stylesheet allowed to define
    selectors outside the @vanduo-oss/framework bundle. Component
-   styling lives in the framework; this file owns layout only. */
+   styling lives in the framework; this file owns layout only.
+
+   Two zones below:
+     1. vd2-specific layout helpers (long-term home: this file).
+     2. Transitional overrides for primitives the framework does not
+        yet ship. Each block in zone 2 is an explicit debt tracked in
+        openspec/changes/promote-layout-to-framework/ and will be
+        deleted when the framework PR lands and vd2 bumps its dep. */
+
+/* ── Zone 1: vd2-specific layout helpers ─────────────────────── */
 
 :root {
   color-scheme: light dark;
@@ -42,7 +51,7 @@ body {
   padding: var(--vd-pad-xl, 1.5rem) var(--vd-pad-2xl, 2rem);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .vd-docs-layout {
     grid-template-columns: 1fr;
   }
@@ -62,3 +71,76 @@ body {
   border-color: var(--vd-color-border, currentColor);
   outline: none;
 }
+
+/* vd2-specific override of the framework's .vd-navbar-brand. The framework
+   already ships this selector; this local rule layers a `gap` and tweaks
+   the color token so the brand mark + name sit side-by-side with vd2's
+   spacing scale. If the framework's brand layout evolves, revisit this. */
+.vd-navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--vd-navbar-brand-font-size, var(--vd-font-size-xl, 1.3125rem));
+  font-weight: var(--vd-font-weight-bold, 700);
+  color: var(--vd-navbar-link-color, var(--vd-text-primary));
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.vd-navbar-brand:hover,
+.vd-navbar-brand:focus {
+  color: var(--vd-navbar-link-hover-color, var(--vd-color-primary));
+}
+
+/* ── Zone 2: transitional overrides (delete when framework PR ships) ──
+   These rules cover primitives the framework bundle does not yet expose.
+   Track A of the promote-layout-to-framework proposal renamed vd2's SFC
+   classes to use the framework's existing vocabulary (vd-navbar-container,
+   vd-navbar-nav, vd-nav-link, vd-footer-container, vd-footer-list,
+   vd-dropdown-menu, vd-dropdown-item, vd-dropdown-menu-end). The
+   selectors below are NOT covered by Track A and are explicitly listed
+   as Track B work in openspec/changes/promote-layout-to-framework/. */
+
+.vd-navbar-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--vd-radius-fib-5, 0.8125rem);
+  background-color: var(--vd-color-primary);
+  color: var(--vd-color-white, #fff);
+  font-size: 1rem;
+  font-weight: var(--vd-font-weight-bold, 700);
+  line-height: 1;
+}
+
+.vd-navbar-brand-name {
+  line-height: 1;
+}
+
+.vd-display {
+  font-size: clamp(2.125rem, 4vw + 1rem, 3.4375rem);
+  line-height: 1.15;
+  font-weight: var(--vd-font-weight-bold, 700);
+  letter-spacing: -0.02em;
+  color: var(--vd-text-primary);
+  margin: 0;
+}
+
+.vd-lead {
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.3125rem);
+  line-height: 1.5;
+  color: var(--vd-text-secondary, var(--vd-text-primary));
+  margin: 0;
+}
+
+.vd-pad-xs  { padding: var(--vd-space-fib-3, 0.3125rem); }
+.vd-pad-sm  { padding: var(--vd-space-fib-5, 0.5rem); }
+.vd-pad-md  { padding: var(--vd-space-fib-8, 0.8125rem); }
+.vd-pad-lg  { padding: var(--vd-space-fib-13, 1.3125rem); }
+.vd-pad-xl  { padding: var(--vd-space-fib-21, 2.125rem); }
+.vd-pad-2xl { padding: var(--vd-space-fib-34, 3.4375rem); }
+.vd-pad-3xl { padding: var(--vd-space-fib-55, 5.5625rem); }
+.vd-pad-4xl { padding: var(--vd-space-fib-89, 8.9375rem); }
+.vd-pad-5xl { padding: var(--vd-space-fib-144, 14.4375rem); }
