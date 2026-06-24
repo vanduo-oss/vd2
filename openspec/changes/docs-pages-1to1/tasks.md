@@ -127,8 +127,12 @@ the docs-view template. Check off only after the page is verified against
 - [ ] 8.2 `components/Sticky.vue` ← `affix.html`
 - [ ] 8.3 `components/Scrollspy.vue` ← `scrollspy.html`
 - [ ] 8.4 `components/Offcanvas.vue` ← `offcanvas.html`
-- [ ] 8.5 `components/Navbar.vue` ← `navbar.html`
-- [ ] 8.6 `components/Footer.vue` ← `footer.html`
+- [x] 8.5 `components/Navbar.vue` ← `navbar.html` (was `VdStack`/`VdNavbar`
+      scaffold). Rendered navbar demo, basic-structure snippet, variants +
+      CSS-var + API tables. Purely presentational.
+- [x] 8.6 `components/Footer.vue` ← `footer.html` (was `VdStack`/`VdFooter`
+      scaffold). 3-column footer demo, core-markup snippet, variants + CSS-var +
+      API tables. Purely presentational.
 
 ## 9. Effects (batch)
 
