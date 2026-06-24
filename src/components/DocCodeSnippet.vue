@@ -8,6 +8,8 @@ interface Props {
   css?: string;
   /** Optional JavaScript shown in a tab. */
   js?: string;
+  /** Start expanded (mirrors the legacy `data-expanded="true"`). */
+  defaultOpen?: boolean;
 }
 const props = defineProps<Props>();
 
@@ -25,7 +27,7 @@ const langs = computed<Lang[]>(() => {
   return list;
 });
 
-const expanded = ref(false);
+const expanded = ref(props.defaultOpen ?? false);
 const active = ref(langs.value[0]?.key ?? "html");
 const copied = ref(false);
 

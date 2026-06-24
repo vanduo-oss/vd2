@@ -137,9 +137,17 @@ the docs-view template. Check off only after the page is verified against
       scaffold with wrong violet hexes; rebuilt 1-to-1: 7 Open Color scales,
       semantic surfaces light/dark, gray neutrals, utility-class guide, hues,
       CSS-usage + theming snippets, attribution — 70 swatches matching docs)
-- [ ] 11.2 `core/Typography.vue` ← `core/typography.html`
-- [ ] 11.3 `core/Icons.vue` ← `core/icons.html`
-- [ ] 11.4 `core/GoldenRatio.vue` ← `core/golden-ratio.html`
+- [x] 11.2 `core/Typography.vue` ← `core/typography.html` (was `VdStack`
+      scaffold). Type scale, φ leading + tracking, headings, weights, font
+      families (initially-expanded snippet via new `DocCodeSnippet` `defaultOpen`
+      prop), API table. Uses framework layout primitives (vd-stack/inline/box).
+- [x] 11.3 `core/Icons.vue` ← `core/icons.html` (was `VdStack`/`VdIcon`
+      scaffold). 6 Phosphor weights, quick-start/import/styling snippets, sample
+      icon row with `useTooltips`, icons-in-buttons, attribution, accessibility.
+- [x] 11.4 `core/GoldenRatio.vue` ← `core/golden-ratio.html` (was `VdStack`
+      scaffold). Golden split, fib 3-col, CSS-grid golden, fib spacing bars,
+      type scale, interactive fib-spacing slider (wired in Vue — a docs demo
+      with no framework JS), and the φ-vs-conventional table.
 - [ ] 11.5 `core/GridSystem.vue` ← `core/grid-system.html`
 - [ ] 11.6 `core/ShadowsGlow.vue` ← `core/shadows-glow.html`
 
