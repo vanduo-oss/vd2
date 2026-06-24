@@ -47,9 +47,9 @@ the docs-view template. Check off only after the page is verified against
 
 ## 5. Interactive (batch)
 
-- [ ] 5.1 `components/Tabs.vue` ← `tabs.html`
-- [ ] 5.2 `components/Accordion.vue` ← `accordion.html`
-- [ ] 5.3 `components/Flow.vue` ← `flow.html`
+- [x] 5.1 `components/Tabs.vue` ← `tabs.html`
+- [x] 5.2 `components/Accordion.vue` ← `accordion.html`
+- [ ] 5.3 `components/Flow.vue` ← `components/carousel.html` (nav.ts mis-maps to flow.html)
 
 ## 6. Forms (batch)
 
