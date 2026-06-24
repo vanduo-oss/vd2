@@ -52,7 +52,15 @@ the docs-view template. Check off only after the page is verified against
 
 - [x] 5.1 `components/Tabs.vue` ← `tabs.html`
 - [x] 5.2 `components/Accordion.vue` ← `accordion.html`
-- [ ] 5.3 `components/Flow.vue` ← `components/carousel.html` (nav.ts mis-maps to flow.html)
+- [x] 5.3 `components/Flow.vue` ← `components/carousel.html` (nav.ts mis-maps
+      to flow.html; was a stale `VdFlow`/`VdStack` scaffold). Ported
+      `framework/js/components/flow.js` into `useFlow(root)`: slide + fade
+      transitions, prev/next, keyboard arrows, pointer/touch swipe, autoplay
+      (pause on hover/focus), `flow:change`. Intentional fix vs docs: the legacy
+      markup nests bare `<button>`s in `.vd-flow-indicators` but the framework
+      CSS/JS target `.vd-flow-indicator` — `useFlow` adds that class so
+      indicators render as dots and become interactive (`.is-active` +
+      `aria-current`), the component's clear design intent.
 
 ## 6. Forms (batch)
 
