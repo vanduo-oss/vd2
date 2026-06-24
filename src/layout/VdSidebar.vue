@@ -1,63 +1,138 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import { useNavStore } from "@/stores/nav";
-import { nav } from "@/nav";
-import VdSidebarFilter from "./VdSidebarFilter.vue";
-import VdIcon from "@/components/VdIcon.vue";
+import { nav, type NavSection } from "@/nav";
 
-const store = useNavStore();
 const route = useRoute();
 
-const componentsTab = computed(() =>
-  nav.tabs.find((t) => t.id === "components"),
+interface Group {
+  title: string;
+  sections: NavSection[];
+}
+
+const allGroups = computed<Group[]>(() => {
+  const groups: Group[] = [];
+  for (const tab of nav.tabs) {
+    for (const category of tab.categories) {
+      groups.push({ title: category.title, sections: category.sections });
+    }
+  }
+  return groups;
+});
+
+const componentGroups = computed(() =>
+  allGroups.value.filter((g) => g.title !== "Guides"),
+);
+const guideGroups = computed(() =>
+  allGroups.value.filter((g) => g.title === "Guides"),
 );
 
-const matches = (text: string): boolean => {
-  const q = store.filter.trim().toLowerCase();
-  if (q.length === 0) return true;
-  return text.toLowerCase().includes(q);
+const isGuideRoute = (path: string): boolean => path.startsWith("/guides/");
+const mode = ref<"components" | "guides">(
+  isGuideRoute(route.path) ? "guides" : "components",
+);
+watch(
+  () => route.path,
+  (path) => {
+    mode.value = isGuideRoute(path) ? "guides" : "components";
+  },
+);
+const toggleMode = (): void => {
+  mode.value = mode.value === "components" ? "guides" : "components";
 };
 
-const activeId = computed(() => {
-  if (route.path.startsWith("/components/")) {
-    return route.path.replace("/components/", "");
-  }
-  return null;
-});
+const current = computed(() =>
+  mode.value === "components"
+    ? { icon: "ph-cube", label: "Components" }
+    : { icon: "ph-compass", label: "Guides" },
+);
+const next = computed(() =>
+  mode.value === "components"
+    ? { icon: "ph-compass", label: "Guides" }
+    : { icon: "ph-cube", label: "Components" },
+);
+
+const groups = computed(() =>
+  mode.value === "guides" ? guideGroups.value : componentGroups.value,
+);
+
+const filter = ref("");
+const matches = (s: NavSection): boolean => {
+  const q = filter.value.trim().toLowerCase();
+  if (q.length === 0) return true;
+  return (
+    s.title.toLowerCase().includes(q) ||
+    s.keywords.some((k) => k.toLowerCase().includes(q))
+  );
+};
+const visibleGroups = computed(() =>
+  groups.value
+    .map((g) => ({ title: g.title, sections: g.sections.filter(matches) }))
+    .filter((g) => g.sections.length > 0),
+);
+
+const tocOpen = ref(false);
 </script>
 
 <template>
-  <aside class="vd-sidebar" aria-label="Documentation sidebar">
-    <VdSidebarFilter v-if="componentsTab" />
-    <nav v-if="componentsTab" class="vd-sidebar-nav">
-      <div
-        v-for="category in componentsTab.categories"
-        :key="category.id"
-        class="vd-sidebar-category"
-      >
-        <h3 class="vd-sidebar-category-title">
-          <VdIcon v-if="category.icon" :name="category.icon" />
-          <span>{{ category.title }}</span>
-        </h3>
-        <ul class="vd-sidebar-list">
-          <li
-            v-for="section in category.sections"
-            v-show="
-              matches(section.title) || section.keywords.some((k) => matches(k))
-            "
-            :key="section.id"
+  <div class="doc-water-toggle-wrapper" aria-label="Docs mode switch">
+    <button
+      type="button"
+      class="vd-morph doc-water-toggle"
+      :aria-pressed="mode === 'guides'"
+      :aria-label="`Switch to ${next.label}`"
+      @click="toggleMode"
+    >
+      <span class="vd-morph-content vd-morph-current" aria-hidden="true">
+        <i class="doc-water-icon ph" :class="current.icon"></i>
+        <span class="doc-water-label">{{ current.label }}</span>
+      </span>
+      <span class="vd-morph-content vd-morph-next" aria-hidden="true">
+        <i class="doc-water-icon ph" :class="next.icon"></i>
+        <span class="doc-water-label">{{ next.label }}</span>
+      </span>
+    </button>
+  </div>
+
+  <div class="doc-sidebar-filter">
+    <i class="ph ph-funnel-simple doc-sidebar-filter-icon" aria-hidden="true"></i>
+    <input
+      v-model="filter"
+      type="search"
+      class="doc-sidebar-filter-input"
+      placeholder="Filter…"
+      autocomplete="off"
+      aria-label="Filter navigation items"
+    />
+  </div>
+
+  <button
+    class="doc-sidebar-toggle"
+    aria-label="Toggle navigation"
+    :aria-expanded="tocOpen"
+    @click="tocOpen = !tocOpen"
+  >
+    Table of Contents
+  </button>
+
+  <nav class="doc-nav" aria-label="Docs sections" :class="{ 'is-open': tocOpen }">
+    <ul class="doc-nav-list">
+      <template v-for="group in visibleGroups" :key="group.title">
+        <li class="doc-nav-section">{{ group.title }}</li>
+        <li v-for="section in group.sections" :key="section.id">
+          <RouterLink
+            :to="section.route"
+            class="doc-nav-link"
+            :class="{ active: route.path === section.route }"
+            :data-section="section.id"
+            @click="tocOpen = false"
           >
-            <RouterLink
-              :to="section.route"
-              class="vd-sidebar-link"
-              :class="{ 'is-active': activeId === section.id }"
-            >
-              {{ section.title }}
-            </RouterLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </aside>
+            <i :class="`ph ph-${section.icon ?? 'circle'} mr-2`"></i>{{
+              section.title
+            }}
+          </RouterLink>
+        </li>
+      </template>
+    </ul>
+  </nav>
 </template>

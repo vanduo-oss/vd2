@@ -1,45 +1,27 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import VdSidebar from "./VdSidebar.vue";
-import VdBreadcrumb from "./VdBreadcrumb.vue";
-import { nav } from "@/nav";
 
 const route = useRoute();
-
-const breadcrumbItems = (): { label: string; href?: string }[] => {
-  const items: { label: string; href?: string }[] = [];
-  if (route.path.startsWith("/components/")) {
-    const id = route.path.replace("/components/", "");
-    const tab = nav.tabs.find((t) => t.id === "components");
-    if (tab)
-      items.push({
-        label: tab.title,
-        href: tab.categories[0] ? "/components" : undefined,
-      });
-    for (const category of tab?.categories ?? []) {
-      for (const section of category.sections) {
-        if (section.id === id) {
-          items.push({ label: category.title });
-          items.push({ label: section.title });
-          return items;
-        }
-      }
-    }
-  }
-  const page = nav.pages.find((p) => p.route === route.path);
-  if (page) items.push({ label: page.title });
-  return items;
-};
+// The legacy SPA toggles this view via JS; in vd2 routing controls it, so the
+// docs view is always active when rendered. data-doc-tab drives card styling.
+const docTab = computed(() =>
+  route.path.startsWith("/guides/") ? "guides" : "components",
+);
 </script>
 
 <template>
-  <div class="vd-docs-layout">
-    <VdSidebar />
-    <div class="vd-docs-main">
-      <VdBreadcrumb :items="breadcrumbItems()" />
-      <article class="vd-docs-article">
-        <slot />
-      </article>
+  <div id="docs-view" class="is-active" :data-doc-tab="docTab">
+    <div class="vd-container-responsive">
+      <div class="vd-row">
+        <aside class="vd-col-12 vd-col-lg-2 doc-sidebar" aria-label="Docs navigation">
+          <VdSidebar />
+        </aside>
+        <div class="vd-col-12 vd-col-lg-10 doc-content">
+          <slot />
+        </div>
+      </div>
     </div>
   </div>
 </template>
