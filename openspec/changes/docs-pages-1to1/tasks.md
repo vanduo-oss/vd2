@@ -71,7 +71,15 @@ the docs-view template. Check off only after the page is verified against
       `.custom-select-*` widget declaratively (toggle, select, outside-click,
       keyboard nav, typeahead, aria) per `framework/js/components/select.js`.
       Range value + password toggle wired in Vue (static/no-op in legacy docs).
-- [ ] 6.2 `components/FormValidation.vue` ← `form-validation.html`
+- [x] 6.2 `components/FormValidation.vue` ← `form-validation.html` (was
+      `VdStack` scaffold). 4 live demo forms (required+email, length+range,
+      password-match, modes+custom-msg), rules table, API tables, custom-rule
+      snippet, accessibility. New `useValidate(root)` ports
+      `framework/js/components/validate.js` (rules, blur/input/submit modes,
+      `data-vd-msg-*`, `.is-valid`/`.is-invalid` + `.vd-validate-error`).
+      Two fixes-to-documented-intent: `match:ID` resolves by element id
+      (legacy queried `[name]` → demo always failed) and per-field
+      `data-vd-validate-mode` is honored (legacy only read form-level mode).
 - [ ] 6.3 `components/Datepicker.vue` ← `datepicker.html`
 - [ ] 6.4 `components/Timepicker.vue` ← `timepicker.html`
 - [ ] 6.5 `components/Rating.vue` ← `rating.html`
