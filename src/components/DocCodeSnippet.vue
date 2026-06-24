@@ -3,9 +3,11 @@ import { computed, ref } from "vue";
 
 interface Props {
   /** The demo markup shown in the HTML tab (mirrors the legacy data-extract). */
-  html: string;
+  html?: string;
   /** Optional CSS shown in a second tab. */
   css?: string;
+  /** Optional JavaScript shown in a tab. */
+  js?: string;
 }
 const props = defineProps<Props>();
 
@@ -16,13 +18,15 @@ interface Lang {
 }
 
 const langs = computed<Lang[]>(() => {
-  const list: Lang[] = [{ key: "html", label: "HTML", code: props.html }];
+  const list: Lang[] = [];
+  if (props.html) list.push({ key: "html", label: "HTML", code: props.html });
   if (props.css) list.push({ key: "css", label: "CSS", code: props.css });
+  if (props.js) list.push({ key: "js", label: "JavaScript", code: props.js });
   return list;
 });
 
 const expanded = ref(false);
-const active = ref("html");
+const active = ref(langs.value[0]?.key ?? "html");
 const copied = ref(false);
 
 const toggle = (): void => {
