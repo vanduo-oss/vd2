@@ -79,8 +79,16 @@ the docs-view template. Check off only after the page is verified against
 - [ ] 6.7 `components/Autocomplete.vue` ← `autocomplete.html`
 - [ ] 6.8 `components/Transfer.vue` ← `transfer.html`
 - [ ] 6.9 `components/Tree.vue` ← `tree-view.html`
-- [ ] 6.10 `components/Pagination.vue` ← `button-groups.html`
-- [ ] 6.11 `components/ButtonGroups.vue` ← `button-groups.html`
+- [ ] 6.10 `components/Pagination.vue` ← NO DOCS SOURCE. nav.ts maps the
+      `/components/pagination` route to `button-groups.html` (a bug — that file
+      has zero pagination content); there is no `pagination.html` in
+      `docs/sections/`, though `framework/js/components/pagination.js` + CSS
+      exist. Not a 1-to-1 port: needs a product decision (author a net-new
+      Pagination docs page from the framework component, or mirror the legacy
+      nav bug). DEFERRED pending that decision; scaffold left untouched.
+- [x] 6.11 `components/ButtonGroups.vue` ← `button-groups.html` (was
+      `VdStack`/`VdButtonGroup` scaffold). Horizontal/outline+active/full-width,
+      vertical, sm/lg groups, View Code, API table — purely presentational.
 
 ## 7. Primitives (batch)
 
