@@ -31,7 +31,7 @@ the docs-view template. Check off only after the page is verified against
 
 ## 3. Feedback (batch)
 
-- [ ] 3.1 `components/Modal.vue` ← `modals.html`
+- [x] 3.1 `components/Modal.vue` ← `modals.html`
 - [x] 3.2 `components/Toast.vue` ← `toast.html`
 - [x] 3.3 `components/Tooltip.vue` ← `tooltips.html`
 - [x] 3.4 `components/Chip.vue` ← `feedback/chips.html`
