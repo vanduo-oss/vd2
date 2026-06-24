@@ -144,9 +144,21 @@ the docs-view template. Check off only after the page is verified against
 
 ## 9. Effects (batch)
 
-- [ ] 9.1 `effects/Glass.vue` ← `effects/glass.html`
-- [ ] 9.2 `effects/Morph.vue` ← `effects/morph.html`
-- [ ] 9.3 `effects/Parallax.vue` ← `effects/parallax.html`
+- [x] 9.1 `effects/Glass.vue` ← `effects/glass.html` (was `VdStack` scaffold).
+      Hero surface, pure-CSS `:has()` diagnostics controls, size/modifier
+      comparison grids, glass tokens, component integration (navbar/card/toast/
+      fab/modal-glass), a11y + theming, and the `data-glass-scroll` live demo via
+      new `useGlass(root)` (ports glass.js IntersectionObserver). Glass modal
+      wired with a Vue ref.
+- [x] 9.2 `effects/Morph.vue` ← `effects/morph.html` (was `VdStack` scaffold).
+      4 demos (mode toggle, theme card, status badges, caption reveal) + API
+      tables + a11y. New `useMorph(root)` ports morph.js (wave/shine layers,
+      current⇄next swap); `useMorphBadges(root)` ports the docs-only manual
+      multi-state badge cycling.
+- [x] 9.3 `effects/Parallax.vue` ← `effects/parallax.html` (was `VdStack`
+      scaffold). Layered-speed depth demo + markup snippet + API table. New
+      `useParallax(root)` ports parallax.js (rAF scroll, speed-scaled translate,
+      reduced-motion guard). Page-specific scroll-driven CSS preserved.
 
 ## 10. Theme (batch)
 
