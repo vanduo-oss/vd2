@@ -82,7 +82,13 @@ the docs-view template. Check off only after the page is verified against
       `data-vd-validate-mode` is honored (legacy only read form-level mode).
 - [ ] 6.3 `components/Datepicker.vue` ← `datepicker.html`
 - [ ] 6.4 `components/Timepicker.vue` ← `timepicker.html`
-- [ ] 6.5 `components/Rating.vue` ← `rating.html`
+- [x] 6.5 `components/Rating.vue` ← `rating.html` (was `VdStack` scaffold).
+      5 demos (basic, preset, readonly, max-10, sm/md/lg sizes), API tables,
+      accessibility. Rewrote `VdRating.vue` to the framework contract — empty
+      `.vd-rating-star` buttons (CSS draws ★ via `::before`), `is-active`/
+      `is-half`/`is-hovered`, value-only display, sm/lg — per `rating.js`
+      (old scaffold used wrong `is-filled` + literal `★`). Kept `modelValue`
+      API so `rating.spec.ts` stays green.
 - [ ] 6.6 `components/Stepper.vue` ← `stepper.html`
 - [ ] 6.7 `components/Autocomplete.vue` ← `autocomplete.html`
 - [ ] 6.8 `components/Transfer.vue` ← `transfer.html`
