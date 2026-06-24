@@ -148,8 +148,17 @@ the docs-view template. Check off only after the page is verified against
       scaffold). Golden split, fib 3-col, CSS-grid golden, fib spacing bars,
       type scale, interactive fib-spacing slider (wired in Vue — a docs demo
       with no framework JS), and the φ-vs-conventional table.
-- [ ] 11.5 `core/GridSystem.vue` ← `core/grid-system.html`
-- [ ] 11.6 `core/ShadowsGlow.vue` ← `core/shadows-glow.html`
+- [x] 11.5 `core/GridSystem.vue` ← `core/grid-system.html` (was `VdStack`
+      scaffold). Standard-vs-fibonacci intro, 2xl breakpoint grid, responsive
+      containers, order utilities, fib flex + CSS-grid layouts, fib gap
+      utilities, offsets, and the grid-mode toggle. Fix-to-intent: the legacy
+      `data-grid-toggle`/`data-layout-mode` had no backing CSS (no-op); wired in
+      Vue + scoped CSS applies the documented proportions (golden 2-col, 2:3:5
+      3-col, 1:2:3:5 4-col).
+- [x] 11.6 `core/ShadowsGlow.vue` ← `core/shadows-glow.html` (was `VdStack`
+      scaffold). Fib elevation ladder, shadow utilities, glow utilities, glow
+      intensity variants, colored shadows, CSS-variable customization. Purely
+      presentational.
 
 ## 12. Guides (batch — 18 pages)
 
