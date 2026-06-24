@@ -162,8 +162,15 @@ the docs-view template. Check off only after the page is verified against
 
 ## 10. Theme (batch)
 
-- [ ] 10.1 `components/ThemeSwitcher.vue` ← `theme-switcher.html`
-- [ ] 10.2 `components/ThemeCustomizer.vue` ← `theme-customizer.html`
+- [x] 10.1 `components/ThemeSwitcher.vue` ← `theme-switcher.html` (was `VdStack`
+      scaffold). Live demo (icon menu + cycle button) wired to the global
+      `useThemeStore` (system→light→dark), variant code cards, comparison table,
+      JS/CSS API, best practices. Drives the real site theme like the docs.
+- [x] 10.2 `components/ThemeCustomizer.vue` ← `theme-customizer.html` (was
+      `VdStack` scaffold). Inline customizer (color mode, 18 primaries, 6
+      neutrals, 5 radii, font select) wired to `useThemeStore` with `.active`
+      states; trigger opens the navbar `VdThemeCustomizer` via the
+      `vd:open-customizer` event; chips/tables/API/coordination/events cards.
 
 ## 11. Core / Foundation (batch)
 
