@@ -35,7 +35,7 @@ the docs-view template. Check off only after the page is verified against
 - [x] 3.2 `components/Toast.vue` ← `toast.html`
 - [x] 3.3 `components/Tooltip.vue` ← `tooltips.html`
 - [x] 3.4 `components/Chip.vue` ← `feedback/chips.html`
-- [ ] 3.5 `components/Skeleton.vue` ← `components/skeleton.html` (nav.ts mis-maps to primitives/overview.html)
+- [x] 3.5 `components/Skeleton.vue` ← `components/skeleton.html` (nav.ts mis-maps to primitives/overview.html)
 - [x] 3.6 `components/Preloader.vue` ← `feedback/preloader.html`
 
 ## 4. Data display (batch)
