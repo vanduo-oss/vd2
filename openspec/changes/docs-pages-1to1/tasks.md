@@ -106,10 +106,20 @@ the docs-view template. Check off only after the page is verified against
 
 ## 7. Primitives (batch)
 
-- [ ] 7.1 `components/Progress.vue` ← `progress.html`
-- [ ] 7.2 `components/Spinner.vue` ← `spinner.html`
-- [ ] 7.3 `components/CodeSnippet.vue` ← `code-snippet.html`
-- [ ] 7.4 `components/Icon.vue` ← `icon.html`
+- [x] 7.1 `components/Progress.vue` ← `progress.html` (was `VdStack`/`VdProgress`
+      scaffold). Semantic variants, sizes, striped/animated, indeterminate,
+      multiple/labeled bars, CSS-var + API tables, accessibility. CSS-only.
+- [x] 7.2 `components/Spinner.vue` ← `spinner.html` (was `VdStack`/`VdSpinner`
+      scaffold). Border spinner (sizes/colors/in-buttons), dots, growing pulse,
+      centering helper, signature quad loader + skeleton overlay, tables. CSS-only.
+- [x] 7.3 `components/CodeSnippet.vue` ← NO DOCS SOURCE (nav.ts → non-existent
+      `components/code-snippet.html`). Per the "author a real page" decision,
+      authored from the real component (code-snippet.css/.js that powers every
+      View Code block): collapsible + multi-tab + expanded demos, class/attr/JS
+      reference tables.
+- [x] 7.4 `components/Icon.vue` ← NO DOCS SOURCE (nav.ts → non-existent
+      `components/icon.html`); duplicates `/core/icons`. Thin wrapper that
+      reuses `core/Icons.vue` rather than maintaining a divergent copy.
 
 ## 8. Layout (batch)
 
