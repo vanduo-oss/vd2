@@ -26,8 +26,8 @@ the docs-view template. Check off only after the page is verified against
 
 - [x] 2.1 `components/Button.vue` ← `buttons.html`
 - [x] 2.2 `components/Badge.vue` ← `badges.html`
-- [ ] 2.3 `components/Alert.vue` ← `alerts.html`
-- [ ] 2.4 `components/Card.vue` ← `cards.html`
+- [x] 2.3 `components/Alert.vue` ← `alerts.html`
+- [x] 2.4 `components/Card.vue` ← `cards.html`
 
 ## 3. Feedback (batch)
 
