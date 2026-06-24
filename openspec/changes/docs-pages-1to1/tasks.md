@@ -32,7 +32,10 @@ the docs-view template. Check off only after the page is verified against
 ## 3. Feedback (batch)
 
 - [x] 3.1 `components/Modal.vue` ← `modals.html`
-- [x] 3.2 `components/Toast.vue` ← `toast.html`
+- [x] 3.2 `components/Toast.vue` ← `toast.html` (fixed: toasts rendered
+      invisible — `.vd-toast` needs runtime `.is-visible`; rebuilt
+      store/container/item to mirror `framework/js/components/toast.js`:
+      per-position containers, default icons, title, progress, pause-on-hover)
 - [x] 3.3 `components/Tooltip.vue` ← `tooltips.html`
 - [x] 3.4 `components/Chip.vue` ← `feedback/chips.html`
 - [x] 3.5 `components/Skeleton.vue` ← `components/skeleton.html` (nav.ts mis-maps to primitives/overview.html)
@@ -94,7 +97,10 @@ the docs-view template. Check off only after the page is verified against
 
 ## 11. Core / Foundation (batch)
 
-- [ ] 11.1 `core/ColorPalette.vue` ← `core/color-palette.html`
+- [x] 11.1 `core/ColorPalette.vue` ← `core/color-palette.html` (was a stale
+      scaffold with wrong violet hexes; rebuilt 1-to-1: 7 Open Color scales,
+      semantic surfaces light/dark, gray neutrals, utility-class guide, hues,
+      CSS-usage + theming snippets, attribution — 70 swatches matching docs)
 - [ ] 11.2 `core/Typography.vue` ← `core/typography.html`
 - [ ] 11.3 `core/Icons.vue` ← `core/icons.html`
 - [ ] 11.4 `core/GoldenRatio.vue` ← `core/golden-ratio.html`

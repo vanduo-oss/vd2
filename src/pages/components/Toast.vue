@@ -55,25 +55,25 @@ const apiRows: [string, string, string][] = [
             <div class="vd-card-body">
               <button
                 class="vd-btn vd-btn-success"
-                @click="toast.show('Operation completed successfully!', { variant: 'success' })"
+                @click="toast.success('Operation completed successfully!')"
               >
                 Success Toast
               </button>
               <button
                 class="vd-btn vd-btn-error"
-                @click="toast.show('An error occurred!', { variant: 'danger' })"
+                @click="toast.error('An error occurred!')"
               >
                 Error Toast
               </button>
               <button
                 class="vd-btn vd-btn-warning"
-                @click="toast.show('Please review your input.', { variant: 'warning' })"
+                @click="toast.warning('Please review your input.')"
               >
                 Warning Toast
               </button>
               <button
                 class="vd-btn vd-btn-info"
-                @click="toast.show('Here is some information.', { variant: 'info' })"
+                @click="toast.info('Here is some information.')"
               >
                 Info Toast
               </button>
@@ -88,19 +88,19 @@ const apiRows: [string, string, string][] = [
             <div class="vd-card-body">
               <button
                 class="vd-btn vd-btn-primary"
-                @click="toast.show('With Title — This toast has a title and message.', { variant: 'info' })"
+                @click="toast.show({ title: 'With Title', message: 'This toast has a title and message.', type: 'info' })"
               >
                 With Title
               </button>
               <button
                 class="vd-btn vd-btn-primary"
-                @click="toast.show('This toast will stay for 10 seconds.', { variant: 'success', duration: 10000 })"
+                @click="toast.show({ message: 'This toast will stay for 10 seconds.', type: 'success', duration: 10000 })"
               >
                 Long Duration
               </button>
               <button
                 class="vd-btn vd-btn-primary"
-                @click="toast.show('Bottom left position.', { variant: 'warning' })"
+                @click="toast.show({ message: 'Bottom left position.', type: 'warning', position: 'bottom-left' })"
               >
                 Bottom Left
               </button>
