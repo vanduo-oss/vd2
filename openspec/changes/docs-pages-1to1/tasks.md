@@ -123,10 +123,18 @@ the docs-view template. Check off only after the page is verified against
 
 ## 8. Layout (batch)
 
-- [ ] 8.1 `components/Sidenav.vue` ← `sidenav.html`
+- [x] 8.1 `components/Sidenav.vue` ← `sidenav.html` (was `VdStack`/`VdSidenav`
+      scaffold). Drawer demo + structure/variants/CSS-var/API tables. New shared
+      `useSidenav(root)` ports the core of `framework/js/components/sidenav.js`
+      (toggle via `data-sidenav-toggle`, body overlay, close button, overlay-click
+      + ESC, scroll-lock, `data-vd-position`, sidenav:open/close). Skips the
+      legacy portal-to-body/push/resize — demo drawers are position:fixed.
 - [ ] 8.2 `components/Sticky.vue` ← `affix.html`
 - [ ] 8.3 `components/Scrollspy.vue` ← `scrollspy.html`
-- [ ] 8.4 `components/Offcanvas.vue` ← `offcanvas.html`
+- [x] 8.4 `components/Offcanvas.vue` ← `offcanvas.html` (was `VdStack`/`VdOffcanvas`
+      scaffold). 4 edge panels (left/right/top/bottom) via the shared
+      `useSidenav` composable (`.vd-offcanvas` + `data-vd-position`), code
+      snippets, full API tables (classes/attrs/methods/events), accessibility.
 - [x] 8.5 `components/Navbar.vue` ← `navbar.html` (was `VdStack`/`VdNavbar`
       scaffold). Rendered navbar demo, basic-structure snippet, variants +
       CSS-var + API tables. Purely presentational.
