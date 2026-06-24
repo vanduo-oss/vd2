@@ -16,6 +16,9 @@ importers:
       '@unhead/vue':
         specifier: 3.1.4
         version: 3.1.4(esbuild@0.21.5)(typescript@5.9.3)(vite@5.4.21(@types/node@22.20.0)(terser@5.48.0))(vue@3.5.38(typescript@5.9.3))
+      '@vanduo-oss/core':
+        specifier: file:../core
+        version: file:../core
       '@vanduo-oss/framework':
         specifier: 1.5.1
         version: 1.5.1
@@ -978,6 +981,10 @@ packages:
     resolution: {integrity: sha512-3qkmU6KXWh8GIThEAW3kuRHPQBMjWkKy+Ppz3WkUucx53DTpOa6siMn4xDGSOhlVyMrDaJTCTMLYPZVAIk1P0A==}
     peerDependencies:
       valibot: ^1.4.0
+
+  '@vanduo-oss/core@file:../core':
+    resolution: {directory: ../core, type: directory}
+    engines: {node: '>=18'}
 
   '@vanduo-oss/framework@1.5.1':
     resolution: {integrity: sha512-TUs8wq/7IffeBIpZdzZgEB/M7e/gihtlUfvzJRfr0fTdhu/PtT3bSaKscE6B+lcn6RPLfazRMjAaQrWUB97kZg==}
@@ -3249,6 +3256,8 @@ snapshots:
   '@valibot/to-json-schema@1.7.1(valibot@1.4.1(typescript@5.9.3))':
     dependencies:
       valibot: 1.4.1(typescript@5.9.3)
+
+  '@vanduo-oss/core@file:../core': {}
 
   '@vanduo-oss/framework@1.5.1': {}
 

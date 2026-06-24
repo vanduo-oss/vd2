@@ -1,134 +1,180 @@
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { useSearchStore } from "@/stores/search";
-import { useFocusTrap } from "@/composables/useFocusTrap";
-import { nav } from "@/nav";
-import VdIcon from "@/components/VdIcon.vue";
+import { useSearchStore, type SearchResult } from "@/stores/search";
 
 const search = useSearchStore();
 const router = useRouter();
-const container = ref<HTMLElement | null>(null);
 const inputRef = ref<HTMLInputElement | null>(null);
-const { activate, deactivate } = useFocusTrap(container);
 
-const openFromEvent = (): void => {
-  search.open(nav);
+const openModal = (): void => {
+  search.open();
   void nextTick(() => inputRef.value?.focus());
 };
 
-const onClose = (): void => {
+const onSelect = (route: string): void => {
+  void router.push(route);
   search.close();
 };
 
-const onSelect = (route: string): void => {
-  router.push(route);
-  search.close();
+/** Highlight the matched query within a label using <mark>. */
+const highlight = (text: string): string => {
+  const q = search.query.trim();
+  if (q.length < 2) return escapeHtml(text);
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return escapeHtml(text);
+  return (
+    escapeHtml(text.slice(0, idx)) +
+    "<mark>" +
+    escapeHtml(text.slice(idx, idx + q.length)) +
+    "</mark>" +
+    escapeHtml(text.slice(idx + q.length))
+  );
 };
+
+const escapeHtml = (text: string): string => {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+};
+
+const indexOf = (result: SearchResult): number =>
+  search.ordered.findIndex((r) => r.entry.id === result.entry.id);
 
 const onKeydown = (event: KeyboardEvent): void => {
-  if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+  if (
+    (event.key === "k" && (event.metaKey || event.ctrlKey)) ||
+    event.key === "/"
+  ) {
+    if (event.key === "/" && isEditable(event.target)) return;
     event.preventDefault();
-    search.open(nav);
-    void nextTick(() => inputRef.value?.focus());
+    openModal();
+    return;
   }
+  if (!search.isOpen) return;
+  if (event.key === "Escape") {
+    event.preventDefault();
+    search.close();
+  } else if (event.key === "ArrowDown") {
+    event.preventDefault();
+    search.move(1);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    search.move(-1);
+  } else if (event.key === "Enter") {
+    const target = search.ordered[search.activeIndex];
+    if (target) onSelect(target.entry.route);
+  }
+};
+
+const isEditable = (el: EventTarget | null): boolean => {
+  if (!(el instanceof HTMLElement)) return false;
+  return (
+    el.tagName === "INPUT" ||
+    el.tagName === "TEXTAREA" ||
+    el.isContentEditable
+  );
 };
 
 watch(
-  () => search.isOpen,
-  (open) => {
-    if (open) {
-      void nextTick(activate);
-    } else {
-      deactivate();
-    }
+  () => search.query,
+  () => {
+    search.activeIndex = 0;
   },
 );
 
-onMounted(() => {
-  if (typeof window !== "undefined") {
-    window.addEventListener("vd:open-search", openFromEvent);
-    window.addEventListener("keydown", onKeydown);
-  }
-});
+const hasQuery = computed(() => search.query.trim().length >= 2);
 
+onMounted(() => {
+  window.addEventListener("vd:open-search", openModal);
+  window.addEventListener("keydown", onKeydown);
+});
 onUnmounted(() => {
-  if (typeof window !== "undefined") {
-    window.removeEventListener("vd:open-search", openFromEvent);
-    window.removeEventListener("keydown", onKeydown);
-  }
+  window.removeEventListener("vd:open-search", openModal);
+  window.removeEventListener("keydown", onKeydown);
 });
 </script>
 
 <template>
   <Teleport to="body">
     <div
-      v-if="search.isOpen"
-      class="vd-modal vd-modal-open"
+      class="global-search-overlay"
+      :class="{ 'is-open': search.isOpen }"
+      @click="search.close()"
+    ></div>
+    <div
+      class="global-search-modal"
+      :class="{ 'is-open': search.isOpen }"
       role="dialog"
       aria-modal="true"
-      aria-label="Global search"
+      aria-label="Search entire site"
     >
-      <div class="vd-modal-backdrop" @click="onClose" />
-      <div ref="container" class="vd-modal-panel vd-modal-panel-md vd-stack">
-        <div class="vd-search-input-row vd-stack vd-stack-sm">
-          <label for="vd-search-input" class="vd-visually-hidden"
-            >Search docs</label
-          >
-          <div class="vd-input-group">
-            <VdIcon name="magnifying-glass" />
-            <input
-              id="vd-search-input"
-              ref="inputRef"
-              v-model="search.query"
-              type="search"
-              class="vd-input"
-              placeholder="Search docs…"
-              autocomplete="off"
-              data-search-input
-            />
-          </div>
-          <button
-            type="button"
-            class="vd-btn vd-btn-ghost vd-btn-sm"
-            @click="onClose"
-          >
-            <VdIcon name="x" />
-            <span>Close</span>
-          </button>
-        </div>
+      <div class="global-search-header">
+        <i class="ph ph-magnifying-glass global-search-icon"></i>
+        <input
+          ref="inputRef"
+          v-model="search.query"
+          type="search"
+          class="global-search-input"
+          placeholder="Search everything…"
+          autocomplete="off"
+          aria-label="Search"
+        />
+        <kbd class="global-search-kbd" @click="search.close()">esc</kbd>
+      </div>
+
+      <div class="global-search-results" role="listbox" aria-label="Search results">
         <ul
-          v-if="search.results.length > 0"
-          class="vd-search-results"
+          v-if="search.ordered.length > 0"
+          class="global-search-results-list"
           role="listbox"
-          data-search-results
         >
-          <li
-            v-for="result in search.results"
-            :key="result.section.id"
-            role="option"
-          >
-            <button
-              type="button"
-              class="vd-search-result vd-stack vd-stack-sm"
-              :data-route="result.section.route"
-              @click="onSelect(result.section.route)"
+          <template v-for="group in search.groups" :key="group.categoryPath">
+            <li class="global-search-category-label">{{ group.categoryPath }}</li>
+            <li
+              v-for="result in group.results"
+              :key="result.entry.id"
+              class="global-search-result"
+              role="option"
+              :class="{ 'is-active': indexOf(result) === search.activeIndex }"
+              :aria-selected="indexOf(result) === search.activeIndex"
+              @click="onSelect(result.entry.route)"
+              @mousemove="search.activeIndex = indexOf(result)"
             >
-              <span class="vd-search-result-title">{{
-                result.section.title
-              }}</span>
-              <span class="vd-search-result-route vd-text-sm vd-muted">{{
-                result.section.route
-              }}</span>
-            </button>
-          </li>
+              <div class="global-search-result-icon">
+                <i :class="`ph ph-${result.entry.icon}`"></i>
+              </div>
+              <div class="global-search-result-content">
+                <div
+                  class="global-search-result-title"
+                  v-html="highlight(result.entry.title)"
+                ></div>
+                <div class="global-search-result-meta">
+                  {{ result.entry.category }}
+                </div>
+              </div>
+            </li>
+          </template>
         </ul>
-        <p v-else-if="search.query.length >= 2" class="vd-muted vd-text-sm">
-          No results for “{{ search.query }}”.
-        </p>
-        <p v-else class="vd-muted vd-text-sm">
-          Type at least 2 characters to search.
-        </p>
+        <div v-else-if="hasQuery" class="global-search-empty">
+          <i class="ph ph-magnifying-glass global-search-empty-icon"></i>
+          <p class="global-search-empty-title">No results found</p>
+          <p class="global-search-empty-text">
+            Try a different search term.
+          </p>
+        </div>
+        <div v-else class="global-search-hint">
+          <i class="ph ph-keyboard global-search-hint-icon"></i>
+          <span class="global-search-hint-text"
+            >Type at least 2 characters to search.</span
+          >
+        </div>
+      </div>
+
+      <div class="global-search-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> select</span>
+        <span><kbd>esc</kbd> close</span>
       </div>
     </div>
   </Teleport>

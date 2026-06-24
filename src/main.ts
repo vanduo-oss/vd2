@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import { buildRoutes } from "./router";
 import "@vanduo-oss/framework/css";
+import "./styles/docs.css";
 import "./styles/app.css";
 
 const routes = buildRoutes();

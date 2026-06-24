@@ -1,87 +1,84 @@
 <script setup lang="ts">
-const year = new Date().getFullYear();
+import { RouterLink } from "vue-router";
 
-interface FooterLink {
-  readonly label: string;
-  readonly href: string;
-  readonly external?: boolean;
-}
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "Docs", to: "/docs-landing" },
+  { label: "Changelog", to: "/changelog" },
+  { label: "About", to: "/about" },
+];
 
-interface FooterSection {
-  readonly title: string;
-  readonly links: readonly FooterLink[];
-}
-
-interface Props {
-  sections?: readonly FooterSection[];
-  showCopyright?: boolean;
-  showLegalLinks?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  sections: () => [] as readonly FooterSection[],
-  showCopyright: true,
-  showLegalLinks: true,
-});
-
-const legalLinks: readonly FooterLink[] = [
-  { label: "GitHub", href: "https://github.com/vanduo-oss", external: true },
-  { label: "vanduo.dev", href: "https://vanduo.dev", external: true },
-  { label: "Changelog", href: "/changelog" },
+const resources = [
+  { label: "GitHub", href: "https://github.com/vanduo-oss/framework", external: true },
+  {
+    label: "NPM",
+    href: "https://www.npmjs.com/package/@vanduo-oss/framework",
+    external: true,
+  },
+  { label: "Kilo OSS", to: "/kilo-oss" },
+  {
+    label: "License",
+    href: "https://github.com/vanduo-oss/framework/blob/main/LICENSE",
+    external: true,
+  },
 ];
 </script>
 
 <template>
-  <footer class="vd-footer" role="contentinfo">
-    <div class="vd-container vd-footer-container">
-      <div v-if="props.sections.length > 0" class="vd-footer-columns">
-        <div
-          v-for="section in props.sections"
-          :key="section.title"
-          class="vd-footer-section"
-        >
-          <h4 class="vd-footer-heading">
-            {{ section.title }}
-          </h4>
-          <ul class="vd-footer-list">
-            <li
-              v-for="link in section.links"
-              :key="link.href"
-              class="vd-footer-list-item"
-            >
-              <a
-                :href="link.href"
-                :rel="link.external ? 'noopener' : undefined"
-                :target="link.external ? '_blank' : undefined"
-                class="vd-footer-link"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+  <footer class="vd-footer vd-glass">
+    <div class="vd-footer-container">
+      <div class="vd-row">
+        <div class="vd-col-12 vd-col-md-4">
+          <div class="vd-footer-section">
+            <h4 class="vd-footer-brand-title">
+              <span class="hero-title-text">
+                <span class="hero-title-brand">vanduo</span>
+                <span class="hero-title-word">framework</span>
+              </span>
+            </h4>
+            <img
+              src="/images/vanduo-h2o-logo-static.svg"
+              class="vd-footer-brand-logo"
+              alt=""
+              aria-hidden="true"
+              width="200"
+              height="200"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-4">
+          <div class="vd-footer-section">
+            <h4>Quick Links</h4>
+            <ul class="vd-footer-links">
+              <li v-for="link in quickLinks" :key="link.to">
+                <RouterLink :to="link.to">{{ link.label }}</RouterLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-4">
+          <div class="vd-footer-section">
+            <h4>Resources</h4>
+            <ul class="vd-footer-links">
+              <li v-for="link in resources" :key="link.label">
+                <a
+                  v-if="link.external"
+                  :href="link.href"
+                  target="_blank"
+                  rel="noopener"
+                  >{{ link.label }}</a
+                >
+                <RouterLink v-else :to="link.to!">{{ link.label }}</RouterLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="vd-footer-copyright">
-        <p v-if="props.showCopyright" class="vd-muted vd-text-sm">
-          © {{ year }} vanduo-oss — MIT license
+      <div class="vd-footer-bottom">
+        <p class="vd-text-center vd-text-muted">
+          2026, Vanduo Framework. MIT License.
         </p>
-        <ul v-if="props.showLegalLinks" class="vd-footer-list">
-          <li
-            v-for="link in legalLinks"
-            :key="link.href"
-            class="vd-footer-list-item"
-          >
-            <a
-              :href="link.href"
-              :rel="link.external ? 'noopener' : undefined"
-              :target="link.external ? '_blank' : undefined"
-              class="vd-footer-link"
-            >
-              {{ link.label }}
-            </a>
-          </li>
-        </ul>
-        <slot name="extra" />
       </div>
     </div>
   </footer>

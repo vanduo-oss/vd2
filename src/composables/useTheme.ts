@@ -1,115 +1,140 @@
-import { onMounted, ref, type Ref } from "vue";
+/**
+ * Theme model for the Vue engine. Token *data* (palette/neutral/radius/font
+ * options + defaults) is owned by @vanduo-oss/core — the design-system source of
+ * truth shared with the legacy framework. This file keeps only the Vue-side
+ * application logic that drives the same `data-*` attributes the framework CSS
+ * reads. Re-exports core's data so vd2 consumers keep a single import surface.
+ */
+import {
+  DEFAULTS,
+  FONT_OPTIONS,
+  NEUTRAL_COLORS,
+  PRIMARY_COLORS,
+  RADIUS_OPTIONS,
+  THEME_MODES,
+  type ColorDef,
+  type FontDef,
+  type RadiusOption,
+  type ThemeMode,
+} from "@vanduo-oss/core";
 
-export type ThemeName = "light" | "dark" | "high-contrast";
-export type RadiusName = "compact" | "normal" | "loose";
-export type FontName = "inter" | "system" | "mono";
+export type { ColorDef, FontDef, RadiusOption, ThemeMode };
+export {
+  DEFAULTS,
+  FONT_OPTIONS,
+  NEUTRAL_COLORS,
+  PRIMARY_COLORS,
+  RADIUS_OPTIONS,
+  THEME_MODES,
+};
 
 export interface ThemePreference {
-  theme: ThemeName;
+  theme: ThemeMode;
   primary: string;
   neutral: string;
-  radius: RadiusName;
-  font: FontName;
+  radius: RadiusOption;
+  font: string;
 }
 
-const STORAGE_KEY = "vanduo-theme-preference";
-
-const DEFAULTS: ThemePreference = {
-  theme: "light",
-  primary: "default",
-  neutral: "default",
-  radius: "normal",
-  font: "inter",
-};
+const STORAGE_KEYS = {
+  PRIMARY: "vanduo-primary-color",
+  NEUTRAL: "vanduo-neutral-color",
+  RADIUS: "vanduo-radius",
+  FONT: "vanduo-font-preference",
+  THEME: "vanduo-theme-preference",
+} as const;
 
 const isClient = (): boolean => typeof window !== "undefined";
 
-const readFromStorage = (): ThemePreference | null => {
-  if (!isClient()) return null;
+const prefersDark = (): boolean => {
+  if (!isClient() || typeof window.matchMedia !== "function") return false;
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  return !!mq && mq.matches;
+};
+
+/** Default primary depends on the effective light/dark scheme. */
+export const defaultPrimary = (theme: ThemeMode): string => {
+  if (theme === "system") {
+    return prefersDark() ? DEFAULTS.PRIMARY_DARK : DEFAULTS.PRIMARY_LIGHT;
+  }
+  return theme === "dark" ? DEFAULTS.PRIMARY_DARK : DEFAULTS.PRIMARY_LIGHT;
+};
+
+const read = (key: string, fallback: string): string => {
+  if (!isClient()) return fallback;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as Partial<ThemePreference>;
-    return { ...DEFAULTS, ...parsed };
+    return window.localStorage.getItem(key) ?? fallback;
   } catch {
-    return null;
+    return fallback;
   }
 };
 
-export const readPersistedTheme = readFromStorage;
-
-const writeToStorage = (prefs: ThemePreference): void => {
+const write = (key: string, value: string): void => {
   if (!isClient()) return;
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+    window.localStorage.setItem(key, value);
   } catch {
-    /* localStorage may be unavailable (private mode, quota) */
+    /* storage may be unavailable (private mode, quota) */
   }
 };
 
-const applyToHtml = (prefs: ThemePreference): void => {
+export const defaultPreference = (): ThemePreference => ({
+  theme: DEFAULTS.THEME,
+  primary: defaultPrimary(DEFAULTS.THEME),
+  neutral: DEFAULTS.NEUTRAL,
+  radius: DEFAULTS.RADIUS,
+  font: DEFAULTS.FONT,
+});
+
+export const loadPreference = (): ThemePreference => {
+  const theme = read(STORAGE_KEYS.THEME, DEFAULTS.THEME) as ThemeMode;
+  const radius = read(STORAGE_KEYS.RADIUS, DEFAULTS.RADIUS) as RadiusOption;
+  return {
+    theme: THEME_MODES.includes(theme) ? theme : DEFAULTS.THEME,
+    primary: read(STORAGE_KEYS.PRIMARY, defaultPrimary(theme)),
+    neutral: read(STORAGE_KEYS.NEUTRAL, DEFAULTS.NEUTRAL),
+    radius: RADIUS_OPTIONS.includes(radius) ? radius : DEFAULTS.RADIUS,
+    font: read(STORAGE_KEYS.FONT, DEFAULTS.FONT),
+  };
+};
+
+const isDefaultPrimary = (primary: string): boolean =>
+  primary === DEFAULTS.PRIMARY_LIGHT || primary === DEFAULTS.PRIMARY_DARK;
+
+/** Apply a full preference set to <html>, mirroring framework attribute logic. */
+export const applyPreference = (prefs: ThemePreference): void => {
   if (!isClient()) return;
   const root = document.documentElement;
-  root.setAttribute("data-theme", prefs.theme);
+
+  // Keep auto-default primary aligned with the active scheme (black <-> amber).
+  if (isDefaultPrimary(prefs.primary)) {
+    prefs.primary = defaultPrimary(prefs.theme);
+  }
+
   root.setAttribute("data-primary", prefs.primary);
   root.setAttribute("data-neutral", prefs.neutral);
   root.setAttribute("data-radius", prefs.radius);
-  root.setAttribute("data-font", prefs.font);
+  root.style.setProperty("--vd-radius-scale", prefs.radius);
+
+  if (prefs.font === "system") {
+    root.removeAttribute("data-font");
+  } else {
+    root.setAttribute("data-font", prefs.font);
+  }
+
+  if (prefs.theme === "system") {
+    root.removeAttribute("data-theme");
+  } else {
+    root.setAttribute("data-theme", prefs.theme);
+  }
 };
 
-export interface ThemeApi {
-  theme: () => ThemeName;
-  primary: () => string;
-  neutral: () => string;
-  radius: () => RadiusName;
-  font: () => FontName;
-  prefs: () => ThemePreference;
-  setTheme: (theme: ThemeName) => void;
-  setPrimary: (primary: string) => void;
-  setNeutral: (neutral: string) => void;
-  setRadius: (radius: RadiusName) => void;
-  setFont: (font: FontName) => void;
-  reset: () => void;
-}
-
-export interface UseThemeReturn extends ThemeApi {
-  ready: Ref<boolean>;
-}
-
-export const useTheme = (): UseThemeReturn => {
-  const state = ref<ThemePreference>({ ...DEFAULTS });
-  const ready = ref(false);
-
-  const update = (patch: Partial<ThemePreference>): void => {
-    state.value = { ...state.value, ...patch };
-    applyToHtml(state.value);
-    writeToStorage(state.value);
-  };
-
-  onMounted(() => {
-    const persisted = readFromStorage();
-    if (persisted) state.value = persisted;
-    applyToHtml(state.value);
-    ready.value = true;
-  });
-
-  return {
-    theme: () => state.value.theme,
-    primary: () => state.value.primary,
-    neutral: () => state.value.neutral,
-    radius: () => state.value.radius,
-    font: () => state.value.font,
-    prefs: () => state.value,
-    setTheme: (theme) => update({ theme }),
-    setPrimary: (primary) => update({ primary }),
-    setNeutral: (neutral) => update({ neutral }),
-    setRadius: (radius) => update({ radius }),
-    setFont: (font) => update({ font }),
-    reset: () => {
-      state.value = { ...DEFAULTS };
-      applyToHtml(state.value);
-      writeToStorage(state.value);
-    },
-    ready,
-  };
+export const persistPreference = (prefs: ThemePreference): void => {
+  write(STORAGE_KEYS.THEME, prefs.theme);
+  write(STORAGE_KEYS.PRIMARY, prefs.primary);
+  write(STORAGE_KEYS.NEUTRAL, prefs.neutral);
+  write(STORAGE_KEYS.RADIUS, prefs.radius);
+  write(STORAGE_KEYS.FONT, prefs.font);
 };
+
+export { isDefaultPrimary };

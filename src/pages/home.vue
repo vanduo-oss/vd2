@@ -1,29 +1,321 @@
 <script setup lang="ts">
+import { reactive } from "vue";
 import { RouterLink } from "vue-router";
-import VdButton from "@/components/VdButton.vue";
-import VdInline from "@/components/primitives/VdInline.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
+
+interface Feature {
+  icon: string;
+  title: string;
+  body: string;
+}
+
+const features: Feature[] = [
+  {
+    icon: "ph-leaf",
+    title: "Zero Dependencies",
+    body: "Ship pure HTML, CSS, and JavaScript straight to the browser. No npm install, no bundler, no build step — drop the CDN link in and you're productive in under a minute.",
+  },
+  {
+    icon: "ph-spiral",
+    title: "Fibonacci Design",
+    body: "Spacing, type scale, shadows, and proportions are derived from the Golden Ratio and the Fibonacci sequence — with golden and Fibonacci grid layouts a class away — so designs feel balanced without manual tweaking.",
+  },
+  {
+    icon: "ph-lego",
+    title: "Modular CSS",
+    body: "Import the full vanduo.css or cherry-pick individual component files. Tree-shake what you don't need and keep your payload lean.",
+  },
+  {
+    icon: "ph-wheelchair",
+    title: "Accessibility Support",
+    body: "Built-in ARIA roles, visible focus rings, semantic HTML, keyboard-first interactions, and prefers-reduced-motion support — accessibility is on by default, not an add-on.",
+  },
+  {
+    icon: "ph-moon-stars",
+    title: "Dark Mode Ready",
+    body: "Light, dark, and system-synced themes with smooth CSS-variable transitions. Ships with a drop-in theme switcher and a live customizer.",
+  },
+  {
+    icon: "ph-lightning",
+    title: "Lightweight & Fast",
+    body: "A minimal, cache-friendly CSS footprint. Styling works with JavaScript disabled — scripts are progressive enhancements, never a requirement.",
+  },
+  {
+    icon: "ph-drop",
+    title: "Pure & Simple",
+    body: "Readable, framework-free source. No JSX, no transpilation, no magic — just standards-compliant HTML, CSS, and vanilla JS you can audit line by line.",
+  },
+  {
+    icon: "ph-shield-check",
+    title: "Conflict-Free",
+    body: "Every class is namespaced with the vd- prefix so Vanduo can safely coexist with Bootstrap, Tailwind, or your own legacy styles without cascade surprises.",
+  },
+  {
+    icon: "ph-code",
+    title: "Developer First",
+    body: "Consistent naming, predictable DOM, fully documented components, and copy-paste examples. Easy to extend, theme, and contribute back to.",
+  },
+];
+
+const flipped = reactive<boolean[]>(features.map(() => false));
+const toggle = (index: number): void => {
+  flipped[index] = !flipped[index];
+};
+
+const iconWeights = [
+  { cls: "ph", label: "Regular" },
+  { cls: "ph-fill", label: "Fill" },
+  { cls: "ph-bold", label: "Bold" },
+  { cls: "ph-light", label: "Light" },
+  { cls: "ph-thin", label: "Thin" },
+  { cls: "ph-duotone", label: "Duotone" },
+];
+
+const sampleIcons = [
+  { cls: "ph ph-house" },
+  { cls: "ph ph-user" },
+  { cls: "ph ph-gear" },
+  { cls: "ph ph-bell" },
+  { cls: "ph ph-envelope" },
+  { cls: "ph ph-magnifying-glass" },
+  { cls: "ph ph-download" },
+  { cls: "ph ph-upload" },
+  { cls: "ph ph-trash" },
+  { cls: "ph ph-pencil" },
+  { cls: "ph-fill ph-heart", color: "var(--vd-color-error)" },
+  { cls: "ph-fill ph-star", color: "var(--vd-color-warning)" },
+  { cls: "ph ph-check-circle", color: "var(--vd-color-success)" },
+  { cls: "ph ph-warning", color: "var(--vd-color-warning)" },
+  { cls: "ph ph-x-circle", color: "var(--vd-color-error)" },
+  { cls: "ph ph-info", color: "var(--vd-color-info)" },
+];
+
+const swatches = [
+  { label: "Primary", bg: "var(--vd-primary-5)" },
+  { label: "Secondary", bg: "var(--vd-secondary-5)" },
+  { label: "Success", bg: "var(--vd-success-5)" },
+  { label: "Warning", bg: "var(--vd-warning-5)" },
+  { label: "Error", bg: "var(--vd-error-5)" },
+  { label: "Info", bg: "var(--vd-info-5)" },
+  { label: "Gray 1", bg: "var(--vd-gray-1)", light: true },
+  { label: "Gray 8", bg: "var(--vd-gray-8)" },
+];
 </script>
 
 <template>
-  <section class="vd-stack vd-stack-2xl vd-pad-3xl">
-    <VdStack class="vd-stack-md vd-center vd-pad-2xl">
-      <h1 class="vd-display">Vanduo Docs</h1>
-      <p class="vd-lead">
-        A zero-dependency CSS framework, now rebuilt for Vue 3.
-      </p>
-      <VdInline gap="md">
-        <RouterLink v-slot="{ navigate }" to="/docs-landing" custom>
-          <VdButton variant="primary" @click="navigate">
-            Read the docs
-          </VdButton>
-        </RouterLink>
-        <RouterLink v-slot="{ navigate }" to="/quick-start" custom>
-          <VdButton variant="secondary" @click="navigate">
-            Quick start
-          </VdButton>
-        </RouterLink>
-      </VdInline>
-    </VdStack>
+  <section id="home">
+    <!-- Hero -->
+    <div class="hero-zone">
+      <div
+        id="hero"
+        class="hero vd-parallax"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          padding-top: 268px;
+          padding-bottom: 89px;
+        "
+      >
+        <div class="vd-parallax-layer" data-parallax-speed="0.5"></div>
+        <div class="vd-parallax-content hero-content">
+          <h2
+            class="hero-title"
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <span class="hero-title-logo-wrap">
+              <img
+                src="/images/vanduo-h2o-logo-animated.svg"
+                class="hero-title-logo"
+                alt=""
+                aria-hidden="true"
+                width="200"
+                height="200"
+                decoding="async"
+              />
+            </span>
+            <span class="hero-title-text">
+              <span class="hero-title-brand">vanduo</span>
+              <span class="hero-title-word">framework</span>
+            </span>
+          </h2>
+          <div class="vd-mt-6 hero-cta-buttons">
+            <RouterLink to="/guides/getting-started" class="vd-btn vd-btn-outline">
+              <i class="ph ph-rocket" aria-hidden="true"></i> Getting Started
+            </RouterLink>
+            <RouterLink to="/docs-landing" class="vd-btn vd-btn-outline">
+              <i class="ph ph-cube" aria-hidden="true"></i> Browse Components
+            </RouterLink>
+            <a
+              href="https://github.com/vanduo-oss/framework"
+              class="vd-btn vd-btn-outline"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="ph ph-github-logo" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vd-container-responsive">
+      <!-- Features -->
+      <div id="home-features" style="padding: 4rem 0; scroll-margin-top: 80px">
+        <h3 class="vd-text-center vd-mb-8" style="color: var(--vd-color-primary)">
+          Features
+        </h3>
+        <div class="vd-row philosophy-cards" style="align-items: stretch">
+          <div
+            v-for="(feature, i) in features"
+            :key="feature.title"
+            class="vd-col-12 vd-col-md-6 vd-col-lg-4"
+          >
+            <div
+              class="vd-card vd-card-glow vd-glass vd-glass-floating vd-text-center vd-morph vd-morph-lg feature-morph-card"
+              data-vd-morph
+              role="button"
+              tabindex="0"
+              :aria-label="`${feature.title} — reveal details`"
+              @click="toggle(i)"
+              @keydown.enter.prevent="toggle(i)"
+              @keydown.space.prevent="toggle(i)"
+            >
+              <span
+                class="vd-morph-content feature-morph-face"
+                :class="flipped[i] ? 'vd-morph-next' : 'vd-morph-current'"
+              >
+                <i :class="`ph ${feature.icon} feature-icon`" aria-hidden="true"></i>
+                <h4 class="feature-morph-title">{{ feature.title }}</h4>
+                <span class="feature-morph-hint vd-text-muted">Tap to learn more</span>
+              </span>
+              <span
+                class="vd-morph-content feature-morph-face"
+                :class="flipped[i] ? 'vd-morph-current' : 'vd-morph-next'"
+              >
+                <h4 class="feature-morph-title">{{ feature.title }}</h4>
+                <p class="feature-morph-body">{{ feature.body }}</p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icons Overview -->
+      <div id="home-icons" style="padding: 4rem 0; scroll-margin-top: 80px">
+        <h3 class="icons-section-title vd-mb-3" style="color: var(--vd-color-primary)">
+          Phosphor Icons
+        </h3>
+        <p class="icons-section-subtitle vd-text-muted vd-mb-8">
+          1,500+ icons in 6 weights, bundled locally. No CDN required.
+        </p>
+        <div class="vd-row">
+          <div class="vd-col-12">
+            <div
+              class="vd-card vd-card-glow vd-card-actionable vd-glass icons-card home-card-no-glow"
+            >
+              <div class="icons-weights">
+                <div
+                  v-for="w in iconWeights"
+                  :key="w.label"
+                  class="icons-weight-item"
+                >
+                  <i :class="`${w.cls} ph-heart`"></i>
+                  <p class="vd-text-sm vd-text-muted">{{ w.label }}</p>
+                </div>
+              </div>
+              <div class="icons-sample-row">
+                <i
+                  v-for="(icon, idx) in sampleIcons"
+                  :key="idx"
+                  :class="icon.cls"
+                  :style="icon.color ? { color: icon.color } : undefined"
+                ></i>
+              </div>
+              <p class="icons-footer vd-text-sm vd-text-muted">
+                <i class="ph ph-heart-straight" style="color: var(--vd-color-error)"></i>
+                Icons by
+                <a href="https://phosphoricons.com" target="_blank" rel="noopener"
+                  ><strong>Phosphor Icons</strong></a
+                >
+                — MIT Licensed.
+                <RouterLink to="/core/icons">See full documentation &rarr;</RouterLink>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Color Overview -->
+      <div id="open-color" style="padding: 4rem 0; scroll-margin-top: 80px">
+        <h3 class="open-color-title vd-mb-3" style="color: var(--vd-color-primary)">
+          Open Color Palette
+        </h3>
+        <p class="open-color-subtitle vd-text-muted vd-mb-8">
+          Vanduo is built on the Open Color system — clean, accessible hues with
+          consistent 10-step scales.
+        </p>
+        <div class="vd-row">
+          <div class="vd-col-12">
+            <div
+              class="vd-card vd-card-glow vd-card-actionable vd-glass open-color-card home-card-no-glow"
+            >
+              <div class="open-color-grid">
+                <div
+                  v-for="s in swatches"
+                  :key="s.label"
+                  class="open-color-swatch"
+                  :class="{ 'is-light': s.light }"
+                  :style="{ background: s.bg }"
+                >
+                  {{ s.label }}
+                </div>
+              </div>
+              <p class="open-color-footer vd-text-sm vd-text-muted">
+                Based on
+                <a href="https://yeun.github.io/open-color/" target="_blank" rel="noopener"
+                  ><strong>Open Color</strong></a
+                >
+                (MIT Licensed).
+                <RouterLink to="/core/color-palette"
+                  >See full palette in the documentation &rarr;</RouterLink
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div id="cta" style="padding: 5rem 0">
+        <div class="vd-row">
+          <div class="vd-col-12">
+            <div
+              class="vd-card vd-card-glow vd-card-actionable vd-glass vd-text-center home-card-no-glow"
+              style="padding: 3rem 2rem"
+            >
+              <i
+                class="ph ph-book-open"
+                style="
+                  font-size: 3rem;
+                  color: var(--vd-color-primary);
+                  margin-bottom: 1rem;
+                "
+              ></i>
+              <h4 style="color: var(--vd-color-primary)">Browse Documentation</h4>
+              <p class="vd-text-muted vd-mb-5">
+                Explore all components, utilities, and code examples.
+              </p>
+              <RouterLink to="/docs-landing" class="vd-btn vd-btn-outline vd-btn-lg">
+                Documentation
+              </RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>

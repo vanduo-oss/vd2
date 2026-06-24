@@ -1,80 +1,86 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { nextTick } from 'vue';
-import { mount, flushPromises } from '@vue/test-utils';
-import { defineComponent, h } from 'vue';
-import { readPersistedTheme, useTheme } from '@/composables/useTheme';
+import { setActivePinia, createPinia } from 'pinia';
+import {
+  applyPreference,
+  defaultPreference,
+  loadPreference,
+} from '@/composables/useTheme';
+import { useThemeStore } from '@/stores/theme';
 
-const Harness = defineComponent({
-  setup() {
-    const theme = useTheme();
-    return () => h('div', { 'data-theme': theme.theme() }, theme.theme());
-  },
-});
+const clearThemeAttrs = (): void => {
+  for (const attr of ['data-theme', 'data-primary', 'data-neutral', 'data-radius', 'data-font']) {
+    document.documentElement.removeAttribute(attr);
+  }
+};
 
-describe('useTheme', () => {
+describe('useTheme model', () => {
   beforeEach(() => {
     window.localStorage.clear();
-    document.documentElement.removeAttribute('data-theme');
-    document.documentElement.removeAttribute('data-primary');
-    document.documentElement.removeAttribute('data-neutral');
-    document.documentElement.removeAttribute('data-radius');
-    document.documentElement.removeAttribute('data-font');
+    clearThemeAttrs();
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  it('does not access localStorage when window is undefined (SSR)', () => {
+  it('does not throw and returns defaults without window (SSR)', () => {
     const originalWindow = globalThis.window;
     try {
       delete (globalThis as { window?: unknown }).window;
-      expect(readPersistedTheme()).toBeNull();
+      const prefs = loadPreference();
+      expect(prefs).toEqual(defaultPreference());
     } finally {
       (globalThis as { window?: unknown }).window = originalWindow;
     }
   });
 
-  it('applies defaults on mount when no preference is stored', async () => {
-    mount(Harness);
-    await nextTick();
-    await flushPromises();
-    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
-    expect(document.documentElement.getAttribute('data-radius')).toBe('normal');
-    expect(document.documentElement.getAttribute('data-font')).toBe('inter');
+  it('applies framework-faithful defaults', () => {
+    applyPreference(defaultPreference());
+    // theme "system" removes data-theme; primary defaults to black on light OS.
+    expect(document.documentElement.getAttribute('data-theme')).toBeNull();
+    expect(document.documentElement.getAttribute('data-neutral')).toBe('charcoal');
+    expect(document.documentElement.getAttribute('data-radius')).toBe('0.5');
+    expect(document.documentElement.getAttribute('data-font')).toBe('ubuntu');
   });
 
-  it('restores a stored preference on mount', async () => {
-    window.localStorage.setItem(
-      'vanduo-theme-preference',
-      JSON.stringify({ theme: 'dark', primary: 'cool', neutral: 'slate', radius: 'loose', font: 'mono' }),
-    );
-    const wrapper = mount(Harness);
-    await nextTick();
-    await flushPromises();
+  it('restores a stored preference', () => {
+    window.localStorage.setItem('vanduo-theme-preference', 'dark');
+    window.localStorage.setItem('vanduo-primary-color', 'blue');
+    window.localStorage.setItem('vanduo-neutral-color', 'slate');
+    window.localStorage.setItem('vanduo-radius', '0.25');
+    window.localStorage.setItem('vanduo-font-preference', 'lato');
+    const prefs = loadPreference();
+    applyPreference(prefs);
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
-    expect(document.documentElement.getAttribute('data-primary')).toBe('cool');
-    expect(document.documentElement.getAttribute('data-radius')).toBe('loose');
-    expect(document.documentElement.getAttribute('data-font')).toBe('mono');
-    expect(wrapper.attributes('data-theme')).toBe('dark');
+    expect(document.documentElement.getAttribute('data-primary')).toBe('blue');
+    expect(document.documentElement.getAttribute('data-neutral')).toBe('slate');
+    expect(document.documentElement.getAttribute('data-radius')).toBe('0.25');
+    expect(document.documentElement.getAttribute('data-font')).toBe('lato');
+  });
+});
+
+describe('useThemeStore', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia());
+    window.localStorage.clear();
+    clearThemeAttrs();
   });
 
-  it('persists setTheme to localStorage', async () => {
-    const harnessRef: { setTheme?: (t: 'dark') => void } = {};
-    const Capture = defineComponent({
-      setup() {
-        const theme = useTheme();
-        harnessRef.setTheme = theme.setTheme;
-        return () => h('div');
-      },
-    });
-    mount(Capture);
-    await nextTick();
-    await flushPromises();
-    harnessRef.setTheme!('dark');
-    await nextTick();
-    const stored = JSON.parse(window.localStorage.getItem('vanduo-theme-preference') ?? '{}');
-    expect(stored.theme).toBe('dark');
+  it('persists setTheme to localStorage and the DOM', () => {
+    const theme = useThemeStore();
+    theme.init();
+    theme.setTheme('dark');
+    expect(window.localStorage.getItem('vanduo-theme-preference')).toBe('dark');
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+  });
+
+  it('reset returns to defaults', () => {
+    const theme = useThemeStore();
+    theme.init();
+    theme.setPrimary('rose');
+    expect(theme.primary).toBe('rose');
+    theme.reset();
+    expect(theme.theme).toBe('system');
+    expect(theme.radius).toBe('0.5');
   });
 });
