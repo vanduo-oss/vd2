@@ -1,100 +1,401 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
-import VdInput from "@/components/VdInput.vue";
-import VdSelect from "@/components/VdSelect.vue";
-import VdButtonGroup from "@/components/VdButtonGroup.vue";
-import VdButton from "@/components/VdButton.vue";
-import VdCheckboxGroup from "@/components/VdCheckboxGroup.vue";
-import VdRadioGroup from "@/components/VdRadioGroup.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import VdCustomSelect from "@/components/VdCustomSelect.vue";
 
-const text = ref("");
-const fruit = ref("a");
-const checked = ref<string[]>(["a"]);
-const radio = ref("a");
+const customSelect = ref("");
+const rangeValue = ref(50);
+const showPassword = ref(false);
 
-const fruitOptions = [
-  { value: "a", label: "Apple" },
-  { value: "b", label: "Banana" },
-  { value: "c", label: "Cherry" },
+const customOptions = [
+  { value: "", label: "Choose an option" },
+  { value: "1", label: "Option 1" },
+  { value: "2", label: "Option 2" },
+  { value: "3", label: "Option 3" },
 ];
 
-const inputHtml =
-  '<input class="vd-input" type="text" placeholder="Your name">';
+const inputsHtml = `<!-- Text Input -->
+<div class="vd-form-group">
+  <label for="text-input">Text Input</label>
+  <input type="text" id="text-input" class="vd-input"
+      placeholder="Enter text">
+</div>
+
+<!-- Select -->
+<div class="vd-form-group">
+  <label for="select-input">Select</label>
+  <select id="select-input" class="vd-input">
+    <option>Option 1</option>
+  </select>
+</div>
+
+<!-- Custom Select -->
+<div class="vd-form-group">
+  <label for="custom-select-input">Custom Select</label>
+  <select id="custom-select-input" class="vd-input vd-custom-select-input"
+      data-custom-select>
+    <option>Choose an option</option>
+    <option>Option 1</option>
+  </select>
+</div>`;
+
+const controlsHtml = `<!-- Checkbox -->
+<div class="vd-form-group">
+  <label class="checkbox">
+    <input type="checkbox" checked>
+    <span>Checked checkbox</span>
+  </label>
+</div>
+
+<!-- Radio -->
+<div class="vd-form-group">
+  <label class="radio">
+    <input type="radio" name="radio-demo" checked>
+    <span>Radio option 1</span>
+  </label>
+</div>
+
+<!-- Switch -->
+<div class="vd-form-group">
+  <label class="switch">
+    <input type="checkbox" checked>
+    <span class="switch-slider"></span>
+    <span>Toggle switch</span>
+  </label>
+</div>
+
+<!-- Range -->
+<div class="vd-form-group">
+  <label for="range-input">Range: <span id="range-value">50</span></label>
+  <input type="range" id="range-input" class="range" min="0" max="100"
+      value="50">
+</div>`;
+
+const validationHtml = `<!-- Valid state -->
+<div class="vd-form-group">
+  <label for="valid-input">Valid Input</label>
+  <input type="text" id="valid-input" class="vd-input vd-input-valid"
+      value="Valid value">
+  <div class="vd-form-feedback vd-form-feedback-valid">Looks good!</div>
+</div>
+
+<!-- Invalid state -->
+<div class="vd-form-group">
+  <label for="invalid-input">Invalid Input</label>
+  <input type="text" id="invalid-input" class="vd-input vd-input-invalid"
+      value="Invalid value">
+  <div class="vd-form-feedback vd-form-feedback-invalid">Please provide a
+    valid value.</div>
+</div>`;
+
+const inputGroupsHtml = `<div class="vd-form-group">
+  <label for="input-prefix">With prefix</label>
+  <div class="vd-input-group">
+    <span class="vd-input-group-prefix"><i class="ph ph-at"></i></span>
+    <input type="text" id="input-prefix" class="vd-input" placeholder="username">
+  </div>
+</div>
+<div class="vd-form-group">
+  <label for="input-suffix">With suffix</label>
+  <div class="vd-input-group">
+    <input type="text" id="input-suffix" class="vd-input" placeholder="0.00">
+    <span class="vd-input-group-suffix">USD</span>
+  </div>
+</div>
+<div class="vd-form-group vd-mb-0">
+  <label for="input-both">Prefix + suffix</label>
+  <div class="vd-input-group">
+    <span class="vd-input-group-prefix">https://</span>
+    <input type="text" id="input-both" class="vd-input" placeholder="example.com">
+    <span class="vd-input-group-suffix">/api</span>
+  </div>
+</div>`;
+
+const inputSizesHtml = `<div class="vd-form-group">
+  <label for="input-sm">Small</label>
+  <input type="text" id="input-sm" class="vd-input vd-input-sm" placeholder="Small input">
+</div>
+<div class="vd-form-group">
+  <label for="input-default">Default</label>
+  <input type="text" id="input-default" class="vd-input" placeholder="Default input">
+</div>
+<div class="vd-form-group vd-mb-0">
+  <label for="input-lg">Large</label>
+  <input type="text" id="input-lg" class="vd-input vd-input-lg" placeholder="Large input">
+</div>`;
+
+const passwordHtml = `<div class="vd-form-group vd-mb-0">
+  <label for="password-toggle">Password</label>
+  <div class="vd-input-group">
+    <input type="password" id="password-toggle" class="vd-input" placeholder="Enter password">
+    <button type="button" class="vd-btn vd-btn-outline vd-input-group-suffix"
+        data-toggle="password" aria-label="Toggle password visibility">
+      <i class="ph ph-eye"></i>
+    </button>
+  </div>
+</div>`;
+
+const classRef: [string, string, string][] = [
+  [".vd-form-group", "Wrapper for form controls (adds margin, stacking)", "Structure"],
+  [".vd-input", "Base styling for text, email, password, select", "Base"],
+  [".vd-input-sm", "Compact input height and font size", "Size"],
+  [".vd-input-lg", "Taller input height and larger font size", "Size"],
+  [".vd-input-group", "Wrapper for input + prefix/suffix buttons or text", "Structure"],
+  [".vd-input-group-prefix", "Text or icon before the input inside a group", "Structure"],
+  [".vd-input-group-suffix", "Text or icon after the input inside a group", "Structure"],
+  [".textarea", "Base styling for multiline text inputs", "Base"],
+  [".checkbox", "Wrapper for custom checkbox controls", "Structure"],
+  [".radio", "Wrapper for custom radio button controls", "Structure"],
+  [".switch", "Wrapper for toggle switch controls", "Structure"],
+  [".range", "Custom styling for range/slider inputs", "Base"],
+  [".vd-input-valid", "Applies success indicator and green border", "State"],
+  [".vd-input-invalid", "Applies error indicator and red border", "State"],
+  [".vd-form-feedback", "Base class for validation message text", "Structure"],
+  [".vd-form-feedback-valid", "Success validation message (green)", "State"],
+  [".vd-form-feedback-invalid", "Error validation message (red)", "State"],
+  ["disabled", "Native attribute to disable any form control", "State (attr)"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Forms</h1>
-        <p class="vd-lead">
-          Text inputs, selects, checkboxes, radio groups, and button groups for
-          collecting user input.
-        </p>
-      </header>
-
-      <section id="inputs" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Inputs</h2>
-        <div class="vd-stack vd-stack-sm">
-          <label>
-            <span>Name</span>
-            <VdInput v-model="text" placeholder="Your name" />
-          </label>
-          <label>
-            <span>Email</span>
-            <VdInput
-              v-model="text"
-              type="email"
-              placeholder="you@example.com"
-            />
-          </label>
+    <section id="forms">
+      <h5 class="demo-title"><i class="ph ph-textbox"></i>Forms</h5>
+      <div class="vd-alert vd-alert-info vd-mb-6">
+        <i class="ph ph-info"></i>
+        <div>
+          The main Vanduo bundle still includes framework-wide defaults for
+          native form controls in v1.4.1. Use the documented <code>.vd-*</code>
+          form classes for stable component markup, and load app-specific
+          overrides after Vanduo when embedding into an existing design system.
         </div>
-      </section>
+      </div>
 
-      <section id="select" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Select</h2>
-        <label>
-          <span>Pick a fruit</span>
-          <VdSelect v-model="fruit" :options="fruitOptions" />
-        </label>
-      </section>
+      <div class="vd-row">
+        <!-- Input Fields -->
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Input Fields</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group">
+                <label for="text-input">Text Input</label>
+                <input type="text" id="text-input" class="vd-input" placeholder="Enter text" />
+              </div>
+              <div class="vd-form-group">
+                <label for="email-input">Email Input</label>
+                <input type="email" id="email-input" class="vd-input" placeholder="email@example.com" />
+              </div>
+              <div class="vd-form-group">
+                <label for="password-input">Password Input</label>
+                <input type="password" id="password-input" class="vd-input" placeholder="Password" />
+              </div>
+              <div class="vd-form-group">
+                <label for="textarea-input">Textarea</label>
+                <textarea id="textarea-input" class="textarea" rows="4" placeholder="Enter your message"></textarea>
+              </div>
+              <div class="vd-form-group">
+                <label for="select-input">Select</label>
+                <select id="select-input" class="vd-input">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+              </div>
+              <div class="vd-form-group">
+                <label id="custom-select-input">Custom Select</label>
+                <VdCustomSelect v-model="customSelect" :options="customOptions" id="custom-select-field" />
+              </div>
+              <DocCodeSnippet :html="inputsHtml" />
+            </div>
+          </div>
+        </div>
 
-      <section id="checkboxes" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Checkboxes</h2>
-        <VdCheckboxGroup
-          v-model="checked"
-          :options="fruitOptions"
-          name="fruit"
-        />
-        <p>Selected: {{ checked.join(", ") }}</p>
-      </section>
+        <!-- Form Controls -->
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Form Controls</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group">
+                <label class="checkbox">
+                  <input type="checkbox" checked />
+                  <span>Checked checkbox</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  <span>Unchecked checkbox</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label class="checkbox">
+                  <input type="checkbox" disabled />
+                  <span>Disabled checkbox</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label class="radio">
+                  <input type="radio" name="radio-demo" checked />
+                  <span>Radio option 1</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label class="radio">
+                  <input type="radio" name="radio-demo" />
+                  <span>Radio option 2</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="switch-slider"></span>
+                  <span>Toggle switch</span>
+                </label>
+              </div>
+              <div class="vd-form-group">
+                <label for="range-input">Range: <span id="range-value">{{ rangeValue }}</span></label>
+                <input v-model="rangeValue" type="range" id="range-input" class="range" min="0" max="100" />
+              </div>
+              <DocCodeSnippet :html="controlsHtml" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section id="radios" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Radios</h2>
-        <VdRadioGroup
-          v-model="radio"
-          :options="fruitOptions"
-          name="radio-fruit"
-        />
-        <p>Selected: {{ radio }}</p>
-      </section>
+      <!-- Validation States -->
+      <div class="vd-row">
+        <div class="vd-col-12">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Form Validation States</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group">
+                <label for="valid-input">Valid Input</label>
+                <input type="text" id="valid-input" class="vd-input vd-input-valid" value="Valid value" />
+                <div class="vd-form-feedback vd-form-feedback-valid">Looks good!</div>
+              </div>
+              <div class="vd-form-group">
+                <label for="invalid-input">Invalid Input</label>
+                <input type="text" id="invalid-input" class="vd-input vd-input-invalid" value="Invalid value" />
+                <div class="vd-form-feedback vd-form-feedback-invalid">Please provide a valid value.</div>
+              </div>
+              <DocCodeSnippet :html="validationHtml" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section id="button-group" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Button group</h2>
-        <VdButtonGroup>
-          <VdButton variant="primary"> Save </VdButton>
-          <VdButton variant="secondary"> Cancel </VdButton>
-          <VdButton variant="ghost"> Help </VdButton>
-        </VdButtonGroup>
-      </section>
+      <!-- Input Groups + Sizes -->
+      <div class="vd-row">
+        <div class="vd-col-12 vd-col-md-6">
+          <div id="demo-form-input-groups" class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Input Groups</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group">
+                <label for="input-prefix">With prefix</label>
+                <div class="vd-input-group">
+                  <span class="vd-input-group-prefix"><i class="ph ph-at"></i></span>
+                  <input type="text" id="input-prefix" class="vd-input" placeholder="username" />
+                </div>
+              </div>
+              <div class="vd-form-group">
+                <label for="input-suffix">With suffix</label>
+                <div class="vd-input-group">
+                  <input type="text" id="input-suffix" class="vd-input" placeholder="0.00" />
+                  <span class="vd-input-group-suffix">USD</span>
+                </div>
+              </div>
+              <div class="vd-form-group vd-mb-0">
+                <label for="input-both">Prefix + suffix</label>
+                <div class="vd-input-group">
+                  <span class="vd-input-group-prefix">https://</span>
+                  <input type="text" id="input-both" class="vd-input" placeholder="example.com" />
+                  <span class="vd-input-group-suffix">/api</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <DocCodeSnippet class="vd-mt-5" :html="inputGroupsHtml" />
+        </div>
 
-      <section id="usage" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Usage</h2>
-        <VdCodeSnippet language="html" :code="inputHtml" />
-      </section>
-    </VdStack>
+        <div class="vd-col-12 vd-col-md-6">
+          <div id="demo-form-input-sizes" class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Input Sizes</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group">
+                <label for="input-sm">Small</label>
+                <input type="text" id="input-sm" class="vd-input vd-input-sm" placeholder="Small input" />
+              </div>
+              <div class="vd-form-group">
+                <label for="input-default">Default</label>
+                <input type="text" id="input-default" class="vd-input" placeholder="Default input" />
+              </div>
+              <div class="vd-form-group vd-mb-0">
+                <label for="input-lg">Large</label>
+                <input type="text" id="input-lg" class="vd-input vd-input-lg" placeholder="Large input" />
+              </div>
+            </div>
+          </div>
+          <DocCodeSnippet class="vd-mt-5" :html="inputSizesHtml" />
+        </div>
+      </div>
+
+      <!-- Password Toggle -->
+      <div class="vd-row vd-mt-8">
+        <div class="vd-col-12">
+          <div id="demo-form-password" class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Password Toggle</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-form-group vd-mb-0">
+                <label for="password-toggle">Password</label>
+                <div class="vd-input-group">
+                  <input
+                    :type="showPassword ? 'text' : 'password'"
+                    id="password-toggle"
+                    class="vd-input"
+                    placeholder="Enter password"
+                  />
+                  <button
+                    type="button"
+                    class="vd-btn vd-btn-outline vd-input-group-suffix"
+                    data-toggle="password"
+                    aria-label="Toggle password visibility"
+                    @click="showPassword = !showPassword"
+                  >
+                    <i class="ph" :class="showPassword ? 'ph-eye-slash' : 'ph-eye'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <DocCodeSnippet class="vd-mt-5" :html="passwordHtml" />
+        </div>
+      </div>
+
+      <!-- Class Reference -->
+      <div class="vd-row vd-mt-8">
+        <div class="vd-col-12">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header">
+              <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>Class Reference</h6>
+            </div>
+            <div class="vd-card-body">
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Class</th><th>Description</th><th>Type</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in classRef" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                      <td>{{ row[2] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>

@@ -64,7 +64,13 @@ the docs-view template. Check off only after the page is verified against
 
 ## 6. Forms (batch)
 
-- [ ] 6.1 `components/Forms.vue` ← `forms.html`
+- [x] 6.1 `components/Forms.vue` ← `forms.html` (was `VdStack`/`VdInput`
+      scaffold). Input fields, controls (checkbox/radio/switch/range),
+      validation states, input groups, sizes, password toggle, class-reference
+      table. New `VdCustomSelect.vue` renders the framework's enhanced
+      `.custom-select-*` widget declaratively (toggle, select, outside-click,
+      keyboard nav, typeahead, aria) per `framework/js/components/select.js`.
+      Range value + password toggle wired in Vue (static/no-op in legacy docs).
 - [ ] 6.2 `components/FormValidation.vue` ← `form-validation.html`
 - [ ] 6.3 `components/Datepicker.vue` ← `datepicker.html`
 - [ ] 6.4 `components/Timepicker.vue` ← `timepicker.html`
