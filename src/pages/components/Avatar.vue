@@ -1,89 +1,116 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
-import VdAvatar from "@/components/VdAvatar.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-const sizes = ["xs", "sm", "md", "lg", "xl", "2xl"] as const;
-const variants = [
-  "primary",
-  "secondary",
-  "success",
-  "warning",
-  "error",
-  "info",
-] as const;
-const shapes = ["circle", "rounded", "square"] as const;
+const usageHtml = `<!-- Avatar Sizes -->
+<span class="vd-avatar vd-avatar-xs">XS</span>
+<span class="vd-avatar vd-avatar-sm">SM</span>
+<span class="vd-avatar">MD</span>
+<span class="vd-avatar vd-avatar-lg">LG</span>
+<span class="vd-avatar vd-avatar-xl">XL</span>
+<span class="vd-avatar vd-avatar-2xl">2XL</span>
 
-const basicHtml =
-  '<div class="vd-avatar vd-avatar-md vd-avatar-primary">\n  <span class="vd-avatar-initials">JD</span>\n</div>';
+<!-- With Status -->
+<span class="vd-avatar vd-avatar-status-online">JD</span>
+<span class="vd-avatar vd-avatar-status-offline">AB</span>
+<span class="vd-avatar vd-avatar-status-busy">CD</span>
+<span class="vd-avatar vd-avatar-status-away">EF</span>
 
-const imageHtml =
-  '<div class="vd-avatar vd-avatar-lg">\n  <img src="..." alt="User" class="vd-avatar-img">\n</div>';
+<!-- Avatar Group -->
+<div class="vd-avatar-group">
+  <span class="vd-avatar">A</span>
+  <span class="vd-avatar">B</span>
+  <span class="vd-avatar">+5</span>
+</div>`;
+
+const apiRows: [string, string, string][] = [
+  [".vd-avatar", "Base component class required for all Vanduo avatars.", "Component"],
+  [".vd-avatar-[size]", "Size modifier class (e.g., -xs, -sm, -lg, -xl, -2xl). Defaults to medium if omitted.", "Modifier"],
+  [".vd-avatar-status-[status]", "Adds a status indicator badge (e.g., -online, -offline, -busy, -away).", "Modifier"],
+  [".vd-avatar-group", "Wrapper class for grouping multiple avatars together with overlapping margins.", "Layout"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Avatar</h1>
-        <p class="vd-lead">
-          User or entity representation with sizes, variants, shapes, and status
-          indicators.
-        </p>
-      </header>
+    <section id="avatars">
+      <h5 class="demo-title"><i class="ph ph-user-circle"></i>Avatars</h5>
 
-      <section id="sizes" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Sizes</h2>
-        <div class="vd-inline vd-inline-md">
-          <VdAvatar
-            v-for="size in sizes"
-            :key="size"
-            :size="size"
-            :initials="size.toUpperCase()"
-          />
+      <div class="vd-row">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Avatar Sizes</h6></div>
+            <div class="vd-card-body">
+              <span class="vd-avatar vd-avatar-xs" style="background: var(--vd-color-primary); color: white">XS</span>
+              <span class="vd-avatar vd-avatar-sm" style="background: var(--vd-color-secondary); color: white">SM</span>
+              <span class="vd-avatar" style="background: var(--vd-color-success); color: white">MD</span>
+              <span class="vd-avatar vd-avatar-lg" style="background: var(--vd-color-warning); color: white">LG</span>
+              <span class="vd-avatar vd-avatar-xl" style="background: var(--vd-color-error); color: white">XL</span>
+              <span class="vd-avatar vd-avatar-2xl" style="background: var(--vd-color-info); color: white">2XL</span>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <section id="variants" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Variants</h2>
-        <div class="vd-inline vd-inline-md">
-          <VdAvatar
-            v-for="variant in variants"
-            :key="variant"
-            :variant="variant"
-            :initials="variant.charAt(0).toUpperCase()"
-          />
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Avatar with Status</h6></div>
+            <div class="vd-card-body">
+              <span class="vd-avatar vd-avatar-lg vd-avatar-status-online" style="background: var(--vd-color-primary); color: white">JD</span>
+              <span class="vd-avatar vd-avatar-lg vd-avatar-status-offline" style="background: var(--vd-color-secondary); color: white">AB</span>
+              <span class="vd-avatar vd-avatar-lg vd-avatar-status-busy" style="background: var(--vd-color-success); color: white">CD</span>
+              <span class="vd-avatar vd-avatar-lg vd-avatar-status-away" style="background: var(--vd-color-warning); color: white">EF</span>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section id="shapes" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Shapes</h2>
-        <div class="vd-inline vd-inline-md">
-          <VdAvatar
-            v-for="shape in shapes"
-            :key="shape"
-            :shape="shape"
-            :initials="shape.charAt(0).toUpperCase()"
-          />
+      <div class="vd-row">
+        <div class="vd-col-12">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Avatar Group</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-avatar-group">
+                <span class="vd-avatar" style="background: var(--vd-color-primary); color: white">A</span>
+                <span class="vd-avatar" style="background: var(--vd-color-success); color: white">B</span>
+                <span class="vd-avatar" style="background: var(--vd-color-warning); color: white">C</span>
+                <span class="vd-avatar" style="background: var(--vd-color-error); color: white">D</span>
+                <span class="vd-avatar" style="background: var(--vd-color-info); color: white">+5</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section id="status" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Status indicator</h2>
-        <div class="vd-inline vd-inline-md">
-          <VdAvatar status="online" initials="ON" />
-          <VdAvatar status="away" initials="AW" />
-          <VdAvatar status="busy" initials="BS" />
-          <VdAvatar status="offline" initials="OF" />
+      <div class="vd-row">
+        <div class="vd-col-12">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Usage</h6></div>
+            <div class="vd-card-body">
+              <DocCodeSnippet :html="usageHtml" />
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section id="usage" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Usage</h2>
-        <VdCodeSnippet language="html" :code="basicHtml" />
-        <VdCodeSnippet language="html" :code="imageHtml" />
-      </section>
-    </VdStack>
+      <h4 id="api" class="docs-heading">API Reference</h4>
+      <div class="vd-table-responsive" style="margin-bottom: 3rem">
+        <table class="vd-table vd-table-hover">
+          <thead>
+            <tr>
+              <th style="width: 25%">Class Name</th>
+              <th style="width: 55%">Description</th>
+              <th style="width: 20%">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in apiRows" :key="row[0]">
+              <td><code>{{ row[0] }}</code></td>
+              <td>{{ row[1] }}</td>
+              <td>{{ row[2] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </DocsLayout>
 </template>

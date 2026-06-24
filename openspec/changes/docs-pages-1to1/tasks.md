@@ -40,10 +40,10 @@ the docs-view template. Check off only after the page is verified against
 
 ## 4. Data display (batch)
 
-- [ ] 4.1 `components/Avatar.vue` ← `data-display/avatars.html`
-- [ ] 4.2 `components/Table.vue` ← `data-display/tables.html`
-- [ ] 4.3 `components/Collection.vue` ← `data-display/collections.html`
-- [ ] 4.4 `components/Breadcrumb.vue` ← `components/breadcrumbs.html`
+- [x] 4.1 `components/Avatar.vue` ← `data-display/avatars.html`
+- [x] 4.2 `components/Table.vue` ← `data-display/tables.html`
+- [x] 4.3 `components/Collection.vue` ← `data-display/collections.html`
+- [x] 4.4 `components/Breadcrumb.vue` ← `components/navigation.html` (breadcrumb section; nav.ts mis-maps to breadcrumbs.html)
 
 ## 5. Interactive (batch)
 

@@ -1,51 +1,68 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
-import VdBreadcrumb from "@/layout/VdBreadcrumb.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-const crumbs = [
-  { label: "Components", href: "/components" },
-  { label: "Layout" },
-  { label: "Breadcrumb" },
+const usageHtml = `<!-- Breadcrumb navigation -->
+<nav class="vd-breadcrumbs" aria-label="Breadcrumb">
+  <ol class="vd-breadcrumb">
+    <li class="vd-breadcrumb-item"><a href="#">Home</a></li>
+    <li class="vd-breadcrumb-item"><a href="#">Library</a></li>
+    <li class="vd-breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>`;
+
+const apiRows: [string, string, string][] = [
+  [".vd-breadcrumbs", "Wrapper for breadcrumb navigation.", "Layout"],
+  [".vd-breadcrumb-item", "Individual breadcrumb list item. Add .active for the current page.", "Component"],
 ];
-
-const basicHtml =
-  '<nav class="vd-breadcrumb" aria-label="Breadcrumb">\n  <ol class="vd-breadcrumb-list">\n    <li class="vd-breadcrumb-item">\n      <a href="/components" class="vd-breadcrumb-link">Components</a>\n    </li>\n  </ol>\n</nav>';
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Breadcrumb</h1>
-        <p class="vd-lead">
-          Hierarchical navigation trail showing the user's current location
-          within a section.
-        </p>
-      </header>
+    <section id="breadcrumbs">
+      <h5 class="demo-title"><i class="ph ph-caret-right"></i>Breadcrumbs</h5>
 
-      <section id="demo" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Demo</h2>
-        <div class="vd-card" style="padding: 1rem">
-          <VdBreadcrumb :items="crumbs" />
+      <div class="vd-row">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Breadcrumbs</h6></div>
+            <div class="vd-card-body">
+              <nav class="vd-breadcrumbs" aria-label="Breadcrumb">
+                <ol class="vd-breadcrumb">
+                  <li class="vd-breadcrumb-item">
+                    <a href="#" @click.prevent>Home</a>
+                  </li>
+                  <li class="vd-breadcrumb-item">
+                    <a href="#" @click.prevent>Library</a>
+                  </li>
+                  <li class="vd-breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+              </nav>
+              <DocCodeSnippet :html="usageHtml" />
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section id="variants" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Sizes</h2>
-        <div class="vd-card" style="padding: 1rem">
-          <VdBreadcrumb class="vd-breadcrumb-sm" :items="crumbs" />
-        </div>
-        <div class="vd-card" style="padding: 1rem">
-          <VdBreadcrumb class="vd-breadcrumb-lg" :items="crumbs" />
-        </div>
-      </section>
-
-      <section id="usage" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Usage</h2>
-        <VdCodeSnippet language="html" :code="basicHtml" />
-      </section>
-    </VdStack>
+      <h4 id="api" class="docs-heading">API Reference</h4>
+      <div class="vd-table-responsive" style="margin-bottom: 3rem">
+        <table class="vd-table vd-table-hover">
+          <thead>
+            <tr>
+              <th style="width: 25%">Class Name</th>
+              <th style="width: 55%">Description</th>
+              <th style="width: 20%">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in apiRows" :key="row[0]">
+              <td><code>{{ row[0] }}</code></td>
+              <td>{{ row[1] }}</td>
+              <td>{{ row[2] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </DocsLayout>
 </template>
