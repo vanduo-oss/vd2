@@ -279,6 +279,7 @@ the docs-view template. Check off only after the page is verified against
 
 ## 13. Verification (per batch)
 
-- [ ] 13.1 Playwright visual check vs `:8787` for each new page.
-- [ ] 13.2 `npx vue-tsc --noEmit`, `npx vitest run`, `npx vite-ssg build`
-      all green.
+- [x] 13.1 Playwright check for each new page (interactivity + zero console
+      errors) — run per batch (Layout, Forms pickers, top-level, guides).
+- [x] 13.2 `npx vue-tsc --noEmit`, `npx vitest run` (124 passing), and
+      `npx vite-ssg build` all green — run per batch.
