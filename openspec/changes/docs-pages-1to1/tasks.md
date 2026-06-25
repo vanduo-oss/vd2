@@ -129,8 +129,25 @@ the docs-view template. Check off only after the page is verified against
       (toggle via `data-sidenav-toggle`, body overlay, close button, overlay-click
       + ESC, scroll-lock, `data-vd-position`, sidenav:open/close). Skips the
       legacy portal-to-body/push/resize — demo drawers are position:fixed.
-- [ ] 8.2 `components/Sticky.vue` ← `affix.html`
-- [ ] 8.3 `components/Scrollspy.vue` ← `scrollspy.html`
+- [x] 8.2 `components/Sticky.vue` ← `sticky.html` (was `VdStack`/`VdSticky`
+      scaffold). Sticky-nav-bar demo (scroll container), custom-offset + style
+      variants, full API tables (classes/attrs/methods/events), accessibility.
+      New `useAffix(root)` ports `framework/js/components/affix.js` — finds the
+      nearest scrollable parent, inserts a hidden sentinel, toggles `.is-stuck`
+      via IntersectionObserver, emits `affix:stuck`/`affix:unstuck`. Verified:
+      sentinel inserted, `.is-stuck` false→true on inner-container scroll.
+- [x] 8.3 `components/Scrollspy.vue` ← `scrollspy.html` (was `VdStack`/
+      `VdWaypoint` scaffold). Sidebar scrollspy + underline/pill variant
+      previews + full API tables + accessibility; page-specific `.waypoint-demo-*`
+      CSS reproduced. New `useWaypoint(root)` ports
+      `framework/js/components/waypoint.js` (topmost-visible-wins, smooth-scroll
+      on click, `waypoint:change`). Two fixes-to-intent: the IO root is resolved
+      from `data-vd-waypoint-nav` so overflow-container scrollspy actually works
+      (legacy always observed the viewport → the sidebar demo never updated),
+      and the active link gets `aria-current="true"` (documented but never set).
+      Underline/pill tab previews port the docs `data-waypoint-demo-nav` handler.
+      Verified: active link Introduction→Usage on inner scroll; tabs update copy.
+      Spec files retargeted from the deleted scaffolds to `useWaypoint`/`useAffix`.
 - [x] 8.4 `components/Offcanvas.vue` ← `offcanvas.html` (was `VdStack`/`VdOffcanvas`
       scaffold). 4 edge panels (left/right/top/bottom) via the shared
       `useSidenav` composable (`.vd-offcanvas` + `data-vd-position`), code
