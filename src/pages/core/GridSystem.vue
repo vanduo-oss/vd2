@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-// Grid-mode toggle. The legacy docs ship a `data-grid-toggle` button + a
+// Grid-mode toggle. The original docs ship a `data-grid-toggle` button + a
 // `data-layout-mode` target, but nothing in the framework CSS/JS reacts to it
 // (a no-op). We wire it and add scoped CSS so it actually applies the
 // documented Fibonacci proportions.
@@ -352,7 +352,7 @@ const containers = [
 
 <style scoped>
 /*
- * Fibonacci grid-mode override. The legacy `data-grid-toggle` was a no-op
+ * Fibonacci grid-mode override. The original `data-grid-toggle` was a no-op
  * (no backing CSS); here it applies the documented proportions per row.
  */
 .grid-toggle-demo[data-layout-mode="fibonacci"] .vd-row > [class*="vd-col-"] {

@@ -10,7 +10,7 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  * `{ value, item, index }`.
  *
  * The list is appended to the input's `.vd-suggest-wrapper`; the page renders
- * that wrapper so no Vue-managed node is moved (the legacy JS created the
+ * that wrapper so no Vue-managed node is moved (the Vanilla JS created the
  * wrapper itself by relocating the input).
  */
 type SuggestItem = string | { label?: string; text?: string; value?: string };

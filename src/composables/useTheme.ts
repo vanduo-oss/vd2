@@ -1,7 +1,7 @@
 /**
  * Theme model for the Vue engine. Token *data* (palette/neutral/radius/font
  * options + defaults) is owned by @vanduo-oss/core — the design-system source of
- * truth shared with the legacy framework. This file keeps only the Vue-side
+ * truth shared with the Vanilla framework. This file keeps only the Vue-side
  * application logic that drives the same `data-*` attributes the framework CSS
  * reads. Re-exports core's data so vd2 consumers keep a single import surface.
  */

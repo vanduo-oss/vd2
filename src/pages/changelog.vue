@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // The changelog is ~4,000 lines of static, hand-written release notes with no
-// framework JS behaviour. The legacy body is imported verbatim and rendered via
+// framework JS behaviour. The static body is imported verbatim and rendered via
 // v-html (its styles already live in src/styles/docs.css). The page header and
 // engine toggle are rendered by Vue (outside the v-html so they aren't wiped),
 // and the timeline is filtered by the global engine choice: entries tagged
-// data-engine="legacy|vue3" are hidden in the other view (untagged = always
+// data-engine="vanilla|vue3" are hidden in the other view (untagged = always
 // shown). Trusted first-party content → v-html is safe here.
 import { storeToRefs } from "pinia";
 import content from "./changelog-content.html?raw";
@@ -25,8 +25,8 @@ const { engine } = storeToRefs(engineStore);
         <p class="vd-text-lg vd-text-muted">
           Release notes for the <strong>Vanduo Framework</strong> and ecosystem
           packages, plus <strong>vd2</strong> (Vue 3). The engine toggle filters
-          the timeline: <em>Legacy</em> shows the framework history; <em>Vue 3</em>
-          adds vd2's own releases and hides legacy-runtime-only notes.
+          the timeline: <em>Vanilla</em> shows the framework history; <em>Vue 3</em>
+          adds vd2's own releases and hides vanilla-runtime-only notes.
         </p>
         <div class="changelog-engine-toggle">
           <div class="doc-engine-toggle" role="group" aria-label="Documentation engine">
@@ -42,11 +42,11 @@ const { engine } = storeToRefs(engineStore);
             <button
               type="button"
               class="doc-engine-option"
-              :class="{ active: engine === 'legacy' }"
-              :aria-pressed="engine === 'legacy'"
-              @click="engineStore.setEngine('legacy')"
+              :class="{ active: engine === 'vanilla' }"
+              :aria-pressed="engine === 'vanilla'"
+              @click="engineStore.setEngine('vanilla')"
             >
-              <i class="ph ph-file-html" aria-hidden="true"></i> Legacy
+              <i class="ph ph-file-html" aria-hidden="true"></i> Vanilla
             </button>
           </div>
         </div>
@@ -82,7 +82,7 @@ const { engine } = storeToRefs(engineStore);
                       <i class="ph ph-toggle-left" style="color: var(--vd-color-info);"></i>
                       <div>
                         <strong>Dual-engine documentation toggle</strong>
-                        <p>Readers can switch code and API examples between the legacy and Vue 3 engines from the docs sidebar; the choice persists across the site.</p>
+                        <p>Readers can switch code and API examples between the Vanilla and Vue 3 engines from the docs sidebar; the choice persists across the site.</p>
                       </div>
                     </li>
                   </ul>

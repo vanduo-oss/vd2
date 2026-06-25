@@ -63,7 +63,7 @@ const events: [string, string][] = [
   ["transfer:change", "Fired on the element when items are moved. event.detail contains { selected: string[], available: string[] }"],
 ];
 
-// Vue 3 usage (the legacy data-attribute form is shown via transferHtml/transferJs).
+// Vue 3 usage (the Vanilla data-attribute form is shown via transferHtml/transferJs).
 const vue3Usage = `<script setup lang="ts">
 import VdTransfer from '@/components/VdTransfer.vue';
 const items = [
@@ -117,7 +117,7 @@ const vue3Api: [string, string][] = [
           <h4>Usage</h4>
           <EngineSwitch>
             <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
-            <template #legacy><DocCodeSnippet :html="transferHtml" :js="transferJs" :default-open="true" /></template>
+            <template #vanilla><DocCodeSnippet :html="transferHtml" :js="transferJs" :default-open="true" /></template>
           </EngineSwitch>
 
           <h4 class="vd-mt-6">CSS Classes</h4>
@@ -161,7 +161,7 @@ const vue3Api: [string, string][] = [
                 </table>
               </div>
             </template>
-            <template #legacy>
+            <template #vanilla>
               <h4 class="vd-mt-6">JavaScript Methods</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

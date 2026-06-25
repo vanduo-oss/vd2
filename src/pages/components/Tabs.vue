@@ -15,7 +15,7 @@ import { useTabs } from '@/composables/useTabs';
 const root = ref<HTMLElement | null>(null);
 useTabs(root);   // wires [data-tab-target] inside root; cleanup on unmount`;
 
-const legacyWiring = `// Wire every [data-tab-target] trigger (document, or a root element)
+const vanillaWiring = `// Wire every [data-tab-target] trigger (document, or a root element)
 VanduoTabs.init();
 
 // switch programmatically
@@ -236,7 +236,7 @@ const classRows: [string, string][] = [
               <h4>Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>
@@ -269,7 +269,7 @@ const classRows: [string, string][] = [
                     </table>
                   </div>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <h4 class="vd-mt-6">JavaScript Methods</h4>
                   <div class="vd-table-responsive">
                     <table class="vd-table vd-table-striped">

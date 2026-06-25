@@ -18,7 +18,7 @@ useAffix(root);   // wires .vd-affix / [data-vd-affix] inside root; cleanup on u
 // react to pin / unpin
 root.value?.addEventListener('affix:stuck', () => { /* … */ });`;
 
-const legacyWiring = `// Wire every affix element (document, or a root element)
+const vanillaWiring = `// Wire every affix element (document, or a root element)
 VanduoAffix.init();
 
 // tear one down
@@ -174,7 +174,7 @@ const events: [string, string][] = [
               <h4>Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>
@@ -218,7 +218,7 @@ const events: [string, string][] = [
                     </table>
                   </div>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <h4 class="vd-mt-6">JavaScript Methods</h4>
                   <div class="vd-table-responsive">
                     <table class="vd-table vd-table-striped">

@@ -20,7 +20,7 @@ root.value?.addEventListener('waypoint:change', (e) => {
   console.log('active', e.detail.activeId);
 });`;
 
-const legacyWiring = `// Wire every [data-vd-waypoint-nav] (document, or a root element)
+const vanillaWiring = `// Wire every [data-vd-waypoint-nav] (document, or a root element)
 VanduoWaypoint.init();
 
 // after dynamic content changes
@@ -244,7 +244,7 @@ const events: [string, string, string][] = [
           <h4>Wiring</h4>
           <EngineSwitch>
             <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+            <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
           </EngineSwitch>
 
           <h4 class="vd-mt-6">CSS Classes</h4>
@@ -290,7 +290,7 @@ const events: [string, string, string][] = [
                 </table>
               </div>
             </template>
-            <template #legacy>
+            <template #vanilla>
               <h4>JavaScript Methods</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

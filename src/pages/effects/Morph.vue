@@ -19,7 +19,7 @@ const root = ref<HTMLElement | null>(null);
 useMorph(root);        // auto wave/shine + current⇄next swap
 useMorphBadges(root);  // manual multi-state badge cycling`;
 
-const legacyWiring = `// The framework auto-initialises morph effects on Vanduo.init()
+const vanillaWiring = `// The framework auto-initialises morph effects on Vanduo.init()
 VanduoMorph.init();`;
 
 const vue3Api: [string, string][] = [
@@ -219,7 +219,7 @@ const jsApi: [string, string][] = [
           <h4>Wiring</h4>
           <EngineSwitch>
             <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+            <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
           </EngineSwitch>
 
           <h4 class="vd-mt-6">CSS Classes</h4>
@@ -260,7 +260,7 @@ const jsApi: [string, string][] = [
                 </table>
               </div>
             </template>
-            <template #legacy>
+            <template #vanilla>
               <h4>JavaScript API</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

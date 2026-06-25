@@ -9,13 +9,13 @@ import VdTreeNode, { type TreeNode } from "./VdTreeNode.vue";
  * generated DOM (`.vd-tree[role=tree]` → `.vd-tree-node` → `.vd-tree-node-content`
  * → `.vd-tree-children`), `getChecked()`, and keyboard navigation.
  *
- * Fixes-to-documented-intent vs the legacy JS:
+ * Fixes-to-documented-intent vs the Vanilla JS:
  *  - fires `tree:toggle` with `{ id, open }` (listed in the docs API table but
- *    never dispatched by the legacy JS) and `tree:check` with the documented
- *    `{ checked: string[], node: string }` shape (legacy fired a single
+ *    never dispatched by the Vanilla JS) and `tree:check` with the documented
+ *    `{ checked: string[], node: string }` shape (Vanilla fired a single
  *    `{ id, checked: boolean, label }`).
  *  - Arrow Left/Right collapse/expand the focused branch (documented keyboard
- *    support the legacy JS omitted; it only handled Up/Down).
+ *    support the Vanilla JS omitted; it only handled Up/Down).
  */
 const props = defineProps<{
   nodes: TreeNode[];

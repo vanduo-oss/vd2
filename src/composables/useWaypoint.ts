@@ -6,15 +6,15 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  * link of the topmost visible section as the user scrolls (IntersectionObserver,
  * topmost-wins, smooth-scroll on click, `waypoint:change` event).
  *
- * Two fixes-to-documented-intent vs the legacy JS:
- *  - The legacy observer always ran against the viewport and ignored the
+ * Two fixes-to-documented-intent vs the Vanilla JS:
+ *  - The Vanilla observer always ran against the viewport and ignored the
  *    attribute value, so a nav pointed at an overflow container (the docs'
  *    sidebar demo) never updated. Here the attribute value is resolved to an
  *    element and used as the IntersectionObserver `root` — the documented
  *    behaviour ("selector for the scrollable container to observe") — so
  *    overflow-container scrollspy actually works.
  *  - The active link also receives `aria-current="true"`, which the docs
- *    accessibility notes promise but the legacy JS never set.
+ *    accessibility notes promise but the Vanilla JS never set.
  */
 export function useWaypoint(root: Ref<HTMLElement | null>): void {
   const cleanups: Array<() => void> = [];

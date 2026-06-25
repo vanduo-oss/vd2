@@ -5,7 +5,7 @@ import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import VdPagination from "@/components/VdPagination.vue";
 
-// Authored page — there is no legacy `pagination.html`; demos are built from the
+// Authored page — there is no original `pagination.html`; demos are built from the
 // real framework component (framework/js/components/pagination.js + CSS).
 const basicPage = ref(1);
 const sizeSmPage = ref(2);
@@ -78,7 +78,7 @@ const events: [string, string][] = [
   ["pagination:change", "Fired on the element when the page changes. event.detail contains { page, totalPages }"],
 ];
 
-// Engine-specific usage: the Vue component vs the legacy data-attribute markup.
+// Engine-specific usage: the Vue component vs the Vanilla data-attribute markup.
 const vue3Usage = `<script setup lang="ts">
 import VdPagination from '@/components/VdPagination.vue';
 const page = ref(1);
@@ -88,7 +88,7 @@ const page = ref(1);
   <VdPagination v-model="page" :total="20" :max-visible="7" />
 </template>`;
 
-const legacyUsage = `<!-- The JS expands data-pagination into the list -->
+const vanillaUsage = `<!-- The JS expands data-pagination into the list -->
 <ul class="vd-pagination"
     data-pagination
     data-total-pages="20"
@@ -204,7 +204,7 @@ const vue3Api: [string, string][] = [
           <h4>Usage</h4>
           <EngineSwitch>
             <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
-            <template #legacy><DocCodeSnippet :html="legacyUsage" :default-open="true" /></template>
+            <template #vanilla><DocCodeSnippet :html="vanillaUsage" :default-open="true" /></template>
           </EngineSwitch>
 
           <h4 class="vd-mt-6">Data Attributes</h4>
@@ -249,7 +249,7 @@ const vue3Api: [string, string][] = [
                 </table>
               </div>
             </template>
-            <template #legacy>
+            <template #vanilla>
               <h4 class="vd-mt-6">JavaScript Methods</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

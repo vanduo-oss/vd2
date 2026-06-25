@@ -2960,7 +2960,7 @@
             color: var(--vd-color-white);
         }
 
-        /* ── Docs engine toggle (legacy ⇄ Vue 3) ─────────────── */
+        /* ── Docs engine toggle (Vanilla ⇄ Vue 3) ────────────── */
         .doc-engine-toggle {
             display: flex;
             gap: 0.25rem;
@@ -3004,8 +3004,8 @@
 
         /* Changelog: a single timeline filtered by the selected engine.
            Untagged entries (and data-engine="both") always show. */
-        #changelog[data-engine-view="vue3"] [data-engine="legacy"],
-        #changelog[data-engine-view="legacy"] [data-engine="vue3"] {
+        #changelog[data-engine-view="vue3"] [data-engine="vanilla"],
+        #changelog[data-engine-view="vanilla"] [data-engine="vue3"] {
             display: none;
         }
 

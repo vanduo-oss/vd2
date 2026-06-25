@@ -33,7 +33,7 @@ const matrix: [string, string, string][] = [
         <code class="vd-text-sm">Guide</code>
       </h5>
       <p class="vd-mb-6">
-        The legacy framework ships <strong>two builds</strong> from one codebase:
+        The Vanilla framework ships <strong>two builds</strong> from one codebase:
         an IIFE bundle for plain HTML and an ESM build for bundlers. vd2 adds a
         third path entirely — a Vue 3 engine that is ESM-only and has no global
         runtime. Pick the one that matches how your app is built.

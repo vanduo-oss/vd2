@@ -2,7 +2,7 @@
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-const legacyJs = `// Legacy engine: one global, imperative, scoped to a DOM root
+const vanillaJs = `// Vanilla engine: one global, imperative, scoped to a DOM root
 Vanduo.init(root);          // scan + wire every component under root
 Vanduo.reinit('tooltip', root);
 Vanduo.destroy(root);       // tear down listeners under root
@@ -43,7 +43,7 @@ const mapping: [string, string][] = [
         <code class="vd-text-sm">Guide</code>
       </h5>
       <p class="vd-mb-6">
-        The legacy engine centres its runtime on one public global
+        The Vanilla engine centres its runtime on one public global
         (<code>Vanduo</code>) with scoped, imperative initialisation. vd2 keeps
         the <strong>same DOM and <code>data-*</code> contracts</strong> but
         replaces that runtime with Vue composables and Pinia stores — so behaviour
@@ -53,9 +53,9 @@ const mapping: [string, string][] = [
       <div class="vd-row vd-mb-6">
         <div class="vd-col-12 vd-col-md-6">
           <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-terminal-window"></i> Legacy runtime</h6></div>
+            <div class="vd-card-header"><h6><i class="ph ph-terminal-window"></i> Vanilla runtime</h6></div>
             <div class="vd-card-body">
-              <DocCodeSnippet :js="legacyJs" :default-open="true" />
+              <DocCodeSnippet :js="vanillaJs" :default-open="true" />
               <p class="vd-text-sm vd-text-muted vd-mt-3">
                 Pass a <code>Document</code> or <code>Element</code> to scope
                 work; everything hangs off one global object.
@@ -84,7 +84,7 @@ const mapping: [string, string][] = [
             <div class="vd-card-body">
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Legacy concept</th><th>vd2 equivalent</th></tr></thead>
+                  <thead><tr><th>Vanilla concept</th><th>vd2 equivalent</th></tr></thead>
                   <tbody>
                     <tr v-for="row in mapping" :key="row[0]">
                       <td><code>{{ row[0] }}</code></td>

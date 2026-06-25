@@ -14,7 +14,7 @@ toast.error('An error occurred!');
 toast.warning('Please review your input.');
 toast.info('Here is some information.');`;
 
-const legacyTypesJs = `// Global runtime
+const vanillaTypesJs = `// Global runtime
 VanduoToast.success('Operation completed successfully!');
 VanduoToast.error('An error occurred!');
 VanduoToast.warning('Please review your input.');
@@ -31,7 +31,7 @@ toast.show({ message: 'This toast will stay for 10 seconds.', type: 'success', d
 // Custom position
 toast.show({ message: 'Bottom left position.', type: 'warning', position: 'bottom-left' });`;
 
-const legacyOptionsJs = `// Global runtime
+const vanillaOptionsJs = `// Global runtime
 VanduoToast.show({ title: 'With Title', message: 'This toast has a title and message.', type: 'info' });
 VanduoToast.show({ message: 'This toast will stay for 10 seconds.', type: 'success', duration: 10000 });
 VanduoToast.show({ message: 'Bottom left position.', type: 'warning', position: 'bottom-left' });`;
@@ -83,7 +83,7 @@ const apiRows: [string, string, string][] = [
               </button>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="typesJs" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyTypesJs" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaTypesJs" /></template>
               </EngineSwitch>
             </div>
           </div>
@@ -113,7 +113,7 @@ const apiRows: [string, string, string][] = [
               </button>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="optionsJs" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyOptionsJs" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaOptionsJs" /></template>
               </EngineSwitch>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  * scroll/resize.
  *
  * Fix-to-documented-intent: `timepicker:select` fires the documented
- * `{ time, hours, minutes }` detail (the legacy JS fired `{ display, value }`,
+ * `{ time, hours, minutes }` detail (the Vanilla JS fired `{ display, value }`,
  * so the documented `event.detail.time/hours/minutes` were undefined).
  */
 function positionAnchoredPopup(

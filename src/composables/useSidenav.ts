@@ -8,7 +8,7 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  * (unless `data-keyboard="false"`), body scroll-lock, `data-vd-position`
  * direction class, and `sidenav:open` / `sidenav:close` events.
  *
- * The legacy portal-to-body + push/fixed/resize handling is omitted: the demo
+ * The Vanilla portal-to-body + push/fixed/resize handling is omitted: the demo
  * drawers are `position: fixed`, so they overlay the viewport without moving in
  * the DOM, which keeps this from fighting Vue's ownership of the elements.
  */

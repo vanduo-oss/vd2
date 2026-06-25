@@ -4,7 +4,7 @@ import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
 const depsShell = `# vd2 depends on the shared token core + the framework's component CSS
 pnpm add @vanduo-oss/core      # design tokens (SSOT)
-pnpm add @vanduo-oss/framework # component CSS (and the legacy runtime)`;
+pnpm add @vanduo-oss/framework # component CSS (and the Vanilla runtime)`;
 
 const importJs = `// vd2 (Vue 3 engine) — what an app actually imports
 import '@vanduo-oss/framework/css';      // component CSS
@@ -14,7 +14,7 @@ import { PRIMARY_COLORS } from '@vanduo-oss/core';`;
 
 const engines: [string, string, string][] = [
   ["@vanduo-oss/core", "Design-token source of truth", "Framework-agnostic DTCG tokens → CSS vars + typed TS + JSON. No runtime."],
-  ["@vanduo-oss/framework", "Legacy zero-build engine", "The original CDN / static / SPA engine. Owns component CSS + imperative JS. A feature, not debt."],
+  ["@vanduo-oss/framework", "Vanilla zero-build engine", "The original CDN / static / SPA engine. Owns component CSS + imperative JS. A feature, not debt."],
   ["@vanduo-oss/vd2", "Vue 3 + SSR engine", "This site. Reimplements the framework's behaviour as Vue composables + Pinia; consumes core tokens + framework CSS."],
 ];
 </script>
@@ -30,7 +30,7 @@ const engines: [string, string, string][] = [
         Vanduo is intentionally a <strong>dual-engine</strong> design system. The
         same look, feel, and Fibonacci-based design language is served by two
         engines that share a single source of design tokens. Understanding the
-        three packages explains why some guides differ between the legacy docs
+        three packages explains why some guides differ between the original docs
         and this Vue site.
       </p>
 
@@ -66,7 +66,7 @@ const engines: [string, string, string][] = [
         <div class="vd-col-12 vd-col-md-6">
           <div class="vd-card demo-card">
             <div class="vd-card-header">
-              <h6><i class="ph ph-feather"></i> When to use the legacy engine</h6>
+              <h6><i class="ph ph-feather"></i> When to use the Vanilla engine</h6>
             </div>
             <div class="vd-card-body">
               <ul>
@@ -120,8 +120,8 @@ const engines: [string, string, string][] = [
         </div>
         <div class="vd-card-body">
           <ul>
-            <li><a href="/guides/runtime-architecture">Runtime architecture</a> — how vd2 replaces the legacy <code>Vanduo.init</code> runtime with composables.</li>
-            <li><a href="/guides/esm-vs-iife">ESM vs IIFE</a> — the legacy engine's two builds vs vd2's ESM-only Vue.</li>
+            <li><a href="/guides/runtime-architecture">Runtime architecture</a> — how vd2 replaces the Vanilla <code>Vanduo.init</code> runtime with composables.</li>
+            <li><a href="/guides/esm-vs-iife">ESM vs IIFE</a> — the Vanilla engine's two builds vs vd2's ESM-only Vue.</li>
             <li><a href="/guides/theme-customizer-guide">Theme customizer</a> — theming through the Pinia store.</li>
             <li><a href="/guides/css-variables">CSS variables &amp; theming</a> — the token layer both engines share.</li>
           </ul>

@@ -15,7 +15,7 @@ import { useSidenav } from '@/composables/useSidenav';
 const root = ref<HTMLElement | null>(null);
 useSidenav(root);   // wires [data-sidenav-toggle] triggers; cleanup on unmount`;
 
-const legacyWiring = `// Wire every [data-sidenav-toggle] trigger (document, or a root element)
+const vanillaWiring = `// Wire every [data-sidenav-toggle] trigger (document, or a root element)
 VanduoSidenav.init();
 
 // control programmatically
@@ -174,7 +174,7 @@ const apiRows: [string, string, string][] = [
       <div style="margin-bottom: 2rem">
         <EngineSwitch>
           <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-          <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
         </EngineSwitch>
       </div>
 

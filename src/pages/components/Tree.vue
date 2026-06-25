@@ -181,7 +181,7 @@ const events: [string, string][] = [
   ["tree:toggle", "Fired when a node is expanded or collapsed. event.detail contains { id: string, open: boolean }"],
 ];
 
-// Engine-specific usage: the Vue component vs the legacy data-attribute markup.
+// Engine-specific usage: the Vue component vs the Vanilla data-attribute markup.
 const vue3Usage = `<script setup lang="ts">
 import VdTree from '@/components/VdTree.vue';
 const nodes = [
@@ -195,7 +195,7 @@ const nodes = [
   <VdTree :nodes="nodes" checkbox cascade />
 </template>`;
 
-const legacyUsage = `<div data-vd-tree='[
+const vanillaUsage = `<div data-vd-tree='[
   { "id": "src", "label": "src", "icon": "ph ph-folder", "children": [
     { "id": "btn", "label": "Button.vue", "icon": "ph ph-file-vue" }
   ]}
@@ -283,7 +283,7 @@ const vue3Api: [string, string][] = [
           <h4>Usage</h4>
           <EngineSwitch>
             <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
-            <template #legacy><DocCodeSnippet :html="legacyUsage" :default-open="true" /></template>
+            <template #vanilla><DocCodeSnippet :html="vanillaUsage" :default-open="true" /></template>
           </EngineSwitch>
 
           <h4 class="vd-mt-6">CSS Classes</h4>
@@ -341,7 +341,7 @@ const vue3Api: [string, string][] = [
                 </table>
               </div>
             </template>
-            <template #legacy>
+            <template #vanilla>
               <h4 class="vd-mt-6">JavaScript Methods</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

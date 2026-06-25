@@ -9,11 +9,11 @@ import { storeToRefs } from "pinia";
  *
  *   <EngineSwitch>
  *     <template #vue3> …Vue 3 usage… </template>
- *     <template #legacy> …legacy usage… </template>
+ *     <template #vanilla> …Vanilla (zero-build) usage… </template>
  *   </EngineSwitch>
  *
  * v-if (not CSS hide) is used for simplicity: SSG pre-renders the default `vue3`
- * slot and a stored `legacy` preference swaps in after hydration — a negligible
+ * slot and a stored `vanilla` preference swaps in after hydration — a negligible
  * flash for static code blocks.
  */
 const engineStore = useEngineStore();
@@ -22,5 +22,5 @@ const { engine } = storeToRefs(engineStore);
 
 <template>
   <slot v-if="engine === 'vue3'" name="vue3" />
-  <slot v-else name="legacy" />
+  <slot v-else name="vanilla" />
 </template>

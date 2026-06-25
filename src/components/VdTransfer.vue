@@ -9,11 +9,11 @@ import { computed, ref } from "vue";
  * `transfer:change` CustomEvent so the documented
  * `el.addEventListener('transfer:change', ...)` API works.
  *
- * Two fixes-to-documented-intent vs the legacy JS:
+ * Two fixes-to-documented-intent vs the Vanilla JS:
  *  - items use `.is-selected` (what transfer.css actually styles); the docs API
  *    table's `.is-checked` is a stale typo.
  *  - the event detail is `{ selected, available }` (the documented shape used by
- *    the demo snippet's `e.detail.selected`); the legacy JS fired the wrong
+ *    the demo snippet's `e.detail.selected`); the Vanilla JS fired the wrong
  *    `{ source, target }`, so the documented `e.detail.selected` was undefined.
  */
 interface TransferItem {

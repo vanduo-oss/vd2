@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 
 interface Props {
-  /** The demo markup shown in the HTML tab (mirrors the legacy data-extract). */
+  /** The demo markup shown in the HTML tab (mirrors the Vanilla data-extract). */
   html?: string;
   /** Optional CSS shown in a second tab. */
   css?: string;
@@ -10,7 +10,7 @@ interface Props {
   js?: string;
   /** Optional shell / command-line snippet shown in a tab. */
   shell?: string;
-  /** Start expanded (mirrors the legacy `data-expanded="true"`). */
+  /** Start expanded (mirrors the Vanilla `data-expanded="true"`). */
   defaultOpen?: boolean;
 }
 const props = defineProps<Props>();

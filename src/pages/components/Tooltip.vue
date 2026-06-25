@@ -15,7 +15,7 @@ import { useTooltips } from '@/composables/useTooltips';
 const root = ref<HTMLElement | null>(null);
 useTooltips(root);   // wires [data-tooltip] inside root; cleanup on unmount`;
 
-const legacyWiring = `// Wire every [data-tooltip] element (document, or a root element)
+const vanillaWiring = `// Wire every [data-tooltip] element (document, or a root element)
 VanduoTooltips.init();
 
 // show / hide programmatically
@@ -218,7 +218,7 @@ const jsMethods: [string, string][] = [
               <h4>Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>
@@ -262,7 +262,7 @@ const jsMethods: [string, string][] = [
                     </table>
                   </div>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <h4 class="vd-mt-6">JavaScript Methods</h4>
                   <div class="vd-table-responsive">
                     <table class="vd-table vd-table-striped">

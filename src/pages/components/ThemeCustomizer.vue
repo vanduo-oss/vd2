@@ -339,7 +339,7 @@ const chipText = (hex: string): string => (["#fab005", "#fcc419", "#a9e34b"].inc
             <div class="vd-card-body">
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="apiVue3" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="apiJs" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="apiJs" :default-open="true" /></template>
               </EngineSwitch>
             </div>
           </div>

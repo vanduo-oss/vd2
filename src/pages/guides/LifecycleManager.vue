@@ -48,7 +48,7 @@ const rules: [string, string][] = [
         <code class="vd-text-sm">Guide</code>
       </h5>
       <p class="vd-mb-6">
-        The legacy engine has an explicit lifecycle manager:
+        The Vanilla engine has an explicit lifecycle manager:
         <code>Vanduo.init</code> wires a subtree and <code>Vanduo.destroy</code>
         tears it down. In vd2 that lifecycle <em>is</em> the Vue component
         lifecycle — <code>onMounted</code> and <code>onUnmounted</code> — so

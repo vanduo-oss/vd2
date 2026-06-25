@@ -10,8 +10,8 @@ const afterHtml = `<!-- Vanduo -->
 <button class="vd-btn vd-btn-primary vd-btn-lg">Save</button>
 <div class="vd-card"><div class="vd-card-body">…</div></div>`;
 
-const legacyToVueJs = `// Legacy → vd2: same classes, behaviour moves to components/composables
-// Before (legacy):
+const vanillaToVueJs = `// Vanilla → vd2: same classes, behaviour moves to components/composables
+// Before (Vanilla):
 //   <div data-vd-tooltip>…</div>   + Vanduo.init()
 // After (vd2):
 const root = ref<HTMLElement | null>(null);
@@ -35,7 +35,7 @@ const classMap: [string, string][] = [
       </h5>
       <p class="vd-mb-6">
         Two migrations matter here: moving <strong>to Vanduo</strong> from another
-        CSS framework, and moving <strong>from the legacy engine to vd2</strong>.
+        CSS framework, and moving <strong>from the Vanilla engine to vd2</strong>.
         Both are low-friction because Vanduo's class names are predictable and the
         DOM contract is shared across engines.
       </p>
@@ -72,14 +72,14 @@ const classMap: [string, string][] = [
       </div>
 
       <div class="vd-card demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-atom"></i> Legacy engine → vd2</h6></div>
+        <div class="vd-card-header"><h6><i class="ph ph-atom"></i> Vanilla engine → vd2</h6></div>
         <div class="vd-card-body">
           <p>
             Keep your markup and classes. Replace global <code>Vanduo.init</code>
             calls with the matching composable, and swap theming for the Pinia
             store:
           </p>
-          <DocCodeSnippet :js="legacyToVueJs" :default-open="true" />
+          <DocCodeSnippet :js="vanillaToVueJs" :default-open="true" />
           <p class="vd-text-sm vd-text-muted vd-mt-3">
             See <a href="/guides/runtime-architecture">Runtime architecture</a> for
             the full mapping and <a href="/guides/theme-customizer-guide">Theme

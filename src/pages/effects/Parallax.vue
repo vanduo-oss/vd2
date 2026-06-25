@@ -15,7 +15,7 @@ import { useParallax } from '@/composables/useParallax';
 const root = ref<HTMLElement | null>(null);
 useParallax(root);   // rAF scroll handler + reduced-motion guard; cleanup on unmount`;
 
-const legacyWiring = `// The framework auto-initialises parallax on Vanduo.init()
+const vanillaWiring = `// The framework auto-initialises parallax on Vanduo.init()
 VanduoParallax.init();
 
 // after layout changes
@@ -116,7 +116,7 @@ const apiRows: [string, string, string][] = [
               <h4 class="vd-mt-0">Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">Classes &amp; attributes</h4>
@@ -142,7 +142,7 @@ const apiRows: [string, string, string][] = [
                     manual refresh/destroy needed.
                   </p>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <p class="vd-text-sm vd-text-muted vd-mt-5">
                     <strong>JavaScript API:</strong> components auto-initialize on
                     <code>Vanduo.init()</code>. <code>VanduoParallax.refresh()</code>

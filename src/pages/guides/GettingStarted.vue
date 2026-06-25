@@ -28,14 +28,14 @@ const pageHtml = `<!-- App.vue — compose framework classes; no CSS to write --
   </header>
 </template>`;
 
-// ── Legacy (no-build) path ──────────────────────────────────
+// ── Vanilla (no-build) path ──────────────────────────────────
 const cdnHtml = `<!-- index.html — drop in two lines, no build step -->
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/vanduo-oss/framework@v1.5.1/dist/vanduo.min.css">
 <script src="https://cdn.jsdelivr.net/gh/vanduo-oss/framework@v1.5.1/dist/vanduo.min.js"><\/script>
 <script>Vanduo.init();<\/script>`;
 
-const legacyPageHtml = `<!-- Compose the same classes directly in HTML -->
+const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
 <nav class="vd-navbar">
   <a class="vd-navbar-brand" href="#">My App</a>
 </nav>
@@ -57,7 +57,7 @@ const legacyPageHtml = `<!-- Compose the same classes directly in HTML -->
       <p class="vd-mb-6">
         Get a Vanduo-styled page running in a few minutes. The same design system
         ships two ways — pick yours with the engine toggle in the sidebar:
-        <strong>Vue 3</strong> (Vite + components) or <strong>Legacy</strong>
+        <strong>Vue 3</strong> (Vite + components) or <strong>Vanilla</strong>
         (drop-in CSS/JS, no build step).
       </p>
 
@@ -100,8 +100,8 @@ const legacyPageHtml = `<!-- Compose the same classes directly in HTML -->
           </div>
         </template>
 
-        <!-- ── Legacy ──────────────────────────────────────── -->
-        <template #legacy>
+        <!-- ── Vanilla ─────────────────────────────────────── -->
+        <template #vanilla>
           <div class="vd-row vd-mb-6">
             <div class="vd-col-12">
               <div class="vd-card demo-card">
@@ -120,7 +120,7 @@ const legacyPageHtml = `<!-- Compose the same classes directly in HTML -->
                 <div class="vd-card-header"><h6><i class="ph ph-number-circle-two"></i> Compose your first page</h6></div>
                 <div class="vd-card-body">
                   <p>The exact same <code>vd-</code> classes — just in plain HTML:</p>
-                  <DocCodeSnippet :html="legacyPageHtml" :default-open="true" />
+                  <DocCodeSnippet :html="vanillaPageHtml" :default-open="true" />
                 </div>
               </div>
             </div>

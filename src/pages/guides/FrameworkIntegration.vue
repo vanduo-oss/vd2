@@ -38,7 +38,7 @@ const staticHtml = `<!-- Plain HTML / server-rendered — the IIFE bundle -->
       <p class="vd-mb-6">
         Vanduo's styling is just CSS, so it drops into any stack. How you wire the
         <em>behaviour</em> depends on the host framework: Vue apps use the vd2
-        engine, other frameworks use the legacy runtime scoped to a mounted
+        engine, other frameworks use the Vanilla runtime scoped to a mounted
         subtree, and static pages use the IIFE bundle.
       </p>
 

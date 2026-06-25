@@ -265,7 +265,7 @@ const cssApi: [string, string, string][] = [
             <div class="vd-card-body">
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="programmaticVue3" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="programmaticJs" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="programmaticJs" :default-open="true" /></template>
               </EngineSwitch>
             </div>
           </div>

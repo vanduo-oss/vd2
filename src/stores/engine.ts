@@ -6,7 +6,7 @@ import { ref } from "vue";
  * The two engines share an identical DOM/CSS contract — only the wiring code
  * and JS API differ — so this only swaps `EngineSwitch` blocks, never demos.
  */
-export type DocsEngine = "vue3" | "legacy";
+export type DocsEngine = "vue3" | "vanilla";
 
 const STORAGE_KEY = "vanduo-docs-engine";
 
@@ -14,7 +14,7 @@ function loadEngine(): DocsEngine {
   if (typeof window === "undefined") return "vue3";
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return stored === "legacy" ? "legacy" : "vue3";
+    return stored === "vanilla" ? "vanilla" : "vue3";
   } catch {
     return "vue3";
   }
@@ -47,7 +47,7 @@ export const useEngineStore = defineStore("engine", () => {
   };
 
   const toggle = (): void => {
-    setEngine(engine.value === "vue3" ? "legacy" : "vue3");
+    setEngine(engine.value === "vue3" ? "vanilla" : "vue3");
   };
 
   return { engine, ready, init, setEngine, toggle };

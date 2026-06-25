@@ -48,7 +48,7 @@ const vue3Wiring = `<!-- Toggle .is-open from component state -->
   <div class="accordion-body"><div class="accordion-content">…</div></div>
 </div>`;
 
-const legacyWiring = `// The framework auto-wires .accordion-header clicks (toggling .is-open)
+const vanillaWiring = `// The framework auto-wires .accordion-header clicks (toggling .is-open)
 VanduoCollapsible.init();`;
 
 const apiRows: [string, string][] = [
@@ -139,7 +139,7 @@ const apiRows: [string, string][] = [
               <h4>Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :html="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :html="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :html="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>

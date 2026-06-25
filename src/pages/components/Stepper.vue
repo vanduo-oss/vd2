@@ -70,7 +70,7 @@ const stepper = useStepper(root);   // wires .vd-stepper inside root; cleanup on
 stepper.next(stepperEl);
 stepper.setStep(stepperEl, 2);`;
 
-const legacyWiring = `// Wire every .vd-stepper (document, or a root element)
+const vanillaWiring = `// Wire every .vd-stepper (document, or a root element)
 VanduoStepper.init();
 
 // drive it imperatively
@@ -223,7 +223,7 @@ const vue3Api: [string, string][] = [
               <h4>Wiring</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>
@@ -254,7 +254,7 @@ const vue3Api: [string, string][] = [
                     </table>
                   </div>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <h4 class="vd-mt-6">JavaScript Methods</h4>
                   <div class="vd-table-responsive">
                     <table class="vd-table vd-table-striped">

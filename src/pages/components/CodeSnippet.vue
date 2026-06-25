@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// NOTE: there is no `components/code-snippet.html` in the legacy docs (nav.ts
+// NOTE: there is no `components/code-snippet.html` in the original docs (nav.ts
 // points the route at a non-existent file). This page is authored from the
 // real component — framework/css/components/code-snippet.css +
 // framework/js/components/code-snippet.js — which powers every "View Code"

@@ -35,7 +35,7 @@ const tactics: [string, string][] = [
         <code class="vd-text-sm">Guide</code>
       </h5>
       <p class="vd-mb-6">
-        The legacy engine lazy-loads component modules from a global registry. In
+        The Vanilla engine lazy-loads component modules from a global registry. In
         vd2 the bundler does the heavy lifting: Vite splits code along dynamic
         <code>import()</code> boundaries, so you ship only what a route needs and
         defer the rest until it is rendered or scrolled into view.

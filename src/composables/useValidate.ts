@@ -27,7 +27,7 @@ const rules: Record<string, Validator> = {
       return false;
     }
   },
-  // Legacy validate.js looks up by [name]; the docs API + demo reference an
+  // Vanilla validate.js looks up by [name]; the docs API + demo reference an
   // element id (`match:val-pass`). Honor both so the demo actually works.
   match: (v, p) => {
     try {

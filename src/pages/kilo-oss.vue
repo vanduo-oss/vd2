@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Static content page — mirrors the legacy docs "Kilo OSS" section 1-to-1.
+// Static content page — mirrors the original docs "Kilo OSS" section 1-to-1.
 </script>
 
 <template>

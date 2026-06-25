@@ -116,11 +116,11 @@ const tocOpen = ref(false);
     <button
       type="button"
       class="doc-engine-option"
-      :class="{ active: engine === 'legacy' }"
-      :aria-pressed="engine === 'legacy'"
-      @click="engineStore.setEngine('legacy')"
+      :class="{ active: engine === 'vanilla' }"
+      :aria-pressed="engine === 'vanilla'"
+      @click="engineStore.setEngine('vanilla')"
     >
-      <i class="ph ph-file-html" aria-hidden="true"></i> Legacy
+      <i class="ph ph-file-html" aria-hidden="true"></i> Vanilla
     </button>
   </div>
 

@@ -109,7 +109,7 @@ const events: [string, string][] = [
   ["modal:close", "Fired on the modal element when it closes."],
 ];
 
-// Engine-specific usage: Vue state-driven vs legacy data-attribute triggers.
+// Engine-specific usage: Vue state-driven vs Vanilla data-attribute triggers.
 const vue3Usage = `<script setup lang="ts">
 import { ref } from 'vue';
 const open = ref(false);
@@ -215,7 +215,7 @@ const vue3Api: [string, string][] = [
               <h4>Usage</h4>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
-                <template #legacy><DocCodeSnippet :html="triggerHtml" :default-open="true" /></template>
+                <template #vanilla><DocCodeSnippet :html="triggerHtml" :default-open="true" /></template>
               </EngineSwitch>
 
               <h4 class="vd-mt-6">CSS Classes</h4>
@@ -248,7 +248,7 @@ const vue3Api: [string, string][] = [
                     </table>
                   </div>
                 </template>
-                <template #legacy>
+                <template #vanilla>
                   <h4 class="vd-mt-6">JavaScript Methods</h4>
                   <div class="vd-table-responsive">
                     <table class="vd-table vd-table-striped">

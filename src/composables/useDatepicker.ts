@@ -9,7 +9,7 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  * with `{ date, formatted }`.
  *
  * The page renders the `.vd-suggest-wrapper` around the input so no Vue-managed
- * node is relocated (the legacy JS created the wrapper itself).
+ * node is relocated (the Vanilla JS created the wrapper itself).
  */
 const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 const MONTHS = [

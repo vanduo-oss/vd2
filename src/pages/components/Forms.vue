@@ -17,7 +17,7 @@ const options = [{ value: '1', label: 'Option 1' }];
   <VdCustomSelect v-model="value" :options="options" />
 </template>`;
 
-const legacyCustomSelect = `<select class="vd-input vd-custom-select-input" data-custom-select>
+const vanillaCustomSelect = `<select class="vd-input vd-custom-select-input" data-custom-select>
   <option value="1">Option 1</option>
 </select>
 
@@ -228,7 +228,7 @@ const classRef: [string, string, string][] = [
               <p class="vd-text-sm vd-text-muted vd-mb-2">Custom-select wiring (other inputs are pure CSS):</p>
               <EngineSwitch>
                 <template #vue3><DocCodeSnippet :html="vue3CustomSelect" /></template>
-                <template #legacy><DocCodeSnippet :html="legacyCustomSelect" /></template>
+                <template #vanilla><DocCodeSnippet :html="vanillaCustomSelect" /></template>
               </EngineSwitch>
               <DocCodeSnippet :html="inputsHtml" />
             </div>
