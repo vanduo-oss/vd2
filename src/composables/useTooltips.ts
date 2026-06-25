@@ -1,9 +1,14 @@
 import { onMounted, onUnmounted, type Ref } from "vue";
+import { sanitizeHtml } from "@/utils/sanitizeHtml";
 
 /**
  * Reproduces the framework's `Vanduo.init()` tooltip wiring in Vue: scans a root
  * element for `[data-tooltip]` / `[data-tooltip-html]` triggers and shows a
  * `.vd-tooltip` (styled by the framework CSS) on hover/focus.
+ *
+ * `data-tooltip-html` is run through the whitelist sanitizer before insertion —
+ * mirroring the framework's tooltips.js, which sanitizes too. (`data-tooltip`
+ * stays plain text via textContent.)
  */
 export function useTooltips(root: Ref<HTMLElement | null>): void {
   let current: HTMLElement | null = null;
@@ -65,7 +70,7 @@ export function useTooltips(root: Ref<HTMLElement | null>): void {
       (html ? " vd-tooltip-html" : "");
     tip.setAttribute("data-placement", placement);
     tip.style.position = "fixed";
-    if (html) tip.innerHTML = html;
+    if (html) tip.innerHTML = sanitizeHtml(html, { allowStyle: false });
     else tip.textContent = text;
 
     document.body.appendChild(tip);
