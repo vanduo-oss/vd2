@@ -2959,3 +2959,63 @@
             background-color: var(--vd-color-success);
             color: var(--vd-color-white);
         }
+
+        /* ── Docs engine toggle (legacy ⇄ Vue 3) ─────────────── */
+        .doc-engine-toggle {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.25rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--vd-border-color);
+            border-radius: var(--vd-btn-border-radius);
+            background: var(--vd-bg-secondary);
+        }
+
+        .doc-engine-option {
+            flex: 1 1 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.5rem;
+            border: none;
+            border-radius: calc(var(--vd-btn-border-radius) - 2px);
+            background: transparent;
+            color: var(--vd-text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .doc-engine-option:hover {
+            color: var(--vd-color-primary);
+        }
+
+        .doc-engine-option.active {
+            background: var(--vd-color-primary);
+            color: var(--vd-color-white, #fff);
+        }
+
+        .doc-engine-option:focus-visible {
+            outline: 2px solid color-mix(in srgb, var(--vd-color-primary) 45%, transparent);
+            outline-offset: 2px;
+        }
+
+        /* Changelog: a single timeline filtered by the selected engine.
+           Untagged entries (and data-engine="both") always show. */
+        #changelog[data-engine-view="vue3"] [data-engine="legacy"],
+        #changelog[data-engine-view="legacy"] [data-engine="vue3"] {
+            display: none;
+        }
+
+        .changelog-engine-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.25rem;
+        }
+
+        .changelog-engine-toggle .doc-engine-toggle {
+            width: 16rem;
+            margin-bottom: 0;
+        }

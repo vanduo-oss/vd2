@@ -6,11 +6,14 @@ import VdFooter from "@/layout/VdFooter.vue";
 import GlobalSearchModal from "@/overlays/GlobalSearchModal.vue";
 import VdToastContainer from "@/components/VdToastContainer.vue";
 import { useThemeStore } from "@/stores/theme";
+import { useEngineStore } from "@/stores/engine";
 
 const theme = useThemeStore();
+const engine = useEngineStore();
 
 onMounted(() => {
   theme.init();
+  engine.init();
 });
 </script>
 

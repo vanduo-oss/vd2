@@ -2,10 +2,39 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useDatepicker } from "@/composables/useDatepicker";
 
 const root = ref<HTMLElement | null>(null);
 useDatepicker(root);
+
+// Engine-specific wiring (the HTML markup + data-* are identical across engines).
+const vue3Wiring = `// Vue 3 — the useDatepicker composable wires every
+// [data-vd-datepicker] input inside the root ref.
+import { ref } from 'vue';
+import { useDatepicker } from '@/composables/useDatepicker';
+
+const root = ref<HTMLElement | null>(null);
+useDatepicker(root);   // cleanup is automatic on unmount
+
+// listen for picks
+root.value?.addEventListener('datepicker:select', (e) => {
+  console.log(e.detail.date, e.detail.formatted);
+});`;
+
+const legacyWiring = `// Legacy — the global runtime scans the document (or a root)
+// for [data-vd-datepicker] inputs.
+VanduoDatepicker.init();
+
+// listen for picks
+input.addEventListener('datepicker:select', (e) => {
+  console.log(e.detail.date, e.detail.formatted);
+});`;
+
+const vue3Api: [string, string][] = [
+  ["useDatepicker(root)", "Composable — attaches a calendar to every [data-vd-datepicker] input inside the root ref. Call once in setup()."],
+  ["(automatic cleanup)", "The popup and listeners are removed on component unmount via onUnmounted — there is no manual destroy step."],
+];
 
 const basicHtml = `<input type="text"
   class="vd-input"
@@ -170,7 +199,13 @@ const events: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Wiring</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -196,18 +231,36 @@ const events: [string, string][] = [
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Composable API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">
