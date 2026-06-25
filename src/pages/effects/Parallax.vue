@@ -2,10 +2,24 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useParallax } from "@/composables/useParallax";
 
 const root = ref<HTMLElement | null>(null);
 useParallax(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useParallax } from '@/composables/useParallax';
+
+const root = ref<HTMLElement | null>(null);
+useParallax(root);   // rAF scroll handler + reduced-motion guard; cleanup on unmount`;
+
+const legacyWiring = `// The framework auto-initialises parallax on Vanduo.init()
+VanduoParallax.init();
+
+// after layout changes
+VanduoParallax.refresh();`;
 
 const markupHtml = `<!-- Slow background drift + fixed foreground content -->
 <div class="vd-parallax vd-parallax-md vd-parallax-slow">
@@ -99,6 +113,13 @@ const apiRows: [string, string, string][] = [
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6>Classes &amp; attributes</h6></div>
             <div class="vd-card-body">
+              <h4 class="vd-mt-0">Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">Classes &amp; attributes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table">
                   <thead><tr><th>Class / attribute</th><th>Applies to</th><th>Effect</th></tr></thead>
@@ -111,14 +132,27 @@ const apiRows: [string, string, string][] = [
                   </tbody>
                 </table>
               </div>
-              <p class="vd-text-sm vd-text-muted vd-mt-5">
-                <strong>JavaScript API:</strong> components auto-initialize on
-                <code>Vanduo.init()</code>. <code>VanduoParallax.refresh()</code>
-                recalculates positions (call after layout changes),
-                <code>VanduoParallax.destroy(el)</code> resets a single
-                container, and <code>VanduoParallax.destroyAll()</code> tears
-                down all listeners.
-              </p>
+              <EngineSwitch>
+                <template #vue3>
+                  <p class="vd-text-sm vd-text-muted vd-mt-5">
+                    <strong>Composable API:</strong> <code>useParallax(root)</code>
+                    wires every <code>.vd-parallax</code> inside the root ref. The
+                    rAF scroll handler and <code>prefers-reduced-motion</code>
+                    guard are set up automatically and torn down on unmount — no
+                    manual refresh/destroy needed.
+                  </p>
+                </template>
+                <template #legacy>
+                  <p class="vd-text-sm vd-text-muted vd-mt-5">
+                    <strong>JavaScript API:</strong> components auto-initialize on
+                    <code>Vanduo.init()</code>. <code>VanduoParallax.refresh()</code>
+                    recalculates positions (call after layout changes),
+                    <code>VanduoParallax.destroy(el)</code> resets a single
+                    container, and <code>VanduoParallax.destroyAll()</code> tears
+                    down all listeners.
+                  </p>
+                </template>
+              </EngineSwitch>
             </div>
           </div>
         </div>

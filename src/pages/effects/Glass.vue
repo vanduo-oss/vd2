@@ -2,10 +2,22 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useGlass } from "@/composables/useGlass";
 
 const root = ref<HTMLElement | null>(null);
 useGlass(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical; the
+// scroll-activation observer logic runs automatically in both engines).
+const vue3Wiring = `import { ref } from 'vue';
+import { useGlass } from '@/composables/useGlass';
+
+const root = ref<HTMLElement | null>(null);
+useGlass(root);   // IntersectionObserver toggles .is-glass-active; cleanup on unmount`;
+
+const legacyWiring = `// The framework auto-initialises scroll-activated glass on Vanduo.init()
+VanduoGlass.init();`;
 
 const glassModalOpen = ref(false);
 
@@ -321,7 +333,11 @@ const sizeVariants = [
       <div class="vd-row vd-mt-8">
         <div class="vd-col-12">
           <h5 class="vd-mb-2"><i class="ph ph-arrow-up mr-2" style="color: var(--vd-color-primary);"></i>Scroll-Activated Glass</h5>
-          <p class="vd-mb-4">Two complementary APIs let you activate glass effects on scroll rather than at page-load time. The framework handles all the observer/listener logic — no custom JavaScript required.</p>
+          <p class="vd-mb-4">Two complementary APIs let you activate glass effects on scroll rather than at page-load time. The framework handles all the observer/listener logic — no custom JavaScript required beyond a single wiring call.</p>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          </EngineSwitch>
         </div>
       </div>
 

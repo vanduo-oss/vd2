@@ -2,12 +2,30 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useMorph } from "@/composables/useMorph";
 import { useMorphBadges } from "@/composables/useMorphBadges";
 
 const root = ref<HTMLElement | null>(null);
 useMorph(root);
 useMorphBadges(root);
+
+// Engine-specific wiring (the markup and classes are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useMorph } from '@/composables/useMorph';
+import { useMorphBadges } from '@/composables/useMorphBadges';
+
+const root = ref<HTMLElement | null>(null);
+useMorph(root);        // auto wave/shine + current⇄next swap
+useMorphBadges(root);  // manual multi-state badge cycling`;
+
+const legacyWiring = `// The framework auto-initialises morph effects on Vanduo.init()
+VanduoMorph.init();`;
+
+const vue3Api: [string, string][] = [
+  ["useMorph(root)", "Composable — wires every auto-morph element inside the root ref (wave/shine layers, current⇄next content swap). Call once in setup()."],
+  ["useMorphBadges(root)", "Composable — cycles [data-vd-morph=\"manual\"][data-morph-states] badges through their states/classes/icons."],
+];
 
 const toggleHtml = `<button class="vd-morph" data-vd-morph>
   <span class="vd-morph-content vd-morph-current">
@@ -198,7 +216,13 @@ const jsApi: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Wiring</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Class</th><th>Description</th><th>Type</th></tr></thead>
@@ -222,17 +246,34 @@ const jsApi: [string, string][] = [
             </table>
           </div>
 
-          <h4>JavaScript API</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsApi" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4>Composable API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4>JavaScript API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsApi" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
         </div>
       </div>
 
