@@ -80,8 +80,20 @@ the docs-view template. Check off only after the page is verified against
       Two fixes-to-documented-intent: `match:ID` resolves by element id
       (legacy queried `[name]` → demo always failed) and per-field
       `data-vd-validate-mode` is honored (legacy only read form-level mode).
-- [ ] 6.3 `components/Datepicker.vue` ← `datepicker.html`
-- [ ] 6.4 `components/Timepicker.vue` ← `timepicker.html`
+- [x] 6.3 `components/Datepicker.vue` ← `datepicker.html` (was `VdStack`
+      scaffold). 4 demos (basic, pre-selected+custom format, min/max, month/year
+      nav). New `useDatepicker(root)` faithfully ports `datepicker.js` — body-
+      appended calendar popup, custom `YYYY/MM/DD` format parse+format, min/max
+      disabling with view-snap, day→month→year(decade) view switching, full grid
+      keyboard nav, `datepicker:select` { date, formatted }. Page wraps inputs in
+      `.vd-suggest-wrapper` so no Vue node is relocated. Verified: opens calendar,
+      picks 01/22/2026 in MM/DD/YYYY format, min/max disables out-of-range days.
+- [x] 6.4 `components/Timepicker.vue` ← `timepicker.html` (was `VdStack`
+      scaffold). 3 demos (12h, 24h, 15-min step). New `useTimepicker(root)` ports
+      `timepicker.js` — body-appended scrollable popup, 12h/24h + step generation,
+      focus-open, click-select, outside/ESC close, reposition. Fix-to-intent:
+      fires the documented `{ time, hours, minutes }` detail (legacy fired
+      `{ display, value }`). Verified: 48 slots default, picks 10:00 in 24h.
 - [x] 6.5 `components/Rating.vue` ← `rating.html` (was `VdStack` scaffold).
       5 demos (basic, preset, readonly, max-10, sm/md/lg sizes), API tables,
       accessibility. Rewrote `VdRating.vue` to the framework contract — empty
@@ -89,17 +101,36 @@ the docs-view template. Check off only after the page is verified against
       `is-half`/`is-hovered`, value-only display, sm/lg — per `rating.js`
       (old scaffold used wrong `is-filled` + literal `★`). Kept `modelValue`
       API so `rating.spec.ts` stays green.
-- [ ] 6.6 `components/Stepper.vue` ← `stepper.html`
-- [ ] 6.7 `components/Autocomplete.vue` ← `autocomplete.html`
-- [ ] 6.8 `components/Transfer.vue` ← `transfer.html`
-- [ ] 6.9 `components/Tree.vue` ← `tree-view.html`
-- [ ] 6.10 `components/Pagination.vue` ← NO DOCS SOURCE. nav.ts maps the
-      `/components/pagination` route to `button-groups.html` (a bug — that file
-      has zero pagination content); there is no `pagination.html` in
-      `docs/sections/`, though `framework/js/components/pagination.js` + CSS
-      exist. Not a 1-to-1 port: needs a product decision (author a net-new
-      Pagination docs page from the framework component, or mirror the legacy
-      nav bug). DEFERRED pending that decision; scaffold left untouched.
+- [x] 6.6 `components/Stepper.vue` ← `stepper.html` (was `VdStack`/`VdStepper`
+      scaffold). Horizontal + vertical + clickable demos, API tables, a11y. New
+      `useStepper(root)` ports `stepper.js` (is-active/is-completed, clickable
+      nav, `aria-current="step"`, `stepper:change`) and exposes an imperative
+      next/prev API for the docs `data-stepper-demo-control` buttons. Removed the
+      orphaned `VdStepper`; spec retargeted at the composable. Verified Prev/Next.
+- [x] 6.7 `components/Autocomplete.vue` ← `autocomplete.html` (was `VdStack`
+      scaffold). 4 demos (static JSON, EU capitals, min-chars, `data-vd-autocomplete`
+      alias). New `useSuggest(root)` ports `suggest.js` — inline/remote source,
+      min-chars, debounce, match highlighting, full keyboard nav, ARIA combobox.
+      Inputs rendered inside `.vd-suggest-wrapper` (Vue-safe). Verified filtering.
+- [x] 6.8 `components/Transfer.vue` ← `transfer.html` (was `VdStack`/`VdTransfer`
+      scaffold). Reactive `VdTransfer` reproduces the framework dual-list
+      (panels/search/move buttons). Fixes-to-intent: `.is-selected` (matches CSS,
+      not the table's `.is-checked`) and `transfer:change` { selected, available }
+      (documented shape; legacy fired { source, target }). Verified move.
+- [x] 6.9 `components/Tree.vue` ← `tree-view.html` (was `VdStack`/`VdTree`
+      scaffold). 4 demos (file tree, checkbox+cascade, initially-open, generated
+      structure). Recursive `VdTree` + `VdTreeNode` reproduce the generated tree
+      DOM, parent→child cascade, `getChecked`, keyboard nav. Fixes-to-intent:
+      dispatches `tree:toggle` and the documented `tree:check` { checked, node }
+      shape, plus Arrow Left/Right collapse/expand. Verified toggle + cascade(15).
+- [x] 6.10 `components/Pagination.vue` ← NO DOCS SOURCE (authored per the
+      "author a real page" decision). Rebuilt from the real framework component
+      (`pagination.js` + CSS): rewrote `VdPagination` to the framework contract —
+      `.vd-pagination` list of `.vd-pagination-item` (`<a .vd-pagination-link>`),
+      `.active`/`.disabled` states, the framework's exact `calculatePages`
+      ellipsis algorithm, `pagination:change` { page, totalPages } — with a clean
+      `v-model`. Page has basic / sizes / alignment / large-set-ellipsis /
+      disabled demos + API tables + a11y. Spec updated to the new markup.
 - [x] 6.11 `components/ButtonGroups.vue` ← `button-groups.html` (was
       `VdStack`/`VdButtonGroup` scaffold). Horizontal/outline+active/full-width,
       vertical, sm/lg groups, View Code, API table — purely presentational.
