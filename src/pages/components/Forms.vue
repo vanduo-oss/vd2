@@ -2,7 +2,26 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import VdCustomSelect from "@/components/VdCustomSelect.vue";
+
+// The custom-select is the one input with engine-specific wiring (plain inputs
+// are pure CSS and identical across engines).
+const vue3CustomSelect = `<script setup lang="ts">
+import VdCustomSelect from '@/components/VdCustomSelect.vue';
+const value = ref('');
+const options = [{ value: '1', label: 'Option 1' }];
+<\/script>
+
+<template>
+  <VdCustomSelect v-model="value" :options="options" />
+</template>`;
+
+const legacyCustomSelect = `<select class="vd-input vd-custom-select-input" data-custom-select>
+  <option value="1">Option 1</option>
+</select>
+
+<script>VanduoSelect.init();<\/script>`;
 
 const customSelect = ref("");
 const rangeValue = ref(50);
@@ -206,6 +225,11 @@ const classRef: [string, string, string][] = [
                 <label id="custom-select-input">Custom Select</label>
                 <VdCustomSelect v-model="customSelect" :options="customOptions" id="custom-select-field" />
               </div>
+              <p class="vd-text-sm vd-text-muted vd-mb-2">Custom-select wiring (other inputs are pure CSS):</p>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :html="vue3CustomSelect" /></template>
+                <template #legacy><DocCodeSnippet :html="legacyCustomSelect" /></template>
+              </EngineSwitch>
               <DocCodeSnippet :html="inputsHtml" />
             </div>
           </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import VdTree from "@/components/VdTree.vue";
 import type { TreeNode } from "@/components/VdTreeNode.vue";
 
@@ -179,6 +180,35 @@ const events: [string, string][] = [
   ["tree:check", "Fired on the element when a checkbox changes. event.detail contains { checked: string[], node: string }"],
   ["tree:toggle", "Fired when a node is expanded or collapsed. event.detail contains { id: string, open: boolean }"],
 ];
+
+// Engine-specific usage: the Vue component vs the legacy data-attribute markup.
+const vue3Usage = `<script setup lang="ts">
+import VdTree from '@/components/VdTree.vue';
+const nodes = [
+  { id: 'src', label: 'src', icon: 'ph ph-folder', children: [
+    { id: 'btn', label: 'Button.vue', icon: 'ph ph-file-vue' },
+  ]},
+];
+<\/script>
+
+<template>
+  <VdTree :nodes="nodes" checkbox cascade />
+</template>`;
+
+const legacyUsage = `<div data-vd-tree='[
+  { "id": "src", "label": "src", "icon": "ph ph-folder", "children": [
+    { "id": "btn", "label": "Button.vue", "icon": "ph ph-file-vue" }
+  ]}
+]' data-vd-tree-checkbox data-vd-tree-cascade></div>
+
+<script>VanduoTree.init();<\/script>`;
+
+const vue3Api: [string, string][] = [
+  [":nodes", "Array of TreeNode objects ({ id, label, icon?, open?, children? })."],
+  [":checkbox / :cascade", "Render checkboxes; cascade a parent check to descendants."],
+  ["tree:check / tree:toggle", "Native events on the root (detail shapes as documented below)."],
+  ["ref.getChecked()", "Exposed method — returns the array of checked node ids."],
+];
 </script>
 
 <template>
@@ -250,7 +280,13 @@ const events: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Usage</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :html="legacyUsage" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -290,18 +326,36 @@ const events: [string, string][] = [
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Component API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Prop / event / method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">

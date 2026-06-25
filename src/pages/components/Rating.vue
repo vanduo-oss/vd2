@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import VdRating from "@/components/VdRating.vue";
 
 const basic = ref(0);
@@ -49,6 +50,28 @@ const jsMethods: [string, string][] = [
   ["VanduoRating.getValue(el)", "Returns the current numeric value for the given rating element"],
   ["VanduoRating.setValue(el, value)", "Programmatically sets the rating value and updates the visual state"],
   ["VanduoRating.destroy(el)", "Removes the rendered stars and event listeners from the element"],
+];
+
+// Engine-specific usage: the Vue component vs the legacy data-attribute markup.
+const vue3Usage = `<script setup lang="ts">
+import VdRating from '@/components/VdRating.vue';
+const value = ref(3);
+<\/script>
+
+<template>
+  <VdRating v-model="value" :max="5" />
+</template>`;
+
+const legacyUsage = `<div data-vd-rating data-vd-rating-value="3"></div>
+
+<script>VanduoRating.init();<\/script>`;
+
+const vue3Api: [string, string][] = [
+  ["v-model (modelValue)", "Two-way bound rating value (number)."],
+  [":max", "Number of stars (default 5)."],
+  [":size", "'sm' | 'lg' size variant."],
+  [":readonly", "Display-only, non-interactive when true."],
+  ["@update:modelValue / @change", "Fired with the new value when the user picks a star."],
 ];
 </script>
 
@@ -125,7 +148,13 @@ const jsMethods: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Usage</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :html="legacyUsage" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -151,18 +180,36 @@ const jsMethods: [string, string][] = [
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Component API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Prop / event</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">

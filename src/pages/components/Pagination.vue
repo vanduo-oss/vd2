@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import VdPagination from "@/components/VdPagination.vue";
 
 // Authored page — there is no legacy `pagination.html`; demos are built from the
@@ -75,6 +76,33 @@ const jsMethods: [string, string][] = [
 
 const events: [string, string][] = [
   ["pagination:change", "Fired on the element when the page changes. event.detail contains { page, totalPages }"],
+];
+
+// Engine-specific usage: the Vue component vs the legacy data-attribute markup.
+const vue3Usage = `<script setup lang="ts">
+import VdPagination from '@/components/VdPagination.vue';
+const page = ref(1);
+<\/script>
+
+<template>
+  <VdPagination v-model="page" :total="20" :max-visible="7" />
+</template>`;
+
+const legacyUsage = `<!-- The JS expands data-pagination into the list -->
+<ul class="vd-pagination"
+    data-pagination
+    data-total-pages="20"
+    data-current-page="1"
+    data-max-visible="7"></ul>
+
+<script>VanduoPagination.init();<\/script>`;
+
+const vue3Api: [string, string][] = [
+  ["v-model (modelValue)", "Two-way bound current page (number)."],
+  [":total", "Total number of pages."],
+  [":max-visible", "Max page links before collapsing to ellipses (default 7)."],
+  [":size / :align / :disabled", "'sm'|'md'|'lg' size, 'left'|'center'|'right' align, and a disabled flag."],
+  ["@update:modelValue / pagination:change", "Fired with the new page; a native pagination:change { page, totalPages } also bubbles."],
 ];
 </script>
 
@@ -173,7 +201,13 @@ const events: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>Data Attributes</h4>
+          <h4>Usage</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :html="legacyUsage" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">Data Attributes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Attribute</th><th>Description</th><th>Default</th></tr></thead>
@@ -200,18 +234,36 @@ const events: [string, string][] = [
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Component API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Prop / event</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">
