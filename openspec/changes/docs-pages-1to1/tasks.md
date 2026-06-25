@@ -18,9 +18,19 @@ the docs-view template. Check off only after the page is verified against
 - [x] 1.1 `home.vue`
 - [x] 1.2 `docs-landing.vue`
 - [x] 1.3 `about.vue`
-- [ ] 1.4 `quick-start.vue`
-- [ ] 1.5 `changelog.vue`
-- [ ] 1.6 `kilo-oss.vue`
+- [x] 1.4 `quick-start.vue` ← `quick-start.html` (was `VdStack`/`VdCodeSnippet`
+      scaffold). 1-to-1 getting-started page: CDN / Download / Source / Bundler
+      install cards, CSS-var + theme-switching cards, data-attr + JS-API cards,
+      "What's Next" RouterLinks. Code blocks use `DocCodeSnippet` (extended with a
+      `shell` language). Verified: 8 snippets, collapsible toggles work.
+- [x] 1.5 `changelog.vue` ← `changelog.html` (was `VdStack`/`VdBadge` scaffold).
+      ~4,000 lines of static release notes (no framework JS); the legacy body is
+      imported verbatim (`changelog-content.html?raw`) and rendered via `v-html`
+      inside `<section id="changelog">` — identical DOM, `.version-card` /
+      `.change-item` styles already live in `src/styles/docs.css`. Verified: 43
+      version cards render, v1.5.1 latest badge present.
+- [x] 1.6 `kilo-oss.vue` ← `kilo-oss.html` (was placeholder scaffold). 1-to-1
+      Kilo OSS sponsorship page (header + Sponsorship + "Why this matters" cards).
 
 ## 2. Core (batch)
 

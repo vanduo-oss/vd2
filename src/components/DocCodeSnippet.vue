@@ -8,6 +8,8 @@ interface Props {
   css?: string;
   /** Optional JavaScript shown in a tab. */
   js?: string;
+  /** Optional shell / command-line snippet shown in a tab. */
+  shell?: string;
   /** Start expanded (mirrors the legacy `data-expanded="true"`). */
   defaultOpen?: boolean;
 }
@@ -22,6 +24,8 @@ interface Lang {
 const langs = computed<Lang[]>(() => {
   const list: Lang[] = [];
   if (props.html) list.push({ key: "html", label: "HTML", code: props.html });
+  if (props.shell)
+    list.push({ key: "shell", label: "Shell", code: props.shell });
   if (props.css) list.push({ key: "css", label: "CSS", code: props.css });
   if (props.js) list.push({ key: "js", label: "JavaScript", code: props.js });
   return list;
