@@ -1,64 +1,105 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-const html = `:root {
-  --vd-color-primary: #5b3df0;
-  --vd-spacing-md: 1rem;
-  --vd-radius-md: 0.5rem;
-}
-[data-theme="dark"] {
-  --vd-color-primary: #9179f8;
+const overrideCss = `/* Override tokens in your own stylesheet — cascades everywhere */
+:root {
+  --vd-color-primary: #6366f1;
+  --vd-color-primary-dark: #4f46e5;
+  --vd-radius-fib-5: 0.5rem;
+  --vd-font-family-base: 'Inter', sans-serif;
 }`;
+
+const scopedCss = `/* Scope overrides to a subtree — e.g. a "danger zone" panel */
+.danger-zone {
+  --vd-color-primary: var(--vd-color-danger);
+}`;
+
+const darkCss = `/* Dark mode just remaps the same token names */
+[data-theme="dark"] {
+  --vd-bg-primary: #0f1117;
+  --vd-text-primary: #e6e8ee;
+}`;
+
+const tiers: [string, string][] = [
+  ["Palette", "--vd-blue-6, --vd-gray-0…9 — raw Open Color scales"],
+  ["Semantic", "--vd-color-primary, --vd-bg-primary, --vd-text-primary, --vd-border-color"],
+  ["Component", "--vd-btn-border-radius, --vd-card-bg — per-component knobs"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">CSS variables &amp; theming</h1>
-        <p class="vd-lead">
-          Override framework tokens at the <code>:root</code> level to rebrand
-          the entire design system.
-        </p>
-      </header>
+    <section id="css-variables">
+      <h5 class="demo-title">
+        <i class="ph ph-paint-roller"></i>CSS Variables &amp; Theming
+        <code class="vd-text-sm">Guide</code>
+      </h5>
+      <p class="vd-mb-6">
+        Every colour, space, radius, and font in Vanduo is a CSS custom property
+        (<code>--vd-*</code>). Override them in your own stylesheet and the whole
+        system updates — no recompile, no JavaScript. This token layer is shared
+        by both engines and is owned by <code>@vanduo-oss/core</code>.
+      </p>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Token categories</h2>
-        <p>The framework exposes 100+ CSS variables in 5 groups:</p>
-        <ul>
-          <li>
-            <code>--vd-color-*</code> — primary, success, warning, error,
-            neutral
-          </li>
-          <li>
-            <code>--vd-space-*</code> — Fibonacci spacing scale (3, 5, 8, 13,
-            21, …)
-          </li>
-          <li><code>--vd-radius-*</code> — corner radius scale</li>
-          <li><code>--vd-font-*</code> — size, weight, family</li>
-          <li><code>--vd-shadow-*</code> — elevation scale</li>
-        </ul>
-      </section>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-globe"></i> Global overrides</h6></div>
+            <div class="vd-card-body">
+              <DocCodeSnippet :css="overrideCss" :default-open="true" />
+            </div>
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-selection"></i> Scoped overrides</h6></div>
+            <div class="vd-card-body">
+              <p>Custom properties cascade, so you can re-theme one subtree:</p>
+              <DocCodeSnippet :css="scopedCss" :default-open="true" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Override at the root</h2>
-        <p>
-          Add a stylesheet that loads after the framework bundle and set your
-          tokens at <code>:root</code>:
-        </p>
-        <VdCodeSnippet language="css" :code="html" />
-      </section>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-stack"></i> The three token tiers</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Tier</th><th>Examples</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in tiers" :key="row[0]">
+                      <td><strong>{{ row[0] }}</strong></td>
+                      <td><code>{{ row[1] }}</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="vd-text-sm vd-text-muted vd-mt-3">
+                Semantic tokens reference palette tokens; component tokens
+                reference semantic ones. Override at the tier that matches your
+                intent.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Theme switching</h2>
-        <p>
-          Apply <code>[data-theme="dark"]</code> to a parent element (usually
-          <code>&lt;html&gt;</code> or <code>&lt;body&gt;</code>) to switch
-          palettes. The framework ships light, dark, and high-contrast palettes.
-        </p>
-      </section>
-    </VdStack>
+      <div class="vd-card demo-card">
+        <div class="vd-card-header"><h6><i class="ph ph-moon"></i> Dark mode is the same mechanism</h6></div>
+        <div class="vd-card-body">
+          <DocCodeSnippet :css="darkCss" :default-open="true" />
+          <p class="vd-text-sm vd-text-muted vd-mt-3">
+            In vd2 you rarely write this by hand — the
+            <a href="/guides/theme-customizer-guide">theme store</a> flips
+            <code>data-theme</code> for you. See also
+            <a href="/core/color-palette">the colour palette</a>.
+          </p>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>

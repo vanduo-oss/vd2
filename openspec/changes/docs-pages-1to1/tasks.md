@@ -261,12 +261,21 @@ the docs-view template. Check off only after the page is verified against
 
 ## 12. Guides (batch — 18 pages)
 
-- [ ] 12.1 All `guides/*.vue` ← `guides/*.html` (getting-started,
-      first-layout, framework-integration, esm-vs-iife,
-      runtime-architecture, lifecycle-manager, lazy-loading,
-      css-variables, theme-customizer, fibonacci, accessibility,
-      security, production, migration, troubleshooting,
-      utilities-cheat-sheet, vanduo-ecosystem).
+- [x] 12.1 All 17 `guides/*.vue` — NOT 1-to-1 (per user: the engine changed to
+      Vue, so legacy-runtime guides can't be ported verbatim; authored from an
+      editorial review, beginner→advanced). Reviewed each and split into:
+      • Tier 1 (beginners, design-system, engine-agnostic — adapted): getting-started,
+        first-layout, fibonacci, css-variables, utilities-cheat-sheet, accessibility.
+      • Tier 2 (seasoned devs, reframed for the dual-engine/Vue reality):
+        vanduo-ecosystem (keystone — core/framework/vd2 dual-engine), runtime-architecture
+        (Vanduo.init → DOM-scanning composables), lifecycle-manager (onMounted/onUnmounted
+        + SSR guards), esm-vs-iife (legacy builds vs vd2 ESM-only Vue), framework-integration
+        (Vue/React/static), lazy-loading (Vite route-splitting), theme-customizer-guide
+        (useThemeStore + data-attrs), migration-comparison (to-Vanduo + legacy→vd2),
+        security-practices, production-best-practices (vite-ssg gate), troubleshooting.
+      All use the docs-card style under `DocsLayout`; code via `DocCodeSnippet`
+      (extended with a `shell` lang). vue-tsc + vite-ssg green, 124 tests, sampled
+      pages Playwright-verified (titles/cards/sidebar, zero console errors).
 
 ## 13. Verification (per batch)
 

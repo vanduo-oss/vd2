@@ -1,54 +1,80 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+
+const vueJs = `// Vue 3 — use the vd2 engine directly
+import '@vanduo-oss/framework/css';
+import { createApp } from 'vue';
+import App from './App.vue';
+createApp(App).mount('#app');`;
+
+const reactJs = `// React / Svelte / Angular — use the framework CSS + run init after mount
+import '@vanduo-oss/framework/css';
+import { Vanduo } from '@vanduo-oss/framework';
+import { useEffect, useRef } from 'react';
+
+function Panel() {
+  const ref = useRef(null);
+  useEffect(() => {
+    Vanduo.init(ref.current);          // wire the subtree
+    return () => Vanduo.destroy(ref.current); // tear down on unmount
+  }, []);
+  return <div ref={ref} data-tooltip="Hi">…</div>;
+}`;
+
+const staticHtml = `<!-- Plain HTML / server-rendered — the IIFE bundle -->
+<link rel="stylesheet" href="dist/vanduo.min.css">
+<script src="dist/vanduo.min.js"><\/script>
+<script>Vanduo.init();<\/script>`;
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Framework integration</h1>
-        <p class="vd-lead">
-          Integrating @vanduo-oss/framework into existing Vue 3, React, and
-          Svelte projects.
-        </p>
-      </header>
+    <section id="framework-integration">
+      <h5 class="demo-title">
+        <i class="ph ph-puzzle-piece"></i>Framework Integration
+        <code class="vd-text-sm">Guide</code>
+      </h5>
+      <p class="vd-mb-6">
+        Vanduo's styling is just CSS, so it drops into any stack. How you wire the
+        <em>behaviour</em> depends on the host framework: Vue apps use the vd2
+        engine, other frameworks use the legacy runtime scoped to a mounted
+        subtree, and static pages use the IIFE bundle.
+      </p>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Vue 3</h2>
-        <p>
-          Import the framework's CSS bundle once in
-          <code>main.ts</code>:
-        </p>
-        <p><code>import '@vanduo-oss/framework/css';</code></p>
-        <p>Then use any framework class on any element.</p>
-      </section>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-atom"></i> Vue 3</h6></div>
+            <div class="vd-card-body">
+              <p>Use vd2 components and composables — no global runtime needed.</p>
+              <DocCodeSnippet :js="vueJs" :default-open="true" />
+            </div>
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-atom-simple"></i> React / others</h6></div>
+            <div class="vd-card-body">
+              <p>Load the CSS, then scope <code>Vanduo.init</code> to the mounted node and destroy on unmount.</p>
+              <DocCodeSnippet :js="reactJs" :default-open="true" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">React</h2>
-        <p>
-          Same as Vue 3 — import the CSS in
-          <code>main.tsx</code> / <code>index.js</code>. All framework classes
-          are framework-agnostic.
-        </p>
-      </section>
-
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Svelte</h2>
-        <p>
-          Same pattern — import the CSS in
-          <code>main.ts</code>.
-        </p>
-      </section>
-
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Vanilla HTML</h2>
-        <p>
-          Link the CSS file directly in your HTML
-          <code>&lt;head&gt;</code>. No JavaScript required for pure-CSS
-          classes.
-        </p>
-      </section>
-    </VdStack>
+      <div class="vd-card demo-card">
+        <div class="vd-card-header"><h6><i class="ph ph-file-html"></i> Plain HTML / SSR templates</h6></div>
+        <div class="vd-card-body">
+          <DocCodeSnippet :html="staticHtml" :default-open="true" />
+          <p class="vd-text-sm vd-text-muted vd-mt-3">
+            The key rule across stacks: initialise <strong>after</strong> the
+            host framework has rendered the DOM, and tear down before it removes
+            it. See <a href="/guides/lifecycle-manager">Lifecycle &amp; cleanup</a>
+            and <a href="/guides/esm-vs-iife">ESM vs IIFE</a>.
+          </p>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>

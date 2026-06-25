@@ -1,43 +1,98 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+
+const spacingHtml = `<!-- Fibonacci spacing utilities (rem-based) -->
+<div class="vd-p-fib-5">  <!-- padding -->
+  <h2 class="vd-mb-fib-3">Title</h2>
+  <p class="vd-mb-fib-2">Body copy with harmonious rhythm.</p>
+</div>`;
+
+const varCss = `:root {
+  /* The scale every spacing/size token derives from */
+  --vd-space-fib-1: 0.125rem;
+  --vd-space-fib-2: 0.25rem;
+  --vd-space-fib-3: 0.5rem;
+  --vd-space-fib-5: 1rem;
+  --vd-space-fib-8: 2rem;
+  --vd-space-fib-13: 4rem;
+}`;
+
+const scale: [string, string][] = [
+  ["1, 2, 3", "Fine adjustments — borders, tight gaps"],
+  ["5, 8", "Component padding, gaps between elements"],
+  ["13, 21", "Section spacing, card padding"],
+  ["34, 55, 89", "Page rhythm, hero spacing"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Fibonacci vs standard scale</h1>
-        <p class="vd-lead">
-          Why the framework's spacing scale is Fibonacci-based (3, 5, 8, 13, 21,
-          34, 55, 89) instead of the standard Tailwind scale (4, 8, 12, 16, 20,
-          24).
-        </p>
-      </header>
+    <section id="fibonacci">
+      <h5 class="demo-title">
+        <i class="ph ph-spiral"></i>The Fibonacci Scale
+        <code class="vd-text-sm">Guide</code>
+      </h5>
+      <p class="vd-mb-6">
+        Vanduo's spacing, type, and radius scales follow the Fibonacci sequence
+        (1, 2, 3, 5, 8, 13, 21…) instead of a linear 4/8px grid. Because each step
+        is the sum of the two before it, sizes relate to one another the way they
+        do in nature — producing rhythm that feels balanced without manual tuning.
+        This is a design philosophy, so it's identical across both engines.
+      </p>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Why Fibonacci</h2>
-        <p>
-          The Fibonacci sequence (each number is the sum of the previous two)
-          produces a visually pleasing rhythm because consecutive terms approach
-          the golden ratio (~1.618). Designs that use Fibonacci spacing feel
-          naturally proportional.
-        </p>
-      </section>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-ruler"></i> Spacing utilities</h6></div>
+            <div class="vd-card-body">
+              <DocCodeSnippet :html="spacingHtml" :default-open="true" />
+            </div>
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-brackets-curly"></i> The underlying tokens</h6></div>
+            <div class="vd-card-body">
+              <DocCodeSnippet :css="varCss" :default-open="true" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Tokens</h2>
-        <p>The framework exposes Fibonacci tokens as CSS variables:</p>
-        <ul>
-          <li><code>--vd-space-fib-3</code> = 0.3125rem (3px)</li>
-          <li><code>--vd-space-fib-5</code> = 0.5rem (5px)</li>
-          <li><code>--vd-space-fib-8</code> = 0.8125rem (8px)</li>
-          <li><code>--vd-space-fib-13</code> = 1.3125rem (13px)</li>
-          <li><code>--vd-space-fib-21</code> = 2.125rem (21px)</li>
-          <li><code>--vd-space-fib-34</code> = 3.4375rem (34px)</li>
-          <li><code>--vd-space-fib-55</code> = 5.5625rem (55px)</li>
-        </ul>
-      </section>
-    </VdStack>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-stack"></i> How to reach for each step</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Steps</th><th>Typical use</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in scale" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vd-card demo-card">
+        <div class="vd-card-header"><h6><i class="ph ph-info"></i> Why not a linear scale?</h6></div>
+        <div class="vd-card-body">
+          <p>
+            A linear 4/8/12/16 scale gives every step the same visual jump, which
+            flattens hierarchy. A Fibonacci scale grows proportionally, so small
+            and large spaces stay distinct and the eye reads structure faster.
+            See it in practice in <a href="/core/golden-ratio">Golden ratio</a> and
+            <a href="/core/grid-system">Grid system</a>.
+          </p>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>

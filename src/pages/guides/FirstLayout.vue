@@ -1,51 +1,107 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
-const html =
-  '<header class="vd-navbar">\n  <nav class="vd-navbar-container vd-container">\n    <a class="vd-navbar-brand" href="/">Brand</a>\n    <ul class="vd-navbar-nav">\n      <li><a class="vd-nav-link" href="/about">About</a></li>\n    </ul>\n  </nav>\n</header>\n\n<main class="vd-container vd-pad-2xl">\n  <h1>Hello Vanduo</h1>\n  <p>Your first page.</p>\n</main>\n\n<footer class="vd-footer">\n  <div class="vd-container vd-footer-container">\n    <p>© 2026</p>\n  </div>\n</footer>';
+const gridHtml = `<div class="vd-container-responsive">
+  <div class="vd-row">
+    <div class="vd-col-12 vd-col-md-6 vd-col-lg-4">Column A</div>
+    <div class="vd-col-12 vd-col-md-6 vd-col-lg-4">Column B</div>
+    <div class="vd-col-12 vd-col-md-12 vd-col-lg-4">Column C</div>
+  </div>
+</div>`;
+
+const breakpoints: [string, string, string][] = [
+  ["(base)", "< 576px", "vd-col-12 — stacks on phones"],
+  ["sm", "≥ 576px", "vd-col-sm-*"],
+  ["md", "≥ 768px", "vd-col-md-*"],
+  ["lg", "≥ 992px", "vd-col-lg-*"],
+  ["xl", "≥ 1200px", "vd-col-xl-*"],
+  ["2xl", "≥ 1400px", "vd-col-2xl-*"],
+];
+
+const containers: [string, string][] = [
+  [".vd-container", "Fixed max-width that steps down at each breakpoint"],
+  [".vd-container-responsive", "Fluid width with responsive gutters (used across these docs)"],
+  [".vd-container-fluid", "Full viewport width, edge to edge"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Your first layout</h1>
-        <p class="vd-lead">
-          A complete page layout in three sections: navbar, main, footer.
-        </p>
-      </header>
+    <section id="first-layout">
+      <h5 class="demo-title">
+        <i class="ph ph-layout"></i>Your First Layout
+        <code class="vd-text-sm">Guide</code>
+      </h5>
+      <p class="vd-mb-6">
+        Vanduo's layout system is plain CSS — a 12-column responsive grid inside a
+        container, with mobile-first breakpoints. It works identically in static
+        HTML and in vd2 templates, so everything here is engine-agnostic.
+      </p>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">The three sections</h2>
-        <p>
-          Every Vanduo page is a navbar, a main, and a footer. The framework
-          ships CSS for each:
-        </p>
-        <VdCodeSnippet language="html" :code="html" />
-      </section>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-columns"></i> A responsive 3-up grid</h6></div>
+            <div class="vd-card-body">
+              <p>Columns stack on phones, go two-up on tablets, and three-up on desktops:</p>
+              <DocCodeSnippet :html="gridHtml" :default-open="true" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">What's happening</h2>
-        <ul>
-          <li>
-            <code>vd-navbar</code> is the outer header with
-            <code>position: sticky; top: 0;</code> built in.
-          </li>
-          <li>
-            <code>vd-container</code> applies max-width and centered layout.
-          </li>
-          <li>
-            <code>vd-pad-2xl</code> is one of the framework's padding utilities
-            (3.4375rem = 34px on all sides).
-          </li>
-          <li>
-            <code>vd-footer</code> has a top border and themed background by
-            default.
-          </li>
-        </ul>
-      </section>
-    </VdStack>
+      <div class="vd-row vd-mb-6">
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-devices"></i> Breakpoints</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Name</th><th>Min width</th><th>Column class</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in breakpoints" :key="row[0]">
+                      <td><strong>{{ row[0] }}</strong></td>
+                      <td>{{ row[1] }}</td>
+                      <td><code>{{ row[2] }}</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vd-col-12 vd-col-md-6">
+          <div class="vd-card demo-card">
+            <div class="vd-card-header"><h6><i class="ph ph-frame-corners"></i> Containers</h6></div>
+            <div class="vd-card-body">
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Class</th><th>Behaviour</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in containers" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vd-card demo-card">
+        <div class="vd-card-header"><h6><i class="ph ph-info"></i> Mobile-first by default</h6></div>
+        <div class="vd-card-body">
+          <p>
+            Start with a base <code>vd-col-12</code> (full width) and add larger
+            breakpoints only where the layout should change. The grid gutters and
+            column counts follow the same Fibonacci spacing as the rest of the
+            system — see <a href="/guides/fibonacci">The Fibonacci scale</a>.
+          </p>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>
