@@ -2,10 +2,30 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useValidate } from "@/composables/useValidate";
 
 const root = ref<HTMLElement | null>(null);
 useValidate(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useValidate } from '@/composables/useValidate';
+
+const root = ref<HTMLElement | null>(null);
+useValidate(root);   // wires [data-vd-validate] forms inside root; cleanup on unmount`;
+
+const legacyWiring = `// Wire every [data-vd-validate] form (document, or a root element)
+VanduoValidate.init();
+
+// validate programmatically / add a custom rule
+VanduoValidate.validateForm(formEl);
+VanduoValidate.addRule('zip', (v) => /^\\d{5}$/.test(v), 'Invalid ZIP');`;
+
+const vue3Api: [string, string][] = [
+  ["useValidate(root)", "Composable — wires every [data-vd-validate] form inside the root ref (blur/input/submit modes, error messages). Call once in setup()."],
+  ["(automatic cleanup)", "Field listeners and error nodes are removed on component unmount."],
+];
 
 const requiredHtml = `<form data-vd-validate novalidate>
   <div class="vd-form-group">
@@ -230,7 +250,13 @@ const noop = (e: Event): void => e.preventDefault();
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Wiring</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-hover">
               <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -256,18 +282,36 @@ const noop = (e: Event): void => e.preventDefault();
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-hover">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Composable API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-hover">
+                  <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-hover">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">

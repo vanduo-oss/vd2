@@ -2,10 +2,34 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useTimepicker } from "@/composables/useTimepicker";
 
 const root = ref<HTMLElement | null>(null);
 useTimepicker(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useTimepicker } from '@/composables/useTimepicker';
+
+const root = ref<HTMLElement | null>(null);
+useTimepicker(root);   // wires [data-vd-timepicker] inside root; cleanup on unmount
+
+// react to a time being chosen
+root.value?.addEventListener('timepicker:select', (e) => {
+  console.log(e.detail.time, e.detail.hours, e.detail.minutes);
+});`;
+
+const legacyWiring = `// Wire every [data-vd-timepicker] input (document, or a root element)
+VanduoTimepicker.init();
+
+// tear one down
+VanduoTimepicker.destroy(inputEl);`;
+
+const vue3Api: [string, string][] = [
+  ["useTimepicker(root)", "Composable — attaches a time dropdown to every [data-vd-timepicker] input inside the root ref. Call once in setup()."],
+  ["(automatic cleanup)", "The popup and listeners are removed on component unmount."],
+];
 
 const html12 = `<input type="text"
   class="vd-input"
@@ -112,7 +136,13 @@ const events: [string, string][] = [
           <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
         </div>
         <div class="vd-card-body">
-          <h4>CSS Classes</h4>
+          <h4>Wiring</h4>
+          <EngineSwitch>
+            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+            <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+          </EngineSwitch>
+
+          <h4 class="vd-mt-6">CSS Classes</h4>
           <div class="vd-table-responsive">
             <table class="vd-table vd-table-striped">
               <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -138,18 +168,36 @@ const events: [string, string][] = [
             </table>
           </div>
 
-          <h4 class="vd-mt-6">JavaScript Methods</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Method</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in jsMethods" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EngineSwitch>
+            <template #vue3>
+              <h4 class="vd-mt-6">Composable API</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in vue3Api" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+            <template #legacy>
+              <h4 class="vd-mt-6">JavaScript Methods</h4>
+              <div class="vd-table-responsive">
+                <table class="vd-table vd-table-striped">
+                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr v-for="row in jsMethods" :key="row[0]">
+                      <td><code>{{ row[0] }}</code></td>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </EngineSwitch>
 
           <h4 class="vd-mt-6">Events</h4>
           <div class="vd-table-responsive">

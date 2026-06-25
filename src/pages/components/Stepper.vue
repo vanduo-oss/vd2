@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useStepper } from "@/composables/useStepper";
 
 const root = ref<HTMLElement | null>(null);
@@ -55,6 +57,30 @@ const jsMethods: [string, string][] = [
 
 const events: [string, string][] = [
   ["stepper:change", "Fired on the stepper element when the active step changes. event.detail contains { index, previousIndex, step }."],
+];
+
+// Engine-specific wiring (the markup and classes are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useStepper } from '@/composables/useStepper';
+
+const root = ref<HTMLElement | null>(null);
+const stepper = useStepper(root);   // wires .vd-stepper inside root; cleanup on unmount
+
+// drive it imperatively
+stepper.next(stepperEl);
+stepper.setStep(stepperEl, 2);`;
+
+const legacyWiring = `// Wire every .vd-stepper (document, or a root element)
+VanduoStepper.init();
+
+// drive it imperatively
+VanduoStepper.next(stepperEl);
+VanduoStepper.setStep(stepperEl, 2);`;
+
+const vue3Api: [string, string][] = [
+  ["useStepper(root)", "Composable — wires every .vd-stepper inside the root ref; returns an imperative API. Call once in setup()."],
+  ["stepper.next(el) / prev(el)", "Advance or rewind the given stepper element."],
+  ["stepper.setStep(el, index)", "Set the active step (zero-based); earlier steps are marked completed."],
 ];
 </script>
 
@@ -194,7 +220,13 @@ const events: [string, string][] = [
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6>API Reference</h6></div>
             <div class="vd-card-body">
-              <h4>CSS Classes</h4>
+              <h4>Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -207,18 +239,36 @@ const events: [string, string][] = [
                 </table>
               </div>
 
-              <h4 class="vd-mt-6">JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in jsMethods" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <EngineSwitch>
+                <template #vue3>
+                  <h4 class="vd-mt-6">Composable API</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in vue3Api" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+                <template #legacy>
+                  <h4 class="vd-mt-6">JavaScript Methods</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in jsMethods" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+              </EngineSwitch>
 
               <h4 class="vd-mt-6">Events</h4>
               <div class="vd-table-responsive">
