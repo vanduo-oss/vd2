@@ -1,54 +1,170 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdCodeSnippet from "@/components/VdCodeSnippet.vue";
+import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import VdTransfer from "@/components/VdTransfer.vue";
 
-interface Item {
-  id: number;
-  label: string;
-}
-
-const initial: Item[] = [
-  { id: 1, label: "Apple" },
-  { id: 2, label: "Banana" },
-  { id: 3, label: "Cherry" },
-  { id: 4, label: "Date" },
-  { id: 5, label: "Elderberry" },
-  { id: 6, label: "Fig" },
-  { id: 7, label: "Grape" },
+const items = [
+  { id: "html", label: "HTML" },
+  { id: "css", label: "CSS" },
+  { id: "javascript", label: "JavaScript" },
+  { id: "typescript", label: "TypeScript" },
+  { id: "python", label: "Python" },
+  { id: "ruby", label: "Ruby" },
+  { id: "go", label: "Go" },
+  { id: "rust", label: "Rust" },
+  { id: "java", label: "Java" },
+  { id: "csharp", label: "C#" },
+  { id: "php", label: "PHP" },
+  { id: "swift", label: "Swift" },
+  { id: "kotlin", label: "Kotlin" },
+  { id: "dart", label: "Dart" },
+  { id: "scala", label: "Scala" },
 ];
 
-const source = ref<Item[]>(initial);
-const target = ref<Item[]>([]);
+const transferHtml = `<div data-vd-transfer='[
+  { "id": "html",       "label": "HTML" },
+  { "id": "css",        "label": "CSS" },
+  { "id": "javascript", "label": "JavaScript" },
+  { "id": "typescript", "label": "TypeScript" },
+  { "id": "python",     "label": "Python" }
+]'></div>`;
 
-const transferHtml =
-  '<div class="vd-transfer">\n  <div class="vd-transfer-panel">...</div>\n</div>';
+const transferJs = `const el = document.querySelector('[data-vd-transfer]');
+
+// Get selected item IDs
+const selected = VanduoTransfer.getSelected(el);
+console.log(selected); // ["javascript", "python"]
+
+// Listen for changes
+el.addEventListener('transfer:change', (e) => {
+  console.log('Selected:', e.detail.selected);
+});`;
+
+const cssClasses: [string, string][] = [
+  [".vd-transfer", "Auto-generated root container (flex layout with two panels)"],
+  [".vd-transfer-panel", "Each side panel (Available / Selected)"],
+  [".vd-transfer-header", "Panel header showing title and item count"],
+  [".vd-transfer-search", "Search input inside each panel for filtering items"],
+  [".vd-transfer-list", "Scrollable list container holding items"],
+  [".vd-transfer-item", "Individual item row with a checkbox"],
+  [".vd-transfer-item.is-checked", "Checked state on an item (ready to move)"],
+  [".vd-transfer-actions", "Center column holding the move buttons"],
+  [".vd-transfer-btn", "Arrow button to move checked items between panels"],
+];
+
+const jsMethods: [string, string][] = [
+  ["VanduoTransfer.init()", "Scans for all [data-vd-transfer] elements and renders dual-list widgets"],
+  ["VanduoTransfer.getSelected(el)", 'Returns an array of id strings currently in the "Selected" panel'],
+  ["VanduoTransfer.destroy(el)", "Removes the rendered widget and event listeners from the element"],
+];
+
+const events: [string, string][] = [
+  ["transfer:change", "Fired on the element when items are moved. event.detail contains { selected: string[], available: string[] }"],
+];
 </script>
 
 <template>
   <DocsLayout>
-    <VdStack gap="xl">
-      <header>
-        <h1 class="vd-h1">Transfer</h1>
-        <p class="vd-lead">Two-pane list with bidirectional move buttons.</p>
-      </header>
+    <section id="transfer">
+      <h5 class="demo-title">
+        <i class="ph ph-arrows-left-right"></i>Transfer / Dual List
+      </h5>
+      <p class="vd-mb-5">
+        The <strong>VanduoTransfer</strong> component renders a dual-panel picker
+        — users move items from a "Source" list to a "Target" list using arrow
+        buttons. Search filtering is built into both panels automatically, and
+        selected items are accessible programmatically at any time.
+      </p>
 
-      <section id="basic" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Basic</h2>
-        <VdTransfer
-          v-model:source="source"
-          v-model:target="target"
-          source-title="Available"
-          target-title="Selected"
-        />
-      </section>
+      <div class="vd-row">
+        <div class="vd-col-12">
+          <div id="demo-transfer" class="vd-card vd-card-glow demo-card">
+            <div class="vd-card-header"><h6>Transfer</h6></div>
+            <div class="vd-card-body">
+              <VdTransfer :items="items" />
+              <DocCodeSnippet :html="transferHtml" :js="transferJs" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <section id="usage" class="vd-stack vd-stack-md">
-        <h2 class="vd-h2">Usage</h2>
-        <VdCodeSnippet language="html" :code="transferHtml" />
-      </section>
-    </VdStack>
+      <!-- API Reference -->
+      <div class="vd-card vd-card-glow demo-card">
+        <div class="vd-card-header">
+          <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
+        </div>
+        <div class="vd-card-body">
+          <h4>CSS Classes</h4>
+          <div class="vd-table-responsive">
+            <table class="vd-table vd-table-striped">
+              <thead><tr><th>Class</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr v-for="row in cssClasses" :key="row[0]">
+                  <td><code>{{ row[0] }}</code></td>
+                  <td>{{ row[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="vd-mt-6">Data Attributes</h4>
+          <div class="vd-table-responsive">
+            <table class="vd-table vd-table-striped">
+              <thead><tr><th>Attribute</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code>data-vd-transfer</code></td>
+                  <td>JSON array of <code>{id, label}</code> objects. All items start in the "Available" panel</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="vd-mt-6">JavaScript Methods</h4>
+          <div class="vd-table-responsive">
+            <table class="vd-table vd-table-striped">
+              <thead><tr><th>Method</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr v-for="row in jsMethods" :key="row[0]">
+                  <td><code>{{ row[0] }}</code></td>
+                  <td>{{ row[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="vd-mt-6">Events</h4>
+          <div class="vd-table-responsive">
+            <table class="vd-table vd-table-striped">
+              <thead><tr><th>Event</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr v-for="row in events" :key="row[0]">
+                  <td><code>{{ row[0] }}</code></td>
+                  <td>{{ row[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accessibility -->
+      <div class="vd-card vd-card-glow demo-card">
+        <div class="vd-card-header">
+          <h6><i class="ph ph-wheelchair mr-2" style="color: var(--vd-color-primary);"></i>Accessibility</h6>
+        </div>
+        <div class="vd-card-body">
+          <ul>
+            <li>Each panel list has <code>role="listbox"</code> with <code>aria-multiselectable="true"</code></li>
+            <li>Items use <code>role="option"</code> with <code>aria-selected</code> reflecting checked state</li>
+            <li>Move buttons have descriptive <code>aria-label</code>s (e.g. "Move selected to right")</li>
+            <li><kbd>Space</kbd> toggles item selection; <kbd>↑</kbd>/<kbd>↓</kbd> navigate the list</li>
+            <li><kbd>Ctrl+A</kbd> selects all visible items in the focused panel</li>
+            <li>Search inputs are labelled with <code>aria-label="Filter available items"</code> / <code>"Filter selected items"</code></li>
+            <li>Panel headers use <code>aria-live="polite"</code> to announce count changes</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </DocsLayout>
 </template>

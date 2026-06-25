@@ -1,90 +1,130 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { reactive, ref } from "vue";
+import VdTreeNode, { type TreeNode } from "./VdTreeNode.vue";
 
-export interface TreeNode {
-  id: string | number;
-  label: string;
-  children?: TreeNode[];
-}
-
-interface Props {
-  nodes: readonly TreeNode[];
-  lines?: boolean;
+/**
+ * Reactive reimplementation of framework/js/components/tree.js — renders
+ * hierarchical `data-vd-tree` JSON as an expand/collapse tree with optional
+ * checkbox selection and parent→child cascade. Reproduces the framework's
+ * generated DOM (`.vd-tree[role=tree]` → `.vd-tree-node` → `.vd-tree-node-content`
+ * → `.vd-tree-children`), `getChecked()`, and keyboard navigation.
+ *
+ * Fixes-to-documented-intent vs the legacy JS:
+ *  - fires `tree:toggle` with `{ id, open }` (listed in the docs API table but
+ *    never dispatched by the legacy JS) and `tree:check` with the documented
+ *    `{ checked: string[], node: string }` shape (legacy fired a single
+ *    `{ id, checked: boolean, label }`).
+ *  - Arrow Left/Right collapse/expand the focused branch (documented keyboard
+ *    support the legacy JS omitted; it only handled Up/Down).
+ */
+const props = defineProps<{
+  nodes: TreeNode[];
   checkbox?: boolean;
-}
+  cascade?: boolean;
+}>();
 
-const expanded = ref<Set<string | number>>(new Set());
-const checked = ref<Set<string | number>>(new Set());
+const root = ref<HTMLElement | null>(null);
 
-defineProps<Props>();
+const clone = (nodes: TreeNode[]): TreeNode[] =>
+  nodes.map((n) => ({
+    ...n,
+    children: n.children ? clone(n.children) : undefined,
+  }));
 
-const toggle = (id: string | number): void => {
-  if (expanded.value.has(id)) {
-    expanded.value.delete(id);
-  } else {
-    expanded.value.add(id);
+const tree = reactive(clone(props.nodes));
+
+const setChildChecked = (items: TreeNode[], checked: boolean): void => {
+  items.forEach((item) => {
+    item.checked = checked;
+    if (item.children) setChildChecked(item.children, checked);
+  });
+};
+
+const collectChecked = (items: TreeNode[], acc: string[] = []): string[] => {
+  items.forEach((i) => {
+    if (i.checked) acc.push(i.id ?? i.label ?? "");
+    if (i.children) collectChecked(i.children, acc);
+  });
+  return acc;
+};
+
+const onCheck = (node: TreeNode, checked: boolean): void => {
+  node.checked = checked;
+  if ((props.cascade ?? true) && node.children) {
+    setChildChecked(node.children, checked);
+  }
+  root.value?.dispatchEvent(
+    new CustomEvent("tree:check", {
+      bubbles: true,
+      detail: { checked: collectChecked(tree), node: node.id },
+    }),
+  );
+};
+
+const onToggle = (node: TreeNode): void => {
+  root.value?.dispatchEvent(
+    new CustomEvent("tree:toggle", {
+      bubbles: true,
+      detail: { id: node.id, open: !!node.open },
+    }),
+  );
+};
+
+const onKeydown = (e: KeyboardEvent): void => {
+  const host = root.value;
+  const active = document.activeElement;
+  if (!host || !active || !host.contains(active)) return;
+  const contents = Array.from(
+    host.querySelectorAll<HTMLElement>(".vd-tree-node-content"),
+  );
+  const current = active.closest(".vd-tree-node-content") as HTMLElement | null;
+  const idx = current ? contents.indexOf(current) : -1;
+  if (idx === -1) return;
+
+  const focusAt = (i: number): void => {
+    contents[i]
+      ?.querySelector<HTMLElement>(".vd-tree-toggle, .vd-tree-label")
+      ?.focus();
+  };
+
+  switch (e.key) {
+    case "ArrowDown":
+      e.preventDefault();
+      if (idx < contents.length - 1) focusAt(idx + 1);
+      break;
+    case "ArrowUp":
+      e.preventDefault();
+      if (idx > 0) focusAt(idx - 1);
+      break;
+    case "ArrowRight": {
+      e.preventDefault();
+      const node = current?.closest(".vd-tree-node");
+      const toggle = current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
+      if (toggle && !node?.classList.contains("is-open")) toggle.click();
+      break;
+    }
+    case "ArrowLeft": {
+      e.preventDefault();
+      const node = current?.closest(".vd-tree-node");
+      const toggle = current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
+      if (toggle && node?.classList.contains("is-open")) toggle.click();
+      break;
+    }
   }
 };
 
-const allChildren = (n: TreeNode): TreeNode[] => {
-  const out: TreeNode[] = [n];
-  if (n.children) for (const c of n.children) out.push(...allChildren(c));
-  return out;
-};
-
-const toggleCheck = (n: TreeNode, e: Event): void => {
-  const checked_ = (e.target as HTMLInputElement).checked;
-  const ids = allChildren(n).map((c) => c.id);
-  if (checked_) {
-    for (const id of ids) checked.value.add(id);
-  } else {
-    for (const id of ids) checked.value.delete(id);
-  }
-};
+defineExpose({ getChecked: () => collectChecked(tree) });
 </script>
 
 <template>
-  <ul class="vd-tree" :class="{ 'vd-tree-lines': lines }" role="tree">
-    <li
-      v-for="node in nodes"
-      :key="node.id"
-      class="vd-tree-node"
-      role="treeitem"
-      :aria-expanded="node.children ? expanded.has(node.id) : undefined"
-    >
-      <div class="vd-tree-node-content">
-        <button
-          v-if="node.children && node.children.length > 0"
-          type="button"
-          class="vd-tree-toggle"
-          :aria-label="expanded.has(node.id) ? 'Collapse' : 'Expand'"
-          @click="toggle(node.id)"
-        >
-          {{ expanded.has(node.id) ? "▾" : "▸" }}
-        </button>
-        <span
-          v-else
-          class="vd-tree-toggle vd-tree-toggle-placeholder"
-          aria-hidden="true"
-        />
-        <input
-          v-if="checkbox"
-          type="checkbox"
-          class="vd-tree-checkbox"
-          :checked="checked.has(node.id)"
-          @change="(e) => toggleCheck(node, e)"
-        />
-        <span class="vd-tree-label">{{ node.label }}</span>
-      </div>
-      <ul
-        v-if="
-          node.children && node.children.length > 0 && expanded.has(node.id)
-        "
-        class="vd-tree-children"
-        role="group"
-      >
-        <VdTree :nodes="node.children" :lines="lines" :checkbox="checkbox" />
-      </ul>
-    </li>
-  </ul>
+  <div ref="root" class="vd-tree" role="tree" @keydown="onKeydown">
+    <VdTreeNode
+      v-for="(node, i) in tree"
+      :key="node.id ?? i"
+      :node="node"
+      :checkbox="!!checkbox"
+      @toggle="onToggle"
+      @check="onCheck"
+    />
+  </div>
 </template>
