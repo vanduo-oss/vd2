@@ -23,9 +23,10 @@ const { engine } = storeToRefs(engineStore);
           Changelog
         </h2>
         <p class="vd-text-lg vd-text-muted">
-          Release notes for <strong>Vanduo Framework</strong> and
-          <strong>Ecosystem extension packages</strong> — documented side by
-          side. Use the toggle to filter entries by engine.
+          Release notes for the <strong>Vanduo Framework</strong> and ecosystem
+          packages, plus <strong>vd2</strong> (Vue 3). The engine toggle filters
+          the timeline: <em>Legacy</em> shows the framework history; <em>Vue 3</em>
+          adds vd2's own releases and hides legacy-runtime-only notes.
         </p>
         <div class="changelog-engine-toggle">
           <div class="doc-engine-toggle" role="group" aria-label="Documentation engine">
