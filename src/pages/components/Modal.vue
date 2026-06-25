@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 
 type ModalId = "sm" | "default" | "lg" | "xl" | "glass" | "static" | null;
 
@@ -107,6 +108,34 @@ const events: [string, string][] = [
   ["modal:open", "Fired on the modal element when it opens."],
   ["modal:close", "Fired on the modal element when it closes."],
 ];
+
+// Engine-specific usage: Vue state-driven vs legacy data-attribute triggers.
+const vue3Usage = `<script setup lang="ts">
+import { ref } from 'vue';
+const open = ref(false);
+<\/script>
+
+<template>
+  <button class="vd-btn vd-btn-primary" @click="open = true">Open Modal</button>
+
+  <div v-if="open" class="vd-modal is-open" @click.self="open = false">
+    <div class="vd-modal-dialog">
+      <div class="vd-modal-content">
+        <div class="vd-modal-header">
+          <h5 class="vd-modal-title">Modal Title</h5>
+          <button class="vd-modal-close" @click="open = false">&times;</button>
+        </div>
+        <div class="vd-modal-body">Modal content goes here.</div>
+      </div>
+    </div>
+  </div>
+</template>`;
+
+const vue3Api: [string, string][] = [
+  ["ref + v-if / .is-open", "Drive the modal from a boolean ref — toggle visibility and the .is-open class from component state; no global API needed."],
+  ["@click.self / Escape", "Close on backdrop click (skip for static) and Escape, wired with @click and a keydown listener in your component."],
+  ["modal:open / modal:close", "Optional native events if you prefer the data-attribute flow over refs."],
+];
 </script>
 
 <template>
@@ -183,7 +212,13 @@ const events: [string, string][] = [
               <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary)"></i>API Reference</h6>
             </div>
             <div class="vd-card-body">
-              <h4>CSS Classes</h4>
+              <h4>Usage</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :html="triggerHtml" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -201,15 +236,30 @@ const events: [string, string][] = [
                   </tbody>
                 </table>
               </div>
-              <h4 class="vd-mt-6">JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="r in jsMethods" :key="r[0]"><td><code>{{ r[0] }}</code></td><td>{{ r[1] }}</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <EngineSwitch>
+                <template #vue3>
+                  <h4 class="vd-mt-6">Component Approach</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Pattern</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="r in vue3Api" :key="r[0]"><td><code>{{ r[0] }}</code></td><td>{{ r[1] }}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+                <template #legacy>
+                  <h4 class="vd-mt-6">JavaScript Methods</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="r in jsMethods" :key="r[0]"><td><code>{{ r[0] }}</code></td><td>{{ r[1] }}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+              </EngineSwitch>
               <h4 class="vd-mt-6">Events</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">

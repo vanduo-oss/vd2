@@ -1,36 +1,40 @@
 <script setup lang="ts">
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useToast } from "@/composables/useToast";
 
 const toast = useToast();
 
-const typesJs = `// Simple toast types
-Toast.success('Operation completed successfully!');
-Toast.error('An error occurred!');
-Toast.warning('Please review your input.');
-Toast.info('Here is some information.');`;
+const typesJs = `import { useToast } from '@/composables/useToast';
+const toast = useToast();
 
-const optionsJs = `// Toast with title
-Toast.show({
-  title: 'With Title',
-  message: 'This toast has a title and message.',
-  type: 'info'
-});
+toast.success('Operation completed successfully!');
+toast.error('An error occurred!');
+toast.warning('Please review your input.');
+toast.info('Here is some information.');`;
+
+const legacyTypesJs = `// Global runtime
+VanduoToast.success('Operation completed successfully!');
+VanduoToast.error('An error occurred!');
+VanduoToast.warning('Please review your input.');
+VanduoToast.info('Here is some information.');`;
+
+const optionsJs = `const toast = useToast();
+
+// Toast with title
+toast.show({ title: 'With Title', message: 'This toast has a title and message.', type: 'info' });
 
 // Long duration (10 seconds)
-Toast.show({
-  message: 'This toast will stay for 10 seconds.',
-  type: 'success',
-  duration: 10000
-});
+toast.show({ message: 'This toast will stay for 10 seconds.', type: 'success', duration: 10000 });
 
 // Custom position
-Toast.show({
-  message: 'Bottom left position.',
-  type: 'warning',
-  position: 'bottom-left'
-});`;
+toast.show({ message: 'Bottom left position.', type: 'warning', position: 'bottom-left' });`;
+
+const legacyOptionsJs = `// Global runtime
+VanduoToast.show({ title: 'With Title', message: 'This toast has a title and message.', type: 'info' });
+VanduoToast.show({ message: 'This toast will stay for 10 seconds.', type: 'success', duration: 10000 });
+VanduoToast.show({ message: 'Bottom left position.', type: 'warning', position: 'bottom-left' });`;
 
 const apiRows: [string, string, string][] = [
   ["message", "The main text content displayed in the toast notification.", "string (required)"],
@@ -77,7 +81,10 @@ const apiRows: [string, string, string][] = [
               >
                 Info Toast
               </button>
-              <DocCodeSnippet :js="typesJs" />
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="typesJs" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyTypesJs" /></template>
+              </EngineSwitch>
             </div>
           </div>
         </div>
@@ -104,7 +111,10 @@ const apiRows: [string, string, string][] = [
               >
                 Bottom Left
               </button>
-              <DocCodeSnippet :js="optionsJs" />
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="optionsJs" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyOptionsJs" /></template>
+              </EngineSwitch>
             </div>
           </div>
         </div>

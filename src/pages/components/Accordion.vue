@@ -2,6 +2,7 @@
 import { reactive } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 
 const basic = reactive([false, false, false]);
 const flush = reactive([false, true]);
@@ -39,6 +40,16 @@ const flushHtml = `<div class="accordion accordion-flush">
     </div>
   </div>
 </div>`;
+
+// Engine-specific wiring (the markup and classes are identical).
+const vue3Wiring = `<!-- Toggle .is-open from component state -->
+<div class="accordion-item" :class="{ 'is-open': open[i] }">
+  <button class="accordion-header" @click="open[i] = !open[i]">…</button>
+  <div class="accordion-body"><div class="accordion-content">…</div></div>
+</div>`;
+
+const legacyWiring = `// The framework auto-wires .accordion-header clicks (toggling .is-open)
+VanduoCollapsible.init();`;
 
 const apiRows: [string, string][] = [
   [".accordion", "Base container for a group of collapsible items."],
@@ -125,6 +136,13 @@ const apiRows: [string, string][] = [
               <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary)"></i>API Reference</h6>
             </div>
             <div class="vd-card-body">
+              <h4>Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :html="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :html="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class Name</th><th>Description</th></tr></thead>

@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
 import type { ThemeMode } from "@/composables/useTheme";
 
@@ -85,6 +86,18 @@ switcher.setPreference('dark');
 
 // Apply without changing preference
 switcher.applyTheme();`;
+
+const programmaticVue3 = `import { useThemeStore } from '@/stores/theme';
+const theme = useThemeStore();
+
+// Current preference: 'system' | 'light' | 'dark'
+theme.theme;
+
+// Set preference programmatically (persists + applies to <html>)
+theme.setTheme('dark');
+
+// Hydrate from storage + apply (call once in App.vue onMounted)
+theme.init();`;
 
 const compareRows: [string, boolean | string, boolean | string][] = [
   ["Light/Dark/System mode", true, true],
@@ -250,7 +263,10 @@ const cssApi: [string, string, string][] = [
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6>Programmatic Control</h6></div>
             <div class="vd-card-body">
-              <DocCodeSnippet :js="programmaticJs" />
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="programmaticVue3" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="programmaticJs" :default-open="true" /></template>
+              </EngineSwitch>
             </div>
           </div>
         </div>

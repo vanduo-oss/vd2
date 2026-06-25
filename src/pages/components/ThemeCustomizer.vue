@@ -2,6 +2,7 @@
 import { RouterLink } from "vue-router";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
 import type { RadiusOption, ThemeMode } from "@/composables/useTheme";
 
@@ -96,6 +97,25 @@ customizer.setPreferences({
 
 // Reset to defaults
 customizer.reset();`;
+
+const apiVue3 = `import { useThemeStore } from '@/stores/theme';
+const theme = useThemeStore();
+
+// Reactive current state
+theme.theme; theme.primary; theme.neutral; theme.radius; theme.font;
+
+// Set values (each persists to localStorage + applies to <html>)
+theme.setPrimary('violet');
+theme.setNeutral('slate');
+theme.setRadius('0.375');
+theme.setFont('open-sans');
+theme.setTheme('dark');
+
+// Reset to defaults
+theme.reset();
+
+// Open the navbar customizer panel
+window.dispatchEvent(new CustomEvent('vd:open-customizer'));`;
 
 const coordinationHtml = `<!-- Navbar: Quick toggle via ThemeSwitcher -->
 <button class="vd-btn vd-btn-icon" data-toggle="theme">
@@ -317,7 +337,10 @@ const chipText = (hex: string): string => (["#fab005", "#fcc419", "#a9e34b"].inc
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6>JavaScript API</h6></div>
             <div class="vd-card-body">
-              <DocCodeSnippet :js="apiJs" />
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="apiVue3" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="apiJs" :default-open="true" /></template>
+              </EngineSwitch>
             </div>
           </div>
         </div>
