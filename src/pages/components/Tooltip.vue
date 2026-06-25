@@ -2,10 +2,30 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useTooltips } from "@/composables/useTooltips";
 
 const root = ref<HTMLElement | null>(null);
 useTooltips(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useTooltips } from '@/composables/useTooltips';
+
+const root = ref<HTMLElement | null>(null);
+useTooltips(root);   // wires [data-tooltip] inside root; cleanup on unmount`;
+
+const legacyWiring = `// Wire every [data-tooltip] element (document, or a root element)
+VanduoTooltips.init();
+
+// show / hide programmatically
+VanduoTooltips.show(el);
+VanduoTooltips.hide(el);`;
+
+const vue3Api: [string, string][] = [
+  ["useTooltips(root)", "Composable — wires every [data-tooltip] / [data-tooltip-html] element inside the root ref. Call once in setup()."],
+  ["(automatic cleanup)", "Hover listeners and the tooltip node are removed on component unmount."],
+];
 
 const placementsHtml = `<!-- Placement via data attribute -->
 <button class="vd-btn"
@@ -195,7 +215,13 @@ const jsMethods: [string, string][] = [
               </h6>
             </div>
             <div class="vd-card-body">
-              <h4>CSS Classes</h4>
+              <h4>Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -221,18 +247,36 @@ const jsMethods: [string, string][] = [
                 </table>
               </div>
 
-              <h4 class="vd-mt-6">JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in jsMethods" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <EngineSwitch>
+                <template #vue3>
+                  <h4 class="vd-mt-6">Composable API</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in vue3Api" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+                <template #legacy>
+                  <h4 class="vd-mt-6">JavaScript Methods</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in jsMethods" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+              </EngineSwitch>
               <div class="vd-alert vd-alert-info vd-mt-4">
                 <i class="ph ph-shield-check"></i>
                 <div>

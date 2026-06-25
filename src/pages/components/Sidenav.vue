@@ -2,10 +2,25 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useSidenav } from "@/composables/useSidenav";
 
 const root = ref<HTMLElement | null>(null);
 useSidenav(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useSidenav } from '@/composables/useSidenav';
+
+const root = ref<HTMLElement | null>(null);
+useSidenav(root);   // wires [data-sidenav-toggle] triggers; cleanup on unmount`;
+
+const legacyWiring = `// Wire every [data-sidenav-toggle] trigger (document, or a root element)
+VanduoSidenav.init();
+
+// control programmatically
+VanduoSidenav.open(sidenavEl);
+VanduoSidenav.close(sidenavEl);`;
 
 const structureHtml = `<!-- Trigger button -->
 <button class="vd-btn vd-btn-primary" data-sidenav-toggle="#demo-sidenav">
@@ -153,6 +168,14 @@ const apiRows: [string, string, string][] = [
             </div>
           </div>
         </div>
+      </div>
+
+      <h4 class="docs-heading">Wiring</h4>
+      <div style="margin-bottom: 2rem">
+        <EngineSwitch>
+          <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+          <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+        </EngineSwitch>
       </div>
 
       <h4 id="api" class="docs-heading">API Reference</h4>

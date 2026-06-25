@@ -2,10 +2,29 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useTabs } from "@/composables/useTabs";
 
 const root = ref<HTMLElement | null>(null);
 useTabs(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useTabs } from '@/composables/useTabs';
+
+const root = ref<HTMLElement | null>(null);
+useTabs(root);   // wires [data-tab-target] inside root; cleanup on unmount`;
+
+const legacyWiring = `// Wire every [data-tab-target] trigger (document, or a root element)
+VanduoTabs.init();
+
+// switch programmatically
+VanduoTabs.show(tabsEl, 'pane-2');`;
+
+const vue3Api: [string, string][] = [
+  ["useTabs(root)", "Composable — wires every [data-tab-target] trigger inside the root ref; clicking a tab shows its pane. Call once in setup()."],
+  ["(automatic cleanup)", "Click listeners are removed on component unmount — no manual teardown."],
+];
 
 const defaultHtml = `<!-- Default underline tabs -->
 <div class="vd-tabs">
@@ -214,7 +233,13 @@ const classRows: [string, string][] = [
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary)"></i>API Reference</h6></div>
             <div class="vd-card-body">
-              <h4>CSS Classes</h4>
+              <h4>Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -232,16 +257,31 @@ const classRows: [string, string][] = [
                   </tbody>
                 </table>
               </div>
-              <h4 class="vd-mt-6">JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr><td><code>VanduoTabs.init()</code></td><td>Wires up all <code>[data-tab-target]</code> triggers for automatic pane switching.</td></tr>
-                    <tr><td><code>VanduoTabs.show(el, targetId)</code></td><td>Programmatically switch to the pane with the given <code>id</code> inside the tabs container.</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <EngineSwitch>
+                <template #vue3>
+                  <h4 class="vd-mt-6">Composable API</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="r in vue3Api" :key="r[0]"><td><code>{{ r[0] }}</code></td><td>{{ r[1] }}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+                <template #legacy>
+                  <h4 class="vd-mt-6">JavaScript Methods</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr><td><code>VanduoTabs.init()</code></td><td>Wires up all <code>[data-tab-target]</code> triggers for automatic pane switching.</td></tr>
+                        <tr><td><code>VanduoTabs.show(el, targetId)</code></td><td>Programmatically switch to the pane with the given <code>id</code> inside the tabs container.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+              </EngineSwitch>
             </div>
           </div>
         </div>

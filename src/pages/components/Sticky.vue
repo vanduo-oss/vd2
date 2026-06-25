@@ -2,10 +2,32 @@
 import { ref } from "vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useAffix } from "@/composables/useAffix";
 
 const root = ref<HTMLElement | null>(null);
 useAffix(root);
+
+// Engine-specific wiring (the markup, classes and data-* are identical).
+const vue3Wiring = `import { ref } from 'vue';
+import { useAffix } from '@/composables/useAffix';
+
+const root = ref<HTMLElement | null>(null);
+useAffix(root);   // wires .vd-affix / [data-vd-affix] inside root; cleanup on unmount
+
+// react to pin / unpin
+root.value?.addEventListener('affix:stuck', () => { /* … */ });`;
+
+const legacyWiring = `// Wire every affix element (document, or a root element)
+VanduoAffix.init();
+
+// tear one down
+VanduoAffix.destroy(affixEl);`;
+
+const vue3Api: [string, string][] = [
+  ["useAffix(root)", "Composable — wires every .vd-affix / [data-vd-affix] inside the root ref; toggles .is-stuck via a sentinel + IntersectionObserver. Call once in setup()."],
+  ["(automatic cleanup)", "The observer and generated sentinel are removed on component unmount."],
+];
 
 const offsetHtml = `<div
   class="vd-affix vd-affix-bordered"
@@ -149,7 +171,13 @@ const events: [string, string][] = [
           <div class="vd-card vd-card-glow demo-card">
             <div class="vd-card-header"><h6>API Reference</h6></div>
             <div class="vd-card-body">
-              <h4>CSS Classes</h4>
+              <h4>Wiring</h4>
+              <EngineSwitch>
+                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
+                <template #legacy><DocCodeSnippet :js="legacyWiring" :default-open="true" /></template>
+              </EngineSwitch>
+
+              <h4 class="vd-mt-6">CSS Classes</h4>
               <div class="vd-table-responsive">
                 <table class="vd-table vd-table-striped">
                   <thead><tr><th>Class</th><th>Description</th></tr></thead>
@@ -175,18 +203,36 @@ const events: [string, string][] = [
                 </table>
               </div>
 
-              <h4 class="vd-mt-6">JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in jsMethods" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <EngineSwitch>
+                <template #vue3>
+                  <h4 class="vd-mt-6">Composable API</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in vue3Api" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+                <template #legacy>
+                  <h4 class="vd-mt-6">JavaScript Methods</h4>
+                  <div class="vd-table-responsive">
+                    <table class="vd-table vd-table-striped">
+                      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                      <tbody>
+                        <tr v-for="row in jsMethods" :key="row[0]">
+                          <td><code>{{ row[0] }}</code></td>
+                          <td>{{ row[1] }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+              </EngineSwitch>
 
               <h4 class="vd-mt-6">Events</h4>
               <div class="vd-table-responsive">
