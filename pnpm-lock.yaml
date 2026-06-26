@@ -22,6 +22,9 @@ importers:
       '@vanduo-oss/core':
         specifier: file:../core
         version: file:../core
+      '@vanduo-oss/flowchart':
+        specifier: file:../flowchart
+        version: file:../flowchart(vue@3.5.38(typescript@5.9.3))
       '@vanduo-oss/framework':
         specifier: 1.5.1
         version: 1.5.1
@@ -997,6 +1000,15 @@ packages:
   '@vanduo-oss/core@file:../core':
     resolution: {directory: ../core, type: directory}
     engines: {node: '>=18'}
+
+  '@vanduo-oss/flowchart@file:../flowchart':
+    resolution: {directory: ../flowchart, type: directory}
+    engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
+    peerDependencies:
+      vue: '>=3.3.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
 
   '@vanduo-oss/framework@1.5.1':
     resolution: {integrity: sha512-TUs8wq/7IffeBIpZdzZgEB/M7e/gihtlUfvzJRfr0fTdhu/PtT3bSaKscE6B+lcn6RPLfazRMjAaQrWUB97kZg==}
@@ -3274,6 +3286,10 @@ snapshots:
       vue: 3.5.38(typescript@5.9.3)
 
   '@vanduo-oss/core@file:../core': {}
+
+  '@vanduo-oss/flowchart@file:../flowchart(vue@3.5.38(typescript@5.9.3))':
+    optionalDependencies:
+      vue: 3.5.38(typescript@5.9.3)
 
   '@vanduo-oss/framework@1.5.1': {}
 

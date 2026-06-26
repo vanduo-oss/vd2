@@ -347,6 +347,14 @@ export const nav: NavTree = {
               keywords: ["charts", "chart", "bar", "line", "donut", "svg", "dashboard", "graph"],
               file: "canvas/vd-charts.html",
             },
+            {
+              id: "flowchart",
+              title: "Flowchart",
+              route: "/canvas/flowchart",
+              icon: "flow-arrow",
+              keywords: ["flowchart", "diagram", "editor", "workflow", "svg", "nodes", "edges"],
+              file: "canvas/vd-flowchart.html",
+            },
           ],
         },
         {

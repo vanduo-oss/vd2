@@ -37,6 +37,7 @@
     "@unhead/vue": "3.1.4",
     "@vanduo-oss/charts": "file:../charts",
     "@vanduo-oss/core": "file:../core",
+    "@vanduo-oss/flowchart": "file:../flowchart",
     "@vanduo-oss/framework": "1.5.1",
     "pinia": "^2.2.0",
     "vue": "^3.5.0",
