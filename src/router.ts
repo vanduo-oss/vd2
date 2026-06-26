@@ -39,6 +39,7 @@ import FormValidationPage from "@/pages/components/FormValidation.vue";
 import DatepickerPage from "@/pages/components/Datepicker.vue";
 import TimepickerPage from "@/pages/components/Timepicker.vue";
 import RatingPage from "@/pages/components/Rating.vue";
+import ChartsPage from "@/pages/canvas/Charts.vue";
 import StepperPage from "@/pages/components/Stepper.vue";
 import AutocompletePage from "@/pages/components/Autocomplete.vue";
 import TransferPage from "@/pages/components/Transfer.vue";
@@ -109,6 +110,7 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   datepicker: DatepickerPage,
   timepicker: TimepickerPage,
   rating: RatingPage,
+  charts: ChartsPage,
   stepper: StepperPage,
   autocomplete: AutocompletePage,
   transfer: TransferPage,

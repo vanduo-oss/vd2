@@ -335,6 +335,21 @@ export const nav: NavTree = {
           ],
         },
         {
+          id: "canvas",
+          title: "Canvas",
+          icon: "chart-donut",
+          sections: [
+            {
+              id: "charts",
+              title: "Charts",
+              route: "/canvas/charts",
+              icon: "chart-donut",
+              keywords: ["charts", "chart", "bar", "line", "donut", "svg", "dashboard", "graph"],
+              file: "canvas/vd-charts.html",
+            },
+          ],
+        },
+        {
           id: "guides",
           title: "Guides",
           icon: "book",
