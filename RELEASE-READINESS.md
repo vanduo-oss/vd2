@@ -35,7 +35,7 @@ Vanduo is intentionally a **dual-engine** design system. Two of the four repos a
 
 **Wave 1 — core hardening** ✅ _(done — `core-0.1.0-release-prep`, local)_ — LICENSE, README, `verify-parity` wired into CI, `pnpm audit` gate, zero-dep `node:test` suite.
 
-**Wave 2 — framework + security** 🟡 _(audit done — see `SECURITY-AUDIT.md`)_ — no exploitable XSS found; fixed one vd2 mirror regression (`useTooltips` now sanitizes). Two low-severity framework hardening patches recommended (quote-safe `escapeHtml`; `sanitizeHtml` default-deny `style`) — pending greenlight (touches published 1.5.1 + its tests). Still to do: confirm published/dist freshness.
+**Wave 2 — framework + security** 🟢 _(audit done — see `SECURITY-AUDIT.md`)_ — no exploitable XSS found. Fixed: vd2 `useTooltips` now sanitizes (`fb9a9a4`); quote-safe `escapeHtml` in framework (`7bb0488`, source + dist). Open decision: `sanitizeHtml` default-`allowStyle` is intentional/tested — keep or flip-as-breaking (Finding 3). Still to do: confirm framework published/dist freshness; run the framework Playwright suite in CI to confirm the escapeHtml change.
 
 **Wave 3 — vd2** _(flagship; auto-test heavy)_ — deploy pipeline + CNAME, expand Playwright, cut over to vanduo.dev.
 
