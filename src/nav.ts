@@ -355,6 +355,14 @@ export const nav: NavTree = {
               keywords: ["flowchart", "diagram", "editor", "workflow", "svg", "nodes", "edges"],
               file: "canvas/vd-flowchart.html",
             },
+            {
+              id: "hex",
+              title: "Hex Grid",
+              route: "/canvas/hex",
+              icon: "hexagon",
+              keywords: ["hex", "hexagon", "grid", "canvas", "axial", "pathfinding", "terrain"],
+              file: "canvas/vd-hex.html",
+            },
           ],
         },
         {

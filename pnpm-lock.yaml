@@ -28,6 +28,9 @@ importers:
       '@vanduo-oss/framework':
         specifier: 1.5.1
         version: 1.5.1
+      '@vanduo-oss/hex-grid':
+        specifier: file:../hex-grid
+        version: file:../hex-grid(vue@3.5.38(typescript@5.9.3))
       pinia:
         specifier: ^2.2.0
         version: 2.3.1(typescript@5.9.3)(vue@3.5.38(typescript@5.9.3))
@@ -1013,6 +1016,15 @@ packages:
   '@vanduo-oss/framework@1.5.1':
     resolution: {integrity: sha512-TUs8wq/7IffeBIpZdzZgEB/M7e/gihtlUfvzJRfr0fTdhu/PtT3bSaKscE6B+lcn6RPLfazRMjAaQrWUB97kZg==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
+
+  '@vanduo-oss/hex-grid@file:../hex-grid':
+    resolution: {directory: ../hex-grid, type: directory}
+    engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
+    peerDependencies:
+      vue: '>=3.3.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
 
   '@vitejs/devtools-kit@0.3.3':
     resolution: {integrity: sha512-noXyK0szYxh8ALsA7PIoFANOWx13K9NoMKqk3J1pCwGMdnhxWgSqtbhki+/REoK4itbxIFUfc0EwqsoZIKiqyg==}
@@ -3292,6 +3304,10 @@ snapshots:
       vue: 3.5.38(typescript@5.9.3)
 
   '@vanduo-oss/framework@1.5.1': {}
+
+  '@vanduo-oss/hex-grid@file:../hex-grid(vue@3.5.38(typescript@5.9.3))':
+    optionalDependencies:
+      vue: 3.5.38(typescript@5.9.3)
 
   '@vitejs/devtools-kit@0.3.3(typescript@5.9.3)(vite@5.4.21(@types/node@22.20.0)(terser@5.48.0))':
     dependencies:
