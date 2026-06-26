@@ -42,6 +42,7 @@ import RatingPage from "@/pages/components/Rating.vue";
 import ChartsPage from "@/pages/canvas/Charts.vue";
 import FlowchartPage from "@/pages/canvas/Flowchart.vue";
 import HexPage from "@/pages/canvas/Hex.vue";
+import MusicPlayerPage from "@/pages/media/MusicPlayer.vue";
 import StepperPage from "@/pages/components/Stepper.vue";
 import AutocompletePage from "@/pages/components/Autocomplete.vue";
 import TransferPage from "@/pages/components/Transfer.vue";
@@ -115,6 +116,7 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   charts: ChartsPage,
   flowchart: FlowchartPage,
   hex: HexPage,
+  "music-player": MusicPlayerPage,
   stepper: StepperPage,
   autocomplete: AutocompletePage,
   transfer: TransferPage,

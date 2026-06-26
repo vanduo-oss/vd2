@@ -366,6 +366,21 @@ export const nav: NavTree = {
           ],
         },
         {
+          id: "media",
+          title: "Media",
+          icon: "music-note",
+          sections: [
+            {
+              id: "music-player",
+              title: "Music Player",
+              route: "/media/music-player",
+              icon: "music-note",
+              keywords: ["music", "player", "audio", "html5", "playlist", "media", "sound"],
+              file: "media/music-player.html",
+            },
+          ],
+        },
+        {
           id: "guides",
           title: "Guides",
           icon: "book",

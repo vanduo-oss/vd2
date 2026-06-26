@@ -5,6 +5,7 @@ import { buildRoutes } from "./router";
 import "@vanduo-oss/framework/css";
 import "@vanduo-oss/charts/css";
 import "@vanduo-oss/flowchart/css";
+import "@vanduo-oss/music-player/css";
 import "./styles/docs.css";
 import "./styles/app.css";
 

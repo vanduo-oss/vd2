@@ -31,6 +31,9 @@ importers:
       '@vanduo-oss/hex-grid':
         specifier: file:../hex-grid
         version: file:../hex-grid(vue@3.5.38(typescript@5.9.3))
+      '@vanduo-oss/music-player':
+        specifier: file:../music-player
+        version: file:../music-player(vue@3.5.38(typescript@5.9.3))
       pinia:
         specifier: ^2.2.0
         version: 2.3.1(typescript@5.9.3)(vue@3.5.38(typescript@5.9.3))
@@ -1019,6 +1022,15 @@ packages:
 
   '@vanduo-oss/hex-grid@file:../hex-grid':
     resolution: {directory: ../hex-grid, type: directory}
+    engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
+    peerDependencies:
+      vue: '>=3.3.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
+
+  '@vanduo-oss/music-player@file:../music-player':
+    resolution: {directory: ../music-player, type: directory}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -3306,6 +3318,10 @@ snapshots:
   '@vanduo-oss/framework@1.5.1': {}
 
   '@vanduo-oss/hex-grid@file:../hex-grid(vue@3.5.38(typescript@5.9.3))':
+    optionalDependencies:
+      vue: 3.5.38(typescript@5.9.3)
+
+  '@vanduo-oss/music-player@file:../music-player(vue@3.5.38(typescript@5.9.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@5.9.3)
 

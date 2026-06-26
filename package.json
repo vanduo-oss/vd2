@@ -40,6 +40,7 @@
     "@vanduo-oss/flowchart": "file:../flowchart",
     "@vanduo-oss/framework": "1.5.1",
     "@vanduo-oss/hex-grid": "file:../hex-grid",
+    "@vanduo-oss/music-player": "file:../music-player",
     "pinia": "^2.2.0",
     "vue": "^3.5.0",
     "vue-router": "^4.4.0"
