@@ -14,7 +14,7 @@ Threat model for a design-system library: the consuming **developer** feeds comp
 |---|---|---|---|---|
 | 1 | `data-tooltip-html` assigned raw to `innerHTML` (no sanitize) — framework sanitizes the same path | vd2 `useTooltips.ts` | **Medium** | ✅ **Fixed** |
 | 2 | `escapeHtml` escapes `< > &` but not quotes, yet is used in **attribute** context | framework `helpers.js` + `doc-search.js`, `theme-customizer.js` | Low (latent) | ✅ **Fixed** (framework `7bb0488`) |
-| 3 | `sanitizeHtml` default `allowStyle: true` | framework `helpers.js` | Low | ⏸ **Intentional & tested — your call** |
+| 3 | `sanitizeHtml` default `allowStyle: true` | framework `helpers.js` | Low | ✅ **Fixed — default-deny** (framework `ca7b1e3`) |
 
 No high-severity / exploitable-today issues found. The framework's security posture is **good** — see "Not vulnerable" below.
 
@@ -54,20 +54,16 @@ function escapeHtml(str) {
 }
 ```
 
-**✅ Applied** in framework commit `7bb0488` — hardened both the global `helpers.js` `escapeHtml` (used by theme-customizer) and doc-search's local `escapeHtml` (used for its `data-category=`/`class=` interpolations). Browser-rendered text is unchanged; the existing Playwright assertions only check `&lt;`/`<mark>`/`not <script>`, so they stay green (the headless suite wasn't run here — verify in CI). dist bundles were rebuilt + staged by the repo's pre-commit hook.
+**✅ Applied** in framework commit `7bb0488` — hardened both the global `helpers.js` `escapeHtml` (used by theme-customizer) and doc-search's local `escapeHtml` (used for its `data-category=`/`class=` interpolations). Browser-rendered text is unchanged. **Verified in Chromium** (helpers + doc-search + code-snippet specs green). dist bundles were rebuilt + staged by the repo's pre-commit hook.
 
-## Finding 3 — `sanitizeHtml` default-allows `style` (⏸ your call — it's intentional)
+## Finding 3 — `sanitizeHtml` now denies `style` by default (✅ FIXED, breaking)
 
-`helpers.js:274` — `const allowStyle = !options || options.allowStyle !== false;` defaults `style` **on**. Inline `style` can't run JS in modern browsers but enables CSS-based exfiltration / clickjacking on attacker-supplied HTML.
+`helpers.js` previously defaulted `allowStyle` **on**. Inline `style` can't run JS but enables CSS-based exfiltration / clickjacking on attacker-supplied HTML.
 
-**Reclassified after reading the tests.** `helpers.spec.ts:260` explicitly asserts *“sanitizeHtml() preserves inline styles by default for compatibility.”* So the default-on is a **deliberate, tested decision**, not an oversight — flipping it is a **semver-breaking** behavior change (consumers relying on default-kept `style` would silently lose it). I did **not** change it.
+The previous default was deliberate — `helpers.spec.ts` asserted *“preserves inline styles by default for compatibility.”* **Per the security-first decision, we flipped it anyway** (`framework ca7b1e3`): `allowStyle` now defaults to `false`; callers needing rich styling pass `{ allowStyle: true }`. The test was updated to assert the secure default (strips `style`) plus a new case that `{ allowStyle: true }` still keeps it.
 
-Notes for the decision:
-- All in-tree callers (`tooltips.js`, `bubble.js`, `toast.js`) already pass `allowStyle: false`, so nothing internal depends on the default.
-- vd2's port (`src/utils/sanitizeHtml.ts`) already defaults `style` **denied** — so the two engines now differ on this default. Worth aligning one way or the other.
-- Residual risk is modest: the sanitizer already strips scripts, event handlers, and disallowed tags; `style` survives only on the small inline whitelist.
-
-**Options:** (a) keep as-is (honor the documented compat contract; accept the residual CSS risk); or (b) flip to default-deny + update `helpers.spec.ts:260` and treat it as a breaking change in the next major. If (b), also reconcile by keeping vd2's default-deny.
+- **Breaking:** any external caller relying on default-kept `style` must now opt in. All in-tree callers (`tooltips.js`, `bubble.js`, `toast.js`) already pass `allowStyle: false`; vd2's port already defaulted deny — so the two engines now **agree**.
+- **Verified in Chromium:** 73 helpers/doc-search/code-snippet + 45 tooltip/toast/bubble tests pass.
 
 ## Not vulnerable (positive assurance)
 
