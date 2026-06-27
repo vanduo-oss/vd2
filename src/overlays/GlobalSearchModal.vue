@@ -161,15 +161,21 @@ onUnmounted(() => {
           </template>
         </ul>
         <div v-else-if="hasQuery" class="global-search-empty">
-          <i class="ph ph-magnifying-glass global-search-empty-icon"></i>
-          <p class="global-search-empty-title">No results found</p>
-          <p class="global-search-empty-text">Try a different search term.</p>
+          <div class="global-search-empty-icon">
+            <i class="ph ph-magnifying-glass"></i>
+          </div>
+          <div class="global-search-empty-title">No results found</div>
+          <div class="global-search-empty-text">
+            Try different keywords or check spelling
+          </div>
         </div>
         <div v-else class="global-search-hint">
-          <i class="ph ph-keyboard global-search-hint-icon"></i>
-          <span class="global-search-hint-text"
-            >Type at least 2 characters to search.</span
-          >
+          <div class="global-search-hint-icon">
+            <i class="ph ph-magnifying-glass"></i>
+          </div>
+          <div class="global-search-hint-text">
+            Type to search across all documentation, guides, and pages
+          </div>
         </div>
       </div>
 

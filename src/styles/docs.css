@@ -65,7 +65,7 @@ body {
 
 /* ── Dark mode scrollbars (docs) ─────────────────── */
 [data-theme="dark"] {
-  --vd-bg-primary: var(--vd-color-black);
+  --vd-bg-primary: var(--vd-charcoal-9);
   --docs-scrollbar-thumb: color-mix(
     in srgb,
     var(--vd-text-secondary) 38%,
@@ -112,7 +112,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --vd-bg-primary: var(--vd-color-black);
+    --vd-bg-primary: var(--vd-charcoal-9);
     --docs-scrollbar-thumb: color-mix(
       in srgb,
       var(--vd-text-secondary) 38%,
@@ -893,7 +893,8 @@ section:last-of-type {
 }
 
 .doc-nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0.3125rem 0.8125rem;
   color: var(--vd-text-primary);
   text-decoration: none;
@@ -901,6 +902,37 @@ section:last-of-type {
   border-left: 2px solid transparent;
   border-radius: var(--vd-btn-border-radius);
   transition: all 0.2s ease;
+}
+
+.doc-nav-link-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* Guide engine-scope hint badge (Vanilla / Vue 3 / both) */
+.doc-nav-engine {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: 0.35rem;
+  color: var(--vd-text-secondary);
+  opacity: 0.6;
+}
+
+.doc-nav-link:hover .doc-nav-engine,
+.doc-nav-link.active .doc-nav-engine {
+  opacity: 0.9;
+}
+
+.doc-nav-engine i {
+  margin-right: 0;
+  font-size: 0.8em;
+}
+
+.doc-nav-engine.is-vue {
+  color: var(--vd-color-primary);
 }
 
 .doc-nav-link:hover {
@@ -1429,10 +1461,7 @@ footer.vd-glass::before {
     transition: none;
   }
 
-  #home-features
-    .feature-morph-card
-    .feature-morph-link:hover
-    .ph-arrow-right {
+  #home-features .feature-morph-card .feature-morph-link:hover .ph-arrow-right {
     transform: none;
   }
 }
@@ -1534,6 +1563,114 @@ footer.vd-glass::before {
 .open-color-footer {
   margin-top: 1.5rem;
   text-align: center;
+}
+
+/* Home: VD2 — Framework Evolved (theme-aware illustration + copy) */
+#vd2-evolved .vd2-evolved-row {
+  gap: 2.5rem 0;
+}
+
+#vd2-evolved .vd2-evolved-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+#vd2-evolved .vd2-evolved-eyebrow .ph-sparkle {
+  font-size: 0.9rem;
+}
+
+#vd2-evolved .vd2-evolved-title {
+  color: var(--vd-color-primary);
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+#vd2-evolved .vd2-evolved-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+  max-width: 38rem;
+}
+
+#vd2-evolved .vd2-evolved-list {
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+#vd2-evolved .vd2-evolved-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--vd-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+#vd2-evolved .vd2-evolved-list li i {
+  color: var(--vd-color-primary);
+  font-size: 1.4rem;
+  flex: 0 0 auto;
+  margin-top: 0.05em;
+}
+
+#vd2-evolved .vd2-evolved-list strong {
+  color: var(--vd-text-primary);
+}
+
+#vd2-evolved .vd2-evolved-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+#vd2-evolved .vd2-evolved-cta .vd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: auto;
+  white-space: nowrap;
+}
+
+/* Framed illustration — the active theme's image is the only one fetched. */
+#vd2-evolved .vd2-evolved-figure {
+  width: 100%;
+  aspect-ratio: 1400 / 762;
+  padding: 0;
+  border-radius: var(--vd-card-border-radius, 1rem);
+  background-image: url("/images/vanduo-bots-light.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] #vd2-evolved .vd2-evolved-figure {
+  background-image: url("/images/vanduo-bots-dark.png");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) #vd2-evolved .vd2-evolved-figure {
+    background-image: url("/images/vanduo-bots-dark.png");
+  }
+}
+
+@media (width < 992px) {
+  #vd2-evolved .vd2-evolved-art {
+    order: -1;
+  }
+
+  #vd2-evolved .vd2-evolved-lead {
+    max-width: none;
+  }
 }
 
 /* Philosophy cards (docs page #docs/philosophy) */
@@ -3168,40 +3305,40 @@ a:hover .vd-card-actionable.vd-card-glow {
   }
 }
 
-/* Dark mode: outline-only surfaces (black bg, visible borders) */
+/* Dark mode: outline-only surfaces (charcoal bg flush with the page, visible borders) */
 [data-theme="dark"] #docs-view .doc-engine-toggle {
-  background: var(--vd-color-black);
+  background: var(--vd-charcoal-9);
 }
 
 [data-theme="dark"] #docs-view .demo-card {
-  --vd-card-bg: var(--vd-color-black);
-  --vd-card-bg-filled: var(--vd-color-black);
+  --vd-card-bg: var(--vd-charcoal-9);
+  --vd-card-bg-filled: var(--vd-charcoal-9);
 
   box-shadow: none;
 }
 
 [data-theme="dark"] #docs-view .vd-code-snippet {
-  --vd-code-bg: var(--vd-color-black);
-  --vd-code-header-bg: var(--vd-color-black);
-  --vd-code-tab-hover-bg: var(--vd-color-black);
+  --vd-code-bg: var(--vd-charcoal-9);
+  --vd-code-header-bg: var(--vd-charcoal-9);
+  --vd-code-tab-hover-bg: var(--vd-charcoal-9);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) #docs-view .doc-engine-toggle {
-    background: var(--vd-color-black);
+    background: var(--vd-charcoal-9);
   }
 
   :root:not([data-theme]) #docs-view .demo-card {
-    --vd-card-bg: var(--vd-color-black);
-    --vd-card-bg-filled: var(--vd-color-black);
+    --vd-card-bg: var(--vd-charcoal-9);
+    --vd-card-bg-filled: var(--vd-charcoal-9);
 
     box-shadow: none;
   }
 
   :root:not([data-theme]) #docs-view .vd-code-snippet {
-    --vd-code-bg: var(--vd-color-black);
-    --vd-code-header-bg: var(--vd-color-black);
-    --vd-code-tab-hover-bg: var(--vd-color-black);
+    --vd-code-bg: var(--vd-charcoal-9);
+    --vd-code-header-bg: var(--vd-charcoal-9);
+    --vd-code-tab-hover-bg: var(--vd-charcoal-9);
   }
 }
 

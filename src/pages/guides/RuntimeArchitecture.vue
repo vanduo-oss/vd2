@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
+import { useEngineStore } from "@/stores/engine";
+
+// This guide is a side-by-side comparison, but it should still lead with the
+// engine the reader has selected: the active engine's column comes first and is
+// flagged, and the intro speaks to it.
+const { engine } = storeToRefs(useEngineStore());
 
 const vanillaJs = `// Vanilla engine: one global, imperative, scoped to a DOM root
 Vanduo.init(root);          // scan + wire every component under root
@@ -49,19 +57,46 @@ const mapping: [string, string][] = [
       <i class="ph ph-circuitry"></i>Runtime Architecture
       <code class="vd-text-sm">Guide</code>
     </h5>
-    <p class="vd-mb-6">
-      The Vanilla engine centres its runtime on one public global
-      (<code>Vanduo</code>) with scoped, imperative initialisation. vd2 keeps
-      the <strong>same DOM and <code>data-*</code> contracts</strong> but
-      replaces that runtime with Vue composables and Pinia stores — so
-      behaviour is reactive, tree-shakeable, and tied to component lifecycle.
-    </p>
+    <EngineSwitch>
+      <template #vue3>
+        <p class="vd-mb-6">
+          In vd2, every interaction gets its own Vue composable or Pinia store,
+          wired on mount and torn down on unmount — reactive, tree-shakeable,
+          and tied to component lifecycle. It keeps the
+          <strong>same DOM and <code>data-*</code> contracts</strong> as the
+          Vanilla engine — which centres its runtime on one public global
+          (<code>Vanduo</code>) — so the two stay mechanically identical; only
+          <em>who</em> wires the behaviour changes.
+        </p>
+      </template>
+      <template #vanilla>
+        <p class="vd-mb-6">
+          The Vanilla engine centres its runtime on one public global
+          (<code>Vanduo</code>) with scoped, imperative initialisation. vd2
+          keeps the <strong>same DOM and <code>data-*</code> contracts</strong>
+          but replaces that runtime with Vue composables and Pinia stores — so
+          behaviour is reactive, tree-shakeable, and tied to component
+          lifecycle.
+        </p>
+      </template>
+    </EngineSwitch>
 
     <div class="vd-row vd-mb-6">
-      <div class="vd-col-12 vd-col-md-6">
-        <div class="vd-card demo-card">
+      <div
+        class="vd-col-12 vd-col-md-6"
+        :style="{ order: engine === 'vanilla' ? 0 : 1 }"
+      >
+        <div
+          class="vd-card demo-card"
+          :class="{ 'runtime-card-active': engine === 'vanilla' }"
+        >
           <div class="vd-card-header">
-            <h6><i class="ph ph-terminal-window"></i> Vanilla runtime</h6>
+            <h6 class="runtime-head">
+              <i class="ph ph-terminal-window"></i> Vanilla runtime
+              <span v-if="engine === 'vanilla'" class="runtime-active-badge"
+                >Active engine</span
+              >
+            </h6>
           </div>
           <div class="vd-card-body">
             <DocCodeSnippet :js="vanillaJs" :default-open="true" />
@@ -72,10 +107,21 @@ const mapping: [string, string][] = [
           </div>
         </div>
       </div>
-      <div class="vd-col-12 vd-col-md-6">
-        <div class="vd-card demo-card">
+      <div
+        class="vd-col-12 vd-col-md-6"
+        :style="{ order: engine === 'vue3' ? 0 : 1 }"
+      >
+        <div
+          class="vd-card demo-card"
+          :class="{ 'runtime-card-active': engine === 'vue3' }"
+        >
           <div class="vd-card-header">
-            <h6><i class="ph ph-atom"></i> vd2 composable</h6>
+            <h6 class="runtime-head">
+              <i class="ph ph-atom"></i> vd2 composable
+              <span v-if="engine === 'vue3'" class="runtime-active-badge"
+                >Active engine</span
+              >
+            </h6>
           </div>
           <div class="vd-card-body">
             <DocCodeSnippet :js="composableJs" :default-open="true" />
@@ -141,3 +187,28 @@ const mapping: [string, string][] = [
     </div>
   </section>
 </template>
+
+<style scoped>
+.runtime-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.runtime-active-badge {
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  color: var(--vd-color-primary);
+  background: rgba(var(--vd-color-primary-rgb), 0.12);
+}
+
+.runtime-card-active {
+  border-color: rgba(var(--vd-color-primary-rgb), 0.5);
+  box-shadow: 0 0 0 1px rgba(var(--vd-color-primary-rgb), 0.18);
+}
+</style>

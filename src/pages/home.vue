@@ -21,7 +21,10 @@ const features: Feature[] = [
     icon: "ph-atom",
     title: "Vue 3, First-Class",
     body: "Typed <script setup> components, a composable for every interaction, Pinia-friendly stores, and static rendering via vite-ssg. It's tree-shakeable ESM, so you pull in only the pieces you actually use.",
-    guide: { to: "/guides/runtime-architecture", label: "Runtime Architecture" },
+    guide: {
+      to: "/guides/runtime-architecture",
+      label: "Runtime Architecture",
+    },
   },
   {
     icon: "ph-leaf",
@@ -163,7 +166,7 @@ const swatches = [
             >
               <i class="ph ph-rocket" aria-hidden="true"></i> Getting Started
             </RouterLink>
-            <RouterLink to="/docs-landing" class="vd-btn vd-btn-outline">
+            <RouterLink to="/components/button" class="vd-btn vd-btn-outline">
               <i class="ph ph-cube" aria-hidden="true"></i> Browse Components
             </RouterLink>
             <a
@@ -180,6 +183,78 @@ const swatches = [
     </div>
 
     <div class="vd-container-responsive">
+      <!-- VD2 — Framework Evolved (today's headline news) -->
+      <div id="vd2-evolved" style="padding: 4rem 0; scroll-margin-top: 80px">
+        <div class="vd-row vd2-evolved-row" style="align-items: center">
+          <!-- Copy -->
+          <div class="vd-col-12 vd-col-lg-6 vd2-evolved-copy">
+            <span
+              class="vd-badge vd-badge-primary vd-badge-pill vd2-evolved-eyebrow"
+            >
+              <i class="ph-fill ph-sparkle" aria-hidden="true"></i>
+              Big news &middot; Just landed
+            </span>
+            <h3 class="vd2-evolved-title">VD2 — Framework Evolved</h3>
+            <p class="vd2-evolved-lead vd-text-muted">
+              Say hello to <strong>VD2</strong> — the next evolution of Vanduo.
+              The little VANDUO bot you know just grew up: same DNA, same
+              tokens, same look, now reborn with
+              <strong>first-class Vue 3</strong> and the Composition API.
+            </p>
+            <ul class="vd2-evolved-list">
+              <li>
+                <i class="ph ph-atom" aria-hidden="true"></i>
+                <span>
+                  <strong>Vue 3, the Composition way.</strong> Typed
+                  <code>&lt;script setup&gt;</code> components and a composable
+                  for every interaction — reactive, tree-shakeable, SSG-ready.
+                </span>
+              </li>
+              <li>
+                <i class="ph ph-intersect" aria-hidden="true"></i>
+                <span>
+                  <strong>Two engines, one system.</strong> Keep the zero-build
+                  Vanilla engine or go fully reactive with Vue — mix them per
+                  project and they never drift.
+                </span>
+              </li>
+              <li>
+                <i class="ph ph-database" aria-hidden="true"></i>
+                <span>
+                  <strong>One source of truth.</strong> Tokens in
+                  <code>@vanduo-oss/core</code> feed both engines, so VD2 looks
+                  pixel-identical to the Vanilla you already ship.
+                </span>
+              </li>
+            </ul>
+            <div class="vd2-evolved-cta">
+              <RouterLink
+                to="/guides/runtime-architecture"
+                class="vd-btn vd-btn-primary"
+              >
+                <i class="ph ph-atom" aria-hidden="true"></i>
+                Explore Vue 3
+              </RouterLink>
+              <RouterLink
+                to="/guides/vanduo-ecosystem"
+                class="vd-btn vd-btn-outline"
+              >
+                <i class="ph ph-compass" aria-hidden="true"></i>
+                The Vanduo Ecosystem
+              </RouterLink>
+            </div>
+          </div>
+          <!-- Theme-aware illustration (light/dark swapped via CSS) -->
+          <div class="vd-col-12 vd-col-lg-6 vd2-evolved-art">
+            <div
+              class="vd-glass vd-glass-floating vd2-evolved-figure"
+              role="img"
+              aria-label="The towering VD2 robot looming beside the smaller original VANDUO bot — the framework, evolved."
+            ></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Features -->
       <div id="home-features" style="padding: 4rem 0; scroll-margin-top: 80px">
         <h3

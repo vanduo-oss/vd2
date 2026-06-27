@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite-ssg build",
+    "build": "vite-ssg build && node scripts/generate-sitemap.mjs",
     "preview": "vite preview --port 8787 --host",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -34,12 +34,13 @@
     "test:e2e:full": "playwright test"
   },
   "dependencies": {
-    "@vanduo-oss/charts": "file:../charts",
+    "@unhead/vue": "2.1.15",
+    "@vanduo-oss/charts": "^0.1.0",
     "@vanduo-oss/core": "file:../core",
-    "@vanduo-oss/flowchart": "file:../flowchart",
+    "@vanduo-oss/flowchart": "^1.1.0",
     "@vanduo-oss/framework": "file:../framework",
-    "@vanduo-oss/hex-grid": "file:../hex-grid",
-    "@vanduo-oss/music-player": "file:../music-player",
+    "@vanduo-oss/hex-grid": "^1.1.0",
+    "@vanduo-oss/music-player": "^1.1.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.38",
     "vue-router": "^5.1.0"

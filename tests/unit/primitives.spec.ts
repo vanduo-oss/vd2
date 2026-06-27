@@ -4,19 +4,21 @@ import VdStack from '@/components/primitives/VdStack.vue';
 import VdInline from '@/components/primitives/VdInline.vue';
 
 describe('layout primitives', () => {
-  it('VdStack applies vd-stack and gap class', () => {
-    const wrapper = mount(VdStack, { props: { gap: 'lg' }, slots: { default: '<p>x</p>' } });
+  it('VdStack applies vd-stack and the data-gap attribute', () => {
+    const wrapper = mount(VdStack, {
+      props: { gap: 'fib-13' },
+      slots: { default: '<p>x</p>' },
+    });
     expect(wrapper.classes()).toContain('vd-stack');
-    expect(wrapper.classes()).toContain('vd-stack-lg');
+    expect(wrapper.attributes('data-gap')).toBe('fib-13');
   });
 
-  it('VdInline applies gap and align classes', () => {
+  it('VdInline applies vd-inline and the data-gap attribute', () => {
     const wrapper = mount(VdInline, {
-      props: { gap: 'sm', align: 'end' },
+      props: { gap: 'fib-5' },
       slots: { default: '<span>x</span>' },
     });
     expect(wrapper.classes()).toContain('vd-inline');
-    expect(wrapper.classes()).toContain('vd-inline-sm');
-    expect(wrapper.classes()).toContain('vd-inline-align-end');
+    expect(wrapper.attributes('data-gap')).toBe('fib-5');
   });
 });

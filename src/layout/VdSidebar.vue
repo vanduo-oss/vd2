@@ -2,8 +2,15 @@
 import { computed, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
-import { nav, type NavSection } from "@/nav";
+import { nav, type EngineScope, type NavSection } from "@/nav";
 import { useEngineStore } from "@/stores/engine";
+
+/** Guide engine scope → label shown in the hint badge tooltip. */
+const engineLabel: Record<EngineScope, string> = {
+  both: "Vanilla + Vue 3",
+  vanilla: "Vanilla only",
+  vue: "Vue 3 only",
+};
 
 const route = useRoute();
 
@@ -160,8 +167,26 @@ const tocOpen = ref(false);
             :data-section="section.id"
             @click="tocOpen = false"
           >
-            <i :class="`ph ph-${section.icon ?? 'circle'} mr-2`"></i
-            >{{ section.title }}
+            <i :class="`ph ph-${section.icon ?? 'circle'} mr-2`"></i>
+            <span class="doc-nav-link-text">{{ section.title }}</span>
+            <span
+              v-if="mode === 'guides'"
+              class="doc-nav-engine"
+              :class="`is-${section.engine ?? 'both'}`"
+              :title="`Applies to: ${engineLabel[section.engine ?? 'both']}`"
+              :aria-label="`Applies to ${engineLabel[section.engine ?? 'both']}`"
+            >
+              <i
+                v-if="(section.engine ?? 'both') !== 'vue'"
+                class="ph ph-file-html"
+                aria-hidden="true"
+              ></i>
+              <i
+                v-if="(section.engine ?? 'both') !== 'vanilla'"
+                class="ph ph-atom"
+                aria-hidden="true"
+              ></i>
+            </span>
           </RouterLink>
         </li>
       </template>

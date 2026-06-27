@@ -1,15 +1,16 @@
 <script setup lang="ts">
-type Aspect = "square" | "video" | "portrait" | "wide";
+type Ratio = "golden" | "golden-portrait" | "square" | "16-9" | "4-3" | "3-2";
 
 interface Props {
-  aspect?: Aspect;
+  /** Aspect ratio (maps to `data-ratio`). */
+  ratio?: Ratio;
 }
 
-withDefaults(defineProps<Props>(), { aspect: "video" });
+withDefaults(defineProps<Props>(), { ratio: "golden" });
 </script>
 
 <template>
-  <div :class="['vd-frame', `vd-frame-${aspect}`]">
+  <div class="vd-frame" :data-ratio="ratio">
     <slot />
   </div>
 </template>

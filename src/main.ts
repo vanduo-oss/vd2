@@ -25,7 +25,7 @@ export const createApp = ViteSSG(
       return { top: 0, behavior: "instant" };
     },
   },
-  async ({ app, router, initialState }) => {
+  async ({ app, initialState }) => {
     app.use(createPinia());
 
     // Load the framework's vanilla JS (IIFE) on the client only. It attaches
@@ -38,11 +38,8 @@ export const createApp = ViteSSG(
       await import("@vanduo-oss/framework/iife");
     }
 
-    router.afterEach((to) => {
-      if (typeof document === "undefined") return;
-      const title = (to.meta?.title as string | undefined) ?? "Vanduo Docs";
-      document.title = title;
-    });
+    // Page <title> is managed per route by @unhead in App.vue (so it stays in
+    // sync with the SSG-baked title and the "— Vanduo" suffix).
 
     if (import.meta.env.SSR && initialState) {
       initialState.pinia = {};

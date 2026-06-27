@@ -3,6 +3,115 @@
         <div class="vd-container-responsive" style="max-width: 1200px;">
 
             <!-- ═══════════════════════════════════════════════ -->
+            <!-- Version 1.6.0                                   -->
+            <!-- ═══════════════════════════════════════════════ -->
+            <article class="version-card">
+                <header class="version-header">
+                    <span class="vd-badge vd-badge-primary" style="font-size: 1rem; padding: 0.5rem 1rem;">v1.6.0</span>
+                    <span style="color: var(--vd-text-secondary); font-size: 0.95rem;">
+                        <i class="ph ph-calendar mr-1"></i>June 27, 2026
+                    </span>
+                    <span class="vd-badge vd-badge-info" style="font-size: 0.75rem;">Latest</span>
+                </header>
+                <div class="version-body">
+                    <div class="vd-row">
+                        <div class="vd-col-12 vd-col-md-6">
+                            <h4><i class="ph ph-cube mr-2" style="color: var(--vd-color-primary);"></i>Framework</h4>
+                            <div class="change-group">
+                                <h5>New</h5>
+                                <ul class="change-list">
+                                    <li class="change-item">
+                                        <i class="ph ph-chat-circle-dots" style="color: var(--vd-color-primary);"></i>
+                                        <div>
+                                            <strong>Popover component</strong>
+                                            <p><code>window.VanduoPopover</code> — a general popover primitive separate from <code>.vd-bubble</code>: click / hover / focus triggers (combinable via <code>data-vd-popover-trigger</code>), external-panel composition through <code>data-vd-popover-target</code>, <code>.vd-popover-sm</code> / <code>.vd-popover-lg</code> size variants, and auto-placement flip on viewport overflow (<code>data-vd-popover-flip</code>).</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-magnifying-glass" style="color: var(--vd-color-primary);"></i>
+                                        <div>
+                                            <strong>Search helper</strong>
+                                            <p><code>window.VanduoSearch</code> — a registry so consumers can register their own data sources: <code>register(source)</code> / <code>unregister(name)</code> / <code>list()</code> / <code>query(text, options?)</code>. Sources return <code>Promise&lt;Result[]&gt;</code>; results merge across sources with an optional per-source limit.</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-spiral" style="color: var(--vd-color-primary);"></i>
+                                        <div>
+                                            <strong>Optional Fibonacci palette</strong>
+                                            <p>A golden-angle generated palette (<code>--vd-fib-*</code> + <code>--vd-golden-1..8</code> accent track), opt in at runtime via <code>data-palette="fibonacci"</code> on <code>&lt;html&gt;</code>. Open Color (<code>--vd-oc-*</code>) is the default and <code>data-primary</code> / <code>data-neutral</code> remaps work under either palette.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <h5>Changed</h5>
+                                <ul class="change-list">
+                                    <li class="change-item">
+                                        <i class="ph ph-package" style="color: var(--vd-color-info);"></i>
+                                        <div>
+                                            <strong>Dependencies &amp; workspace config</strong>
+                                            <p>Dependencies updated to latest; pnpm config migrated to <code>pnpm-workspace.yaml</code>.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <h5>Security</h5>
+                                <ul class="change-list">
+                                    <li class="change-item">
+                                        <i class="ph ph-lock-key" style="color: var(--vd-color-warning);"></i>
+                                        <div>
+                                            <strong><code>sanitizeHtml</code> denies inline <code>style</code> by default</strong>
+                                            <p>Rich HTML passed to Bubble / Popover now has <code>style</code> attributes stripped unless explicitly allowed, closing an attribute-injection vector. Move inline styles to classes.</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-lock-key" style="color: var(--vd-color-success);"></i>
+                                        <div>
+                                            <strong><code>escapeHtml</code> quote-safe for attributes</strong>
+                                            <p><code>escapeHtml</code> is now quote-safe for attribute contexts.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="vd-col-12 vd-col-md-6">
+                            <h4><i class="ph ph-planet mr-2" style="color: var(--vd-color-primary);"></i>Ecosystem</h4>
+                            <div class="change-group">
+                                <h5>Docs</h5>
+                                <ul class="change-list">
+                                    <li class="change-item">
+                                        <i class="ph ph-chat-circle-dots" style="color: var(--vd-color-info);"></i>
+                                        <div>
+                                            <strong>Popover page</strong>
+                                            <p>The new <a href="#docs/popover">Popover</a> page documents click / hover / focus triggers, placement, and size variants. The <code>usePopover</code> composable wires the framework runtime on mount and tears down on unmount.</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-magnifying-glass" style="color: var(--vd-color-info);"></i>
+                                        <div>
+                                            <strong>Search page</strong>
+                                            <p>The new <a href="#docs/search">Search</a> page documents the <code>VanduoSearch</code> registry API and source shape. The <code>useSearch</code> composable provides lifecycle wiring; vd2's <code>GlobalSearchModal</code> remains the overlay UI.</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-spiral" style="color: var(--vd-color-info);"></i>
+                                        <div>
+                                            <strong>Color Palette — Fibonacci opt-in</strong>
+                                            <p>The <a href="#docs/color-palette">Color Palette</a> page documents the optional Fibonacci palette alongside Open Color, including <code>data-palette="fibonacci"</code> and live palette switching via the theme customizer.</p>
+                                        </div>
+                                    </li>
+                                    <li class="change-item">
+                                        <i class="ph ph-package" style="color: var(--vd-color-info);"></i>
+                                        <div>
+                                            <strong>Framework dependency</strong>
+                                            <p>vd2 consumes <code>@vanduo-oss/framework</code> at <code>1.6.0</code> (<code>file:../framework</code> in <code>package.json</code>).</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ═══════════════════════════════════════════════ -->
             <!-- Version 1.5.1                                   -->
             <!-- ═══════════════════════════════════════════════ -->
             <article class="version-card">
@@ -11,7 +120,6 @@
                     <span style="color: var(--vd-text-secondary); font-size: 0.95rem;">
                         <i class="ph ph-calendar mr-1"></i>June 20, 2026
                     </span>
-                    <span class="vd-badge vd-badge-info" style="font-size: 0.75rem;">Latest</span>
                 </header>
                 <div class="version-body">
                     <div class="vd-row">

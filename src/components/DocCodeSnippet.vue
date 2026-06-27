@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, inject, ref } from "vue";
+import { ENGINE_SNIPPET_GROUP } from "@/components/engineSnippetGroup";
 
 interface Props {
   /** The demo markup shown in the HTML tab (mirrors the Vanilla data-extract). */
@@ -31,7 +32,20 @@ const langs = computed<Lang[]>(() => {
   return list;
 });
 
-const expanded = ref(props.defaultOpen ?? false);
+// Inside an EngineSwitch, expand-state is shared by ordinal position so the
+// snippet stays open when the reader flips engines; standalone it's local.
+const group = inject(ENGINE_SNIPPET_GROUP, null);
+const localExpanded = ref(props.defaultOpen ?? false);
+const sharedExpanded = group
+  ? group.register(props.defaultOpen ?? false)
+  : null;
+const expanded = computed<boolean>({
+  get: () => (sharedExpanded ? sharedExpanded.value : localExpanded.value),
+  set: (value) => {
+    if (sharedExpanded) sharedExpanded.value = value;
+    else localExpanded.value = value;
+  },
+});
 const active = ref(langs.value[0]?.key ?? "html");
 const copied = ref(false);
 

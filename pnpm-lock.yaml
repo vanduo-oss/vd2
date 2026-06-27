@@ -13,24 +13,27 @@ importers:
 
   .:
     dependencies:
+      '@unhead/vue':
+        specifier: 2.1.15
+        version: 2.1.15(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/charts':
-        specifier: file:../charts
-        version: file:../charts(vue@3.5.38(typescript@6.0.3))
+        specifier: ^0.1.0
+        version: 0.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/core':
         specifier: file:../core
         version: file:../core
       '@vanduo-oss/flowchart':
-        specifier: file:../flowchart
-        version: file:../flowchart(vue@3.5.38(typescript@6.0.3))
+        specifier: ^1.1.0
+        version: 1.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/framework':
         specifier: file:../framework
         version: file:../framework
       '@vanduo-oss/hex-grid':
-        specifier: file:../hex-grid
-        version: file:../hex-grid(vue@3.5.38(typescript@6.0.3))
+        specifier: ^1.1.0
+        version: 1.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/music-player':
-        specifier: file:../music-player
-        version: file:../music-player(vue@3.5.38(typescript@6.0.3))
+        specifier: ^1.1.0
+        version: 1.1.0(vue@3.5.38(typescript@6.0.3))
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.5.38(typescript@6.0.3))
@@ -710,8 +713,8 @@ packages:
     peerDependencies:
       vue: '>=3.5.18'
 
-  '@vanduo-oss/charts@file:../charts':
-    resolution: {directory: ../charts, type: directory}
+  '@vanduo-oss/charts@0.1.0':
+    resolution: {integrity: sha512-5BLOx3UXNLSFasHihUXng5zGReAJ11dKt/wh1IgWYeleFX+3rcY9ptcpZHXUC9yLIduoKIQuZ6MTsT/VQuIC3w==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -723,8 +726,8 @@ packages:
     resolution: {directory: ../core, type: directory}
     engines: {node: '>=18'}
 
-  '@vanduo-oss/flowchart@file:../flowchart':
-    resolution: {directory: ../flowchart, type: directory}
+  '@vanduo-oss/flowchart@1.1.0':
+    resolution: {integrity: sha512-QMC9NBw/uYJMbdZCrnOgtmiFgeh/No734k2EywGBXhUUcYfeb0UL+PJ9TXdtA+EtG6qFNKhIsvCrg03uuKO6Xw==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -736,8 +739,8 @@ packages:
     resolution: {directory: ../framework, type: directory}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
 
-  '@vanduo-oss/hex-grid@file:../hex-grid':
-    resolution: {directory: ../hex-grid, type: directory}
+  '@vanduo-oss/hex-grid@1.1.0':
+    resolution: {integrity: sha512-cMurpGph2VnfheILqn6stkQWqVau2qDqby/GxkoUrf2uArf5p0FXJa0ClWqhu7Ih9h+sKZ3j25JmtVhVnwZWYg==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -745,8 +748,8 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/music-player@file:../music-player':
-    resolution: {directory: ../music-player, type: directory}
+  '@vanduo-oss/music-player@1.1.0':
+    resolution: {integrity: sha512-ih775Ys7R/xUBqDuiLBMpqRHitLLuGxGjbfOJQ9sU8hn7+xFBZnCf+8bYPgu15YBSutK/BzxymH886ait/fcYA==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -2796,23 +2799,23 @@ snapshots:
       unhead: 2.1.15
       vue: 3.5.38(typescript@6.0.3)
 
-  '@vanduo-oss/charts@file:../charts(vue@3.5.38(typescript@6.0.3))':
+  '@vanduo-oss/charts@0.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
   '@vanduo-oss/core@file:../core': {}
 
-  '@vanduo-oss/flowchart@file:../flowchart(vue@3.5.38(typescript@6.0.3))':
+  '@vanduo-oss/flowchart@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
   '@vanduo-oss/framework@file:../framework': {}
 
-  '@vanduo-oss/hex-grid@file:../hex-grid(vue@3.5.38(typescript@6.0.3))':
+  '@vanduo-oss/hex-grid@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
-  '@vanduo-oss/music-player@file:../music-player(vue@3.5.38(typescript@6.0.3))':
+  '@vanduo-oss/music-player@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import GuideLinkCards from "@/components/GuideLinkCards.vue";
@@ -66,6 +67,17 @@ const cdnHtml = `<!-- index.html — drop in two lines, no build step -->
 <script src="https://cdn.jsdelivr.net/gh/vanduo-oss/framework@v1.5.1/dist/vanduo.min.js"><\/script>
 <script>Vanduo.init();<\/script>`;
 
+// Vanilla via a package manager + bundler (the production-grade path).
+const vanillaInstallShell = `pnpm create vite my-app --template vanilla
+cd my-app
+pnpm add @vanduo-oss/framework`;
+
+const vanillaInstallJs = `// main.js — import the CSS once, then init the JS components
+import '@vanduo-oss/framework/css';
+import { Vanduo } from '@vanduo-oss/framework';
+
+Vanduo.init();`;
+
 const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
 <nav class="vd-navbar">
   <a class="vd-navbar-brand" href="#">My App</a>
@@ -85,9 +97,8 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Get a Vanduo-styled page running in a few minutes. The same design
-      system ships two ways — pick yours with the engine toggle in the
-      sidebar:
+      Get a Vanduo-styled page running in a few minutes. The same design system
+      ships two ways — pick yours with the engine toggle in the sidebar:
       <strong>Vue 3</strong> (Vite + components) or <strong>Vanilla</strong>
       (drop-in CSS/JS, no build step).
     </p>
@@ -100,8 +111,7 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
             <div class="vd-card demo-card">
               <div class="vd-card-header">
                 <h6>
-                  <i class="ph ph-number-circle-one"></i> Scaffold a Vue
-                  project
+                  <i class="ph ph-number-circle-one"></i> Scaffold a Vue project
                 </h6>
               </div>
               <div class="vd-card-body">
@@ -120,9 +130,7 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
                 </h6>
               </div>
               <div class="vd-card-body">
-                <p>
-                  Load the framework's component styles in your entry file:
-                </p>
+                <p>Load the framework's component styles in your entry file:</p>
                 <DocCodeSnippet :js="mainJs" :default-open="true" />
               </div>
             </div>
@@ -140,8 +148,8 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
               </div>
               <div class="vd-card-body">
                 <p>
-                  Use <code>vd-</code> classes in any template — they're
-                  styled for you:
+                  Use <code>vd-</code> classes in any template — they're styled
+                  for you:
                 </p>
                 <DocCodeSnippet :html="pageHtml" :default-open="true" />
               </div>
@@ -157,8 +165,8 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
             <div class="vd-card demo-card">
               <div class="vd-card-header">
                 <h6>
-                  <i class="ph ph-number-circle-one"></i> Add the framework
-                  (no build)
+                  <i class="ph ph-number-circle-one"></i> Add the framework (no
+                  build)
                 </h6>
               </div>
               <div class="vd-card-body">
@@ -177,19 +185,51 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
             <div class="vd-card demo-card">
               <div class="vd-card-header">
                 <h6>
-                  <i class="ph ph-number-circle-two"></i> Compose your first
+                  <i class="ph ph-number-circle-two"></i> Or install with pnpm
+                  (build step)
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <p>
+                  Shipping a real project? Install the package and let your
+                  bundler tree-shake it — the same Vanilla engine, versioned in
+                  your lockfile:
+                </p>
+                <DocCodeSnippet
+                  :shell="vanillaInstallShell"
+                  :default-open="true"
+                />
+                <p class="vd-mt-4">
+                  Then import the CSS once and initialise the JS components in
+                  your entry file:
+                </p>
+                <DocCodeSnippet :js="vanillaInstallJs" :default-open="true" />
+                <p class="vd-text-sm vd-text-muted vd-mt-3">
+                  <code>npm install</code> and <code>yarn add</code> work too —
+                  pnpm just pairs best with Vanduo's <code>.npmrc</code> policy.
+                  See
+                  <RouterLink to="/quick-start">Quick Start</RouterLink>
+                  for every install method (CDN, download, source, bundler).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-three"></i> Compose your first
                   page
                 </h6>
               </div>
               <div class="vd-card-body">
                 <p>
-                  The exact same <code>vd-</code> classes — just in plain
-                  HTML:
+                  The exact same <code>vd-</code> classes — just in plain HTML:
                 </p>
-                <DocCodeSnippet
-                  :html="vanillaPageHtml"
-                  :default-open="true"
-                />
+                <DocCodeSnippet :html="vanillaPageHtml" :default-open="true" />
               </div>
             </div>
           </div>

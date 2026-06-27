@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useDraggable } from "@/composables/useDraggable";
 
 const root = ref<HTMLElement | null>(null);
 useDraggable(root);
+
+// The framework fires `draggable:drop` but, by design, leaves the DOM to the
+// app so frameworks like Vue keep control. Glue the dropped item into the zone.
+const dropZone = ref<HTMLElement | null>(null);
+const onDrop = (event: Event): void => {
+  const zone = dropZone.value;
+  const detail = (event as CustomEvent<{ element?: HTMLElement }>).detail;
+  if (zone && event.target === zone && detail?.element) {
+    zone.appendChild(detail.element);
+  }
+};
+onMounted(() => document.addEventListener("draggable:drop", onDrop));
+onBeforeUnmount(() => document.removeEventListener("draggable:drop", onDrop));
 
 const sortItems = [
   { id: "sort-1", label: "First item" },
@@ -50,12 +63,21 @@ const dropHtml = `<div class="vd-draggable" data-draggable="drop-item-1">
 
 const apiRows: [string, string][] = [
   [".vd-draggable", "Makes an element draggable (pointer + touch + keyboard)."],
-  ["data-draggable=\"id\"", "Stable id carried on the draggable lifecycle events."],
-  [".vd-draggable-handle", "Optional grab handle — only the handle starts a drag."],
+  [
+    'data-draggable="id"',
+    "Stable id carried on the draggable lifecycle events.",
+  ],
+  [
+    ".vd-draggable-handle",
+    "Optional grab handle — only the handle starts a drag.",
+  ],
   [".vd-draggable-container", "Wraps items into a sortable group."],
   [".vd-draggable-container-vertical", "Stacks the sortable items vertically."],
   [".vd-draggable-item", "A reorderable child inside a container."],
-  [".vd-drop-zone", "A target area. Shows a placeholder while empty; highlights on drag-over."],
+  [
+    ".vd-drop-zone",
+    "A target area. Shows a placeholder while empty; highlights on drag-over.",
+  ],
   [".is-disabled", "Prevents dragging the element."],
 ];
 
@@ -85,7 +107,8 @@ const eventRows: [string, string][] = [
           <div class="vd-card-header"><h6>Basic Draggable</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
-              Add <code>.vd-draggable</code> to any element to make it draggable.
+              Add <code>.vd-draggable</code> to any element to make it
+              draggable.
             </p>
             <div class="vd-draggable" data-draggable="item-1">
               <span class="vd-draggable-handle"
@@ -137,7 +160,9 @@ const eventRows: [string, string][] = [
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
               Wrap items in
-              <code>.vd-draggable-container.vd-draggable-container-vertical</code>
+              <code
+                >.vd-draggable-container.vd-draggable-container-vertical</code
+              >
               to reorder them by dragging.
             </p>
             <div class="vd-draggable-container vd-draggable-container-vertical">
@@ -174,6 +199,7 @@ const eventRows: [string, string][] = [
               <i class="ph ph-package"></i> Drag me into the zone
             </div>
             <div
+              ref="dropZone"
               class="vd-drop-zone vd-mt-4"
               aria-label="Drop items here"
             ></div>

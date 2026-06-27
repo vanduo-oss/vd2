@@ -18,6 +18,7 @@ import TabsPage from "@/pages/components/Tabs.vue";
 import AccordionPage from "@/pages/components/Accordion.vue";
 import FlowPage from "@/pages/components/Flow.vue";
 import ProgressPage from "@/pages/components/Progress.vue";
+import PrimitivesPage from "@/pages/components/Primitives.vue";
 import SpinnerPage from "@/pages/components/Spinner.vue";
 import CodeSnippetPage from "@/pages/components/CodeSnippet.vue";
 import IconPage from "@/pages/components/Icon.vue";
@@ -153,6 +154,7 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   "golden-ratio": GoldenRatioPage,
   "grid-system": GridSystemPage,
   "shadows-glow": ShadowsGlowPage,
+  "layout-primitives": PrimitivesPage,
   glass: GlassPage,
   morph: MorphPage,
   parallax: ParallaxPage,

@@ -24,8 +24,7 @@
           Water
         </h3>
         <p class="founders-message-subtitle">
-          A warm welcome and a message from Vanduo Foundation Open Source Board
-          founding members
+          A warm welcome and a message from Vanduo Open Source Foundation
         </p>
 
         <hr class="founders-divider" />
@@ -39,26 +38,6 @@
             The fact that you're here, spending a few of your minutes with us,
             means more than any star count or download metric ever could. So
             before anything else: <em>thank you.</em>
-          </p>
-
-          <hr class="founders-divider" />
-
-          <h3>First, what Vanduo Framework is <em>not</em></h3>
-          <p>Let's clear the air.</p>
-          <p>
-            Vanduo is <strong>not</strong> a competitor to Nuxt, Vue, or React.
-            We are not here to replace your favorite tools, start a framework
-            war, or convince you to rewrite your perfectly working application.
-            Those projects are remarkable feats of engineering, maintained by
-            brilliant people, and they solve real problems at enormous scale. We
-            respect them deeply.
-          </p>
-          <p>
-            And Vanduo is <strong>not</strong> a runtime you have to adopt, or a
-            framework that asks your whole application to bend around it. It has
-            no interest in owning your stack. It replaces nothing, demands
-            nothing, and competes for nothing — it asks only for the chance to
-            make your pages feel considered, whatever you've built them with.
           </p>
 
           <hr class="founders-divider" />
@@ -270,7 +249,7 @@
         <div class="founders-signoff">
           <p>With gratitude and warm regards,</p>
           <strong>The Founding Members</strong>
-          <em>Vanduo Foundation Open Source Board</em>
+          <em>Vanduo Open Source Foundation</em>
         </div>
       </div>
     </div>
