@@ -189,7 +189,9 @@ const eventRows: [string, string][] = [
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12 vd-col-md-6">
         <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header"><h6>With Title &amp; Close Button</h6></div>
+          <div class="vd-card-header">
+            <h6>With Title &amp; Close Button</h6>
+          </div>
           <div class="vd-card-body" style="min-height: 6rem">
             <button
               class="vd-btn vd-btn-primary"
@@ -352,10 +354,12 @@ const eventRows: [string, string][] = [
             <ul>
               <li>
                 Trigger carries <code>aria-haspopup="dialog"</code> + toggled
-                <code>aria-expanded</code> +
-                <code>aria-controls</code> pointing at the generated panel.
+                <code>aria-expanded</code> + <code>aria-controls</code> pointing
+                at the generated panel.
               </li>
-              <li><kbd>Escape</kbd> closes the most recently opened popover.</li>
+              <li>
+                <kbd>Escape</kbd> closes the most recently opened popover.
+              </li>
               <li>
                 Click triggers close on outside click; resize / scroll
                 recomputes placement and flips on overflow.

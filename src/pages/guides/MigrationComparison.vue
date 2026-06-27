@@ -64,11 +64,10 @@ const classMap: [string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Two migrations matter here: moving <strong>to Vanduo</strong> from
-      another CSS framework, and moving
-      <strong>from the Vanilla engine to vd2</strong>. Both are low-friction
-      because Vanduo's class names are predictable and the DOM contract is
-      shared across engines.
+      Two migrations matter here: moving <strong>to Vanduo</strong> from another
+      CSS framework, and moving <strong>from the Vanilla engine to vd2</strong>.
+      Both are low-friction because Vanduo's class names are predictable and the
+      DOM contract is shared across engines.
     </p>
 
     <div class="vd-row vd-mb-6">

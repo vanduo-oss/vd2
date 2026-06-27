@@ -87,8 +87,8 @@ const sidenavHtml = `<aside class="vd-sidenav">
     <h5 class="demo-title"><i class="ph ph-compass"></i>Navigation</h5>
     <p class="vd-mb-8">
       Catalog of Vanduo's navigation primitives — breadcrumbs, pagination,
-      navbar, sidenav, and sticky. Each component has its own dedicated page
-      for full API + demos; this page is a quick-reference index.
+      navbar, sidenav, and sticky. Each component has its own dedicated page for
+      full API + demos; this page is a quick-reference index.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -182,11 +182,7 @@ const sidenavHtml = `<aside class="vd-sidenav">
             <nav aria-label="Page navigation">
               <ul class="vd-pagination">
                 <li class="vd-pagination-item">
-                  <a
-                    href="#"
-                    class="vd-pagination-link"
-                    aria-label="Previous"
-                  >
+                  <a href="#" class="vd-pagination-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
@@ -223,8 +219,8 @@ const sidenavHtml = `<aside class="vd-sidenav">
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-3">
               Add <code>data-pagination</code> on the list; set
-              <code>data-total-pages</code>, <code>data-current-page</code>,
-              and optional <code>data-max-visible</code>.
+              <code>data-total-pages</code>, <code>data-current-page</code>, and
+              optional <code>data-max-visible</code>.
             </p>
             <nav aria-label="Page navigation (interactive demo)">
               <ul

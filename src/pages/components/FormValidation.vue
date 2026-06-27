@@ -155,16 +155,13 @@ const noop = (e: Event): void => e.preventDefault();
     <p class="vd-mb-5">
       The <strong>VanduoValidate</strong> component provides declarative,
       attribute-driven form validation. Chain rules with pipe syntax
-      (<code>required|email|min:3</code>), choose when validation triggers,
-      and customise every error message — all without writing JavaScript.
+      (<code>required|email|min:3</code>), choose when validation triggers, and
+      customise every error message — all without writing JavaScript.
     </p>
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-validate-required"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-validate-required" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Required &amp; Email</h6></div>
           <div class="vd-card-body">
             <form data-vd-validate novalidate @submit="noop">
@@ -237,10 +234,7 @@ const noop = (e: Event): void => e.preventDefault();
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-validate-password"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-validate-password" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Password Match</h6></div>
           <div class="vd-card-body">
             <form data-vd-validate novalidate @submit="noop">
@@ -477,8 +471,7 @@ const noop = (e: Event): void => e.preventDefault();
                 <td><code>validate:submit</code></td>
                 <td>
                   Fired on the form when all fields pass validation on submit.
-                  <code>event.detail</code> contains form data as a plain
-                  object
+                  <code>event.detail</code> contains form data as a plain object
                 </td>
               </tr>
             </tbody>
@@ -520,8 +513,7 @@ const noop = (e: Event): void => e.preventDefault();
             <code>novalidate</code> disables browser UI, not semantics
           </li>
           <li>
-            Focus moves to the first invalid field on submit for keyboard
-            users
+            Focus moves to the first invalid field on submit for keyboard users
           </li>
         </ul>
       </div>

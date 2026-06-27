@@ -130,8 +130,8 @@ const checklist: [string, string][] = [
           </div>
           <div class="vd-card-body">
             <p>
-              The effects composables already guard this; do the same in
-              custom CSS:
+              The effects composables already guard this; do the same in custom
+              CSS:
             </p>
             <DocCodeSnippet :css="motionCss" :default-open="true" />
           </div>

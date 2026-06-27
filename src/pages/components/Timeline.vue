@@ -16,31 +16,107 @@ interface Item {
 }
 
 const basicItems: Item[] = [
-  { date: "March 2026", title: "Project Launched", text: "Initial release with core components, grid system, and theme engine.", marker: "success" },
-  { date: "February 2026", title: "Beta Testing", text: "Community feedback collected, accessibility audit completed, benchmarks run." },
-  { date: "January 2026", title: "Design Phase", text: "Design tokens defined, Figma components created, docs site scaffolded." },
-  { date: "December 2025", title: "Concept & Planning", text: "Requirements gathered, architecture decided, technology stack finalized." },
+  {
+    date: "March 2026",
+    title: "Project Launched",
+    text: "Initial release with core components, grid system, and theme engine.",
+    marker: "success",
+  },
+  {
+    date: "February 2026",
+    title: "Beta Testing",
+    text: "Community feedback collected, accessibility audit completed, benchmarks run.",
+  },
+  {
+    date: "January 2026",
+    title: "Design Phase",
+    text: "Design tokens defined, Figma components created, docs site scaffolded.",
+  },
+  {
+    date: "December 2025",
+    title: "Concept & Planning",
+    text: "Requirements gathered, architecture decided, technology stack finalized.",
+  },
 ];
 
 const colorItems: Item[] = [
-  { title: "Build Passed", text: "All 142 tests passed. Bundle size within budget.", marker: "success", icon: "check" },
-  { title: "Deprecation Notice", text: "The .vd-card-flat class will be removed in v3.0. Migrate to .vd-card-outlined.", marker: "warning", icon: "warning" },
-  { title: "Deploy Failed", text: "CDN purge timed out. Rollback initiated automatically.", marker: "danger", icon: "x" },
+  {
+    title: "Build Passed",
+    text: "All 142 tests passed. Bundle size within budget.",
+    marker: "success",
+    icon: "check",
+  },
+  {
+    title: "Deprecation Notice",
+    text: "The .vd-card-flat class will be removed in v3.0. Migrate to .vd-card-outlined.",
+    marker: "warning",
+    icon: "warning",
+  },
+  {
+    title: "Deploy Failed",
+    text: "CDN purge timed out. Rollback initiated automatically.",
+    marker: "danger",
+    icon: "x",
+  },
 ];
 
 const altItems: Item[] = [
-  { date: "09:00", title: "Morning Standup", text: "Team synced on sprint goals and blockers for the day.", marker: "success" },
-  { date: "11:30", title: "Code Review", text: "Reviewed pull requests for the new grid system and utilities." },
-  { date: "14:00", title: "Design Sync", text: "Discussed token naming conventions and dark-mode adjustments.", marker: "warning" },
-  { date: "16:30", title: "Ship It", text: "Merged, tagged, and deployed the release to production.", marker: "success" },
+  {
+    date: "09:00",
+    title: "Morning Standup",
+    text: "Team synced on sprint goals and blockers for the day.",
+    marker: "success",
+  },
+  {
+    date: "11:30",
+    title: "Code Review",
+    text: "Reviewed pull requests for the new grid system and utilities.",
+  },
+  {
+    date: "14:00",
+    title: "Design Sync",
+    text: "Discussed token naming conventions and dark-mode adjustments.",
+    marker: "warning",
+  },
+  {
+    date: "16:30",
+    title: "Ship It",
+    text: "Merged, tagged, and deployed the release to production.",
+    marker: "success",
+  },
 ];
 
 const playbackItems: Item[] = [
-  { date: "Step 1", title: "Clone & install", text: "Pull the repo and install dependencies with pnpm.", marker: "success" },
-  { date: "Step 2", title: "Run the dev server", text: "Start Vite and open the docs locally.", marker: "" },
-  { date: "Step 3", title: "Make a change", text: "Edit a component and watch HMR update instantly.", marker: "" },
-  { date: "Step 4", title: "Run the gates", text: "Typecheck, lint, unit, and e2e all green.", marker: "warning" },
-  { date: "Step 5", title: "Open a PR", text: "Push the branch and let the review bot do its pass.", marker: "success" },
+  {
+    date: "Step 1",
+    title: "Clone & install",
+    text: "Pull the repo and install dependencies with pnpm.",
+    marker: "success",
+  },
+  {
+    date: "Step 2",
+    title: "Run the dev server",
+    text: "Start Vite and open the docs locally.",
+    marker: "",
+  },
+  {
+    date: "Step 3",
+    title: "Make a change",
+    text: "Edit a component and watch HMR update instantly.",
+    marker: "",
+  },
+  {
+    date: "Step 4",
+    title: "Run the gates",
+    text: "Typecheck, lint, unit, and e2e all green.",
+    marker: "warning",
+  },
+  {
+    date: "Step 5",
+    title: "Open a PR",
+    text: "Push the branch and let the review bot do its pass.",
+    marker: "success",
+  },
 ];
 
 // Color classes (vd-timeline-success/-warning/-danger) go on the ITEM; the CSS
@@ -89,9 +165,15 @@ const apiRows: [string, string][] = [
   [".vd-timeline-alternating", "Items alternate left/right on desktop."],
   [".vd-timeline-playback", "Step reveals from buttons instead of scroll."],
   [".vd-timeline-item", "A single entry (marker + content)."],
-  [".vd-timeline-marker", "The dot on the spine. +-lg, +-success/-warning/-danger."],
+  [
+    ".vd-timeline-marker",
+    "The dot on the spine. +-lg, +-success/-warning/-danger.",
+  ],
   [".vd-timeline-content", "Card body: date + title + text."],
-  ["data-vd-timeline-prev / -next / -play / -pause", "Playback controls (in the timeline's direct parent)."],
+  [
+    "data-vd-timeline-prev / -next / -play / -pause",
+    "Playback controls (in the timeline's direct parent).",
+  ],
 ];
 </script>
 
@@ -165,10 +247,14 @@ const apiRows: [string, string][] = [
       <div class="vd-col-12">
         <div class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
-            <h6><i class="ph ph-arrows-left-right"></i> Alternating Timeline</h6>
+            <h6>
+              <i class="ph ph-arrows-left-right"></i> Alternating Timeline
+            </h6>
           </div>
           <div class="vd-card-body">
-            <div class="vd-timeline vd-timeline-alternating vd-timeline-animated">
+            <div
+              class="vd-timeline vd-timeline-alternating vd-timeline-animated"
+            >
               <div
                 v-for="item in altItems"
                 :key="item.title"

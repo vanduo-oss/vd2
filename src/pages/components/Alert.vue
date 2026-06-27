@@ -150,8 +150,8 @@ const classRows: [string, string][] = [
             <div class="vd-alert vd-alert-error vd-mb-3">
               <i class="ph ph-x-circle"></i>
               <div>
-                <strong>Error.</strong> Unable to connect to the server.
-                Please try again.
+                <strong>Error.</strong> Unable to connect to the server. Please
+                try again.
               </div>
             </div>
             <div class="vd-alert vd-alert-info vd-mb-0">
@@ -297,8 +297,8 @@ const classRows: [string, string][] = [
           <div class="vd-card-body">
             <ul>
               <li>
-                Use <code>role="alert"</code> on dynamically injected alerts
-                so screen readers announce them immediately.
+                Use <code>role="alert"</code> on dynamically injected alerts so
+                screen readers announce them immediately.
               </li>
               <li>
                 Dismissible alerts should have a <code>button</code> with an
@@ -310,8 +310,8 @@ const classRows: [string, string][] = [
                 if they are decorative; otherwise provide text alternatives.
               </li>
               <li>
-                Color is never the sole indicator — pair variants with
-                distinct icons and clear text.
+                Color is never the sole indicator — pair variants with distinct
+                icons and clear text.
               </li>
               <li>
                 Alert links (<code>.vd-alert-link</code>) maintain sufficient

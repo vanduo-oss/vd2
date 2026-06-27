@@ -17,8 +17,7 @@ const tourSteps = JSON.stringify([
   {
     target: "#spot-target-notifications",
     title: "Notifications",
-    description:
-      "Stay informed about mentions, updates, and system alerts.",
+    description: "Stay informed about mentions, updates, and system alerts.",
   },
   {
     target: "#spot-target-profile",
@@ -58,15 +57,24 @@ const root = ref<HTMLElement | null>(null);
 useSpotlight(root);   // wires every [data-vd-spotlight] inside root`;
 
 const classRows: [string, string][] = [
-  [".vd-spotlight-overlay", "Full-screen dimmer with a cut-out around the target."],
-  [".vd-spotlight-tooltip", "Floating step tooltip positioned beside the target."],
+  [
+    ".vd-spotlight-overlay",
+    "Full-screen dimmer with a cut-out around the target.",
+  ],
+  [
+    ".vd-spotlight-tooltip",
+    "Floating step tooltip positioned beside the target.",
+  ],
   [".vd-spotlight-title", "Tooltip heading (the step's title)."],
   [".vd-spotlight-description", "Tooltip body copy (the step's description)."],
   [".vd-spotlight-counter", "“2 / 3” progress indicator."],
   [".vd-spotlight-footer", "Footer row holding the navigation buttons."],
   [".vd-spotlight-btn", "Secondary navigation button (Back / Skip)."],
   [".vd-spotlight-btn-primary", "Primary navigation button (Next / Done)."],
-  [".vd-spotlight-target", "Class applied to the highlighted element while active."],
+  [
+    ".vd-spotlight-target",
+    "Class applied to the highlighted element while active.",
+  ],
 ];
 
 const attrRows: [string, string][] = [
@@ -77,8 +85,14 @@ const attrRows: [string, string][] = [
 ];
 
 const jsRows: [string, string][] = [
-  ["VanduoSpotlight.init(root?)", "Wire every [data-vd-spotlight] trigger within root."],
-  ["VanduoSpotlight.start(steps, opts?)", "Start a tour from an array of step objects."],
+  [
+    "VanduoSpotlight.init(root?)",
+    "Wire every [data-vd-spotlight] trigger within root.",
+  ],
+  [
+    "VanduoSpotlight.start(steps, opts?)",
+    "Start a tour from an array of step objects.",
+  ],
   ["VanduoSpotlight.stop()", "End the active tour and remove the overlay."],
 ];
 </script>
@@ -90,8 +104,8 @@ const jsRows: [string, string][] = [
     </h5>
     <p class="vd-mb-8">
       Guide users through your interface with step-by-step tours. An overlay
-      highlights target elements while a tooltip provides context and
-      navigation controls. Add a JSON array of steps to any trigger via
+      highlights target elements while a tooltip provides context and navigation
+      controls. Add a JSON array of steps to any trigger via
       <code>data-vd-spotlight</code> and it starts on click.
     </p>
 

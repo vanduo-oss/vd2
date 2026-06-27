@@ -74,9 +74,7 @@ const apiRows: [string, string, string][] = [
 
 <template>
   <section id="button-groups">
-    <h5 class="demo-title">
-      <i class="ph ph-squares-four"></i>Button Groups
-    </h5>
+    <h5 class="demo-title"><i class="ph ph-squares-four"></i>Button Groups</h5>
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
@@ -95,9 +93,7 @@ const apiRows: [string, string, string][] = [
               <button class="vd-btn vd-btn-outline">Three</button>
             </div>
             <br />
-            <p class="vd-mt-3">
-              Full width (<code>.vd-btn-group-full</code>):
-            </p>
+            <p class="vd-mt-3">Full width (<code>.vd-btn-group-full</code>):</p>
             <div class="vd-btn-group vd-btn-group-full">
               <button class="vd-btn vd-btn-secondary">A</button>
               <button class="vd-btn vd-btn-secondary">B</button>
@@ -120,18 +116,14 @@ const apiRows: [string, string, string][] = [
               <button class="vd-btn vd-btn-primary">Bottom</button>
             </div>
             <br />
-            <p class="vd-mt-3">
-              Small group (<code>.vd-btn-group-sm</code>):
-            </p>
+            <p class="vd-mt-3">Small group (<code>.vd-btn-group-sm</code>):</p>
             <div class="vd-btn-group vd-btn-group-sm vd-mb-3">
               <button class="vd-btn vd-btn-outline">S1</button>
               <button class="vd-btn vd-btn-outline">S2</button>
               <button class="vd-btn vd-btn-outline">S3</button>
             </div>
             <br />
-            <p class="vd-mt-3">
-              Large group (<code>.vd-btn-group-lg</code>):
-            </p>
+            <p class="vd-mt-3">Large group (<code>.vd-btn-group-lg</code>):</p>
             <div class="vd-btn-group vd-btn-group-lg">
               <button class="vd-btn vd-btn-outline">L1</button>
               <button class="vd-btn vd-btn-outline">L2</button>

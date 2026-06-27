@@ -198,8 +198,8 @@ const classRef: [string, string, string][] = [
     <div class="vd-alert vd-alert-info vd-mb-6">
       <i class="ph ph-info"></i>
       <div>
-        The main Vanduo bundle still includes framework-wide defaults for
-        native form controls in v1.4.1. Use the documented <code>.vd-*</code>
+        The main Vanduo bundle still includes framework-wide defaults for native
+        form controls in v1.4.1. Use the documented <code>.vd-*</code>
         form classes for stable component markup, and load app-specific
         overrides after Vanduo when embedding into an existing design system.
       </div>
@@ -379,10 +379,7 @@ const classRef: [string, string, string][] = [
     <!-- Input Groups + Sizes -->
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-form-input-groups"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-form-input-groups" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Input Groups</h6></div>
           <div class="vd-card-body">
             <div class="vd-form-group">
@@ -430,10 +427,7 @@ const classRef: [string, string, string][] = [
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-form-input-sizes"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-form-input-sizes" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Input Sizes</h6></div>
           <div class="vd-card-body">
             <div class="vd-form-group">

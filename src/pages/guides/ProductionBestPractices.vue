@@ -41,8 +41,8 @@ const practices: [string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      vd2 ships as a statically pre-rendered site. A small, repeatable build
-      and verification gate keeps deploys fast, accessible, and reproducible.
+      vd2 ships as a statically pre-rendered site. A small, repeatable build and
+      verification gate keeps deploys fast, accessible, and reproducible.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -64,8 +64,8 @@ const practices: [string, string][] = [
           <div class="vd-card-body">
             <DocCodeSnippet :shell="checksShell" :default-open="true" />
             <p class="vd-text-sm vd-text-muted vd-mt-3">
-              The SSG build is also a correctness check — it renders every
-              page on the server and surfaces any unguarded DOM access.
+              The SSG build is also a correctness check — it renders every page
+              on the server and surfaces any unguarded DOM access.
             </p>
           </div>
         </div>

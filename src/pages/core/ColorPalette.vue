@@ -336,14 +336,14 @@ const themingCss = `:root {
             <div class="vd-alert vd-alert-warning vd-mb-0">
               <i class="ph ph-shield-check"></i>
               <div>
-                <strong>Contrast &amp; accessibility.</strong> The default
-                brand step is <code>primary-5</code> (★), tuned for AA
-                contrast with white text. Because the
+                <strong>Contrast &amp; accessibility.</strong> The default brand
+                step is <code>primary-5</code> (★), tuned for AA contrast with
+                white text. Because the
                 <RouterLink to="/components/theme-customizer"
                   >Theme Customizer</RouterLink
                 >
-                lets users pick <em>any</em> primary, verify contrast for
-                custom colors — see
+                lets users pick <em>any</em> primary, verify contrast for custom
+                colors — see
                 <RouterLink to="/guides/accessibility"
                   >Accessibility Essentials</RouterLink
                 >.
@@ -474,9 +474,7 @@ const themingCss = `:root {
                 </div>
               </div>
               <div class="vd-col-12 vd-col-lg-6">
-                <p class="vd-text-sm vd-text-muted vd-mb-2">
-                  Gray (Fibonacci)
-                </p>
+                <p class="vd-text-sm vd-text-muted vd-mb-2">Gray (Fibonacci)</p>
                 <div class="color-scale">
                   <div
                     v-for="s in fibGray"
@@ -520,8 +518,8 @@ const themingCss = `:root {
             </p>
             <DocCodeSnippet :css="themingCss" />
             <p class="vd-text-sm vd-text-muted vd-mt-3">
-              Both <code>--vd-oc-*</code> and <code>--vd-fib-*</code> are
-              always defined, regardless of the active palette.
+              Both <code>--vd-oc-*</code> and <code>--vd-fib-*</code> are always
+              defined, regardless of the active palette.
             </p>
           </div>
         </div>

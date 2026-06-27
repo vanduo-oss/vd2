@@ -171,10 +171,7 @@ const events: [string, string, string][] = [
 
     <div class="vd-row">
       <div class="vd-col-12">
-        <div
-          id="demo-waypoint-sidebar"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-waypoint-sidebar" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6>Sidebar Navigation Scrollspy</h6>
           </div>
@@ -212,17 +209,16 @@ const events: [string, string, string][] = [
                 <div id="wp-section-usage" class="waypoint-demo-section">
                   <h4>Usage</h4>
                   <p>
-                    Waypoint supports vertical scroll containers of any
-                    height. Links are highlighted top-down - the topmost
-                    visible section wins. Works with both window scroll and
-                    overflow containers.
+                    Waypoint supports vertical scroll containers of any height.
+                    Links are highlighted top-down - the topmost visible section
+                    wins. Works with both window scroll and overflow containers.
                   </p>
                 </div>
                 <div id="wp-section-api" class="waypoint-demo-section">
                   <h4>API</h4>
                   <p>
-                    Call <code>VanduoWaypoint.refresh(nav)</code> after
-                    dynamic content changes. Destroy with
+                    Call <code>VanduoWaypoint.refresh(nav)</code> after dynamic
+                    content changes. Destroy with
                     <code>VanduoWaypoint.destroy(nav)</code> to clean up
                     observers.
                   </p>
@@ -343,8 +339,8 @@ const events: [string, string, string][] = [
               class="vd-text-sm vd-text-muted vd-mt-4"
               data-waypoint-demo-panel
             >
-              Getting started stays selected while the card remains anchored
-              in place.
+              Getting started stays selected while the card remains anchored in
+              place.
             </p>
           </div>
         </div>
@@ -509,8 +505,8 @@ const events: [string, string, string][] = [
             <code>aria-label="Table of contents"</code>
           </li>
           <li>
-            Active link receives <code>aria-current="true"</code> in addition
-            to the <code>.is-active</code> class
+            Active link receives <code>aria-current="true"</code> in addition to
+            the <code>.is-active</code> class
           </li>
           <li>
             Links use standard anchor elements for native keyboard navigation

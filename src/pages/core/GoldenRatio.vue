@@ -237,8 +237,8 @@ const aspectBadge = (v: "success" | "secondary"): string =>
           </div>
           <div class="vd-card-body">
             <p class="vd-mb-5">
-              Drag through the Fibonacci spacing scale. Each step's ratio to
-              the one before it sits near <strong>φ (1.618)</strong> — that
+              Drag through the Fibonacci spacing scale. Each step's ratio to the
+              one before it sits near <strong>φ (1.618)</strong> — that
               convergence is why the rhythm feels balanced without manual
               tuning.
             </p>

@@ -76,11 +76,11 @@ const engines: [string, string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Vanduo is intentionally a <strong>dual-engine</strong> design system.
-      The same look, feel, and Fibonacci-based design language is served by
-      two engines that share a single source of design tokens. Understanding
-      the three packages explains why some guides differ between the original
-      docs and this Vue site.
+      Vanduo is intentionally a <strong>dual-engine</strong> design system. The
+      same look, feel, and Fibonacci-based design language is served by two
+      engines that share a single source of design tokens. Understanding the
+      three packages explains why some guides differ between the original docs
+      and this Vue site.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -151,13 +151,10 @@ const engines: [string, string, string][] = [
             <ul>
               <li>Vue 3 single-page or SSR / SSG applications</li>
               <li>
-                You want reactive state, typed props, and component
-                composition
+                You want reactive state, typed props, and component composition
               </li>
               <li>Tree-shaking and route-level code splitting via Vite</li>
-              <li>
-                Theming through a Pinia store instead of global JS calls
-              </li>
+              <li>Theming through a Pinia store instead of global JS calls</li>
             </ul>
           </div>
         </div>

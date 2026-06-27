@@ -130,9 +130,9 @@ const classRows: [string, string][] = [
     <h5 class="demo-title"><i class="ph ph-tabs"></i>Tabs</h5>
     <p class="vd-mb-8">
       Organize content into switchable panes. Tabs support horizontal and
-      vertical layouts, multiple visual styles (default underline, boxed,
-      pills, bordered), size variants, and fade animations — all CSS-driven
-      with optional JavaScript for pane switching.
+      vertical layouts, multiple visual styles (default underline, boxed, pills,
+      bordered), size variants, and fade animations — all CSS-driven with
+      optional JavaScript for pane switching.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -192,8 +192,8 @@ const classRows: [string, string][] = [
                 </div>
                 <div class="vd-tab-pane" id="tab-default-3" role="tabpanel">
                   <p class="vd-mb-0">
-                    Tab content is lazy-loaded by default: only the active
-                    pane is visible until switched.
+                    Tab content is lazy-loaded by default: only the active pane
+                    is visible until switched.
                   </p>
                 </div>
               </div>
@@ -248,14 +248,13 @@ const classRows: [string, string][] = [
                 >
                   <p class="vd-mb-0">
                     Boxed tabs sit inside a rounded container with a subtle
-                    background. The active tab gets an elevated card
-                    appearance.
+                    background. The active tab gets an elevated card appearance.
                   </p>
                 </div>
                 <div class="vd-tab-pane" id="tab-boxed-2" role="tabpanel">
                   <p class="vd-mb-0">
-                    Security settings include two-factor authentication,
-                    session management, and API keys.
+                    Security settings include two-factor authentication, session
+                    management, and API keys.
                   </p>
                 </div>
                 <div class="vd-tab-pane" id="tab-boxed-3" role="tabpanel">
@@ -318,8 +317,8 @@ const classRows: [string, string][] = [
                   role="tabpanel"
                 >
                   <p class="vd-mb-0">
-                    Pill tabs use a solid background fill for the active state
-                    — great for dashboards and toolbars.
+                    Pill tabs use a solid background fill for the active state —
+                    great for dashboards and toolbars.
                   </p>
                 </div>
                 <div class="vd-tab-pane" id="tab-pill-2" role="tabpanel">
@@ -425,15 +424,10 @@ const classRows: [string, string][] = [
                 </li>
               </ul>
               <div class="vd-tab-content">
-                <div
-                  class="vd-tab-pane is-active"
-                  id="tab-v-1"
-                  role="tabpanel"
-                >
+                <div class="vd-tab-pane is-active" id="tab-v-1" role="tabpanel">
                   <p class="vd-mb-0">
-                    Vertical tabs stack the tab list on the left and content
-                    on the right — ideal for settings pages and multi-step
-                    forms.
+                    Vertical tabs stack the tab list on the left and content on
+                    the right — ideal for settings pages and multi-step forms.
                   </p>
                 </div>
                 <div class="vd-tab-pane" id="tab-v-2" role="tabpanel">
@@ -444,8 +438,7 @@ const classRows: [string, string][] = [
                 </div>
                 <div class="vd-tab-pane" id="tab-v-3" role="tabpanel">
                   <p class="vd-mb-0">
-                    Notification preferences for email, push, and in-app
-                    alerts.
+                    Notification preferences for email, push, and in-app alerts.
                   </p>
                 </div>
                 <div class="vd-tab-pane" id="tab-v-4" role="tabpanel">
@@ -657,8 +650,8 @@ const classRows: [string, string][] = [
                 <code>aria-disabled="true"</code>.
               </li>
               <li>
-                Tab content should be focusable (or contain focusable
-                elements) so keyboard users can reach it.
+                Tab content should be focusable (or contain focusable elements)
+                so keyboard users can reach it.
               </li>
             </ul>
           </div>

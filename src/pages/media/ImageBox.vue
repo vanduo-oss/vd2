@@ -21,22 +21,13 @@ const apiRows: [string, string][] = [
     ".vd-image-box-trigger",
     "Class on the thumbnail <img>. Adds a zoom-in cursor and hover scale.",
   ],
-  [
-    "data-image-box",
-    "Marks the element as a lightbox trigger (required).",
-  ],
+  ["data-image-box", "Marks the element as a lightbox trigger (required)."],
   [
     "data-image-box-full-src",
     "URL of the full-resolution image shown in the overlay.",
   ],
-  [
-    "data-image-box-caption",
-    "Caption text rendered beneath the full image.",
-  ],
-  [
-    ".vd-image-box-caption",
-    "Generated caption element inside the overlay.",
-  ],
+  ["data-image-box-caption", "Caption text rendered beneath the full image."],
+  [".vd-image-box-caption", "Generated caption element inside the overlay."],
 ];
 
 const basicHtml = `<!-- The thumbnail <img> is the trigger -->

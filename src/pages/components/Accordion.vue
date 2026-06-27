@@ -90,8 +90,8 @@ const apiRows: [string, string][] = [
     </h5>
     <p class="vd-mb-8">
       Expandable content sections for FAQs, settings panels, and progressive
-      disclosure. Use accordions to keep dense content scannable while
-      revealing details on demand.
+      disclosure. Use accordions to keep dense content scannable while revealing
+      details on demand.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -106,10 +106,7 @@ const apiRows: [string, string][] = [
                 class="accordion-item"
                 :class="{ 'is-open': basic[i] }"
               >
-                <button
-                  class="accordion-header"
-                  @click="basic[i] = !basic[i]"
-                >
+                <button class="accordion-header" @click="basic[i] = !basic[i]">
                   <span>{{ item.title }}</span>
                   <span class="accordion-icon"></span>
                 </button>
@@ -138,10 +135,7 @@ const apiRows: [string, string][] = [
                 class="accordion-item"
                 :class="{ 'is-open': flush[i] }"
               >
-                <button
-                  class="accordion-header"
-                  @click="flush[i] = !flush[i]"
-                >
+                <button class="accordion-header" @click="flush[i] = !flush[i]">
                   <span>{{ item.title }}</span>
                   <span class="accordion-icon"></span>
                 </button>

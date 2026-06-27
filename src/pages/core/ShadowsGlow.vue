@@ -70,8 +70,7 @@ const varsCss = `:root {
               <i class="ph ph-info"></i>
               <div>
                 <strong
-                  >Each level's Y-offset and blur are a Fibonacci
-                  pair.</strong
+                  >Each level's Y-offset and blur are a Fibonacci pair.</strong
                 >
                 Depth steps through the sequence —
                 <code>1/2 → 2/3 → 3/5 → 8/13 → 13/21 → 21/34</code> — so
@@ -103,9 +102,9 @@ const varsCss = `:root {
               </div>
             </div>
             <p class="vd-text-sm vd-text-muted vd-mb-0">
-              The same pairs drive the <code>.vd-shadow-*</code> utilities
-              below (<code>.vd-shadow-2xl</code> reaches 21/34). These
-              proportions come from the
+              The same pairs drive the <code>.vd-shadow-*</code> utilities below
+              (<code>.vd-shadow-2xl</code> reaches 21/34). These proportions
+              come from the
               <RouterLink to="/core/golden-ratio">Golden Ratio</RouterLink>
               system.
             </p>
@@ -261,9 +260,7 @@ const varsCss = `:root {
               >
                 <code>.shadow-success</code>
               </div>
-              <div
-                class="vd-p-3 vd-rounded-md vd-shadow-warning vd-bg-warning"
-              >
+              <div class="vd-p-3 vd-rounded-md vd-shadow-warning vd-bg-warning">
                 <code>.shadow-warning</code>
               </div>
               <div

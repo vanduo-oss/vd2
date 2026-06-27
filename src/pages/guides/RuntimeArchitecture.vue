@@ -172,9 +172,9 @@ const mapping: [string, string][] = [
       </div>
       <div class="vd-card-body">
         <p>
-          Because the CSS reads the same classes and attributes, the only
-          thing that changes is <em>who</em> wires the behaviour. A page
-          points a composable at its root and the rest is automatic:
+          Because the CSS reads the same classes and attributes, the only thing
+          that changes is <em>who</em> wires the behaviour. A page points a
+          composable at its root and the rest is automatic:
         </p>
         <DocCodeSnippet :js="usageJs" :default-open="true" />
         <p class="vd-text-sm vd-text-muted vd-mt-3">

@@ -554,16 +554,12 @@ const events: [string, string][] = [
       <strong>Vanduo Hex Grid</strong> is a standalone, canvas-rendered axial
       hex grid, installed separately from the framework. Pan, zoom, select
       hexes, and attach terrain or custom data. It reads Vanduo theme tokens,
-      ships a pure <code>@vanduo-oss/hex-grid/hex-math</code> subexport, and
-      an optional Vue 3 binding (<code>@vanduo-oss/hex-grid/vue</code>) used
-      here.
+      ships a pure <code>@vanduo-oss/hex-grid/hex-math</code> subexport, and an
+      optional Vue 3 binding (<code>@vanduo-oss/hex-grid/vue</code>) used here.
     </p>
 
     <div class="vd-row vd-mb-6">
-      <div
-        class="vd-col-12 vd-col-lg-8 vd-mb-6"
-        style="align-self: flex-start"
-      >
+      <div class="vd-col-12 vd-col-lg-8 vd-mb-6" style="align-self: flex-start">
         <div class="vd-card demo-card" style="padding: 1rem">
           <div
             class="hex-demo-container"
@@ -776,9 +772,7 @@ const events: [string, string][] = [
                 class="vd-text-sm vd-text-muted vd-mt-2 vd-mb-0"
               >
                 Click start hex, then end hex.
-                <span v-if="pathStartLabel">
-                  Start: {{ pathStartLabel }}</span
-                >
+                <span v-if="pathStartLabel"> Start: {{ pathStartLabel }}</span>
                 <span v-if="pathLength !== null">
                   · Path length: {{ pathLength }} hexes</span
                 >
@@ -805,9 +799,7 @@ const events: [string, string][] = [
 
     <div v-show="showInfo" class="vd-card vd-mb-6 demo-card">
       <div class="vd-card-body">
-        <h4 class="vd-mb-4">
-          <i class="ph ph-cursor-click"></i> Selected Hex
-        </h4>
+        <h4 class="vd-mb-4"><i class="ph ph-cursor-click"></i> Selected Hex</h4>
         <div class="vd-row">
           <div class="vd-col-6 vd-col-md-3 vd-mb-2">
             <span class="vd-text-sm vd-text-muted">Coordinates:</span>
@@ -953,8 +945,8 @@ const events: [string, string][] = [
 
         <h4 class="vd-mt-6">Pure math (<code>/hex-math</code>)</h4>
         <p class="vd-text-muted vd-mb-3">
-          Axial coordinate math and terrain tables, importable without a
-          canvas or the DOM — handy for game logic, tests, or Node.
+          Axial coordinate math and terrain tables, importable without a canvas
+          or the DOM — handy for game logic, tests, or Node.
         </p>
         <DocCodeSnippet :js="mathUsage" />
       </div>

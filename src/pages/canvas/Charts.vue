@@ -266,8 +266,8 @@ const vanillaOptions: [string, string][] = [
           </li>
           <li>
             The vanilla bundle exposes <code>window.VanduoCharts</code> and
-            registers with <code>Vanduo.init(root)</code> when the framework
-            is present.
+            registers with <code>Vanduo.init(root)</code> when the framework is
+            present.
           </li>
           <li>
             Charts read Vanduo theme tokens, so they follow the active theme

@@ -88,9 +88,9 @@ const containers = [
           </div>
           <div class="vd-card-body">
             <p class="vd-mb-5">
-              Both share the same 12-column flexbox engine — reach for
-              whichever fits the content. You can flip the live toggle in the
-              demos below to feel the difference.
+              Both share the same 12-column flexbox engine — reach for whichever
+              fits the content. You can flip the live toggle in the demos below
+              to feel the difference.
             </p>
             <div class="vd-row">
               <div class="vd-col-12 vd-col-md-6 vd-mb-4">
@@ -242,18 +242,14 @@ const containers = [
                 <div
                   class="vd-bg-warning vd-p-5 vd-rounded-md vd-text-center vd-mb-3"
                 >
-                  <strong>1st in HTML</strong><br /><code
-                    >.vd-order-last</code
-                  >
+                  <strong>1st in HTML</strong><br /><code>.vd-order-last</code>
                 </div>
               </div>
               <div class="vd-col-6 vd-order-first">
                 <div
                   class="vd-bg-secondary vd-p-5 vd-rounded-md vd-text-center vd-mb-3"
                 >
-                  <strong>2nd in HTML</strong><br /><code
-                    >.vd-order-first</code
-                  >
+                  <strong>2nd in HTML</strong><br /><code>.vd-order-first</code>
                 </div>
               </div>
             </div>
@@ -414,8 +410,8 @@ const containers = [
           <div class="vd-card-header"><h6>Fibonacci Gap Utilities</h6></div>
           <div class="vd-card-body">
             <p class="vd-mb-5 vd-text-sm vd-text-muted">
-              Gap utilities using Fibonacci values. Works with CSS Grid and
-              flex containers using the <code>gap</code> property.
+              Gap utilities using Fibonacci values. Works with CSS Grid and flex
+              containers using the <code>gap</code> property.
             </p>
             <div class="vd-d-flex vd-flex-col vd-gap-5">
               <div>
@@ -494,8 +490,8 @@ const containers = [
               Toggle between standard 12-column flexbox and Fibonacci CSS Grid
               proportions. Uses <code>data-layout-mode</code> attribute with a
               <code>data-grid-toggle</code> button. The Fibonacci mode
-              auto-detects column count and applies golden ratio (2 cols),
-              2:3:5 (3 cols), or 1:2:3:5 (4 cols) proportions.
+              auto-detects column count and applies golden ratio (2 cols), 2:3:5
+              (3 cols), or 1:2:3:5 (4 cols) proportions.
             </p>
 
             <button

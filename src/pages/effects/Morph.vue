@@ -132,9 +132,9 @@ const jsApi: [string, string][] = [
   <section id="morph" ref="root">
     <h5 class="demo-title"><i class="ph ph-drop"></i>Water Morph</h5>
     <p class="vd-mb-6">
-      A liquid wave content-swap effect. Click triggers an expanding radial
-      wave from the pointer position while the old content dissolves and the
-      new content emerges. Works on any element.
+      A liquid wave content-swap effect. Click triggers an expanding radial wave
+      from the pointer position while the old content dissolves and the new
+      content emerges. Works on any element.
     </p>
 
     <!-- Demo 1 + 2 -->
@@ -154,12 +154,12 @@ const jsApi: [string, string][] = [
                 id="demo-morph-toggle-btn"
               >
                 <span class="vd-morph-content vd-morph-current"
-                  ><i class="ph ph-sun" style="margin-right: 0.4rem"></i>
-                  Light Mode</span
+                  ><i class="ph ph-sun" style="margin-right: 0.4rem"></i> Light
+                  Mode</span
                 >
                 <span class="vd-morph-content vd-morph-next"
-                  ><i class="ph ph-moon" style="margin-right: 0.4rem"></i>
-                  Dark Mode</span
+                  ><i class="ph ph-moon" style="margin-right: 0.4rem"></i> Dark
+                  Mode</span
                 >
               </button>
             </div>
@@ -288,16 +288,13 @@ const jsApi: [string, string][] = [
             >
               <span class="vd-morph-content vd-morph-current">
                 <span class="morph-caption-title">Mountain Sunrise</span>
-                <span class="morph-caption-body"
-                  >Click to reveal details</span
-                >
+                <span class="morph-caption-body">Click to reveal details</span>
               </span>
               <span class="vd-morph-content vd-morph-next">
                 <span class="morph-caption-title">Mountain Sunrise</span>
                 <span class="morph-caption-body"
-                  >Golden light spills across alpine ridges at 5,200m
-                  elevation. Shot at f/8, 1/250s during the September
-                  equinox.</span
+                  >Golden light spills across alpine ridges at 5,200m elevation.
+                  Shot at f/8, 1/250s during the September equinox.</span
                 >
               </span>
             </div>
@@ -434,8 +431,8 @@ const jsApi: [string, string][] = [
       <div class="vd-card-body">
         <ul>
           <li>
-            Wave and shine layers use <code>aria-hidden="true"</code> and
-            carry no semantic content
+            Wave and shine layers use <code>aria-hidden="true"</code> and carry
+            no semantic content
           </li>
           <li>
             Animation fully respects

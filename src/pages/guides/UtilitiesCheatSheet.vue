@@ -57,16 +57,12 @@ const sections: [string, [string, string][]][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      A quick reference to Vanduo's utility classes. These are pure CSS and
-      work the same in static HTML and vd2 templates. Spacing, gaps, and radii
-      all follow the <a href="/guides/fibonacci">Fibonacci scale</a>.
+      A quick reference to Vanduo's utility classes. These are pure CSS and work
+      the same in static HTML and vd2 templates. Spacing, gaps, and radii all
+      follow the <a href="/guides/fibonacci">Fibonacci scale</a>.
     </p>
 
-    <div
-      v-for="[title, rows] in sections"
-      :key="title"
-      class="vd-row vd-mb-6"
-    >
+    <div v-for="[title, rows] in sections" :key="title" class="vd-row vd-mb-6">
       <div class="vd-col-12">
         <div class="vd-card demo-card">
           <div class="vd-card-header">

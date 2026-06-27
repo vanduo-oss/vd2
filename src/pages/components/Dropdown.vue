@@ -161,9 +161,9 @@ const placementHtml = `<!-- Dropup (opens above) -->
   <section id="dropdown" ref="root">
     <h5 class="demo-title"><i class="ph ph-caret-down"></i>Dropdown</h5>
     <p class="vd-mb-8">
-      Toggleable contextual overlays for displaying lists of links, actions,
-      or custom content. Dropdowns support directional placement, glass
-      styling, split buttons, and dark mode out of the box.
+      Toggleable contextual overlays for displaying lists of links, actions, or
+      custom content. Dropdowns support directional placement, glass styling,
+      split buttons, and dark mode out of the box.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -292,10 +292,7 @@ const placementHtml = `<!-- Dropup (opens above) -->
             "
           >
             <div class="vd-dropdown vd-dropdown-dropup">
-              <button
-                class="vd-btn vd-dropdown-toggle"
-                data-vd-dropdown-toggle
-              >
+              <button class="vd-btn vd-dropdown-toggle" data-vd-dropdown-toggle>
                 Dropup
               </button>
               <ul class="vd-dropdown-menu">
@@ -310,10 +307,7 @@ const placementHtml = `<!-- Dropup (opens above) -->
               </ul>
             </div>
             <div class="vd-dropdown vd-dropdown-dropright">
-              <button
-                class="vd-btn vd-dropdown-toggle"
-                data-vd-dropdown-toggle
-              >
+              <button class="vd-btn vd-dropdown-toggle" data-vd-dropdown-toggle>
                 Dropright
               </button>
               <ul class="vd-dropdown-menu">
@@ -323,10 +317,7 @@ const placementHtml = `<!-- Dropup (opens above) -->
               </ul>
             </div>
             <div class="vd-dropdown">
-              <button
-                class="vd-btn vd-dropdown-toggle"
-                data-vd-dropdown-toggle
-              >
+              <button class="vd-btn vd-dropdown-toggle" data-vd-dropdown-toggle>
                 End-aligned
               </button>
               <ul class="vd-dropdown-menu vd-dropdown-menu-end">
@@ -455,8 +446,8 @@ const placementHtml = `<!-- Dropup (opens above) -->
               </li>
               <li>
                 Arrow keys cycle items, <kbd>Home</kbd>/<kbd>End</kbd> jump,
-                <kbd>Escape</kbd> closes, typeahead jumps to the first
-                matching label.
+                <kbd>Escape</kbd> closes, typeahead jumps to the first matching
+                label.
               </li>
               <li>Focus is restored to the trigger when the menu closes.</li>
             </ul>

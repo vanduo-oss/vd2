@@ -144,25 +144,22 @@ const events: [string, string][] = [
   <section id="datepicker" ref="root">
     <h5 class="demo-title"><i class="ph ph-calendar-dots"></i>Datepicker</h5>
     <p class="vd-mb-5">
-      The <strong>VanduoDatepicker</strong> component attaches a calendar
-      popup to any text input. Supports custom date formats, min/max date
-      constraints, and month/year navigation — all driven by data attributes.
+      The <strong>VanduoDatepicker</strong> component attaches a calendar popup
+      to any text input. Supports custom date formats, min/max date constraints,
+      and month/year navigation — all driven by data attributes.
     </p>
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-datepicker-basic"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-datepicker-basic" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Basic Datepicker</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
-              Minimal setup: add <code>data-vd-datepicker</code> to a text
-              input (these demos use <code>readonly</code> so typing is off).
-              With no format attribute, picked dates are written as
-              <code>YYYY-MM-DD</code>. Focus the field to open the calendar
-              and choose a day.
+              Minimal setup: add <code>data-vd-datepicker</code> to a text input
+              (these demos use <code>readonly</code> so typing is off). With no
+              format attribute, picked dates are written as
+              <code>YYYY-MM-DD</code>. Focus the field to open the calendar and
+              choose a day.
             </p>
             <div class="vd-form-group">
               <label for="dp-basic">Select a Date</label>
@@ -220,10 +217,7 @@ const events: [string, string][] = [
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-datepicker-minmax"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-datepicker-minmax" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6>Min / Max Date Constraints</h6>
           </div>
@@ -231,8 +225,8 @@ const events: [string, string][] = [
             <p class="vd-text-sm vd-text-muted vd-mb-4">
               Use <code>data-vd-datepicker-min</code> and
               <code>data-vd-datepicker-max</code> with <code>YYYY-MM-DD</code>
-              bounds. Out-of-range days are disabled; the view snaps to a
-              month that contains selectable dates.
+              bounds. Out-of-range days are disabled; the view snaps to a month
+              that contains selectable dates.
             </p>
             <div class="vd-form-group">
               <label for="dp-minmax">Appointment (May 2026 only)</label>
@@ -263,9 +257,9 @@ const events: [string, string][] = [
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
               This card uses <code>DD.MM.YYYY</code> to show a non-default
-              format; navigation is the same as everywhere. Click the
-              month/year title to switch day → month → year (decade) views;
-              arrows step by month, year, or decade depending on the level.
+              format; navigation is the same as everywhere. Click the month/year
+              title to switch day → month → year (decade) views; arrows step by
+              month, year, or decade depending on the level.
             </p>
             <div class="vd-form-group">
               <label for="dp-nav">Event Date</label>
@@ -449,8 +443,8 @@ const events: [string, string][] = [
           </li>
           <li><kbd>Page Up</kbd> / <kbd>Page Down</kbd> navigate by month</li>
           <li>
-            <kbd>Enter</kbd> selects the focused date;
-            <kbd>Escape</kbd> closes the popup and returns focus to the input
+            <kbd>Enter</kbd> selects the focused date; <kbd>Escape</kbd> closes
+            the popup and returns focus to the input
           </li>
           <li>
             Disabled dates have <code>aria-disabled="true"</code> and are

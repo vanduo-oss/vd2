@@ -187,9 +187,9 @@ const apiRows: [string, string, string][] = [
   <section id="typography">
     <h5 class="demo-title"><i class="ph ph-text-aa"></i>Typography</h5>
     <p class="vd-mb-8">
-      A fluid, golden-ratio type system: ten size steps, φ-derived
-      line-heights, a tracking scale, and five runtime-switchable font
-      families — all driven by <code>--vd-*</code> tokens.
+      A fluid, golden-ratio type system: ten size steps, φ-derived line-heights,
+      a tracking scale, and five runtime-switchable font families — all driven
+      by <code>--vd-*</code> tokens.
     </p>
 
     <!-- Type scale -->
@@ -202,12 +202,12 @@ const apiRows: [string, string, string][] = [
               <i class="ph ph-info"></i>
               <div>
                 <strong>Every two steps multiply by φ (1.618).</strong>
-                The scale steps by <strong>√φ ≈ 1.272</strong>, so each pair
-                of steps lands on the golden ratio:
+                The scale steps by <strong>√φ ≈ 1.272</strong>, so each pair of
+                steps lands on the golden ratio:
                 16&nbsp;→&nbsp;26&nbsp;→&nbsp;42&nbsp;→&nbsp;68&nbsp;px. Sizes
-                <code>lg</code> and up use <code>clamp()</code> to scale
-                fluidly between a mobile (≈1.414, augmented fourth) and
-                desktop (φ) ratio — no breakpoints needed.
+                <code>lg</code> and up use <code>clamp()</code> to scale fluidly
+                between a mobile (≈1.414, augmented fourth) and desktop (φ)
+                ratio — no breakpoints needed.
               </div>
             </div>
 
@@ -334,12 +334,7 @@ const apiRows: [string, string, string][] = [
         <div class="vd-card vd-card-glow demo-card vd-mb-8">
           <div class="vd-card-header"><h6>Weights &amp; styles</h6></div>
           <div class="vd-card-body">
-            <p
-              v-for="w in weights"
-              :key="w.cls"
-              :class="w.cls"
-              class="vd-mb-2"
-            >
+            <p v-for="w in weights" :key="w.cls" :class="w.cls" class="vd-mb-2">
               {{ w.label }} · <code>{{ w.token }}</code> {{ w.value }}
             </p>
             <p class="vd-text-italic vd-mb-0">
@@ -373,8 +368,8 @@ const apiRows: [string, string, string][] = [
                   <li><code>lato</code> — friendly, rounded sans-serif</li>
                   <li><code>jetbrains-mono</code> — monospace for code</li>
                   <li>
-                    <code>system</code> — native system stack (same as
-                    omitting <code>data-font</code>)
+                    <code>system</code> — native system stack (same as omitting
+                    <code>data-font</code>)
                   </li>
                 </ul>
               </div>

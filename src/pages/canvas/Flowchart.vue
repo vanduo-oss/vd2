@@ -169,8 +169,8 @@ const events: [string, string][] = [
     <p class="vd-mb-8">
       <strong>Vanduo Flowchart</strong> is a standalone SVG flowchart editor,
       installed separately from the framework. Drag from the palette, connect
-      ports, edit text inline, and export/import JSON. It ships an optional
-      Vue 3 binding (<code>@vanduo-oss/flowchart/vue</code>) used here.
+      ports, edit text inline, and export/import JSON. It ships an optional Vue
+      3 binding (<code>@vanduo-oss/flowchart/vue</code>) used here.
     </p>
 
     <div class="vd-card demo-card vd-mb-6">

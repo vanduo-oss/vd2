@@ -491,15 +491,13 @@ VanduoMusicPlayer.destroyAll();`;
       volume, optional shuffle and repeat modes, seek bar, playlist, glass
       surface, and a detachable floating mode (corner placement, pointer-drag
       reposition, minimizable). Zero external dependencies, powered by the
-      native Audio API, and it automatically adapts to the active Vanduo
-      theme.
+      native Audio API, and it automatically adapts to the active Vanduo theme.
     </p>
     <p class="vd-text-sm vd-text-muted vd-mb-8">
       Install the player separately from the core framework. All live demos
       below use a bundled sample playlist from <em>Invent the Universe</em>,
-      with <em>Pale Blue Dot</em> as the default first track. Ships an
-      optional Vue 3 binding (<code>@vanduo-oss/music-player/vue</code>) used
-      here.
+      with <em>Pale Blue Dot</em> as the default first track. Ships an optional
+      Vue 3 binding (<code>@vanduo-oss/music-player/vue</code>) used here.
     </p>
 
     <!-- Minimal + progress -->
@@ -713,8 +711,8 @@ VanduoMusicPlayer.destroyAll();`;
             <h6>Detachable — draggable</h6>
             <p class="vd-text-sm vd-text-muted vd-mb-0">
               <code>draggable: true</code> adds a drag handle when floating.
-              Still supports minimize/expand. Free positioning overrides
-              corner presets.
+              Still supports minimize/expand. Free positioning overrides corner
+              presets.
             </p>
           </div>
           <div class="vd-card-body">

@@ -144,9 +144,7 @@ const events: [string, string, string][] = [
         <aside class="vd-offcanvas" id="offcanvas-left-demo">
           <div class="vd-sidenav-header">
             <h4 class="vd-sidenav-title">Left Panel</h4>
-            <button class="vd-sidenav-close" aria-label="Close">
-              &times;
-            </button>
+            <button class="vd-sidenav-close" aria-label="Close">&times;</button>
           </div>
           <div class="vd-sidenav-body">
             <p>Default offcanvas slides in from the left edge.</p>
@@ -181,9 +179,7 @@ const events: [string, string, string][] = [
         >
           <div class="vd-sidenav-header">
             <h4 class="vd-sidenav-title">Right Panel</h4>
-            <button class="vd-sidenav-close" aria-label="Close">
-              &times;
-            </button>
+            <button class="vd-sidenav-close" aria-label="Close">&times;</button>
           </div>
           <div class="vd-sidenav-body">
             <p>
@@ -224,14 +220,12 @@ const events: [string, string, string][] = [
         >
           <div class="vd-sidenav-header">
             <h4 class="vd-sidenav-title">Top Panel</h4>
-            <button class="vd-sidenav-close" aria-label="Close">
-              &times;
-            </button>
+            <button class="vd-sidenav-close" aria-label="Close">&times;</button>
           </div>
           <div class="vd-sidenav-body">
             <p>
-              Full-width panel sliding down from the top edge — great for
-              search overlays or notification trays.
+              Full-width panel sliding down from the top edge — great for search
+              overlays or notification trays.
             </p>
           </div>
         </aside>
@@ -239,10 +233,7 @@ const events: [string, string, string][] = [
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-offcanvas-bottom"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-offcanvas-bottom" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Bottom</h6></div>
           <div
             class="vd-card-body"
@@ -268,9 +259,7 @@ const events: [string, string, string][] = [
         >
           <div class="vd-sidenav-header">
             <h4 class="vd-sidenav-title">Bottom Panel</h4>
-            <button class="vd-sidenav-close" aria-label="Close">
-              &times;
-            </button>
+            <button class="vd-sidenav-close" aria-label="Close">&times;</button>
           </div>
           <div class="vd-sidenav-body">
             <p>
@@ -294,8 +283,8 @@ const events: [string, string, string][] = [
             <p class="vd-mb-4">
               You can set the slide direction entirely through the
               <code>data-vd-position</code> attribute instead of adding
-              directional CSS classes. The JS reads this attribute at init
-              time and applies the correct transform.
+              directional CSS classes. The JS reads this attribute at init time
+              and applies the correct transform.
             </p>
             <DocCodeSnippet :html="dataPosHtml" />
           </div>
@@ -460,8 +449,8 @@ const events: [string, string, string][] = [
             <code>aria-modal="true"</code> when open
           </li>
           <li>
-            Close button includes <code>aria-label="Close"</code> for
-            assistive technology
+            Close button includes <code>aria-label="Close"</code> for assistive
+            technology
           </li>
           <li>
             Focus is trapped within the panel while open and returned to the

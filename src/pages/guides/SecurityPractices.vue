@@ -46,8 +46,8 @@ const practices: [string, string][] = [
     </h5>
     <p class="vd-mb-6">
       Vanduo is presentation-layer code, but a few habits keep a vd2 app safe.
-      The engine is designed to be CSP-friendly and conservative about where
-      it will fetch or render external content.
+      The engine is designed to be CSP-friendly and conservative about where it
+      will fetch or render external content.
     </p>
 
     <div class="vd-row vd-mb-6">

@@ -290,8 +290,8 @@ const sizeVariants = [
                 />Noise backdrop</label
               >
               <label class="glass-control-chip"
-                ><input type="checkbox" id="glass-force-hover" />Force
-                floating hover</label
+                ><input type="checkbox" id="glass-force-hover" />Force floating
+                hover</label
               >
             </div>
           </div>
@@ -447,10 +447,7 @@ const sizeVariants = [
     <!-- Component integration -->
     <div class="vd-row">
       <div class="vd-col-12">
-        <div
-          id="demo-glass-components"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-glass-components" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Component Integration</h6></div>
           <div
             class="vd-card-body"
@@ -511,11 +508,7 @@ const sizeVariants = [
               </div>
             </div>
             <div
-              style="
-                display: flex;
-                justify-content: flex-end;
-                margin-top: 1rem;
-              "
+              style="display: flex; justify-content: flex-end; margin-top: 1rem"
             >
               <button class="vd-fab vd-fab-glass" aria-label="Glass action">
                 <i class="ph ph-plus"></i>
@@ -587,8 +580,8 @@ const sizeVariants = [
             <ul>
               <li>
                 Glass classes include
-                <code>prefers-reduced-transparency: reduce</code> fallbacks
-                that disable blur and return to solid surfaces.
+                <code>prefers-reduced-transparency: reduce</code> fallbacks that
+                disable blur and return to solid surfaces.
               </li>
               <li>
                 Floating interactions respect
@@ -638,8 +631,8 @@ const sizeVariants = [
           >Scroll-Activated Glass
         </h5>
         <p class="vd-mb-4">
-          Two complementary APIs let you activate glass effects on scroll
-          rather than at page-load time. The framework handles all the
+          Two complementary APIs let you activate glass effects on scroll rather
+          than at page-load time. The framework handles all the
           observer/listener logic — no custom JavaScript required beyond a
           single wiring call.
         </p>
@@ -669,16 +662,16 @@ const sizeVariants = [
               The navbar starts fully transparent and gains the frosted glass
               surface once the user scrolls past its height (or a custom
               threshold set with <code>data-scroll-threshold</code>). The
-              <code>.vd-navbar-scrolled</code> class is toggled automatically
-              by the framework.
+              <code>.vd-navbar-scrolled</code> class is toggled automatically by
+              the framework.
             </p>
             <DocCodeSnippet :html="navbarGlassHtml" default-open />
             <p
               class="vd-mt-3 vd-mb-0"
               style="font-size: 0.875rem; color: var(--vd-text-secondary)"
             >
-              The docs navbar above is a live example — scroll this page to
-              see the effect.
+              The docs navbar above is a live example — scroll this page to see
+              the effect.
             </p>
           </div>
         </div>
@@ -735,11 +728,7 @@ const sizeVariants = [
                 id="glass-scroll-sentinel"
                 style="
                   height: 80px;
-                  background: linear-gradient(
-                    135deg,
-                    #8ec5fc 0%,
-                    #e0c3fc 100%
-                  );
+                  background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
                   display: flex;
                   align-items: center;
                   justify-content: center;
@@ -752,11 +741,7 @@ const sizeVariants = [
               <div
                 style="
                   padding: 1.5rem;
-                  background: linear-gradient(
-                    160deg,
-                    #d9afd9 0%,
-                    #97d9e1 100%
-                  );
+                  background: linear-gradient(160deg, #d9afd9 0%, #97d9e1 100%);
                   min-height: 400px;
                 "
               >
@@ -778,8 +763,8 @@ const sizeVariants = [
                   >
                 </div>
                 <p style="font-size: 0.875rem; opacity: 0.8; margin: 0">
-                  Scroll inside this box to see the glass surface activate
-                  once the sentinel element above leaves the viewport.
+                  Scroll inside this box to see the glass surface activate once
+                  the sentinel element above leaves the viewport.
                 </p>
                 <div style="height: 300px"></div>
               </div>

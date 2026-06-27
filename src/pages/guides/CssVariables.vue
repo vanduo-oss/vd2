@@ -66,9 +66,9 @@ const tiers: [string, string][] = [
     </h5>
     <p class="vd-mb-6">
       Every colour, space, radius, and font in Vanduo is a CSS custom property
-      (<code>--vd-*</code>). Override them in your own stylesheet and the
-      whole system updates — no recompile, no JavaScript. This token layer is
-      shared by both engines and is owned by <code>@vanduo-oss/core</code>.
+      (<code>--vd-*</code>). Override them in your own stylesheet and the whole
+      system updates — no recompile, no JavaScript. This token layer is shared
+      by both engines and is owned by <code>@vanduo-oss/core</code>.
     </p>
 
     <div class="vd-row vd-mb-6">

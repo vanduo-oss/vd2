@@ -159,10 +159,7 @@ const vue3Api: [string, string][] = [
     <!-- Basic -->
     <div class="vd-row">
       <div class="vd-col-12">
-        <div
-          id="demo-pagination-basic"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-pagination-basic" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Basic</h6></div>
           <div class="vd-card-body">
             <VdPagination v-model="basicPage" :total="5" />
@@ -178,10 +175,7 @@ const vue3Api: [string, string][] = [
     <!-- Sizes -->
     <div class="vd-row">
       <div class="vd-col-12">
-        <div
-          id="demo-pagination-sizes"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-pagination-sizes" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Sizes</h6></div>
           <div
             class="vd-card-body"
@@ -199,21 +193,14 @@ const vue3Api: [string, string][] = [
     <!-- Alignment -->
     <div class="vd-row">
       <div class="vd-col-12">
-        <div
-          id="demo-pagination-align"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-pagination-align" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Alignment</h6></div>
           <div
             class="vd-card-body"
             style="display: flex; flex-direction: column; gap: 1rem"
           >
             <VdPagination v-model="alignLeftPage" :total="6" align="left" />
-            <VdPagination
-              v-model="alignCenterPage"
-              :total="6"
-              align="center"
-            />
+            <VdPagination v-model="alignCenterPage" :total="6" align="center" />
             <VdPagination v-model="alignRightPage" :total="6" align="right" />
             <DocCodeSnippet :html="alignHtml" />
           </div>
@@ -235,11 +222,7 @@ const vue3Api: [string, string][] = [
               always shows the first and last page plus a window around the
               current page, separated by “…”.
             </p>
-            <VdPagination
-              v-model="ellipsisPage"
-              :total="20"
-              :max-visible="7"
-            />
+            <VdPagination v-model="ellipsisPage" :total="20" :max-visible="7" />
             <p class="vd-text-sm vd-text-muted vd-mt-3">
               Current page: {{ ellipsisPage }}
             </p>
@@ -419,20 +402,18 @@ const vue3Api: [string, string][] = [
             The control is wrapped in
             <code>&lt;nav aria-label="Pagination"&gt;</code>
           </li>
-          <li>
-            The active page link carries <code>aria-current="page"</code>
-          </li>
+          <li>The active page link carries <code>aria-current="page"</code></li>
           <li>
             Each page link has a descriptive <code>aria-label</code> (e.g.
             <code>"Page 4"</code>)
           </li>
           <li>
-            Ellipses use <code>aria-hidden="true"</code> so they are skipped
-            by screen readers
+            Ellipses use <code>aria-hidden="true"</code> so they are skipped by
+            screen readers
           </li>
           <li>
-            Previous / Next become <code>.disabled</code> (and
-            non-interactive) at the range boundaries
+            Previous / Next become <code>.disabled</code> (and non-interactive)
+            at the range boundaries
           </li>
         </ul>
       </div>

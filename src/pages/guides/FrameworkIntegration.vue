@@ -34,8 +34,7 @@ const staticHtml = `<!-- Plain HTML / server-rendered — the IIFE bundle -->
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Vanduo's styling is just CSS, so it drops into any stack. How you wire
-      the
+      Vanduo's styling is just CSS, so it drops into any stack. How you wire the
       <em>behaviour</em> depends on the host framework: Vue apps use the vd2
       engine, other frameworks use the Vanilla runtime scoped to a mounted
       subtree, and static pages use the IIFE bundle.
@@ -78,9 +77,9 @@ const staticHtml = `<!-- Plain HTML / server-rendered — the IIFE bundle -->
       <div class="vd-card-body">
         <DocCodeSnippet :html="staticHtml" :default-open="true" />
         <p class="vd-text-sm vd-text-muted vd-mt-3">
-          The key rule across stacks: initialise <strong>after</strong> the
-          host framework has rendered the DOM, and tear down before it removes
-          it. See
+          The key rule across stacks: initialise <strong>after</strong> the host
+          framework has rendered the DOM, and tear down before it removes it.
+          See
           <a href="/guides/lifecycle-manager">Lifecycle &amp; cleanup</a> and
           <a href="/guides/esm-vs-iife">ESM vs IIFE</a>.
         </p>

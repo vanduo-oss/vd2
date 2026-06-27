@@ -29,10 +29,10 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
       <i class="ph ph-circle-notch"></i>Preloader &amp; loading patterns
     </h5>
     <p class="vd-mb-8 vd-text-muted">
-      Patterns for showing progress during navigation, lazy-loaded sections,
-      and async work. Spinner markup, modifiers, quad loader
-      (<code>.vd-dynamic-loader*</code>), accessibility notes, and the full
-      CSS class reference live on
+      Patterns for showing progress during navigation, lazy-loaded sections, and
+      async work. Spinner markup, modifiers, quad loader
+      (<code>.vd-dynamic-loader*</code>), accessibility notes, and the full CSS
+      class reference live on
       <RouterLink to="/components/spinner">Spinners</RouterLink>. Determinate
       bars (sizes, stripes, indeterminate, stacked fills, API) are documented
       under <RouterLink to="/components/progress">Progress</RouterLink>.
@@ -111,12 +111,8 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
             </p>
             <div class="vd-dynamic-loader vd-mb-0" style="padding: 2rem 1rem">
               <div class="vd-dynamic-loader-grid">
-                <div
-                  class="vd-spinner vd-spinner-sm vd-spinner-success"
-                ></div>
-                <div
-                  class="vd-spinner vd-spinner-sm vd-spinner-warning"
-                ></div>
+                <div class="vd-spinner vd-spinner-sm vd-spinner-success"></div>
+                <div class="vd-spinner vd-spinner-sm vd-spinner-warning"></div>
                 <div class="vd-spinner vd-spinner-sm vd-spinner-error"></div>
                 <div class="vd-spinner vd-spinner-sm vd-spinner-info"></div>
               </div>
@@ -136,8 +132,8 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
           <div class="vd-card-header"><h6>Skeleton + quad overlay</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-3">
-              Use <code>.vd-dynamic-loader-card</code> so the loader sits
-              above skeleton placeholders with the built-in scrim (see
+              Use <code>.vd-dynamic-loader-card</code> so the loader sits above
+              skeleton placeholders with the built-in scrim (see
               <RouterLink to="/components/spinner">Spinners</RouterLink>).
             </p>
             <div class="vd-dynamic-loader-card" style="min-height: 200px">
@@ -149,9 +145,7 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
                   <div
                     class="vd-spinner vd-spinner-sm vd-spinner-warning"
                   ></div>
-                  <div
-                    class="vd-spinner vd-spinner-sm vd-spinner-error"
-                  ></div>
+                  <div class="vd-spinner vd-spinner-sm vd-spinner-error"></div>
                   <div class="vd-spinner vd-spinner-sm vd-spinner-info"></div>
                 </div>
                 <div class="vd-dynamic-loader-text">Loading section...</div>
@@ -175,16 +169,18 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
           <div class="vd-card-header"><h6>Copy-paste patterns</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-3">
-              These snippets rely only on classes from the Vanduo bundle
-              (<code>vanduo.css</code> imports <code>spinner.css</code>). No
-              separate "required CSS" block.
+              These snippets rely only on classes from the Vanduo bundle (<code
+                >vanduo.css</code
+              >
+              imports <code>spinner.css</code>). No separate "required CSS"
+              block.
             </p>
             <DocCodeSnippet :html="patternsHtml" />
             <p class="vd-text-sm vd-text-muted vd-mt-3 vd-mb-0">
               <strong>This documentation site</strong> builds similar
-              placeholders in <code>docs/js/app.js</code> (section fetch,
-              scroll loader, page transitions), intentionally separate from
-              the reusable <code>VanduoLazyLoad</code> helper in
+              placeholders in <code>docs/js/app.js</code> (section fetch, scroll
+              loader, page transitions), intentionally separate from the
+              reusable <code>VanduoLazyLoad</code> helper in
               <code>docs/js/components/lazy-load.js</code>.
             </p>
           </div>

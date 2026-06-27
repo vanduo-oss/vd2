@@ -134,9 +134,7 @@ const people = [
                   <div class="vd-collection-text">Click to view details</div>
                 </div>
                 <div class="vd-collection-action">
-                  <button class="vd-btn vd-btn-sm vd-btn-outline">
-                    View
-                  </button>
+                  <button class="vd-btn vd-btn-sm vd-btn-outline">View</button>
                 </div>
               </li>
               <li class="vd-collection-item">
@@ -145,9 +143,7 @@ const people = [
                   <div class="vd-collection-text">With action button</div>
                 </div>
                 <div class="vd-collection-action">
-                  <button class="vd-btn vd-btn-sm vd-btn-outline">
-                    View
-                  </button>
+                  <button class="vd-btn vd-btn-sm vd-btn-outline">View</button>
                 </div>
               </li>
             </ul>

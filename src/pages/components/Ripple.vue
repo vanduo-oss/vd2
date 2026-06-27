@@ -168,8 +168,8 @@ const basicHtml = `<!-- Button with ripple -->
                 animation when set.
               </li>
               <li>
-                Ripples carry <code>aria-hidden="true"</code> so screen
-                readers ignore them.
+                Ripples carry <code>aria-hidden="true"</code> so screen readers
+                ignore them.
               </li>
             </ul>
           </div>

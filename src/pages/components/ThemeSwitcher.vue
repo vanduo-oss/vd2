@@ -161,11 +161,10 @@ const cssApi: [string, string, string][] = [
   <section id="theme-switcher">
     <h5 class="demo-title"><i class="ph ph-moon"></i>Theme Switcher</h5>
     <p class="vd-mb-8">
-      The Theme Switcher is a lightweight component for toggling between
-      light, dark, and system color modes. Unlike the full Theme Customizer,
-      it focuses solely on the color mode toggle without additional
-      customization options. Perfect for when you need a simple dark mode
-      button.
+      The Theme Switcher is a lightweight component for toggling between light,
+      dark, and system color modes. Unlike the full Theme Customizer, it focuses
+      solely on the color mode toggle without additional customization options.
+      Perfect for when you need a simple dark mode button.
     </p>
 
     <!-- Live Demo -->
@@ -175,8 +174,8 @@ const cssApi: [string, string, string][] = [
       </div>
       <div class="vd-card-body">
         <p class="vd-mb-5">
-          Try both variants — icon menu for navbars, cycle button for
-          one-click toggling:
+          Try both variants — icon menu for navbars, cycle button for one-click
+          toggling:
         </p>
         <div id="theme-switcher-demo" class="vd-row vd-mb-5">
           <div class="vd-col-12 vd-col-md-6">
@@ -217,11 +216,7 @@ const cssApi: [string, string, string][] = [
                       :aria-checked="current === opt"
                       @click="pick(opt)"
                     >
-                      <i
-                        class="ph"
-                        :class="icons[opt]"
-                        aria-hidden="true"
-                      ></i>
+                      <i class="ph" :class="icons[opt]" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
@@ -260,10 +255,10 @@ const cssApi: [string, string, string][] = [
     <div class="vd-alert vd-alert-info vd-mb-8">
       <i class="ph ph-info"></i>
       <div>
-        <strong>Coordination with ThemeCustomizer:</strong> When both
-        components are present, they automatically stay in sync. Changing the
-        theme via ThemeSwitcher will also swap the primary color if you're
-        using the default per-theme colors (PRIMARY_LIGHT / PRIMARY_DARK).
+        <strong>Coordination with ThemeCustomizer:</strong> When both components
+        are present, they automatically stay in sync. Changing the theme via
+        ThemeSwitcher will also swap the primary color if you're using the
+        default per-theme colors (PRIMARY_LIGHT / PRIMARY_DARK).
       </div>
     </div>
 
@@ -379,8 +374,8 @@ const cssApi: [string, string, string][] = [
             <DocCodeSnippet :js="perThemeJs" />
             <p class="vd-mt-5 vd-text-sm vd-text-muted">
               When the user switches themes, the primary color automatically
-              changes if they're using the default. If they've manually
-              selected a color, it stays unchanged.
+              changes if they're using the default. If they've manually selected
+              a color, it stays unchanged.
             </p>
           </div>
         </div>

@@ -176,8 +176,8 @@ const jsMethods: [string, string][] = [
   <section id="tooltips" ref="root">
     <h5 class="demo-title"><i class="ph ph-chat-centered"></i>Tooltips</h5>
     <p class="vd-mb-8">
-      Contextual hover overlays that display supplementary information.
-      Tooltips support four directional placements (top, bottom, left, right),
+      Contextual hover overlays that display supplementary information. Tooltips
+      support four directional placements (top, bottom, left, right),
       light/dark/glass variants, size tiers, and HTML content. All positioning
       and visibility are handled via data attributes and CSS — minimal
       JavaScript is required for initialization.
@@ -518,13 +518,13 @@ const jsMethods: [string, string][] = [
                 hover.
               </li>
               <li>
-                Use <code>aria-describedby</code> on the trigger pointing to
-                the tooltip element so screen readers announce the tooltip
-                content when focus lands on it.
+                Use <code>aria-describedby</code> on the trigger pointing to the
+                tooltip element so screen readers announce the tooltip content
+                when focus lands on it.
               </li>
               <li>
-                Tooltips with interactive content (links, buttons) should use
-                a popover or modal instead — tooltips are not focus traps.
+                Tooltips with interactive content (links, buttons) should use a
+                popover or modal instead — tooltips are not focus traps.
               </li>
               <li>
                 Avoid tooltips that exceed <code>--vd-tooltip-max-width</code>

@@ -307,10 +307,10 @@ const vue3Api: [string, string][] = [
   <section id="tree-view">
     <h5 class="demo-title"><i class="ph ph-tree-structure"></i>Tree View</h5>
     <p class="vd-mb-5">
-      The <strong>VanduoTree</strong> component renders hierarchical data as
-      an expandable/collapsible tree. Supports checkbox selection with
-      parent-child cascade, connection lines, and initial open state — all
-      configured via a single JSON data attribute.
+      The <strong>VanduoTree</strong> component renders hierarchical data as an
+      expandable/collapsible tree. Supports checkbox selection with parent-child
+      cascade, connection lines, and initial open state — all configured via a
+      single JSON data attribute.
     </p>
 
     <div class="vd-row">
@@ -357,9 +357,9 @@ const vue3Api: [string, string][] = [
           <div class="vd-card-header"><h6>Generated HTML Structure</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
-              The component generates the following DOM structure from the
-              JSON data. You can style each part using the CSS classes listed
-              in the API reference.
+              The component generates the following DOM structure from the JSON
+              data. You can style each part using the CSS classes listed in the
+              API reference.
             </p>
             <DocCodeSnippet :html="structureHtml" :default-open="true" />
           </div>
@@ -547,16 +547,14 @@ const vue3Api: [string, string][] = [
             <kbd>→</kbd> expands a branch; <kbd>←</kbd> collapses it
           </li>
           <li>
-            <kbd>Home</kbd> jumps to the first node; <kbd>End</kbd> jumps to
-            the last visible node
+            <kbd>Home</kbd> jumps to the first node; <kbd>End</kbd> jumps to the
+            last visible node
           </li>
           <li><kbd>Space</kbd> toggles the checkbox on checkbox trees</li>
+          <li><kbd>Enter</kbd> activates (selects/expands) the focused node</li>
           <li>
-            <kbd>Enter</kbd> activates (selects/expands) the focused node
-          </li>
-          <li>
-            Type-ahead: pressing a letter key jumps to the next node whose
-            label starts with that character
+            Type-ahead: pressing a letter key jumps to the next node whose label
+            starts with that character
           </li>
         </ul>
       </div>

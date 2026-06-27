@@ -224,9 +224,9 @@ const chipText = (hex: string): string =>
     </h5>
     <p class="vd-mb-8">
       The Theme Customizer is a powerful component that allows users to
-      personalize the framework's appearance in real-time. It provides
-      controls for primary color, neutral color, border radius, font family,
-      and color mode (light/dark/system), all on top of the default
+      personalize the framework's appearance in real-time. It provides controls
+      for primary color, neutral color, border radius, font family, and color
+      mode (light/dark/system), all on top of the default
       <strong>Open Color</strong> palette. For color-mode-only needs, see the
       <RouterLink to="/components/theme-switcher">Theme Switcher</RouterLink>
       or the
@@ -367,14 +367,14 @@ const chipText = (hex: string): string =>
           <div class="vd-card-header"><h6>Quick Start</h6></div>
           <div class="vd-card-body">
             <p>
-              Add a trigger button anywhere in your page to open the
-              customizer panel:
+              Add a trigger button anywhere in your page to open the customizer
+              panel:
             </p>
             <DocCodeSnippet :html="quickStartHtml" />
             <p class="vd-mt-5">
               <strong>Try it:</strong> Click the
-              <i class="ph ph-paint-roller"></i> icon in the navbar to open
-              the Theme Customizer.
+              <i class="ph ph-paint-roller"></i> icon in the navbar to open the
+              Theme Customizer.
             </p>
           </div>
         </div>
@@ -389,20 +389,20 @@ const chipText = (hex: string): string =>
                 (golden-angle, optional)
               </li>
               <li>
-                <strong>Primary Color:</strong> 18 color options re-toned on
-                the active palette
+                <strong>Primary Color:</strong> 18 color options re-toned on the
+                active palette
               </li>
               <li>
-                <strong>Neutral Color:</strong> 6 gray scale variants
-                (Charcoal, Gray, Slate, Zinc, Neutral, Stone)
+                <strong>Neutral Color:</strong> 6 gray scale variants (Charcoal,
+                Gray, Slate, Zinc, Neutral, Stone)
               </li>
               <li>
-                <strong>Border Radius:</strong> 5 presets (0, 0.125rem,
-                0.25rem, 0.375rem, 0.5rem)
+                <strong>Border Radius:</strong> 5 presets (0, 0.125rem, 0.25rem,
+                0.375rem, 0.5rem)
               </li>
               <li>
-                <strong>Font Family:</strong> 5 curated options (JetBrains
-                Mono, System, Ubuntu, Lato, Open Sans)
+                <strong>Font Family:</strong> 5 curated options (JetBrains Mono,
+                System, Ubuntu, Lato, Open Sans)
               </li>
               <li>
                 <strong>Color Mode:</strong> System (default), Dark, or Light

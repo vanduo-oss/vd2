@@ -154,8 +154,8 @@ const apiRows: [string, string, string][] = [
 
     <h4 id="api" class="docs-heading">Toast API Reference</h4>
     <p class="vd-mb-5">
-      Toasts are generated dynamically via JavaScript. The configuration
-      object accepts the following fields:
+      Toasts are generated dynamically via JavaScript. The configuration object
+      accepts the following fields:
     </p>
     <div class="vd-table-responsive" style="margin-bottom: 3rem">
       <table class="vd-table vd-table-hover">

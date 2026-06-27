@@ -179,10 +179,7 @@ const flexRow =
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-spinner-dots-grow"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-spinner-dots-grow" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6>Dots &amp; Growing Spinner</h6>
           </div>
@@ -404,8 +401,8 @@ const flexRow =
                 prevent repeated submissions.
               </li>
               <li>
-                For page-level loading (quad loader), wrap it in an element
-                with <code>role="status"</code> and
+                For page-level loading (quad loader), wrap it in an element with
+                <code>role="status"</code> and
                 <code>aria-live="polite"</code> so screen readers announce the
                 loading state.
               </li>

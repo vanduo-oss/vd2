@@ -135,9 +135,7 @@ const apiRows: [string, string, string][] = [
         <aside class="vd-sidenav" id="demo-sidenav-inline" aria-label="Menu">
           <div class="vd-sidenav-header">
             <h3 class="vd-sidenav-title">Menu</h3>
-            <button class="vd-sidenav-close" aria-label="Close">
-              &times;
-            </button>
+            <button class="vd-sidenav-close" aria-label="Close">&times;</button>
           </div>
           <div class="vd-sidenav-body">
             <ul class="vd-sidenav-nav">

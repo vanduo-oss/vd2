@@ -75,8 +75,8 @@ const attrs: [string, string, string][] = [
     <p class="vd-mb-6">
       Both engines theme the same way: the CSS reads
       <code>data-*</code> attributes on <code>&lt;html&gt;</code>. The Vanilla
-      engine sets them with imperative JS; vd2 drives them through a Pinia
-      store (<code>useThemeStore</code>) that also persists the choice to
+      engine sets them with imperative JS; vd2 drives them through a Pinia store
+      (<code>useThemeStore</code>) that also persists the choice to
       <code>localStorage</code> and re-applies it on load.
     </p>
 
@@ -136,8 +136,8 @@ const attrs: [string, string, string][] = [
             </div>
             <p class="vd-text-sm vd-text-muted vd-mt-3">
               The option lists (hue names, neutrals, radii, fonts) come from
-              <code>@vanduo-oss/core</code> so they match the Vanilla
-              customizer exactly — see
+              <code>@vanduo-oss/core</code> so they match the Vanilla customizer
+              exactly — see
               <a href="/guides/vanduo-ecosystem">The Vanduo Ecosystem</a>.
             </p>
           </div>

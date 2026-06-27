@@ -114,14 +114,10 @@ const apiRows: [string, string, string][] = [
                         >
                       </li>
                       <li>
-                        <a href="#" class="vd-nav-link" @click.prevent
-                          >Docs</a
-                        >
+                        <a href="#" class="vd-nav-link" @click.prevent>Docs</a>
                       </li>
                       <li>
-                        <a href="#" class="vd-nav-link" @click.prevent
-                          >About</a
-                        >
+                        <a href="#" class="vd-nav-link" @click.prevent>About</a>
                       </li>
                     </ul>
                     <div class="vd-navbar-actions">
@@ -175,8 +171,7 @@ const apiRows: [string, string, string][] = [
             <p class="vd-text-sm vd-text-muted vd-mt-4">
               Use <code>.vd-navbar-dropdown</code>,
               <code>.vd-navbar-dropdown-menu</code>, and
-              <code>.vd-navbar-dropdown-item</code> for nested navigation
-              menus.
+              <code>.vd-navbar-dropdown-item</code> for nested navigation menus.
             </p>
           </div>
         </div>

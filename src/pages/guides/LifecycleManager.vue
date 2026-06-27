@@ -115,15 +115,13 @@ const rules: [string, string][] = [
 
     <div class="vd-card demo-card">
       <div class="vd-card-header">
-        <h6>
-          <i class="ph ph-shield-check"></i> Server-side rendering guard
-        </h6>
+        <h6><i class="ph ph-shield-check"></i> Server-side rendering guard</h6>
       </div>
       <div class="vd-card-body">
         <p>
           Because this site is built with <code>vite-ssg</code>, pages are
-          pre-rendered on the server. Always guard DOM access so the build
-          stays green:
+          pre-rendered on the server. Always guard DOM access so the build stays
+          green:
         </p>
         <DocCodeSnippet :js="ssrJs" :default-open="true" />
         <p class="vd-text-sm vd-text-muted vd-mt-3">

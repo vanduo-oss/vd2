@@ -156,10 +156,7 @@ const events: [string, string][] = [
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-suggest-capitals"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-suggest-capitals" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>EU Capitals</h6></div>
           <div class="vd-card-body">
             <div class="vd-form-group">
@@ -182,10 +179,7 @@ const events: [string, string][] = [
 
     <div class="vd-row">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-suggest-min-chars"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-suggest-min-chars" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Minimum Characters (2)</h6></div>
           <div class="vd-card-body">
             <div class="vd-form-group">
@@ -387,8 +381,8 @@ const events: [string, string][] = [
             as the dropdown opens and closes
           </li>
           <li>
-            <code>aria-activedescendant</code> tracks the currently
-            highlighted option for screen readers
+            <code>aria-activedescendant</code> tracks the currently highlighted
+            option for screen readers
           </li>
           <li>
             <kbd>↑</kbd> / <kbd>↓</kbd> arrow keys navigate the list;

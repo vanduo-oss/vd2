@@ -89,10 +89,10 @@ VanduoSearch.register({
   <section id="search">
     <h5 class="demo-title"><i class="ph ph-magnifying-glass"></i>Search</h5>
     <p class="vd-mb-8">
-      The framework ships a small registry for plugging named data sources
-      into a search overlay. The framework does NOT ship a UI — overlays like
-      vd2's <code>GlobalSearchModal</code> consume the registry. Sources can
-      be local arrays, fetched JSON, or any async provider.
+      The framework ships a small registry for plugging named data sources into
+      a search overlay. The framework does NOT ship a UI — overlays like vd2's
+      <code>GlobalSearchModal</code> consume the registry. Sources can be local
+      arrays, fetched JSON, or any async provider.
     </p>
 
     <div class="vd-row vd-mb-6" ref="root">
@@ -174,8 +174,8 @@ VanduoSearch.register({
           <div class="vd-card-body">
             <ul>
               <li>
-                The registry is purely data — accessibility lives in the
-                overlay that consumes it.
+                The registry is purely data — accessibility lives in the overlay
+                that consumes it.
               </li>
               <li>
                 Result lists SHOULD expose <code>role="listbox"</code> with

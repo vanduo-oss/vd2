@@ -20,18 +20,63 @@ interface ColorCard extends Card {
 }
 
 const photoCards: PhotoCard[] = [
-  { img: "/images/expanding/0.jpg", icon: "waves", title: "Quiet cove", subtitle: "Dock and lily pads" },
-  { img: "/images/expanding/1.jpg", icon: "sun-horizon", title: "Lakeside glow", subtitle: "Sun through the trees" },
-  { img: "/images/expanding/2.jpg", icon: "tree-evergreen", title: "Sunlit forest", subtitle: "Rays through the canopy" },
-  { img: "/images/expanding/3.jpg", icon: "leaf", title: "Forest floor", subtitle: "Moss and wild strawberry" },
-  { img: "/images/expanding/4.jpg", icon: "plant", title: "Reindeer lichen", subtitle: "Pale coral on pine needles" },
+  {
+    img: "/images/expanding/0.jpg",
+    icon: "waves",
+    title: "Quiet cove",
+    subtitle: "Dock and lily pads",
+  },
+  {
+    img: "/images/expanding/1.jpg",
+    icon: "sun-horizon",
+    title: "Lakeside glow",
+    subtitle: "Sun through the trees",
+  },
+  {
+    img: "/images/expanding/2.jpg",
+    icon: "tree-evergreen",
+    title: "Sunlit forest",
+    subtitle: "Rays through the canopy",
+  },
+  {
+    img: "/images/expanding/3.jpg",
+    icon: "leaf",
+    title: "Forest floor",
+    subtitle: "Moss and wild strawberry",
+  },
+  {
+    img: "/images/expanding/4.jpg",
+    icon: "plant",
+    title: "Reindeer lichen",
+    subtitle: "Pale coral on pine needles",
+  },
 ];
 
 const colorCards: ColorCard[] = [
-  { color: "primary", icon: "paint-brush", title: "Design", subtitle: "Tokens & themes" },
-  { color: "success", icon: "shield-check", title: "Quality", subtitle: "A11y & tests" },
-  { color: "warning", icon: "rocket-launch", title: "Ship", subtitle: "Release cadence" },
-  { color: "info", icon: "book-open-text", title: "Docs", subtitle: "Guides & API" },
+  {
+    color: "primary",
+    icon: "paint-brush",
+    title: "Design",
+    subtitle: "Tokens & themes",
+  },
+  {
+    color: "success",
+    icon: "shield-check",
+    title: "Quality",
+    subtitle: "A11y & tests",
+  },
+  {
+    color: "warning",
+    icon: "rocket-launch",
+    title: "Ship",
+    subtitle: "Release cadence",
+  },
+  {
+    color: "info",
+    icon: "book-open-text",
+    title: "Docs",
+    subtitle: "Guides & API",
+  },
   { color: "error", icon: "bug", title: "Issues", subtitle: "Triage & fixes" },
 ];
 
@@ -60,11 +105,17 @@ const basicHtml = `<div class="vd-expanding-cards" data-vd-expanding-cards>
 </div>`;
 
 const apiRows: [string, string][] = [
-  [".vd-expanding-cards", "Container. Add data-vd-expanding-cards to enable it."],
+  [
+    ".vd-expanding-cards",
+    "Container. Add data-vd-expanding-cards to enable it.",
+  ],
   [".vd-expanding-card", "A panel. The active one expands; others slim down."],
   [".vd-expanding-card.is-active", "Sets the initially expanded card."],
   ["--vd-expanding-card-bg", "Per-card background (url(...) or a color)."],
-  ["--vd-expanding-card-bg-default", "Icon-circle background for solid-color cards."],
+  [
+    "--vd-expanding-card-bg-default",
+    "Icon-circle background for solid-color cards.",
+  ],
   [".vd-expanding-card-label", "Overlay holding the icon + title + subtitle."],
 ];
 </script>
@@ -86,7 +137,8 @@ const apiRows: [string, string][] = [
           <div class="vd-card-header"><h6>Photo strip</h6></div>
           <div class="vd-card-body">
             <p class="vd-text-sm vd-text-muted vd-mb-4">
-              Uses a background image on each <code>.vd-expanding-card</code> via
+              Uses a background image on each
+              <code>.vd-expanding-card</code> via
               <code>--vd-expanding-card-bg</code>.
             </p>
             <div class="expanding-cards-wrap">

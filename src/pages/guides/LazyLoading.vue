@@ -42,11 +42,10 @@ const tactics: [string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      The Vanilla engine lazy-loads component modules from a global registry.
-      In vd2 the bundler does the heavy lifting: Vite splits code along
-      dynamic
-      <code>import()</code> boundaries, so you ship only what a route needs
-      and defer the rest until it is rendered or scrolled into view.
+      The Vanilla engine lazy-loads component modules from a global registry. In
+      vd2 the bundler does the heavy lifting: Vite splits code along dynamic
+      <code>import()</code> boundaries, so you ship only what a route needs and
+      defer the rest until it is rendered or scrolled into view.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -58,8 +57,8 @@ const tactics: [string, string][] = [
           <div class="vd-card-body">
             <DocCodeSnippet :js="routeJs" :default-open="true" />
             <p class="vd-text-sm vd-text-muted vd-mt-3">
-              The ~4,000-line changelog, for example, lives in its own chunk
-              and never loads on other pages.
+              The ~4,000-line changelog, for example, lives in its own chunk and
+              never loads on other pages.
             </p>
           </div>
         </div>

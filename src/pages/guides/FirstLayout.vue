@@ -67,9 +67,9 @@ const containers: [string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Vanduo's layout system is plain CSS — a 12-column responsive grid inside
-      a container, with mobile-first breakpoints. It works identically in
-      static HTML and in vd2 templates, so everything here is engine-agnostic.
+      Vanduo's layout system is plain CSS — a 12-column responsive grid inside a
+      container, with mobile-first breakpoints. It works identically in static
+      HTML and in vd2 templates, so everything here is engine-agnostic.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -157,10 +157,9 @@ const containers: [string, string][] = [
       <div class="vd-card-body">
         <p>
           Start with a base <code>vd-col-12</code> (full width) and add larger
-          breakpoints only where the layout should change. The grid gutters
-          and column counts follow the same Fibonacci spacing as the rest of
-          the system — see
-          <a href="/guides/fibonacci">The Fibonacci scale</a>.
+          breakpoints only where the layout should change. The grid gutters and
+          column counts follow the same Fibonacci spacing as the rest of the
+          system — see <a href="/guides/fibonacci">The Fibonacci scale</a>.
         </p>
       </div>
     </div>

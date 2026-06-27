@@ -145,10 +145,9 @@ const classRef: [string, string, string][] = [
     <!-- Variants -->
     <h5 class="vd-mb-3"><i class="ph ph-squares-four mr-1"></i>Variants</h5>
     <p class="vd-text-sm vd-text-muted vd-mb-4">
-      <strong>Elevated</strong> is the default: medium shadow (stronger in
-      dark mode). <strong>Outlined</strong> drops the shadow for a crisp
-      border. <strong>Filled</strong> uses a subtle surface tint and no
-      border.
+      <strong>Elevated</strong> is the default: medium shadow (stronger in dark
+      mode). <strong>Outlined</strong> drops the shadow for a crisp border.
+      <strong>Filled</strong> uses a subtle surface tint and no border.
     </p>
     <div class="vd-row vd-mb-10">
       <div class="vd-col-12 vd-col-md-4">
@@ -184,9 +183,7 @@ const classRef: [string, string, string][] = [
         <div class="vd-card vd-card-filled demo-card">
           <div class="vd-card-header"><h6>Filled Card</h6></div>
           <div class="vd-card-body">
-            <p>
-              Secondary background fill, no border — reads as a soft panel.
-            </p>
+            <p>Secondary background fill, no border — reads as a soft panel.</p>
           </div>
           <div class="vd-card-footer">
             <button type="button" class="vd-btn vd-btn-primary vd-btn-sm">
@@ -229,10 +226,7 @@ const classRef: [string, string, string][] = [
     <div class="vd-row vd-mb-10">
       <div class="vd-col-12">
         <div class="cards-glass-stage vd-mb-4">
-          <div
-            class="vd-card vd-card-glass demo-card"
-            style="max-width: 420px"
-          >
+          <div class="vd-card vd-card-glass demo-card" style="max-width: 420px">
             <div class="vd-card-header"><h6>Glass Card</h6></div>
             <div class="vd-card-body">
               <p class="vd-mb-0">
@@ -245,9 +239,7 @@ const classRef: [string, string, string][] = [
     </div>
 
     <!-- Morph -->
-    <h5 class="vd-mb-3">
-      <i class="ph ph-drop mr-1"></i>Morph inside a card
-    </h5>
+    <h5 class="vd-mb-3"><i class="ph ph-drop mr-1"></i>Morph inside a card</h5>
     <p class="vd-text-sm vd-text-muted vd-mb-4">
       Pair a card shell with the Water Morph effect to swap summary ↔ detail.
       Uses <code>.vd-morph-lg</code> for a slower wave.
@@ -270,9 +262,7 @@ const classRef: [string, string, string][] = [
                 :class="morphFlipped ? 'vd-morph-next' : 'vd-morph-current'"
               >
                 <span class="vd-font-semibold">Fibonacci spacing</span>
-                <span class="vd-text-sm vd-text-muted"
-                  >Click to read more</span
-                >
+                <span class="vd-text-sm vd-text-muted">Click to read more</span>
               </span>
               <span
                 class="vd-morph-content"
@@ -280,8 +270,8 @@ const classRef: [string, string, string][] = [
               >
                 <span class="vd-font-semibold">Fibonacci spacing</span>
                 <span class="vd-text-sm vd-text-muted"
-                  >Margins and padding use the golden-ratio scale for
-                  harmonious rhythm across components.</span
+                  >Margins and padding use the golden-ratio scale for harmonious
+                  rhythm across components.</span
                 >
               </span>
             </div>
@@ -415,8 +405,7 @@ const classRef: [string, string, string][] = [
     </h5>
     <p class="vd-text-sm vd-text-muted vd-mb-4">
       Add <code>.vd-card-actionable</code> for hover lift, cursor pointer, and
-      focus ring — perfect for clickable cards that navigate or trigger
-      modals.
+      focus ring — perfect for clickable cards that navigate or trigger modals.
     </p>
     <div class="vd-row vd-mb-10">
       <div class="vd-col-12 vd-col-md-6 vd-col-lg-4">

@@ -135,8 +135,8 @@ const classRows: [string, string][] = [
     <p class="vd-mb-8">
       Loading placeholders that mimic the shape of content before it arrives.
       Skeletons use a shimmering animation by default and support text lines,
-      headings, circles (avatars), rectangles (images), buttons, inputs,
-      lists, and grids — all composable to match your actual layout.
+      headings, circles (avatars), rectangles (images), buttons, inputs, lists,
+      and grids — all composable to match your actual layout.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -159,9 +159,7 @@ const classRows: [string, string][] = [
             <div
               class="vd-skeleton vd-skeleton-text vd-skeleton-text-lg vd-mb-3"
             ></div>
-            <div
-              class="vd-skeleton vd-skeleton-text vd-skeleton-text-xl"
-            ></div>
+            <div class="vd-skeleton vd-skeleton-text vd-skeleton-text-xl"></div>
           </div>
         </div>
         <DocCodeSnippet :html="textHtml" />
@@ -199,9 +197,7 @@ const classRows: [string, string][] = [
                 class="vd-skeleton vd-skeleton-circle vd-skeleton-circle-xl"
               ></div>
             </div>
-            <p class="vd-text-sm vd-text-muted vd-mb-3">
-              Rectangles (images)
-            </p>
+            <p class="vd-text-sm vd-text-muted vd-mb-3">Rectangles (images)</p>
             <div
               style="
                 display: flex;
@@ -404,8 +400,7 @@ const classRows: [string, string][] = [
               <li>
                 Always wrap skeleton placeholders in an
                 <code>aria-live="polite"</code> region and replace them with
-                real content once loaded, so screen readers announce the
-                change.
+                real content once loaded, so screen readers announce the change.
               </li>
               <li>
                 Use <code>aria-busy="true"</code> on the container while
@@ -417,13 +412,13 @@ const classRows: [string, string][] = [
                 placeholder becomes a static color block.
               </li>
               <li>
-                Avoid leaving skeletons visible for extended periods. If
-                loading takes more than a few seconds, show a progress
-                indicator or retry option.
+                Avoid leaving skeletons visible for extended periods. If loading
+                takes more than a few seconds, show a progress indicator or
+                retry option.
               </li>
               <li>
-                Ensure skeleton colors maintain sufficient contrast against
-                the page background in both light and dark themes.
+                Ensure skeleton colors maintain sufficient contrast against the
+                page background in both light and dark themes.
               </li>
             </ul>
           </div>

@@ -79,8 +79,8 @@ const varRows: [string, string][] = [
     <h5 class="demo-title"><i class="ph ph-tag"></i>Badges</h5>
     <p class="vd-mb-8">
       Small inline status indicators, counters, and labels. Badges scale with
-      their parent font size and support contextual color variants, pill
-      shapes, and three size tiers.
+      their parent font size and support contextual color variants, pill shapes,
+      and three size tiers.
     </p>
 
     <!-- Variants + Pills/Sizes -->
@@ -127,12 +127,8 @@ const varRows: [string, string][] = [
               "
             >
               <span class="vd-badge vd-badge-pill vd-badge-primary">New</span>
-              <span class="vd-badge vd-badge-pill vd-badge-success"
-                >Done</span
-              >
-              <span class="vd-badge vd-badge-pill vd-badge-error"
-                >Blocked</span
-              >
+              <span class="vd-badge vd-badge-pill vd-badge-success">Done</span>
+              <span class="vd-badge vd-badge-pill vd-badge-error">Blocked</span>
             </div>
             <p class="vd-text-sm vd-text-muted vd-mb-3">Outlined</p>
             <div
@@ -298,9 +294,9 @@ const varRows: [string, string][] = [
                 parent with sufficient text context.
               </li>
               <li>
-                For counter badges (e.g., "3" on a notification bell), wrap
-                the parent button in an <code>aria-label</code> that includes
-                the count: <code>aria-label="Notifications, 3 unread"</code>.
+                For counter badges (e.g., "3" on a notification bell), wrap the
+                parent button in an <code>aria-label</code> that includes the
+                count: <code>aria-label="Notifications, 3 unread"</code>.
               </li>
               <li>
                 All badge color combinations meet WCAG contrast requirements

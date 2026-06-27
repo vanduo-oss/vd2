@@ -56,10 +56,7 @@ const speedDialHtml = `<div class="vd-fab-menu" :class="{ 'is-open': open }">
 const classRows: [string, string][] = [
   [".vd-fab", "Base FAB. Round, elevated. 56 px by default."],
   [".vd-fab-sm / .vd-fab-lg", "Size variants — 40 px / 72 px."],
-  [
-    ".vd-fab-primary / -secondary / -success / -danger",
-    "Color variants.",
-  ],
+  [".vd-fab-primary / -secondary / -success / -danger", "Color variants."],
   [".vd-fab-extended", "Wider pill-shaped variant with an icon + label."],
   [".vd-fab-glass", "Glass-styled variant (uses `--vd-glass-*` tokens)."],
   [
@@ -104,7 +101,12 @@ const cssVars: [string, string, string][] = [
           <div class="vd-card-header"><h6>Sizes</h6></div>
           <div
             class="vd-card-body"
-            style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap"
+            style="
+              display: flex;
+              gap: 1.5rem;
+              align-items: center;
+              flex-wrap: wrap;
+            "
           >
             <button class="vd-fab vd-fab-sm vd-fab-primary" aria-label="Small">
               <i class="ph ph-plus"></i>
@@ -128,7 +130,12 @@ const cssVars: [string, string, string][] = [
           <div class="vd-card-header"><h6>Extended (with label)</h6></div>
           <div
             class="vd-card-body"
-            style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap"
+            style="
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+              flex-wrap: wrap;
+            "
           >
             <button class="vd-fab vd-fab-extended" aria-label="Create new item">
               <i class="ph ph-plus"></i><span>New</span>
@@ -148,7 +155,12 @@ const cssVars: [string, string, string][] = [
           <div class="vd-card-header"><h6>Color Variants</h6></div>
           <div
             class="vd-card-body"
-            style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap"
+            style="
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+              flex-wrap: wrap;
+            "
           >
             <button class="vd-fab vd-fab-primary" aria-label="New">
               <i class="ph ph-plus"></i>
@@ -246,10 +258,7 @@ const cssVars: [string, string, string][] = [
                 :aria-expanded="speedDialOpen"
                 @click="speedDialOpen = !speedDialOpen"
               >
-                <i
-                  class="ph"
-                  :class="speedDialOpen ? 'ph-x' : 'ph-plus'"
-                ></i>
+                <i class="ph" :class="speedDialOpen ? 'ph-x' : 'ph-plus'"></i>
               </button>
               <div class="vd-fab-actions">
                 <button
@@ -357,8 +366,8 @@ const cssVars: [string, string, string][] = [
                 keyboard activation, and form integration work natively.
               </li>
               <li>
-                FABs respect <code>prefers-reduced-motion</code>: the hover
-                lift and speed-dial stagger are skipped when set.
+                FABs respect <code>prefers-reduced-motion</code>: the hover lift
+                and speed-dial stagger are skipped when set.
               </li>
             </ul>
           </div>

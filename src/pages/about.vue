@@ -60,9 +60,9 @@
           <p>That's where Vanduo lives.</p>
           <p>
             But here is the deeper answer: at its core, Vanduo is not a
-            framework at all. It is a <strong>design language</strong> — a system
-            of proportion, rhythm, and harmony that simply happens to be spoken
-            in HTML, CSS, and JavaScript.
+            framework at all. It is a <strong>design language</strong> — a
+            system of proportion, rhythm, and harmony that simply happens to be
+            spoken in HTML, CSS, and JavaScript.
           </p>
           <p>
             And the grammar of that language is older than the web, older than
@@ -92,8 +92,8 @@
             JavaScript. Drop in a stylesheet and you're productive in under a
             minute: no <code>node_modules</code>, no bundler, nothing standing
             between your words and the screen — a design system that would make
-            any SPA jealous, and asks for nothing in return. This is where Vanduo
-            began, and it will always be its heart.
+            any SPA jealous, and asks for nothing in return. This is where
+            Vanduo began, and it will always be its heart.
           </p>
           <p>
             Its <strong>flowing</strong> nature is <strong>Vue&nbsp;3</strong> —

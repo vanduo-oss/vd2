@@ -102,9 +102,8 @@ const events: [string, string][] = [
   <section id="sticky" ref="root">
     <h5 class="demo-title"><i class="ph ph-push-pin"></i>Sticky / Affix</h5>
     <p class="vd-mb-8">
-      Pin elements inside the nearest scrollable container as the user
-      scrolls. If no scrollable parent exists, the element falls back to the
-      viewport.
+      Pin elements inside the nearest scrollable container as the user scrolls.
+      If no scrollable parent exists, the element falls back to the viewport.
     </p>
 
     <!-- Sticky Navigation Bar Demo -->
@@ -147,8 +146,8 @@ const events: [string, string][] = [
                 </p>
                 <p class="vd-text-sm vd-text-muted vd-mt-3">
                   If you drop the same markup into a normal page without an
-                  overflow container, it will stick against the browser
-                  viewport instead.
+                  overflow container, it will stick against the browser viewport
+                  instead.
                 </p>
               </div>
               <nav
@@ -176,24 +175,23 @@ const events: [string, string][] = [
               <div style="padding: 1.25rem">
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <p class="vd-mt-4">
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
                 <p class="vd-mt-4">
-                  Duis aute irure dolor in reprehenderit in voluptate velit
-                  esse cillum dolore eu fugiat nulla pariatur.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur.
                 </p>
                 <p class="vd-mt-4">
-                  Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum.
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                  qui officia deserunt mollit anim id est laborum.
                 </p>
                 <p class="vd-mt-4">
-                  Sed ut perspiciatis unde omnis iste natus error sit
-                  voluptatem accusantium doloremque laudantium.
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium.
                 </p>
                 <p class="vd-mt-4">
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
@@ -222,9 +220,9 @@ const events: [string, string][] = [
           </div>
           <div class="vd-card-body">
             <p class="vd-mb-4">
-              Use <code>data-vd-affix-offset</code> to control when the
-              element becomes stuck. The value is the distance in pixels from
-              the top of the active scroll context.
+              Use <code>data-vd-affix-offset</code> to control when the element
+              becomes stuck. The value is the distance in pixels from the top of
+              the active scroll context.
             </p>
             <DocCodeSnippet :html="offsetHtml" />
           </div>
@@ -413,8 +411,8 @@ const events: [string, string][] = [
                 avoiding disorientation for screen magnifier users.
               </li>
               <li>
-                Use <code>aria-label</code> on sticky navigation to
-                distinguish it from the main page nav (e.g.
+                Use <code>aria-label</code> on sticky navigation to distinguish
+                it from the main page nav (e.g.
                 <code>aria-label="Sticky toolbar"</code>).
               </li>
               <li>

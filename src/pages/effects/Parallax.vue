@@ -85,10 +85,10 @@ const apiRows: [string, string, string][] = [
     <h5 class="demo-title"><i class="ph ph-stack"></i>Parallax</h5>
     <p class="vd-mb-6">
       Depth-on-scroll. Layers inside a <code>.vd-parallax</code> container
-      translate at different rates as the container moves through the
-      viewport, creating a sense of depth. Movement is driven by JavaScript on
-      a <code>requestAnimationFrame</code>-throttled scroll listener and is
-      fully disabled when the visitor requests reduced motion.
+      translate at different rates as the container moves through the viewport,
+      creating a sense of depth. Movement is driven by JavaScript on a
+      <code>requestAnimationFrame</code>-throttled scroll listener and is fully
+      disabled when the visitor requests reduced motion.
     </p>
 
     <!-- Rendered demo -->
@@ -104,8 +104,8 @@ const apiRows: [string, string, string][] = [
               <code>data-parallax-speed</code>, while the foreground
               <code>.vd-parallax-content</code> stays put. That difference in
               rates is what reads as depth. The colour band also shifts as the
-              panel scrolls through the viewport — a CSS scroll-driven
-              flourish layered on top.
+              panel scrolls through the viewport — a CSS scroll-driven flourish
+              layered on top.
             </p>
             <div
               class="vd-parallax vd-parallax-md vd-parallax-fast parallax-demo"
@@ -120,8 +120,8 @@ const apiRows: [string, string, string][] = [
               ></div>
               <div class="vd-parallax-content">
                 <span
-                  ><i class="ph ph-arrows-down-up"></i>Scroll — the colour
-                  band shifts as the dot grid races ahead</span
+                  ><i class="ph ph-arrows-down-up"></i>Scroll — the colour band
+                  shifts as the dot grid races ahead</span
                 >
               </div>
             </div>
@@ -193,22 +193,21 @@ const apiRows: [string, string, string][] = [
                 <p class="vd-text-sm vd-text-muted vd-mt-5">
                   <strong>Composable API:</strong>
                   <code>useParallax(root)</code> wires every
-                  <code>.vd-parallax</code> inside the root ref. The rAF
-                  scroll handler and <code>prefers-reduced-motion</code>
+                  <code>.vd-parallax</code> inside the root ref. The rAF scroll
+                  handler and <code>prefers-reduced-motion</code>
                   guard are set up automatically and torn down on unmount — no
                   manual refresh/destroy needed.
                 </p>
               </template>
               <template #vanilla>
                 <p class="vd-text-sm vd-text-muted vd-mt-5">
-                  <strong>JavaScript API:</strong> components auto-initialize
-                  on <code>Vanduo.init()</code>.
+                  <strong>JavaScript API:</strong> components auto-initialize on
+                  <code>Vanduo.init()</code>.
                   <code>VanduoParallax.refresh()</code>
                   recalculates positions (call after layout changes),
                   <code>VanduoParallax.destroy(el)</code> resets a single
-                  container, and
-                  <code>VanduoParallax.destroyAll()</code> tears down all
-                  listeners.
+                  container, and <code>VanduoParallax.destroyAll()</code> tears
+                  down all listeners.
                 </p>
               </template>
             </EngineSwitch>

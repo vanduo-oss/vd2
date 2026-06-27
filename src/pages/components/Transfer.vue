@@ -109,10 +109,10 @@ const vue3Api: [string, string][] = [
       <i class="ph ph-arrows-left-right"></i>Transfer / Dual List
     </h5>
     <p class="vd-mb-5">
-      The <strong>VanduoTransfer</strong> component renders a dual-panel
-      picker — users move items from a "Source" list to a "Target" list using
-      arrow buttons. Search filtering is built into both panels automatically,
-      and selected items are accessible programmatically at any time.
+      The <strong>VanduoTransfer</strong> component renders a dual-panel picker
+      — users move items from a "Source" list to a "Target" list using arrow
+      buttons. Search filtering is built into both panels automatically, and
+      selected items are accessible programmatically at any time.
     </p>
 
     <div class="vd-row">
@@ -298,8 +298,8 @@ const vue3Api: [string, string][] = [
             <code>"Filter selected items"</code>
           </li>
           <li>
-            Panel headers use <code>aria-live="polite"</code> to announce
-            count changes
+            Panel headers use <code>aria-live="polite"</code> to announce count
+            changes
           </li>
         </ul>
       </div>

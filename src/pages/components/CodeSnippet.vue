@@ -98,9 +98,9 @@ const jsRows: [string, string][] = [
   <section id="code-snippet">
     <h5 class="demo-title"><i class="ph ph-code"></i>Code Snippet</h5>
     <p class="vd-mb-8">
-      The collapsible “View Code” block used throughout these docs. It
-      supports a togglable reveal, multiple language tabs, one-click copy, and
-      pulling markup straight from the live demo it documents. Styles ship in
+      The collapsible “View Code” block used throughout these docs. It supports
+      a togglable reveal, multiple language tabs, one-click copy, and pulling
+      markup straight from the live demo it documents. Styles ship in
       <code>framework/css/components/code-snippet.css</code> and behavior in
       <code>framework/js/components/code-snippet.js</code>.
     </p>

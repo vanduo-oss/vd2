@@ -98,19 +98,16 @@ const apiRows: [string, string][] = [
   <section id="progress">
     <h5 class="demo-title"><i class="ph ph-chart-bar"></i>Progress</h5>
     <p class="vd-mb-8">
-      Linear progress bars with semantic color variants, multiple sizes,
-      striped and animated styles, and indeterminate mode. Progress bars are
-      fully CSS-driven — set the width via inline style or utility classes and
-      the bar animates smoothly.
+      Linear progress bars with semantic color variants, multiple sizes, striped
+      and animated styles, and indeterminate mode. Progress bars are fully
+      CSS-driven — set the width via inline style or utility classes and the bar
+      animates smoothly.
     </p>
 
     <!-- Variants + Sizes -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-progress-variants"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-progress-variants" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Semantic Variants</h6></div>
           <div class="vd-card-body">
             <template v-for="v in variants" :key="v.label">
@@ -189,10 +186,7 @@ const apiRows: [string, string][] = [
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-progress-multiple"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-progress-multiple" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6>Multiple Bars &amp; Labeled</h6>
           </div>
@@ -330,8 +324,8 @@ const apiRows: [string, string][] = [
                 (e.g., "Uploading file.jpg").
               </li>
               <li>
-                For indeterminate bars, omit <code>aria-valuenow</code> and
-                add <code>aria-valuetext="Loading..."</code> instead.
+                For indeterminate bars, omit <code>aria-valuenow</code> and add
+                <code>aria-valuetext="Loading..."</code> instead.
               </li>
               <li>
                 Animations respect

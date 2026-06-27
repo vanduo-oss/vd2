@@ -65,11 +65,10 @@ const scale: [string, string][] = [
     </h5>
     <p class="vd-mb-6">
       Vanduo's spacing, type, and radius scales follow the Fibonacci sequence
-      (1, 2, 3, 5, 8, 13, 21…) instead of a linear 4/8px grid. Because each
-      step is the sum of the two before it, sizes relate to one another the
-      way they do in nature — producing rhythm that feels balanced without
-      manual tuning. This is a design philosophy, so it's identical across
-      both engines.
+      (1, 2, 3, 5, 8, 13, 21…) instead of a linear 4/8px grid. Because each step
+      is the sum of the two before it, sizes relate to one another the way they
+      do in nature — producing rhythm that feels balanced without manual tuning.
+      This is a design philosophy, so it's identical across both engines.
     </p>
 
     <div class="vd-row vd-mb-6">
@@ -86,9 +85,7 @@ const scale: [string, string][] = [
       <div class="vd-col-12 vd-col-md-6">
         <div class="vd-card demo-card">
           <div class="vd-card-header">
-            <h6>
-              <i class="ph ph-brackets-curly"></i> The underlying tokens
-            </h6>
+            <h6><i class="ph ph-brackets-curly"></i> The underlying tokens</h6>
           </div>
           <div class="vd-card-body">
             <DocCodeSnippet :css="varCss" :default-open="true" />
@@ -133,10 +130,9 @@ const scale: [string, string][] = [
       </div>
       <div class="vd-card-body">
         <p>
-          A linear 4/8/12/16 scale gives every step the same visual jump,
-          which flattens hierarchy. A Fibonacci scale grows proportionally, so
-          small and large spaces stay distinct and the eye reads structure
-          faster.
+          A linear 4/8/12/16 scale gives every step the same visual jump, which
+          flattens hierarchy. A Fibonacci scale grows proportionally, so small
+          and large spaces stay distinct and the eye reads structure faster.
         </p>
       </div>
     </div>

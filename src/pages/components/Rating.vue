@@ -328,8 +328,8 @@ const vue3Api: [string, string][] = [
             <kbd>Home</kbd> sets to 1; <kbd>End</kbd> sets to max
           </li>
           <li>
-            Read-only ratings use <code>aria-readonly="true"</code> and are
-            not focusable
+            Read-only ratings use <code>aria-readonly="true"</code> and are not
+            focusable
           </li>
           <li>
             The widget is fully operable without a mouse via <kbd>Tab</kbd> +

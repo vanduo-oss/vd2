@@ -244,10 +244,7 @@ const classRef: ClassRef[] = [
             >
               <i class="ph ph-check"></i>
             </button>
-            <button
-              class="vd-btn vd-btn-icon vd-btn-error"
-              aria-label="Delete"
-            >
+            <button class="vd-btn vd-btn-icon vd-btn-error" aria-label="Delete">
               <i class="ph ph-trash"></i>
             </button>
             <button

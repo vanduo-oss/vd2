@@ -366,8 +366,8 @@ const events: [string, string][] = [
             <kbd>Enter</kbd> selects; <kbd>Escape</kbd> closes
           </li>
           <li>
-            <code>aria-activedescendant</code> tracks the focused time slot
-            for screen readers
+            <code>aria-activedescendant</code> tracks the focused time slot for
+            screen readers
           </li>
           <li>Selected slot receives <code>aria-selected="true"</code></li>
           <li>Focus returns to the input after selection or dismissal</li>

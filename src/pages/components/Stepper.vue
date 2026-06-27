@@ -141,9 +141,9 @@ const vue3Api: [string, string][] = [
   <section id="stepper" ref="root">
     <h5 class="demo-title"><i class="ph ph-steps"></i>Stepper</h5>
     <p class="vd-mb-8">
-      Multi-step progress indicators for wizards, checkout flows, and
-      onboarding sequences. Supports horizontal, vertical, and clickable
-      variants with built-in state management.
+      Multi-step progress indicators for wizards, checkout flows, and onboarding
+      sequences. Supports horizontal, vertical, and clickable variants with
+      built-in state management.
     </p>
 
     <!-- Horizontal Stepper -->
@@ -230,10 +230,7 @@ const vue3Api: [string, string][] = [
     <!-- Vertical + Clickable -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-stepper-vertical"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-stepper-vertical" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6><i class="ph ph-arrow-down"></i> Vertical Stepper</h6>
           </div>
@@ -281,10 +278,7 @@ const vue3Api: [string, string][] = [
       </div>
 
       <div class="vd-col-12 vd-col-md-6">
-        <div
-          id="demo-stepper-clickable"
-          class="vd-card vd-card-glow demo-card"
-        >
+        <div id="demo-stepper-clickable" class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6><i class="ph ph-cursor-click"></i> Clickable Stepper</h6>
           </div>
@@ -461,8 +455,7 @@ const vue3Api: [string, string][] = [
             <ul>
               <li>
                 The stepper container uses <code>role="list"</code> and each
-                step uses <code>role="listitem"</code> for assistive
-                technology.
+                step uses <code>role="listitem"</code> for assistive technology.
               </li>
               <li>
                 Active step is announced via <code>aria-current="step"</code>.
@@ -476,12 +469,11 @@ const vue3Api: [string, string][] = [
                 reader feedback.
               </li>
               <li>
-                Clickable steppers add <code>tabindex="0"</code> and respond
-                to <kbd>Enter</kbd> and <kbd>Space</kbd> key presses.
+                Clickable steppers add <code>tabindex="0"</code> and respond to
+                <kbd>Enter</kbd> and <kbd>Space</kbd> key presses.
               </li>
               <li>
-                Focus order follows the visual step sequence from first to
-                last.
+                Focus order follows the visual step sequence from first to last.
               </li>
             </ul>
           </div>

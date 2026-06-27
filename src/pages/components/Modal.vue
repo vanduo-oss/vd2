@@ -172,8 +172,8 @@ const vue3Api: [string, string][] = [
     <h5 class="demo-title"><i class="ph ph-squares-four"></i>Modals</h5>
     <p class="vd-mb-8">
       Overlay dialogs for confirmations, forms, and focused user tasks. Modals
-      support four size tiers, glassmorphism styling, scrollable content,
-      static backdrops, and are fully keyboard accessible.
+      support four size tiers, glassmorphism styling, scrollable content, static
+      backdrops, and are fully keyboard accessible.
     </p>
 
     <!-- Sizes -->
@@ -451,8 +451,8 @@ const vue3Api: [string, string][] = [
                 modal.
               </li>
               <li>
-                The backdrop blocks interaction with the rest of the page and
-                is marked <code>aria-hidden="true"</code>.
+                The backdrop blocks interaction with the rest of the page and is
+                marked <code>aria-hidden="true"</code>.
               </li>
             </ul>
           </div>
@@ -481,8 +481,8 @@ const vue3Api: [string, string][] = [
           </div>
           <div class="vd-modal-body">
             <p class="vd-mb-0">
-              This is the small modal size. Perfect for confirmations and
-              short messages.
+              This is the small modal size. Perfect for confirmations and short
+              messages.
             </p>
           </div>
           <div class="vd-modal-footer">
@@ -521,8 +521,8 @@ const vue3Api: [string, string][] = [
           </div>
           <div class="vd-modal-body">
             <p class="vd-mb-4">
-              The default modal width (377px) is ideal for focused tasks —
-              quick forms, confirmations, and short workflows.
+              The default modal width (377px) is ideal for focused tasks — quick
+              forms, confirmations, and short workflows.
             </p>
             <div class="vd-form-group vd-mb-3">
               <label class="vd-label" for="m-email">Email address</label>
@@ -544,8 +544,7 @@ const vue3Api: [string, string][] = [
             <div class="vd-alert vd-alert-info vd-mb-0">
               <i class="ph ph-lightbulb"></i>
               <div>
-                Invited members receive a link to join your workspace
-                instantly.
+                Invited members receive a link to join your workspace instantly.
               </div>
             </div>
           </div>
@@ -627,8 +626,7 @@ const vue3Api: [string, string][] = [
                   <div class="vd-row">
                     <div class="vd-col-12 vd-col-md-6">
                       <div class="vd-form-group vd-mb-3">
-                        <label class="vd-label" for="m-name"
-                          >Project name</label
+                        <label class="vd-label" for="m-name">Project name</label
                         ><input
                           type="text"
                           id="m-name"
@@ -791,8 +789,8 @@ A Fibonacci-scaled component library for modern web apps.</textarea
           </div>
           <div class="vd-modal-body">
             <p class="vd-mb-5">
-              Extra large modals (987px) span most of the viewport — perfect
-              for dashboards, preview panes, and data-rich workflows.
+              Extra large modals (987px) span most of the viewport — perfect for
+              dashboards, preview panes, and data-rich workflows.
             </p>
             <div class="vd-tabs">
               <ul class="vd-tab-list" role="tablist">
@@ -910,9 +908,8 @@ A Fibonacci-scaled component library for modern web apps.</textarea
                   <div class="vd-alert vd-alert-success vd-mb-0">
                     <i class="ph ph-check-circle"></i>
                     <div>
-                      <strong>Campaign is live.</strong> All channels are
-                      active and tracking is enabled across web, email, and
-                      social.
+                      <strong>Campaign is live.</strong> All channels are active
+                      and tracking is enabled across web, email, and social.
                     </div>
                   </div>
                 </div>
@@ -982,8 +979,7 @@ A Fibonacci-scaled component library for modern web apps.</textarea
                         </tr>
                         <tr>
                           <td>
-                            <i class="ph ph-user-circle mr-1"></i> Casey
-                            Morgan
+                            <i class="ph ph-user-circle mr-1"></i> Casey Morgan
                           </td>
                           <td>Marketing</td>
                           <td>
@@ -1084,8 +1080,7 @@ A Fibonacci-scaled component library for modern web apps.</textarea
                         <i class="ph ph-calendar mr-1"></i>Schedule
                       </h6>
                       <div class="vd-form-group vd-mb-3">
-                        <label class="vd-label" for="m-start"
-                          >Start date</label
+                        <label class="vd-label" for="m-start">Start date</label
                         ><input
                           type="text"
                           id="m-start"
@@ -1219,8 +1214,7 @@ A Fibonacci-scaled component library for modern web apps.</textarea
               <i class="ph ph-warning"></i>
               <div>
                 <strong>This action cannot be undone.</strong> Clicking the
-                backdrop will not close this modal — you must choose
-                explicitly.
+                backdrop will not close this modal — you must choose explicitly.
               </div>
             </div>
             <p class="vd-mb-3">

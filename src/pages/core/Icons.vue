@@ -93,8 +93,8 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
       <a href="https://phosphoricons.com" target="_blank" rel="noopener"
         ><strong>Phosphor Icons</strong></a
       >
-      — a flexible icon family with 1,500+ icons in 6 weights. Icons are
-      bundled locally with no external dependencies.
+      — a flexible icon family with 1,500+ icons in 6 weights. Icons are bundled
+      locally with no external dependencies.
     </p>
 
     <!-- Icon Weights -->
@@ -174,10 +174,7 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
             </div>
             <p class="doc-icons-footer vd-text-sm vd-text-muted">
               Browse all 1,500+ icons at
-              <a
-                href="https://phosphoricons.com"
-                target="_blank"
-                rel="noopener"
+              <a href="https://phosphoricons.com" target="_blank" rel="noopener"
                 >phosphoricons.com</a
               >
             </p>
@@ -262,10 +259,7 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
                 style="color: var(--vd-color-error)"
               ></i>
               Icons by
-              <a
-                href="https://phosphoricons.com"
-                target="_blank"
-                rel="noopener"
+              <a href="https://phosphoricons.com" target="_blank" rel="noopener"
                 ><strong>Phosphor Icons</strong></a
               >
               — MIT Licensed
@@ -291,8 +285,8 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
                 <div class="vd-alert vd-alert-success" style="height: 100%">
                   <i class="ph ph-check-circle"></i>
                   <div>
-                    <strong>Decorative</strong> (sits beside a visible label)
-                    → hide it with <code>aria-hidden="true"</code>; the label
+                    <strong>Decorative</strong> (sits beside a visible label) →
+                    hide it with <code>aria-hidden="true"</code>; the label
                     already speaks for it.
                   </div>
                 </div>
@@ -310,8 +304,8 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
             </div>
             <DocCodeSnippet :html="a11yHtml" default-open />
             <p class="vd-text-sm vd-text-muted vd-mt-4">
-              Also mind <strong>touch targets</strong>: keep icon-only
-              controls at least 24×24px (WCAG 2.2). More in
+              Also mind <strong>touch targets</strong>: keep icon-only controls
+              at least 24×24px (WCAG 2.2). More in
               <RouterLink to="/guides/accessibility"
                 >Accessibility Essentials</RouterLink
               >.
