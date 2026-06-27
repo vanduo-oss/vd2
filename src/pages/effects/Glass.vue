@@ -12,9 +12,16 @@ useGlass(root);
 // scroll-activation observer logic runs automatically in both engines).
 const vue3Wiring = `import { ref } from 'vue';
 import { useGlass } from '@/composables/useGlass';
+import { useNavbarGlassScroll } from '@/composables/useNavbarGlassScroll';
 
+// Generic scroll-activated glass (data-glass-scroll)
 const root = ref<HTMLElement | null>(null);
-useGlass(root);   // IntersectionObserver toggles .is-glass-active; cleanup on unmount`;
+useGlass(root);   // IntersectionObserver toggles .is-glass-active; cleanup on unmount
+
+// Navbar scroll-activated glass (.vd-navbar-glass)
+const navRef = ref<HTMLElement | null>(null);
+const isScrolled = useNavbarGlassScroll(navRef);
+// <nav ref="navRef" class="vd-navbar vd-navbar-fixed vd-navbar-glass" :class="{ 'vd-navbar-scrolled': isScrolled }">`;
 
 const vanillaWiring = `// The framework auto-initialises scroll-activated glass on Vanduo.init()
 VanduoGlass.init();`;

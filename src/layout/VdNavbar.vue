@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import { useNavbarGlassScroll } from "@/composables/useNavbarGlassScroll";
 import VdThemeCustomizer from "@/overlays/VdThemeCustomizer.vue";
 import VdThemeSwitcher from "@/overlays/VdThemeSwitcher.vue";
 
+const navRef = ref<HTMLElement | null>(null);
+const isScrolled = useNavbarGlassScroll(navRef);
 const menuOpen = ref(false);
 
 const links = [
@@ -23,7 +26,11 @@ const closeMenu = (): void => {
 </script>
 
 <template>
-  <nav class="vd-navbar vd-navbar-fixed vd-navbar-glass vd-glass-contrast">
+  <nav
+    ref="navRef"
+    class="vd-navbar vd-navbar-fixed vd-navbar-glass vd-glass-contrast"
+    :class="{ 'vd-navbar-scrolled': isScrolled }"
+  >
     <div class="vd-navbar-container">
       <div class="vd-navbar-brand">
         <div class="vd-navbar-brand-wrap">

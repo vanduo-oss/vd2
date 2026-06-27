@@ -37,7 +37,7 @@
     "@vanduo-oss/charts": "file:../charts",
     "@vanduo-oss/core": "file:../core",
     "@vanduo-oss/flowchart": "file:../flowchart",
-    "@vanduo-oss/framework": "1.5.1",
+    "@vanduo-oss/framework": "file:../framework",
     "@vanduo-oss/hex-grid": "file:../hex-grid",
     "@vanduo-oss/music-player": "file:../music-player",
     "pinia": "^3.0.4",

@@ -22,7 +22,7 @@ const darkCss = `/* Dark mode just remaps the same token names */
 }`;
 
 const tiers: [string, string][] = [
-  ["Palette", "--vd-blue-6, --vd-gray-0…9 — raw Open Color scales"],
+  ["Palette", "--vd-blue-6, --vd-gray-0…9 — active scales (Fibonacci by default; --vd-oc-*/--vd-fib-* are the raw palette sources)"],
   ["Semantic", "--vd-color-primary, --vd-bg-primary, --vd-text-primary, --vd-border-color"],
   ["Component", "--vd-btn-border-radius, --vd-card-bg — per-component knobs"],
 ];

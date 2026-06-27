@@ -23,8 +23,8 @@ importers:
         specifier: file:../flowchart
         version: file:../flowchart(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/framework':
-        specifier: 1.5.1
-        version: 1.5.1
+        specifier: file:../framework
+        version: file:../framework
       '@vanduo-oss/hex-grid':
         specifier: file:../hex-grid
         version: file:../hex-grid(vue@3.5.38(typescript@6.0.3))
@@ -732,8 +732,8 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/framework@1.5.1':
-    resolution: {integrity: sha512-TUs8wq/7IffeBIpZdzZgEB/M7e/gihtlUfvzJRfr0fTdhu/PtT3bSaKscE6B+lcn6RPLfazRMjAaQrWUB97kZg==}
+  '@vanduo-oss/framework@file:../framework':
+    resolution: {directory: ../framework, type: directory}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
 
   '@vanduo-oss/hex-grid@file:../hex-grid':
@@ -2806,7 +2806,7 @@ snapshots:
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
-  '@vanduo-oss/framework@1.5.1': {}
+  '@vanduo-oss/framework@file:../framework': {}
 
   '@vanduo-oss/hex-grid@file:../hex-grid(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:

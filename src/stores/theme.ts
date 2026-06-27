@@ -7,6 +7,7 @@ import {
   isDefaultPrimary,
   loadPreference,
   persistPreference,
+  type Palette,
   type RadiusOption,
   type ThemeMode,
   type ThemePreference,
@@ -41,6 +42,10 @@ export const useThemeStore = defineStore("theme", () => {
     }
   };
 
+  const setPalette = (palette: Palette): void => {
+    prefs.palette = palette;
+    commit();
+  };
   const setTheme = (theme: ThemeMode): void => {
     // Keep auto-default primary in step with the chosen scheme.
     if (isDefaultPrimary(prefs.primary)) {
@@ -73,12 +78,14 @@ export const useThemeStore = defineStore("theme", () => {
   return {
     prefs,
     ready,
+    palette: computed(() => prefs.palette),
     theme: computed(() => prefs.theme),
     primary: computed(() => prefs.primary),
     neutral: computed(() => prefs.neutral),
     radius: computed(() => prefs.radius),
     font: computed(() => prefs.font),
     init,
+    setPalette,
     setTheme,
     setPrimary,
     setNeutral,

@@ -68,7 +68,7 @@ Object.assign(window.ThemeCustomizer.DEFAULTS, {
   // Primary color in light mode
   PRIMARY_LIGHT: 'black',
   // Primary color in dark mode
-  PRIMARY_DARK: 'amber'
+  PRIMARY_DARK: 'blue'
 });
 
 // Initialize Vanduo

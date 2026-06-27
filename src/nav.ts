@@ -95,7 +95,7 @@ export const nav: NavTree = {
               title: "Color palette",
               route: "/core/color-palette",
               icon: "palette",
-              keywords: ["color", "palette", "tokens"],
+              keywords: ["color", "palette", "tokens", "fibonacci", "golden", "open color"],
               file: "core/color-palette.html",
             },
             {

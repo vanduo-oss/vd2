@@ -6,3 +6,6 @@ dist
 playwright-report
 test-results
 tsconfig.tsbuildinfo
+
+# Large local demo audio assets (served separately / not tracked)
+public/music/

@@ -196,7 +196,8 @@ const chipText = (hex: string): string => (["#fab005", "#fcc419", "#a9e34b"].inc
       <p class="vd-mb-8">
         The Theme Customizer is a powerful component that allows users to
         personalize the framework's appearance in real-time. It provides controls
-        for primary color, neutral color, border radius, font family, and color
+        for color palette (Fibonacci / Open Color), primary color, neutral color,
+        border radius, font family, and color
         mode (light/dark/system). For color-mode-only needs, see the
         <RouterLink to="/components/theme-switcher">Theme Switcher</RouterLink> or the
         <RouterLink to="/guides/theme-customizer">Theme Customizer walkthrough</RouterLink>.
@@ -277,7 +278,8 @@ const chipText = (hex: string): string => (["#fab005", "#fcc419", "#a9e34b"].inc
             <div class="vd-card-header"><h6>Features</h6></div>
             <div class="vd-card-body">
               <ul>
-                <li><strong>Primary Color:</strong> 18 color options from the Open Color palette</li>
+                <li><strong>Palette:</strong> Fibonacci (golden-angle, default) or Open Color</li>
+                <li><strong>Primary Color:</strong> 18 color options re-toned on the active palette</li>
                 <li><strong>Neutral Color:</strong> 6 gray scale variants (Charcoal, Gray, Slate, Zinc, Neutral, Stone)</li>
                 <li><strong>Border Radius:</strong> 5 presets (0, 0.125rem, 0.25rem, 0.375rem, 0.5rem)</li>
                 <li><strong>Font Family:</strong> 5 curated options (JetBrains Mono, System, Ubuntu, Lato, Open Sans)</li>
