@@ -6,12 +6,32 @@ on:
   pull_request:
     branches: [main]
 
+# vd2 depends on @vanduo-oss/core and @vanduo-oss/framework via `file:../`, so
+# those sibling repos are checked out and core is built (its dist/ is gitignored
+# upstream; framework ships a committed dist/). See deploy.yml for details.
 jobs:
   build-test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout vd2
+        uses: actions/checkout@v4
+        with:
+          path: vd2
+
+      - name: Checkout @vanduo-oss/core
+        uses: actions/checkout@v4
+        with:
+          repository: vanduo-oss/core
+          ref: main
+          path: core
+
+      - name: Checkout @vanduo-oss/framework
+        uses: actions/checkout@v4
+        with:
+          repository: vanduo-oss/framework
+          ref: main
+          path: framework
 
       - uses: pnpm/action-setup@v4
         with:
@@ -20,16 +40,33 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      - name: Build @vanduo-oss/core
+        working-directory: core
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
 
-      - run: pnpm run typecheck
-      - run: pnpm run lint
-      - run: pnpm run stylelint
-      - run: pnpm run format:check
+      - name: Install vd2
+        working-directory: vd2
+        run: pnpm install --frozen-lockfile
 
-      - run: pnpm test
+      - name: Checks
+        working-directory: vd2
+        run: |
+          pnpm run typecheck
+          pnpm run lint
+          pnpm run stylelint
+          pnpm run format:check
 
-      - run: pnpm run build
-      - run: pnpm run test:size
+      - name: Test
+        working-directory: vd2
+        run: pnpm test
+
+      - name: Build
+        working-directory: vd2
+        run: pnpm run build
+
+      - name: Bundle size
+        working-directory: vd2
+        run: pnpm run test:size

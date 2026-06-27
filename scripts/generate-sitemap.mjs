@@ -44,4 +44,5 @@ const urls = routes
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 
 writeFileSync(join(distDir, "sitemap.xml"), xml);
+// eslint-disable-next-line no-console -- build script status output
 console.log(`✓ sitemap.xml written with ${routes.length} URLs`);
