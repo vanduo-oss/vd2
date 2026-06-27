@@ -99,11 +99,7 @@ const tocOpen = ref(false);
     </button>
   </div>
 
-  <div
-    class="doc-engine-toggle"
-    role="group"
-    aria-label="Documentation engine"
-  >
+  <div class="doc-engine-toggle" role="group" aria-label="Documentation engine">
     <button
       type="button"
       class="doc-engine-option"
@@ -125,7 +121,10 @@ const tocOpen = ref(false);
   </div>
 
   <div class="doc-sidebar-filter">
-    <i class="ph ph-funnel-simple doc-sidebar-filter-icon" aria-hidden="true"></i>
+    <i
+      class="ph ph-funnel-simple doc-sidebar-filter-icon"
+      aria-hidden="true"
+    ></i>
     <input
       v-model="filter"
       type="search"
@@ -145,7 +144,11 @@ const tocOpen = ref(false);
     Table of Contents
   </button>
 
-  <nav class="doc-nav" aria-label="Docs sections" :class="{ 'is-open': tocOpen }">
+  <nav
+    class="doc-nav"
+    aria-label="Docs sections"
+    :class="{ 'is-open': tocOpen }"
+  >
     <ul class="doc-nav-list">
       <template v-for="group in visibleGroups" :key="group.title">
         <li class="doc-nav-section">{{ group.title }}</li>
@@ -157,9 +160,8 @@ const tocOpen = ref(false);
             :data-section="section.id"
             @click="tocOpen = false"
           >
-            <i :class="`ph ph-${section.icon ?? 'circle'} mr-2`"></i>{{
-              section.title
-            }}
+            <i :class="`ph ph-${section.icon ?? 'circle'} mr-2`"></i
+            >{{ section.title }}
           </RouterLink>
         </li>
       </template>

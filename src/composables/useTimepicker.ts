@@ -96,12 +96,10 @@ export function useTimepicker(root: Ref<HTMLElement | null>): void {
             }
             item.addEventListener("click", () => {
               input.value = t.display;
-              popup
-                .querySelectorAll(".vd-timepicker-item")
-                .forEach((i) => {
-                  i.classList.remove("is-selected");
-                  i.removeAttribute("aria-selected");
-                });
+              popup.querySelectorAll(".vd-timepicker-item").forEach((i) => {
+                i.classList.remove("is-selected");
+                i.removeAttribute("aria-selected");
+              });
               item.classList.add("is-selected");
               item.setAttribute("aria-selected", "true");
               close();

@@ -29,7 +29,10 @@ export const useThemeStore = defineStore("theme", () => {
     applyPreference(prefs);
     ready.value = true;
 
-    if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function"
+    ) {
       const mq = window.matchMedia("(prefers-color-scheme: dark)");
       if (!mq || typeof mq.addEventListener !== "function") return;
       mq.addEventListener("change", () => {

@@ -10,9 +10,15 @@ import { onMounted, onUnmounted, type Ref } from "vue";
 export function useMorphBadges(root: Ref<HTMLElement | null>): void {
   const cleanups: Array<() => void> = [];
 
-  const setContent = (target: Element | null, icon: string, label: string): void => {
+  const setContent = (
+    target: Element | null,
+    icon: string,
+    label: string,
+  ): void => {
     if (!target) return;
-    const safeIcon = String(icon || "").replace(/[^a-z0-9-\s]/gi, "").trim();
+    const safeIcon = String(icon || "")
+      .replace(/[^a-z0-9-\s]/gi, "")
+      .trim();
     while (target.firstChild) target.removeChild(target.firstChild);
     if (safeIcon) {
       const i = document.createElement("i");
@@ -20,7 +26,9 @@ export function useMorphBadges(root: Ref<HTMLElement | null>): void {
       i.style.marginRight = "0.35rem";
       target.appendChild(i);
     }
-    target.appendChild(document.createTextNode(label == null ? "" : String(label)));
+    target.appendChild(
+      document.createTextNode(label == null ? "" : String(label)),
+    );
   };
 
   onMounted(() => {
@@ -28,16 +36,26 @@ export function useMorphBadges(root: Ref<HTMLElement | null>): void {
     if (!scope) return;
 
     scope
-      .querySelectorAll<HTMLElement>('[data-vd-morph="manual"][data-morph-states]')
+      .querySelectorAll<HTMLElement>(
+        '[data-vd-morph="manual"][data-morph-states]',
+      )
       .forEach((badge) => {
-        const states: string[] = JSON.parse(badge.getAttribute("data-morph-states") || "[]");
-        const classes: string[] = JSON.parse(badge.getAttribute("data-morph-classes") || "[]");
-        const icons: string[] = JSON.parse(badge.getAttribute("data-morph-icons") || "[]");
+        const states: string[] = JSON.parse(
+          badge.getAttribute("data-morph-states") || "[]",
+        );
+        const classes: string[] = JSON.parse(
+          badge.getAttribute("data-morph-classes") || "[]",
+        );
+        const icons: string[] = JSON.parse(
+          badge.getAttribute("data-morph-icons") || "[]",
+        );
         let idx = 0;
         let morphing = false;
 
         let morphMs = 750;
-        const d = getComputedStyle(badge).getPropertyValue("--vd-morph-duration").trim();
+        const d = getComputedStyle(badge)
+          .getPropertyValue("--vd-morph-duration")
+          .trim();
         if (d) {
           const parsed = parseFloat(d);
           if (!isNaN(parsed)) morphMs = parsed * (d.includes("ms") ? 1 : 1000);
@@ -50,7 +68,8 @@ export function useMorphBadges(root: Ref<HTMLElement | null>): void {
           const afterIdx = (nextIdx + 1) % states.length;
 
           const next = badge.querySelector(".vd-morph-next");
-          if (next) setContent(next, icons[nextIdx] ?? "", states[nextIdx] ?? "");
+          if (next)
+            setContent(next, icons[nextIdx] ?? "", states[nextIdx] ?? "");
 
           const wave = badge.querySelector<HTMLElement>(".vd-morph-wave");
           if (wave) {
@@ -66,8 +85,10 @@ export function useMorphBadges(root: Ref<HTMLElement | null>): void {
             if (classes[nextIdx]) badge.classList.add(classes[nextIdx]);
             const current = badge.querySelector(".vd-morph-current");
             const nextEl = badge.querySelector(".vd-morph-next");
-            if (current) setContent(current, icons[nextIdx] ?? "", states[nextIdx] ?? "");
-            if (nextEl) setContent(nextEl, icons[afterIdx] ?? "", states[afterIdx] ?? "");
+            if (current)
+              setContent(current, icons[nextIdx] ?? "", states[nextIdx] ?? "");
+            if (nextEl)
+              setContent(nextEl, icons[afterIdx] ?? "", states[afterIdx] ?? "");
             idx = nextIdx;
             morphing = false;
           }, morphMs);

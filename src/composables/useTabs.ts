@@ -29,7 +29,9 @@ export function useTabs(root: Ref<HTMLElement | null>): void {
             .forEach((p) => p.classList.remove("is-active"));
           link.classList.add("is-active");
           link.setAttribute("aria-selected", "true");
-          tabs.querySelector(`#${CSS.escape(targetId)}`)?.classList.add("is-active");
+          tabs
+            .querySelector(`#${CSS.escape(targetId)}`)
+            ?.classList.add("is-active");
         };
         link.addEventListener("click", onClick);
         cleanups.push(() => link.removeEventListener("click", onClick));

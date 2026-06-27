@@ -70,9 +70,7 @@ const onKeydown = (event: KeyboardEvent): void => {
 const isEditable = (el: EventTarget | null): boolean => {
   if (!(el instanceof HTMLElement)) return false;
   return (
-    el.tagName === "INPUT" ||
-    el.tagName === "TEXTAREA" ||
-    el.isContentEditable
+    el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable
   );
 };
 
@@ -123,14 +121,20 @@ onUnmounted(() => {
         <kbd class="global-search-kbd" @click="search.close()">esc</kbd>
       </div>
 
-      <div class="global-search-results" role="listbox" aria-label="Search results">
+      <div
+        class="global-search-results"
+        role="listbox"
+        aria-label="Search results"
+      >
         <ul
           v-if="search.ordered.length > 0"
           class="global-search-results-list"
           role="listbox"
         >
           <template v-for="group in search.groups" :key="group.categoryPath">
-            <li class="global-search-category-label">{{ group.categoryPath }}</li>
+            <li class="global-search-category-label">
+              {{ group.categoryPath }}
+            </li>
             <li
               v-for="result in group.results"
               :key="result.entry.id"
@@ -159,9 +163,7 @@ onUnmounted(() => {
         <div v-else-if="hasQuery" class="global-search-empty">
           <i class="ph ph-magnifying-glass global-search-empty-icon"></i>
           <p class="global-search-empty-title">No results found</p>
-          <p class="global-search-empty-text">
-            Try a different search term.
-          </p>
+          <p class="global-search-empty-text">Try a different search term.</p>
         </div>
         <div v-else class="global-search-hint">
           <i class="ph ph-keyboard global-search-hint-icon"></i>

@@ -32,7 +32,10 @@ const cards: DocsCard[] = [
     desc: "Explore the building blocks of Vanduo Framework.",
     highlights: [
       { icon: "ph-check-circle", text: "Live demos with copy-paste snippets" },
-      { icon: "ph-check-circle", text: "Props, tokens, and accessibility notes" },
+      {
+        icon: "ph-check-circle",
+        text: "Props, tokens, and accessibility notes",
+      },
     ],
     miniIcons: [
       { title: "Core", icon: "ph-palette" },
@@ -142,7 +145,8 @@ const cards: DocsCard[] = [
                   :aria-label="`${card.title} highlights`"
                 >
                   <li v-for="h in card.highlights" :key="h.text">
-                    <i :class="`ph ${h.icon}`" aria-hidden="true"></i> {{ h.text }}
+                    <i :class="`ph ${h.icon}`" aria-hidden="true"></i>
+                    {{ h.text }}
                   </li>
                 </ul>
                 <div class="docs-landing-card-icons" aria-hidden="true">

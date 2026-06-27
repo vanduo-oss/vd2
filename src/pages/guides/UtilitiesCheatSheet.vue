@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import DocsLayout from "@/layout/DocsLayout.vue";
-
 const spacing: [string, string][] = [
-  ["vd-p-fib-{1..13} / vd-m-fib-{1..13}", "Fibonacci padding / margin (all sides)"],
-  ["vd-pt / vd-pr / vd-pb / vd-pl-*", "Padding per side (top/right/bottom/left)"],
+  [
+    "vd-p-fib-{1..13} / vd-m-fib-{1..13}",
+    "Fibonacci padding / margin (all sides)",
+  ],
+  [
+    "vd-pt / vd-pr / vd-pb / vd-pl-*",
+    "Padding per side (top/right/bottom/left)",
+  ],
   ["vd-mt / vd-mr / vd-mb / vd-ml-*", "Margin per side"],
   ["vd-mx-auto", "Centre horizontally with auto side margins"],
-  ["vd-pad-xs … vd-pad-3xl", "Named padding steps (3 / 5 / 8 / 13 / 21 / 34 / 55 px)"],
+  [
+    "vd-pad-xs … vd-pad-3xl",
+    "Named padding steps (3 / 5 / 8 / 13 / 21 / 34 / 55 px)",
+  ],
 ];
 
 const typography: [string, string][] = [
@@ -44,50 +51,63 @@ const sections: [string, [string, string][]][] = [
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="utilities-cheat-sheet">
-      <h5 class="demo-title">
-        <i class="ph ph-list-magnifying-glass"></i>Utilities Cheat Sheet
-        <code class="vd-text-sm">Guide</code>
-      </h5>
-      <p class="vd-mb-6">
-        A quick reference to Vanduo's utility classes. These are pure CSS and work
-        the same in static HTML and vd2 templates. Spacing, gaps, and radii all
-        follow the <a href="/guides/fibonacci">Fibonacci scale</a>.
-      </p>
+  <section id="utilities-cheat-sheet">
+    <h5 class="demo-title">
+      <i class="ph ph-list-magnifying-glass"></i>Utilities Cheat Sheet
+      <code class="vd-text-sm">Guide</code>
+    </h5>
+    <p class="vd-mb-6">
+      A quick reference to Vanduo's utility classes. These are pure CSS and
+      work the same in static HTML and vd2 templates. Spacing, gaps, and radii
+      all follow the <a href="/guides/fibonacci">Fibonacci scale</a>.
+    </p>
 
-      <div v-for="[title, rows] in sections" :key="title" class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6>{{ title }}</h6></div>
-            <div class="vd-card-body">
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Class</th><th>Effect</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in rows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+    <div
+      v-for="[title, rows] in sections"
+      :key="title"
+      class="vd-row vd-mb-6"
+    >
+      <div class="vd-col-12">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6>{{ title }}</h6>
+          </div>
+          <div class="vd-card-body">
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th>Effect</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in rows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="vd-card demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-info"></i> Tip</h6></div>
-        <div class="vd-card-body">
-          <p>
-            Reach for utilities for one-off spacing and alignment; reach for
-            component classes (<code>vd-card</code>, <code>vd-btn</code>) for
-            recurring patterns. For deeper colour reference, see
-            <a href="/core/color-palette">the colour palette</a>.
-          </p>
-        </div>
+    <div class="vd-card demo-card">
+      <div class="vd-card-header">
+        <h6><i class="ph ph-info"></i> Tip</h6>
       </div>
-    </section>
-  </DocsLayout>
+      <div class="vd-card-body">
+        <p>
+          Reach for utilities for one-off spacing and alignment; reach for
+          component classes (<code>vd-card</code>, <code>vd-btn</code>) for
+          recurring patterns. For deeper colour reference, see
+          <a href="/core/color-palette">the colour palette</a>.
+        </p>
+      </div>
+    </div>
+  </section>
 </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 
@@ -48,97 +47,148 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="getting-started">
-      <h5 class="demo-title">
-        <i class="ph ph-rocket-launch"></i>Getting Started
-        <code class="vd-text-sm">Guide</code>
-      </h5>
-      <p class="vd-mb-6">
-        Get a Vanduo-styled page running in a few minutes. The same design system
-        ships two ways — pick yours with the engine toggle in the sidebar:
-        <strong>Vue 3</strong> (Vite + components) or <strong>Vanilla</strong>
-        (drop-in CSS/JS, no build step).
-      </p>
+  <section id="getting-started">
+    <h5 class="demo-title">
+      <i class="ph ph-rocket-launch"></i>Getting Started
+      <code class="vd-text-sm">Guide</code>
+    </h5>
+    <p class="vd-mb-6">
+      Get a Vanduo-styled page running in a few minutes. The same design
+      system ships two ways — pick yours with the engine toggle in the
+      sidebar:
+      <strong>Vue 3</strong> (Vite + components) or <strong>Vanilla</strong>
+      (drop-in CSS/JS, no build step).
+    </p>
 
-      <EngineSwitch>
-        <!-- ── Vue 3 ───────────────────────────────────────── -->
-        <template #vue3>
-          <div class="vd-row vd-mb-6">
-            <div class="vd-col-12">
-              <div class="vd-card demo-card">
-                <div class="vd-card-header"><h6><i class="ph ph-number-circle-one"></i> Scaffold a Vue project</h6></div>
-                <div class="vd-card-body">
-                  <DocCodeSnippet :shell="scaffoldShell" :default-open="true" />
-                </div>
+    <EngineSwitch>
+      <!-- ── Vue 3 ───────────────────────────────────────── -->
+      <template #vue3>
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-one"></i> Scaffold a Vue
+                  project
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <DocCodeSnippet :shell="scaffoldShell" :default-open="true" />
               </div>
             </div>
           </div>
-
-          <div class="vd-row vd-mb-6">
-            <div class="vd-col-12">
-              <div class="vd-card demo-card">
-                <div class="vd-card-header"><h6><i class="ph ph-number-circle-two"></i> Import the CSS once</h6></div>
-                <div class="vd-card-body">
-                  <p>Load the framework's component styles in your entry file:</p>
-                  <DocCodeSnippet :js="mainJs" :default-open="true" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="vd-row vd-mb-6">
-            <div class="vd-col-12">
-              <div class="vd-card demo-card">
-                <div class="vd-card-header"><h6><i class="ph ph-number-circle-three"></i> Compose your first page</h6></div>
-                <div class="vd-card-body">
-                  <p>Use <code>vd-</code> classes in any template — they're styled for you:</p>
-                  <DocCodeSnippet :html="pageHtml" :default-open="true" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <!-- ── Vanilla ─────────────────────────────────────── -->
-        <template #vanilla>
-          <div class="vd-row vd-mb-6">
-            <div class="vd-col-12">
-              <div class="vd-card demo-card">
-                <div class="vd-card-header"><h6><i class="ph ph-number-circle-one"></i> Add the framework (no build)</h6></div>
-                <div class="vd-card-body">
-                  <p>Drop two lines into any HTML file and call <code>Vanduo.init()</code>:</p>
-                  <DocCodeSnippet :html="cdnHtml" :default-open="true" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="vd-row vd-mb-6">
-            <div class="vd-col-12">
-              <div class="vd-card demo-card">
-                <div class="vd-card-header"><h6><i class="ph ph-number-circle-two"></i> Compose your first page</h6></div>
-                <div class="vd-card-body">
-                  <p>The exact same <code>vd-</code> classes — just in plain HTML:</p>
-                  <DocCodeSnippet :html="vanillaPageHtml" :default-open="true" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-      </EngineSwitch>
-
-      <div class="vd-card demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-compass"></i> Next steps</h6></div>
-        <div class="vd-card-body">
-          <ul>
-            <li><a href="/guides/first-layout">Your first layout</a> — grid, containers, and breakpoints.</li>
-            <li><a href="/guides/css-variables">CSS variables &amp; theming</a> — make it yours.</li>
-            <li><a href="/guides/utilities-cheat-sheet">Utilities cheat sheet</a> — the spacing/text helpers.</li>
-            <li><a href="/docs-landing">Component reference</a> — browse every component.</li>
-          </ul>
         </div>
+
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-two"></i> Import the CSS once
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <p>
+                  Load the framework's component styles in your entry file:
+                </p>
+                <DocCodeSnippet :js="mainJs" :default-open="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-three"></i> Compose your first
+                  page
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <p>
+                  Use <code>vd-</code> classes in any template — they're
+                  styled for you:
+                </p>
+                <DocCodeSnippet :html="pageHtml" :default-open="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ── Vanilla ─────────────────────────────────────── -->
+      <template #vanilla>
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-one"></i> Add the framework
+                  (no build)
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <p>
+                  Drop two lines into any HTML file and call
+                  <code>Vanduo.init()</code>:
+                </p>
+                <DocCodeSnippet :html="cdnHtml" :default-open="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-row vd-mb-6">
+          <div class="vd-col-12">
+            <div class="vd-card demo-card">
+              <div class="vd-card-header">
+                <h6>
+                  <i class="ph ph-number-circle-two"></i> Compose your first
+                  page
+                </h6>
+              </div>
+              <div class="vd-card-body">
+                <p>
+                  The exact same <code>vd-</code> classes — just in plain
+                  HTML:
+                </p>
+                <DocCodeSnippet
+                  :html="vanillaPageHtml"
+                  :default-open="true"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </EngineSwitch>
+
+    <div class="vd-card demo-card">
+      <div class="vd-card-header">
+        <h6><i class="ph ph-compass"></i> Next steps</h6>
       </div>
-    </section>
-  </DocsLayout>
+      <div class="vd-card-body">
+        <ul>
+          <li>
+            <a href="/guides/first-layout">Your first layout</a> — grid,
+            containers, and breakpoints.
+          </li>
+          <li>
+            <a href="/guides/css-variables">CSS variables &amp; theming</a> —
+            make it yours.
+          </li>
+          <li>
+            <a href="/guides/utilities-cheat-sheet">Utilities cheat sheet</a>
+            — the spacing/text helpers.
+          </li>
+          <li>
+            <a href="/docs-landing">Component reference</a> — browse every
+            component.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </template>

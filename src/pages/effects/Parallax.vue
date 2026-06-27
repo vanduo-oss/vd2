@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useParallax } from "@/composables/useParallax";
@@ -37,128 +36,187 @@ const markupHtml = `<!-- Slow background drift + fixed foreground content -->
 </div>`;
 
 const apiRows: [string, string, string][] = [
-  [".vd-parallax", "container", "Required. Marks the scroll-reactive container (position: relative; overflow: hidden)."],
+  [
+    ".vd-parallax",
+    "container",
+    "Required. Marks the scroll-reactive container (position: relative; overflow: hidden).",
+  ],
   [".vd-parallax-layer", "child", "An absolutely-positioned moving layer."],
-  [".vd-parallax-bg", "child", "A moving background layer (120% height; set background-image)."],
-  [".vd-parallax-content", "child", "Foreground content that stays in normal flow (z-index above layers)."],
-  [".vd-parallax-slow / .vd-parallax-medium / .vd-parallax-fast", "container", "Container speed multiplier — 0.5 / 1 / 1.5."],
-  [".vd-parallax-horizontal", "container", "Translate layers on the X axis instead of Y (default is vertical)."],
-  [".vd-parallax-sm / -md / -lg / -full", "container", "Fibonacci min-heights — 377px / 610px / 987px / 100vh."],
-  [".vd-parallax-disable-mobile", "container", "Freeze layers at ≤767px viewports."],
-  ['data-parallax-speed="N"', "layer", "Per-layer rate multiplier (applied on top of the container speed)."],
+  [
+    ".vd-parallax-bg",
+    "child",
+    "A moving background layer (120% height; set background-image).",
+  ],
+  [
+    ".vd-parallax-content",
+    "child",
+    "Foreground content that stays in normal flow (z-index above layers).",
+  ],
+  [
+    ".vd-parallax-slow / .vd-parallax-medium / .vd-parallax-fast",
+    "container",
+    "Container speed multiplier — 0.5 / 1 / 1.5.",
+  ],
+  [
+    ".vd-parallax-horizontal",
+    "container",
+    "Translate layers on the X axis instead of Y (default is vertical).",
+  ],
+  [
+    ".vd-parallax-sm / -md / -lg / -full",
+    "container",
+    "Fibonacci min-heights — 377px / 610px / 987px / 100vh.",
+  ],
+  [
+    ".vd-parallax-disable-mobile",
+    "container",
+    "Freeze layers at ≤767px viewports.",
+  ],
+  [
+    'data-parallax-speed="N"',
+    "layer",
+    "Per-layer rate multiplier (applied on top of the container speed).",
+  ],
 ];
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="parallax" ref="root">
-      <h5 class="demo-title"><i class="ph ph-stack"></i>Parallax</h5>
-      <p class="vd-mb-6">
-        Depth-on-scroll. Layers inside a <code>.vd-parallax</code> container
-        translate at different rates as the container moves through the
-        viewport, creating a sense of depth. Movement is driven by JavaScript on
-        a <code>requestAnimationFrame</code>-throttled scroll listener and is
-        fully disabled when the visitor requests reduced motion.
-      </p>
+  <section id="parallax" ref="root">
+    <h5 class="demo-title"><i class="ph ph-stack"></i>Parallax</h5>
+    <p class="vd-mb-6">
+      Depth-on-scroll. Layers inside a <code>.vd-parallax</code> container
+      translate at different rates as the container moves through the
+      viewport, creating a sense of depth. Movement is driven by JavaScript on
+      a <code>requestAnimationFrame</code>-throttled scroll listener and is
+      fully disabled when the visitor requests reduced motion.
+    </p>
 
-      <!-- Rendered demo -->
-      <div class="vd-row">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Depth from layered speeds</h6></div>
-            <div class="vd-card-body">
-              <p class="vd-mb-5">
-                Scroll the page — the colour band
-                (<code>.vd-parallax-bg</code>, slow) and the dot grid
-                (<code>.vd-parallax-layer</code>, fast) translate at different
-                rates via <code>data-parallax-speed</code>, while the foreground
-                <code>.vd-parallax-content</code> stays put. That difference in
-                rates is what reads as depth. The colour band also shifts as the
-                panel scrolls through the viewport — a CSS scroll-driven flourish
-                layered on top.
-              </p>
-              <div class="vd-parallax vd-parallax-md vd-parallax-fast parallax-demo">
-                <div class="vd-parallax-bg pd-layer-back" data-parallax-speed="0.4"></div>
-                <div class="vd-parallax-layer pd-layer-dots" data-parallax-speed="1.5"></div>
-                <div class="vd-parallax-content">
-                  <span><i class="ph ph-arrows-down-up"></i>Scroll — the colour band shifts as the dot grid races ahead</span>
-                </div>
+    <!-- Rendered demo -->
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Depth from layered speeds</h6></div>
+          <div class="vd-card-body">
+            <p class="vd-mb-5">
+              Scroll the page — the colour band (<code>.vd-parallax-bg</code>,
+              slow) and the dot grid (<code>.vd-parallax-layer</code>, fast)
+              translate at different rates via
+              <code>data-parallax-speed</code>, while the foreground
+              <code>.vd-parallax-content</code> stays put. That difference in
+              rates is what reads as depth. The colour band also shifts as the
+              panel scrolls through the viewport — a CSS scroll-driven
+              flourish layered on top.
+            </p>
+            <div
+              class="vd-parallax vd-parallax-md vd-parallax-fast parallax-demo"
+            >
+              <div
+                class="vd-parallax-bg pd-layer-back"
+                data-parallax-speed="0.4"
+              ></div>
+              <div
+                class="vd-parallax-layer pd-layer-dots"
+                data-parallax-speed="1.5"
+              ></div>
+              <div class="vd-parallax-content">
+                <span
+                  ><i class="ph ph-arrows-down-up"></i>Scroll — the colour
+                  band shifts as the dot grid races ahead</span
+                >
               </div>
-              <p class="vd-text-sm vd-text-muted vd-mt-5">
-                <strong>Reduced motion:</strong> if your OS requests reduced
-                motion, the component does not initialize and layers render
-                statically.
-              </p>
             </div>
+            <p class="vd-text-sm vd-text-muted vd-mt-5">
+              <strong>Reduced motion:</strong> if your OS requests reduced
+              motion, the component does not initialize and layers render
+              statically.
+            </p>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Markup -->
-      <div class="vd-row">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Markup</h6></div>
-            <div class="vd-card-body">
-              <p>Wrap layers in a <code>.vd-parallax</code> container. Movement initializes automatically on <code>Vanduo.init()</code>.</p>
-              <DocCodeSnippet :html="markupHtml" />
-            </div>
+    <!-- Markup -->
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Markup</h6></div>
+          <div class="vd-card-body">
+            <p>
+              Wrap layers in a <code>.vd-parallax</code> container. Movement
+              initializes automatically on <code>Vanduo.init()</code>.
+            </p>
+            <DocCodeSnippet :html="markupHtml" />
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- API reference -->
-      <div class="vd-row">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Classes &amp; attributes</h6></div>
-            <div class="vd-card-body">
-              <h4 class="vd-mt-0">Wiring</h4>
-              <EngineSwitch>
-                <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-                <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
-              </EngineSwitch>
+    <!-- API reference -->
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Classes &amp; attributes</h6></div>
+          <div class="vd-card-body">
+            <h4 class="vd-mt-0">Wiring</h4>
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :js="vue3Wiring" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :js="vanillaWiring" :default-open="true"
+              /></template>
+            </EngineSwitch>
 
-              <h4 class="vd-mt-6">Classes &amp; attributes</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table">
-                  <thead><tr><th>Class / attribute</th><th>Applies to</th><th>Effect</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in apiRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                      <td>{{ row[2] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <EngineSwitch>
-                <template #vue3>
-                  <p class="vd-text-sm vd-text-muted vd-mt-5">
-                    <strong>Composable API:</strong> <code>useParallax(root)</code>
-                    wires every <code>.vd-parallax</code> inside the root ref. The
-                    rAF scroll handler and <code>prefers-reduced-motion</code>
-                    guard are set up automatically and torn down on unmount — no
-                    manual refresh/destroy needed.
-                  </p>
-                </template>
-                <template #vanilla>
-                  <p class="vd-text-sm vd-text-muted vd-mt-5">
-                    <strong>JavaScript API:</strong> components auto-initialize on
-                    <code>Vanduo.init()</code>. <code>VanduoParallax.refresh()</code>
-                    recalculates positions (call after layout changes),
-                    <code>VanduoParallax.destroy(el)</code> resets a single
-                    container, and <code>VanduoParallax.destroyAll()</code> tears
-                    down all listeners.
-                  </p>
-                </template>
-              </EngineSwitch>
+            <h4 class="vd-mt-6">Classes &amp; attributes</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table">
+                <thead>
+                  <tr>
+                    <th>Class / attribute</th>
+                    <th>Applies to</th>
+                    <th>Effect</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in apiRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <EngineSwitch>
+              <template #vue3>
+                <p class="vd-text-sm vd-text-muted vd-mt-5">
+                  <strong>Composable API:</strong>
+                  <code>useParallax(root)</code> wires every
+                  <code>.vd-parallax</code> inside the root ref. The rAF
+                  scroll handler and <code>prefers-reduced-motion</code>
+                  guard are set up automatically and torn down on unmount — no
+                  manual refresh/destroy needed.
+                </p>
+              </template>
+              <template #vanilla>
+                <p class="vd-text-sm vd-text-muted vd-mt-5">
+                  <strong>JavaScript API:</strong> components auto-initialize
+                  on <code>Vanduo.init()</code>.
+                  <code>VanduoParallax.refresh()</code>
+                  recalculates positions (call after layout changes),
+                  <code>VanduoParallax.destroy(el)</code> resets a single
+                  container, and
+                  <code>VanduoParallax.destroyAll()</code> tears down all
+                  listeners.
+                </p>
+              </template>
+            </EngineSwitch>
           </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+  </section>
 </template>
 
 <style>

@@ -67,7 +67,11 @@ export const useToastStore = defineStore("toast", () => {
       if (type && typeof type === "object") {
         opts = { ...type, message: options };
       } else {
-        opts = { message: options, type: type as ToastType | undefined, duration };
+        opts = {
+          message: options,
+          type: type as ToastType | undefined,
+          duration,
+        };
       }
     } else {
       opts = { ...options };

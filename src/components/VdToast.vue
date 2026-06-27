@@ -82,7 +82,9 @@ onBeforeUnmount(() => {
       'vd-toast',
       toast.type ? `vd-toast-${toast.type}` : null,
       toast.solid ? 'vd-toast-solid' : null,
-      toast.showProgress && toast.duration > 0 ? 'vd-toast-with-progress' : null,
+      toast.showProgress && toast.duration > 0
+        ? 'vd-toast-with-progress'
+        : null,
       { 'is-visible': visible, 'is-exiting': exiting },
     ]"
     role="status"

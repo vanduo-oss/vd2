@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
@@ -33,7 +32,10 @@ interface GridInstance {
   generateRandomTerrain: () => void;
   setHexTerrain: (q: number, r: number, type: string) => void;
   getHexTerrain: (q: number, r: number) => string | null;
-  getHexYields: (q: number, r: number) => { food: number; production: number; gold: number };
+  getHexYields: (
+    q: number,
+    r: number,
+  ) => { food: number; production: number; gold: number };
   getHexMovementCost: (q: number, r: number) => number;
   isHexPassable: (q: number, r: number) => boolean;
   hasHex: (q: number, r: number) => boolean;
@@ -47,7 +49,11 @@ interface GridInstance {
   setHexFill: (q: number, r: number, color: string) => void;
   getAllHexes: () => HexCell[];
   setCustomRender: (
-    callback: (ctx: CanvasRenderingContext2D, hex: HexCell, size: number) => void,
+    callback: (
+      ctx: CanvasRenderingContext2D,
+      hex: HexCell,
+      size: number,
+    ) => void,
   ) => void;
   clearCustomRender: () => void;
   _getThemeColors?: () => Record<string, string>;
@@ -83,9 +89,11 @@ const pickedTerrain = ref<string>(TerrainType.GRASSLAND);
 const terrainTypes = Object.values(TerrainType) as string[];
 
 const terrainName = ref<string | null>(null);
-const terrainYields = ref<{ food: number; production: number; gold: number } | null>(
-  null,
-);
+const terrainYields = ref<{
+  food: number;
+  production: number;
+  gold: number;
+} | null>(null);
 const terrainMovement = ref<number | null>(null);
 const terrainPassable = ref<boolean | null>(null);
 
@@ -171,7 +179,8 @@ const themeAwareFillRandom = (): void => {
   if (!gridInstance) return;
   const palette = isDarkTheme() ? darkFills : lightFills;
   gridInstance.getAllHexes().forEach((h) => {
-    if (!h.terrain) h.fill = palette[Math.floor(Math.random() * palette.length)];
+    if (!h.terrain)
+      h.fill = palette[Math.floor(Math.random() * palette.length)];
   });
   gridInstance._render?.();
 };
@@ -212,7 +221,13 @@ const overlayRender = (
     const isEnd = idx === 0 || idx === pathHexes.value.length - 1;
     ctx.fillStyle = PATH_ACCENT;
     ctx.beginPath();
-    ctx.arc(hex.x, hex.y, Math.max(3, hexSize * (isEnd ? 0.26 : 0.16)), 0, Math.PI * 2);
+    ctx.arc(
+      hex.x,
+      hex.y,
+      Math.max(3, hexSize * (isEnd ? 0.26 : 0.16)),
+      0,
+      Math.PI * 2,
+    );
     ctx.fill();
     ctx.restore();
   }
@@ -398,8 +413,13 @@ const generateTerrain = (): void => {
 };
 
 const applyTerrainToSelected = (): void => {
-  if (!gridInstance || selectedQ.value === null || selectedR.value === null) return;
-  gridInstance.setHexTerrain(selectedQ.value, selectedR.value, pickedTerrain.value);
+  if (!gridInstance || selectedQ.value === null || selectedR.value === null)
+    return;
+  gridInstance.setHexTerrain(
+    selectedQ.value,
+    selectedR.value,
+    pickedTerrain.value,
+  );
   updateTerrainInfo(selectedQ.value, selectedR.value);
 };
 
@@ -482,15 +502,42 @@ const vue3Api: [string, string][] = [
 ];
 
 const methods: [string, string][] = [
-  ["setSize(size) / setDimensions(w, h) / setRotation(rad)", "Reconfigure the grid; re-renders in place."],
-  ["getHex(q, r) / getAllHexes() / hasHex(q, r) / getHexCount()", "Query hexes by axial coordinate."],
-  ["setHexTerrain(q, r, type) / getHexTerrain(q, r) / generateRandomTerrain()", "Per-hex terrain (type values like 'Grassland')."],
-  ["getHexYields / getHexMovementCost / isHexPassable", "Terrain-derived attributes."],
-  ["getPath(startQ, startR, endQ, endR)", "BFS path between hexes respecting passability."],
-  ["setHexData(q, r, data) / getHexData / clearHexData", "Arbitrary per-hex data."],
-  ["hexDistance(q1, r1, q2, r2) / resetView() / fillRandom()", "Distance, reset pan/zoom, demo fill."],
-  ["setCustomRender(cb) / clearCustomRender()", "Draw custom overlays per hex."],
-  ["zoomIn() / zoomOut() / on(event, cb)", "Zoom controls and event subscription."],
+  [
+    "setSize(size) / setDimensions(w, h) / setRotation(rad)",
+    "Reconfigure the grid; re-renders in place.",
+  ],
+  [
+    "getHex(q, r) / getAllHexes() / hasHex(q, r) / getHexCount()",
+    "Query hexes by axial coordinate.",
+  ],
+  [
+    "setHexTerrain(q, r, type) / getHexTerrain(q, r) / generateRandomTerrain()",
+    "Per-hex terrain (type values like 'Grassland').",
+  ],
+  [
+    "getHexYields / getHexMovementCost / isHexPassable",
+    "Terrain-derived attributes.",
+  ],
+  [
+    "getPath(startQ, startR, endQ, endR)",
+    "BFS path between hexes respecting passability.",
+  ],
+  [
+    "setHexData(q, r, data) / getHexData / clearHexData",
+    "Arbitrary per-hex data.",
+  ],
+  [
+    "hexDistance(q1, r1, q2, r2) / resetView() / fillRandom()",
+    "Distance, reset pan/zoom, demo fill.",
+  ],
+  [
+    "setCustomRender(cb) / clearCustomRender()",
+    "Draw custom overlays per hex.",
+  ],
+  [
+    "zoomIn() / zoomOut() / on(event, cb)",
+    "Zoom controls and event subscription.",
+  ],
 ];
 
 const events: [string, string][] = [
@@ -501,325 +548,416 @@ const events: [string, string][] = [
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="vd-hex">
-      <h5 class="demo-title"><i class="ph ph-hexagon"></i>Hex Grid</h5>
-      <p class="vd-mb-8">
-        <strong>Vanduo Hex Grid</strong> is a standalone, canvas-rendered axial hex
-        grid, installed separately from the framework. Pan, zoom, select hexes, and
-        attach terrain or custom data. It reads Vanduo theme tokens, ships a pure
-        <code>@vanduo-oss/hex-grid/hex-math</code> subexport, and an optional Vue 3
-        binding (<code>@vanduo-oss/hex-grid/vue</code>) used here.
-      </p>
+  <section id="vd-hex">
+    <h5 class="demo-title"><i class="ph ph-hexagon"></i>Hex Grid</h5>
+    <p class="vd-mb-8">
+      <strong>Vanduo Hex Grid</strong> is a standalone, canvas-rendered axial
+      hex grid, installed separately from the framework. Pan, zoom, select
+      hexes, and attach terrain or custom data. It reads Vanduo theme tokens,
+      ships a pure <code>@vanduo-oss/hex-grid/hex-math</code> subexport, and
+      an optional Vue 3 binding (<code>@vanduo-oss/hex-grid/vue</code>) used
+      here.
+    </p>
 
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12 vd-col-lg-8 vd-mb-6" style="align-self: flex-start">
-          <div class="vd-card demo-card" style="padding: 1rem">
+    <div class="vd-row vd-mb-6">
+      <div
+        class="vd-col-12 vd-col-lg-8 vd-mb-6"
+        style="align-self: flex-start"
+      >
+        <div class="vd-card demo-card" style="padding: 1rem">
+          <div
+            class="hex-demo-container"
+            style="
+              position: relative;
+              width: 100%;
+              height: 420px;
+              background: var(--vd-bg-primary);
+            "
+          >
+            <VdHexGrid
+              :size="size"
+              :width="width"
+              :height="height"
+              :rotation="rotationRad"
+              @ready="onReady"
+              @select="onSelect"
+              @zoom="onZoom"
+            />
             <div
-              class="hex-demo-container"
+              class="canvas-toolbar"
               style="
-                position: relative;
-                width: 100%;
-                height: 420px;
-                background: var(--vd-bg-primary);
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                display: flex;
+                gap: 8px;
+                z-index: 10;
               "
             >
-              <VdHexGrid
-                :size="size"
-                :width="width"
-                :height="height"
-                :rotation="rotationRad"
-                @ready="onReady"
-                @select="onSelect"
-                @zoom="onZoom"
-              />
-              <div
-                class="canvas-toolbar"
-                style="
-                  position: absolute;
-                  top: 10px;
-                  right: 10px;
-                  display: flex;
-                  gap: 8px;
-                  z-index: 10;
-                "
+              <button
+                type="button"
+                class="vd-btn vd-btn-sm vd-btn-outline"
+                title="Zoom out"
+                aria-label="Zoom out"
+                @click="zoomOut"
               >
-                <button
-                  type="button"
-                  class="vd-btn vd-btn-sm vd-btn-outline"
-                  title="Zoom out"
-                  aria-label="Zoom out"
-                  @click="zoomOut"
-                >
-                  <i class="ph ph-minus"></i>
-                </button>
-                <span
-                  class="vd-text-sm vd-text-muted hex-zoom-level"
-                  style="
-                    padding: 6px 8px;
-                    background: var(--vd-bg-primary);
-                    border-radius: 4px;
-                    min-width: 50px;
-                    text-align: center;
-                  "
-                >{{ zoomPercent }}%</span>
-                <button
-                  type="button"
-                  class="vd-btn vd-btn-sm vd-btn-outline"
-                  title="Zoom in"
-                  aria-label="Zoom in"
-                  @click="zoomIn"
-                >
-                  <i class="ph ph-plus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="vd-btn vd-btn-sm vd-btn-outline"
-                  title="Reset view"
-                  aria-label="Reset view"
-                  @click="resetView"
-                >
-                  <i class="ph ph-arrows-counter-clockwise"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="vd-col-12 vd-col-lg-4 vd-mb-6">
-          <div class="vd-card demo-card" style="height: 100%">
-            <div class="vd-card-body">
-              <h4 class="vd-mb-4">Grid Controls</h4>
-
-              <div class="vd-mb-4">
-                <label class="vd-form-label" for="hex-size-slider">Hex Size</label>
-                <input
-                  id="hex-size-slider"
-                  v-model.number="size"
-                  type="range"
-                  class="vd-range"
-                  min="10"
-                  max="50"
-                  style="width: 100%"
-                />
-                <span class="vd-text-sm vd-text-muted">{{ size }}px</span>
-              </div>
-
-              <div class="vd-mb-4">
-                <label class="vd-form-label" for="hex-width-slider">Grid Width</label>
-                <input
-                  id="hex-width-slider"
-                  v-model.number="width"
-                  type="range"
-                  class="vd-range"
-                  min="5"
-                  max="30"
-                  style="width: 100%"
-                />
-                <span class="vd-text-sm vd-text-muted">{{ width }}</span>
-              </div>
-
-              <div class="vd-mb-4">
-                <label class="vd-form-label" for="hex-height-slider">Grid Height</label>
-                <input
-                  id="hex-height-slider"
-                  v-model.number="height"
-                  type="range"
-                  class="vd-range"
-                  min="5"
-                  max="20"
-                  style="width: 100%"
-                />
-                <span class="vd-text-sm vd-text-muted">{{ height }}</span>
-              </div>
-
-              <div class="vd-mb-4">
-                <label class="vd-form-label" for="hex-rotation-slider">Grid Rotation</label>
-                <input
-                  id="hex-rotation-slider"
-                  v-model.number="rotationDeg"
-                  type="range"
-                  class="vd-range"
-                  min="-180"
-                  max="180"
-                  step="1"
-                  style="width: 100%"
-                />
-                <span class="vd-text-sm vd-text-muted">{{ rotationDeg }}°</span>
-              </div>
-
-              <div class="vd-inline vd-mt-2" data-gap="fib-5">
-                <button type="button" class="vd-btn vd-btn-outline" @click="resetGrid">
-                  <i class="ph ph-arrows-counter-clockwise"></i> Reset Grid
-                </button>
-                <button
-                  type="button"
-                  class="vd-btn vd-btn-outline"
-                  @click="fillRandom"
-                >
-                  <i class="ph ph-paint-bucket"></i> Fill Random
-                </button>
-              </div>
-
-              <hr class="vd-my-5" />
-
-              <h5 class="vd-mb-3">Terrain &amp; pathfinding</h5>
-
-              <div class="vd-mb-4">
-                <button type="button" class="vd-btn vd-btn-outline vd-w-100" @click="generateTerrain">
-                  <i class="ph ph-globe-hemisphere-west"></i> Generate Terrain
-                </button>
-              </div>
-
-              <div class="vd-mb-4">
-                <label class="vd-form-label" for="hex-terrain-picker">Paint terrain (select hex first)</label>
-                <select
-                  id="hex-terrain-picker"
-                  v-model="pickedTerrain"
-                  class="vd-form-select"
-                  :disabled="selectedQ === null"
-                >
-                  <option v-for="t in terrainTypes" :key="t" :value="t">{{ t }}</option>
-                </select>
-                <button
-                  type="button"
-                  class="vd-btn vd-btn-sm vd-btn-outline vd-mt-2"
-                  :disabled="selectedQ === null"
-                  @click="applyTerrainToSelected"
-                >
-                  Apply to selected
-                </button>
-              </div>
-
-              <div class="vd-mb-3">
-                <label class="vd-form-check">
-                  <input v-model="pathMode" type="checkbox" class="vd-form-check-input" />
-                  <span class="vd-form-check-label">Path mode</span>
-                </label>
-                <p v-if="pathMode" class="vd-text-sm vd-text-muted vd-mt-2 vd-mb-0">
-                  Click start hex, then end hex.
-                  <span v-if="pathStartLabel"> Start: {{ pathStartLabel }}</span>
-                  <span v-if="pathLength !== null"> · Path length: {{ pathLength }} hexes</span>
-                  <span v-else-if="pathNoRoute"> · No route found</span>
-                </p>
-              </div>
-
-              <div>
-                <label class="vd-form-check">
-                  <input v-model="showCoords" type="checkbox" class="vd-form-check-input" />
-                  <span class="vd-form-check-label">Show coordinates on all hexes</span>
-                </label>
-              </div>
+                <i class="ph ph-minus"></i>
+              </button>
+              <span
+                class="vd-text-sm vd-text-muted hex-zoom-level"
+                style="
+                  padding: 6px 8px;
+                  background: var(--vd-bg-primary);
+                  border-radius: 4px;
+                  min-width: 50px;
+                  text-align: center;
+                "
+                >{{ zoomPercent }}%</span
+              >
+              <button
+                type="button"
+                class="vd-btn vd-btn-sm vd-btn-outline"
+                title="Zoom in"
+                aria-label="Zoom in"
+                @click="zoomIn"
+              >
+                <i class="ph ph-plus"></i>
+              </button>
+              <button
+                type="button"
+                class="vd-btn vd-btn-sm vd-btn-outline"
+                title="Reset view"
+                aria-label="Reset view"
+                @click="resetView"
+              >
+                <i class="ph ph-arrows-counter-clockwise"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div v-show="showInfo" class="vd-card vd-mb-6 demo-card">
-        <div class="vd-card-body">
-          <h4 class="vd-mb-4">
-            <i class="ph ph-cursor-click"></i> Selected Hex
-          </h4>
-          <div class="vd-row">
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Coordinates:</span>
-              <span class="vd-text-bold vd-ml-2">{{ selectedCoords || "—" }}</span>
+      <div class="vd-col-12 vd-col-lg-4 vd-mb-6">
+        <div class="vd-card demo-card" style="height: 100%">
+          <div class="vd-card-body">
+            <h4 class="vd-mb-4">Grid Controls</h4>
+
+            <div class="vd-mb-4">
+              <label class="vd-form-label" for="hex-size-slider"
+                >Hex Size</label
+              >
+              <input
+                id="hex-size-slider"
+                v-model.number="size"
+                type="range"
+                class="vd-range"
+                min="10"
+                max="50"
+                style="width: 100%"
+              />
+              <span class="vd-text-sm vd-text-muted">{{ size }}px</span>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Pixel X:</span>
-              <span class="vd-text-bold vd-ml-2">{{ showInfo ? pixelX : "—" }}</span>
+
+            <div class="vd-mb-4">
+              <label class="vd-form-label" for="hex-width-slider"
+                >Grid Width</label
+              >
+              <input
+                id="hex-width-slider"
+                v-model.number="width"
+                type="range"
+                class="vd-range"
+                min="5"
+                max="30"
+                style="width: 100%"
+              />
+              <span class="vd-text-sm vd-text-muted">{{ width }}</span>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Pixel Y:</span>
-              <span class="vd-text-bold vd-ml-2">{{ showInfo ? pixelY : "—" }}</span>
+
+            <div class="vd-mb-4">
+              <label class="vd-form-label" for="hex-height-slider"
+                >Grid Height</label
+              >
+              <input
+                id="hex-height-slider"
+                v-model.number="height"
+                type="range"
+                class="vd-range"
+                min="5"
+                max="20"
+                style="width: 100%"
+              />
+              <span class="vd-text-sm vd-text-muted">{{ height }}</span>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Adjacent:</span>
-              <span class="vd-text-bold vd-ml-2">{{ showInfo ? adjacentCount : "—" }}</span>
+
+            <div class="vd-mb-4">
+              <label class="vd-form-label" for="hex-rotation-slider"
+                >Grid Rotation</label
+              >
+              <input
+                id="hex-rotation-slider"
+                v-model.number="rotationDeg"
+                type="range"
+                class="vd-range"
+                min="-180"
+                max="180"
+                step="1"
+                style="width: 100%"
+              />
+              <span class="vd-text-sm vd-text-muted">{{ rotationDeg }}°</span>
             </div>
-          </div>
-          <div v-if="terrainName" class="vd-row vd-mt-3">
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Terrain:</span>
-              <span class="vd-text-bold vd-ml-2">{{ terrainName }}</span>
+
+            <div class="vd-inline vd-mt-2" data-gap="fib-5">
+              <button
+                type="button"
+                class="vd-btn vd-btn-outline"
+                @click="resetGrid"
+              >
+                <i class="ph ph-arrows-counter-clockwise"></i> Reset Grid
+              </button>
+              <button
+                type="button"
+                class="vd-btn vd-btn-outline"
+                @click="fillRandom"
+              >
+                <i class="ph ph-paint-bucket"></i> Fill Random
+              </button>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Yields:</span>
-              <span class="vd-text-bold vd-ml-2">
-                F{{ terrainYields?.food ?? 0 }}
-                P{{ terrainYields?.production ?? 0 }}
-                G{{ terrainYields?.gold ?? 0 }}
-              </span>
+
+            <hr class="vd-my-5" />
+
+            <h5 class="vd-mb-3">Terrain &amp; pathfinding</h5>
+
+            <div class="vd-mb-4">
+              <button
+                type="button"
+                class="vd-btn vd-btn-outline vd-w-100"
+                @click="generateTerrain"
+              >
+                <i class="ph ph-globe-hemisphere-west"></i> Generate Terrain
+              </button>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Movement:</span>
-              <span class="vd-text-bold vd-ml-2">{{ terrainMovement }}</span>
+
+            <div class="vd-mb-4">
+              <label class="vd-form-label" for="hex-terrain-picker"
+                >Paint terrain (select hex first)</label
+              >
+              <select
+                id="hex-terrain-picker"
+                v-model="pickedTerrain"
+                class="vd-form-select"
+                :disabled="selectedQ === null"
+              >
+                <option v-for="t in terrainTypes" :key="t" :value="t">
+                  {{ t }}
+                </option>
+              </select>
+              <button
+                type="button"
+                class="vd-btn vd-btn-sm vd-btn-outline vd-mt-2"
+                :disabled="selectedQ === null"
+                @click="applyTerrainToSelected"
+              >
+                Apply to selected
+              </button>
             </div>
-            <div class="vd-col-6 vd-col-md-3 vd-mb-2">
-              <span class="vd-text-sm vd-text-muted">Passable:</span>
-              <span class="vd-text-bold vd-ml-2">{{ terrainPassable ? "Yes" : "No" }}</span>
+
+            <div class="vd-mb-3">
+              <label class="vd-form-check">
+                <input
+                  v-model="pathMode"
+                  type="checkbox"
+                  class="vd-form-check-input"
+                />
+                <span class="vd-form-check-label">Path mode</span>
+              </label>
+              <p
+                v-if="pathMode"
+                class="vd-text-sm vd-text-muted vd-mt-2 vd-mb-0"
+              >
+                Click start hex, then end hex.
+                <span v-if="pathStartLabel">
+                  Start: {{ pathStartLabel }}</span
+                >
+                <span v-if="pathLength !== null">
+                  · Path length: {{ pathLength }} hexes</span
+                >
+                <span v-else-if="pathNoRoute"> · No route found</span>
+              </p>
+            </div>
+
+            <div>
+              <label class="vd-form-check">
+                <input
+                  v-model="showCoords"
+                  type="checkbox"
+                  class="vd-form-check-input"
+                />
+                <span class="vd-form-check-label"
+                  >Show coordinates on all hexes</span
+                >
+              </label>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="vd-card vd-card-glow demo-card">
-        <div class="vd-card-header">
-          <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
-        </div>
-        <div class="vd-card-body">
-          <h4>Install</h4>
-          <DocCodeSnippet :shell="installShell" />
-
-          <h4 class="vd-mt-6">Usage</h4>
-          <EngineSwitch>
-            <template #vue3><DocCodeSnippet :html="vue3Usage" :default-open="true" /></template>
-            <template #vanilla><DocCodeSnippet :js="vanillaJs" :default-open="true" /></template>
-          </EngineSwitch>
-
-          <EngineSwitch>
-            <template #vue3>
-              <h4 class="vd-mt-6">Component API</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Prop / event</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in vue3Api" :key="row[0]"><td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </template>
-            <template #vanilla>
-              <h4 class="vd-mt-6">Instance Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in methods" :key="row[0]"><td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </template>
-          </EngineSwitch>
-
-          <h4 class="vd-mt-6">Events</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Event</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr v-for="row in events" :key="row[0]"><td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td></tr>
-              </tbody>
-            </table>
+    <div v-show="showInfo" class="vd-card vd-mb-6 demo-card">
+      <div class="vd-card-body">
+        <h4 class="vd-mb-4">
+          <i class="ph ph-cursor-click"></i> Selected Hex
+        </h4>
+        <div class="vd-row">
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Coordinates:</span>
+            <span class="vd-text-bold vd-ml-2">{{
+              selectedCoords || "—"
+            }}</span>
           </div>
-
-          <h4 class="vd-mt-6">Pure math (<code>/hex-math</code>)</h4>
-          <p class="vd-text-muted vd-mb-3">
-            Axial coordinate math and terrain tables, importable without a canvas or the DOM —
-            handy for game logic, tests, or Node.
-          </p>
-          <DocCodeSnippet :js="mathUsage" />
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Pixel X:</span>
+            <span class="vd-text-bold vd-ml-2">{{
+              showInfo ? pixelX : "—"
+            }}</span>
+          </div>
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Pixel Y:</span>
+            <span class="vd-text-bold vd-ml-2">{{
+              showInfo ? pixelY : "—"
+            }}</span>
+          </div>
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Adjacent:</span>
+            <span class="vd-text-bold vd-ml-2">{{
+              showInfo ? adjacentCount : "—"
+            }}</span>
+          </div>
+        </div>
+        <div v-if="terrainName" class="vd-row vd-mt-3">
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Terrain:</span>
+            <span class="vd-text-bold vd-ml-2">{{ terrainName }}</span>
+          </div>
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Yields:</span>
+            <span class="vd-text-bold vd-ml-2">
+              F{{ terrainYields?.food ?? 0 }} P{{
+                terrainYields?.production ?? 0
+              }}
+              G{{ terrainYields?.gold ?? 0 }}
+            </span>
+          </div>
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Movement:</span>
+            <span class="vd-text-bold vd-ml-2">{{ terrainMovement }}</span>
+          </div>
+          <div class="vd-col-6 vd-col-md-3 vd-mb-2">
+            <span class="vd-text-sm vd-text-muted">Passable:</span>
+            <span class="vd-text-bold vd-ml-2">{{
+              terrainPassable ? "Yes" : "No"
+            }}</span>
+          </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+
+    <div class="vd-card vd-card-glow demo-card">
+      <div class="vd-card-header">
+        <h6>
+          <i
+            class="ph ph-list-dashes mr-2"
+            style="color: var(--vd-color-primary)"
+          ></i
+          >API Reference
+        </h6>
+      </div>
+      <div class="vd-card-body">
+        <h4>Install</h4>
+        <DocCodeSnippet :shell="installShell" />
+
+        <h4 class="vd-mt-6">Usage</h4>
+        <EngineSwitch>
+          <template #vue3
+            ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+          /></template>
+          <template #vanilla
+            ><DocCodeSnippet :js="vanillaJs" :default-open="true"
+          /></template>
+        </EngineSwitch>
+
+        <EngineSwitch>
+          <template #vue3>
+            <h4 class="vd-mt-6">Component API</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Prop / event</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in vue3Api" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </template>
+          <template #vanilla>
+            <h4 class="vd-mt-6">Instance Methods</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in methods" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </template>
+        </EngineSwitch>
+
+        <h4 class="vd-mt-6">Events</h4>
+        <div class="vd-table-responsive">
+          <table class="vd-table vd-table-striped">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in events" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="vd-mt-6">Pure math (<code>/hex-math</code>)</h4>
+        <p class="vd-text-muted vd-mb-3">
+          Axial coordinate math and terrain tables, importable without a
+          canvas or the DOM — handy for game logic, tests, or Node.
+        </p>
+        <DocCodeSnippet :js="mathUsage" />
+      </div>
+    </div>
+  </section>
 </template>

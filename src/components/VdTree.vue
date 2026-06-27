@@ -99,14 +99,16 @@ const onKeydown = (e: KeyboardEvent): void => {
     case "ArrowRight": {
       e.preventDefault();
       const node = current?.closest(".vd-tree-node");
-      const toggle = current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
+      const toggle =
+        current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
       if (toggle && !node?.classList.contains("is-open")) toggle.click();
       break;
     }
     case "ArrowLeft": {
       e.preventDefault();
       const node = current?.closest(".vd-tree-node");
-      const toggle = current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
+      const toggle =
+        current?.querySelector<HTMLButtonElement>(".vd-tree-toggle");
       if (toggle && node?.classList.contains("is-open")) toggle.click();
       break;
     }

@@ -16,7 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
   name: "",
 });
 
-const emit = defineEmits<{ "update:modelValue": [value: number]; change: [value: number] }>();
+const emit = defineEmits<{
+  "update:modelValue": [value: number];
+  change: [value: number];
+}>();
 
 const current = ref(props.modelValue);
 const hovered = ref(-1);
@@ -28,13 +31,16 @@ watch(
   },
 );
 
-const stars = computed(() => Array.from({ length: props.max }, (_, i) => i + 1));
+const stars = computed(() =>
+  Array.from({ length: props.max }, (_, i) => i + 1),
+);
 
 // Mirrors rating.js updateStars: empty buttons styled via CSS ::before; the
 // fill state is conveyed entirely by is-active / is-half / is-hovered.
 const starClass = (starNum: number): Record<string, boolean> => ({
   "is-active": starNum <= Math.floor(current.value),
-  "is-half": starNum > Math.floor(current.value) && starNum - 0.5 <= current.value,
+  "is-half":
+    starNum > Math.floor(current.value) && starNum - 0.5 <= current.value,
   "is-hovered": hovered.value >= 0 && starNum <= hovered.value,
 });
 
@@ -47,10 +53,16 @@ const select = (starNum: number): void => {
 
 const onKeydown = (e: KeyboardEvent): void => {
   if (props.readonly) return;
-  if ((e.key === "ArrowRight" || e.key === "ArrowUp") && current.value < props.max) {
+  if (
+    (e.key === "ArrowRight" || e.key === "ArrowUp") &&
+    current.value < props.max
+  ) {
     e.preventDefault();
     select(current.value + 1);
-  } else if ((e.key === "ArrowLeft" || e.key === "ArrowDown") && current.value > 1) {
+  } else if (
+    (e.key === "ArrowLeft" || e.key === "ArrowDown") &&
+    current.value > 1
+  ) {
     e.preventDefault();
     select(current.value - 1);
   }
@@ -60,7 +72,10 @@ const onKeydown = (e: KeyboardEvent): void => {
 <template>
   <div
     class="vd-rating"
-    :class="[size ? `vd-rating-${size}` : null, { 'vd-rating-readonly': readonly }]"
+    :class="[
+      size ? `vd-rating-${size}` : null,
+      { 'vd-rating-readonly': readonly },
+    ]"
     role="radiogroup"
     aria-label="Rating"
     @keydown="onKeydown"

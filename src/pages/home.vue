@@ -10,49 +10,49 @@ interface Feature {
 
 const features: Feature[] = [
   {
+    icon: "ph-intersect",
+    title: "Two Engines, One System",
+    body: "Ship the same design system two ways — a zero-build Vanilla engine you drop in over a CDN, or first-class Vue 3 components and composables. Identical tokens, identical look. Choose an engine per project, or run both side by side.",
+  },
+  {
+    icon: "ph-atom",
+    title: "Vue 3, First-Class",
+    body: "Typed <script setup> components, a composable for every interaction, Pinia-friendly stores, and static rendering via vite-ssg. It's tree-shakeable ESM, so you pull in only the pieces you actually use.",
+  },
+  {
     icon: "ph-leaf",
-    title: "Zero Dependencies",
-    body: "Ship pure HTML, CSS, and JavaScript straight to the browser. No npm install, no bundler, no build step — drop the CDN link in and you're productive in under a minute.",
+    title: "Zero-Build Vanilla",
+    body: "No toolchain? No problem. The Vanilla engine is pure HTML, CSS, and JavaScript — drop in a CDN link and you're productive in a minute. The styling even holds up with JavaScript disabled.",
+  },
+  {
+    icon: "ph-database",
+    title: "One Source of Truth",
+    body: "Design tokens live in @vanduo-oss/core as DTCG JSON and feed both engines. Change a token once and the Vanilla CSS and the Vue components re-skin in lockstep — never drifting out of sync.",
   },
   {
     icon: "ph-spiral",
-    title: "Fibonacci Design",
-    body: "Spacing, type scale, shadows, and proportions are derived from the Golden Ratio and the Fibonacci sequence — with golden and Fibonacci grid layouts a class away — so designs feel balanced without manual tweaking.",
-  },
-  {
-    icon: "ph-lego",
-    title: "Modular CSS",
-    body: "Import the full vanduo.css or cherry-pick individual component files. Tree-shake what you don't need and keep your payload lean.",
+    title: "Fibonacci & Golden Ratio",
+    body: "Spacing, type scale, shadows, and grid layouts are derived from the Fibonacci sequence and the Golden Ratio. Both engines inherit the same proportions, so layouts feel balanced without manual tweaking.",
   },
   {
     icon: "ph-wheelchair",
-    title: "Accessibility Support",
-    body: "Built-in ARIA roles, visible focus rings, semantic HTML, keyboard-first interactions, and prefers-reduced-motion support — accessibility is on by default, not an add-on.",
+    title: "Accessible by Default",
+    body: "ARIA roles, visible focus rings, semantic markup, keyboard-first interactions, and prefers-reduced-motion support ship in both engines. Accessibility is on from the start — never a bolt-on.",
   },
   {
     icon: "ph-moon-stars",
-    title: "Dark Mode Ready",
-    body: "Light, dark, and system-synced themes with smooth CSS-variable transitions. Ships with a drop-in theme switcher and a live customizer.",
-  },
-  {
-    icon: "ph-lightning",
-    title: "Lightweight & Fast",
-    body: "A minimal, cache-friendly CSS footprint. Styling works with JavaScript disabled — scripts are progressive enhancements, never a requirement.",
-  },
-  {
-    icon: "ph-drop",
-    title: "Pure & Simple",
-    body: "Readable, framework-free source. No JSX, no transpilation, no magic — just standards-compliant HTML, CSS, and vanilla JS you can audit line by line.",
+    title: "Dark Mode & Live Theming",
+    body: "Light, dark, and system-synced themes driven by CSS variables, with a drop-in switcher and a live customizer. Theme once at the token layer and every component re-skins instantly — in either engine.",
   },
   {
     icon: "ph-shield-check",
     title: "Conflict-Free",
-    body: "Every class is namespaced with the vd- prefix so Vanduo can safely coexist with Bootstrap, Tailwind, or your own legacy styles without cascade surprises.",
+    body: "Every class is namespaced with vd- and the Vue components scope cleanly, so Vanduo coexists with Bootstrap, Tailwind, or legacy styles without cascade surprises — whichever engine you reach for.",
   },
   {
-    icon: "ph-code",
-    title: "Developer First",
-    body: "Consistent naming, predictable DOM, fully documented components, and copy-paste examples. Easy to extend, theme, and contribute back to.",
+    icon: "ph-toggle-left",
+    title: "Dual-Engine Docs",
+    body: "These docs flip between Vanilla and Vue 3 with a single toggle — every demo, API table, and snippet in both flavours. Typed, copy-paste-ready, and written to read like the platform itself.",
   },
 ];
 
@@ -146,7 +146,10 @@ const swatches = [
             </span>
           </h2>
           <div class="vd-mt-6 hero-cta-buttons">
-            <RouterLink to="/guides/getting-started" class="vd-btn vd-btn-outline">
+            <RouterLink
+              to="/guides/getting-started"
+              class="vd-btn vd-btn-outline"
+            >
               <i class="ph ph-rocket" aria-hidden="true"></i> Getting Started
             </RouterLink>
             <RouterLink to="/docs-landing" class="vd-btn vd-btn-outline">
@@ -168,9 +171,16 @@ const swatches = [
     <div class="vd-container-responsive">
       <!-- Features -->
       <div id="home-features" style="padding: 4rem 0; scroll-margin-top: 80px">
-        <h3 class="vd-text-center vd-mb-8" style="color: var(--vd-color-primary)">
+        <h3
+          class="vd-text-center vd-mb-2"
+          style="color: var(--vd-color-primary)"
+        >
           Features
         </h3>
+        <p class="vd-text-center vd-text-muted vd-mb-8">
+          One design system, two engines — drop-in Vanilla or first-class Vue 3.
+          Tap a card to dig in.
+        </p>
         <div class="vd-row philosophy-cards" style="align-items: stretch">
           <div
             v-for="(feature, i) in features"
@@ -191,9 +201,14 @@ const swatches = [
                 class="vd-morph-content feature-morph-face"
                 :class="flipped[i] ? 'vd-morph-next' : 'vd-morph-current'"
               >
-                <i :class="`ph ${feature.icon} feature-icon`" aria-hidden="true"></i>
+                <i
+                  :class="`ph ${feature.icon} feature-icon`"
+                  aria-hidden="true"
+                ></i>
                 <h4 class="feature-morph-title">{{ feature.title }}</h4>
-                <span class="feature-morph-hint vd-text-muted">Tap to learn more</span>
+                <span class="feature-morph-hint vd-text-muted"
+                  >Tap to learn more</span
+                >
               </span>
               <span
                 class="vd-morph-content feature-morph-face"
@@ -209,7 +224,10 @@ const swatches = [
 
       <!-- Icons Overview -->
       <div id="home-icons" style="padding: 4rem 0; scroll-margin-top: 80px">
-        <h3 class="icons-section-title vd-mb-3" style="color: var(--vd-color-primary)">
+        <h3
+          class="icons-section-title vd-mb-3"
+          style="color: var(--vd-color-primary)"
+        >
           Phosphor Icons
         </h3>
         <p class="icons-section-subtitle vd-text-muted vd-mb-8">
@@ -239,13 +257,21 @@ const swatches = [
                 ></i>
               </div>
               <p class="icons-footer vd-text-sm vd-text-muted">
-                <i class="ph ph-heart-straight" style="color: var(--vd-color-error)"></i>
+                <i
+                  class="ph ph-heart-straight"
+                  style="color: var(--vd-color-error)"
+                ></i>
                 Icons by
-                <a href="https://phosphoricons.com" target="_blank" rel="noopener"
+                <a
+                  href="https://phosphoricons.com"
+                  target="_blank"
+                  rel="noopener"
                   ><strong>Phosphor Icons</strong></a
                 >
                 — MIT Licensed.
-                <RouterLink to="/core/icons">See full documentation &rarr;</RouterLink>
+                <RouterLink to="/core/icons"
+                  >See full documentation &rarr;</RouterLink
+                >
               </p>
             </div>
           </div>
@@ -254,13 +280,17 @@ const swatches = [
 
       <!-- Open Color Overview -->
       <div id="open-color" style="padding: 4rem 0; scroll-margin-top: 80px">
-        <h3 class="open-color-title vd-mb-3" style="color: var(--vd-color-primary)">
+        <h3
+          class="open-color-title vd-mb-3"
+          style="color: var(--vd-color-primary)"
+        >
           Fibonacci Palette
         </h3>
         <p class="open-color-subtitle vd-text-muted vd-mb-8">
           Vanduo's default palette is golden-angle generated — hues stepped by
           ≈137.5° with golden-ratio shade ramps, so color shares the same DNA as
-          its spacing and grid. Open Color stays available as an optional choice.
+          its spacing and grid. Open Color stays available as an optional
+          choice.
         </p>
         <div class="vd-row">
           <div class="vd-col-12">
@@ -281,7 +311,10 @@ const swatches = [
               <p class="open-color-footer vd-text-sm vd-text-muted">
                 The golden accent track, generated by
                 <code>@vanduo-oss/core</code>. Prefer the classic look?
-                <a href="https://yeun.github.io/open-color/" target="_blank" rel="noopener"
+                <a
+                  href="https://yeun.github.io/open-color/"
+                  target="_blank"
+                  rel="noopener"
                   ><strong>Open Color</strong></a
                 >
                 (MIT) is one toggle away.
@@ -310,11 +343,16 @@ const swatches = [
                   margin-bottom: 1rem;
                 "
               ></i>
-              <h4 style="color: var(--vd-color-primary)">Browse Documentation</h4>
+              <h4 style="color: var(--vd-color-primary)">
+                Browse Documentation
+              </h4>
               <p class="vd-text-muted vd-mb-5">
                 Explore all components, utilities, and code examples.
               </p>
-              <RouterLink to="/docs-landing" class="vd-btn vd-btn-outline vd-btn-lg">
+              <RouterLink
+                to="/docs-landing"
+                class="vd-btn vd-btn-outline vd-btn-lg"
+              >
                 Documentation
               </RouterLink>
             </div>

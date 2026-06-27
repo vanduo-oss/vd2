@@ -49,6 +49,18 @@ import TransferPage from "@/pages/components/Transfer.vue";
 import TreePage from "@/pages/components/Tree.vue";
 import PaginationPage from "@/pages/components/Pagination.vue";
 import ButtonGroupsPage from "@/pages/components/ButtonGroups.vue";
+import DropdownPage from "@/pages/components/Dropdown.vue";
+import RipplePage from "@/pages/components/Ripple.vue";
+import FabPage from "@/pages/components/Fab.vue";
+import ExpandingCardsPage from "@/pages/components/ExpandingCards.vue";
+import SpotlightPage from "@/pages/components/Spotlight.vue";
+import TimelinePage from "@/pages/components/Timeline.vue";
+import DraggablePage from "@/pages/interactive/Draggable.vue";
+import ImageBoxPage from "@/pages/media/ImageBox.vue";
+import PopoverPage from "@/pages/components/Popover.vue";
+import SearchPage from "@/pages/interactive/Search.vue";
+import TemplatePage from "@/pages/components/Template.vue";
+import NavigationPage from "@/pages/components/Navigation.vue";
 import ColorPalettePage from "@/pages/core/ColorPalette.vue";
 import GlassPage from "@/pages/effects/Glass.vue";
 import ThemeSwitcherPage from "@/pages/components/ThemeSwitcher.vue";
@@ -123,6 +135,18 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   tree: TreePage,
   pagination: PaginationPage,
   "button-groups": ButtonGroupsPage,
+  dropdown: DropdownPage,
+  ripple: RipplePage,
+  fab: FabPage,
+  "expanding-cards": ExpandingCardsPage,
+  spotlight: SpotlightPage,
+  timeline: TimelinePage,
+  draggable: DraggablePage,
+  "image-box": ImageBoxPage,
+  popover: PopoverPage,
+  search: SearchPage,
+  template: TemplatePage,
+  navigation: NavigationPage,
   "color-palette": ColorPalettePage,
   typography: TypographyPage,
   icons: IconsPage,
@@ -194,6 +218,7 @@ export const buildRoutes = (): RouteRecordRaw[] => {
             keywords: section.keywords,
             category: category.title,
             sectionId: section.id,
+            layout: "docs",
           },
         });
       }

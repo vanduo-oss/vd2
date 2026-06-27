@@ -13,9 +13,30 @@ const routes = buildRoutes();
 
 export const createApp = ViteSSG(
   App,
-  { routes },
-  ({ app, router, initialState }) => {
+  {
+    routes,
+    scrollBehavior(to, _from, savedPosition) {
+      // Preserve position on browser back/forward
+      if (savedPosition) return savedPosition;
+      // Honor deep-link anchors (offset for the fixed 80px navbar)
+      if (to.hash) return { el: to.hash, top: 80, behavior: "instant" };
+      // Default: jump to top of the new page (instant, since html has
+      // scroll-behavior: smooth which would otherwise animate the jump)
+      return { top: 0, behavior: "instant" };
+    },
+  },
+  async ({ app, router, initialState }) => {
     app.use(createPinia());
+
+    // Load the framework's vanilla JS (IIFE) on the client only. It attaches
+    // the `window.Vanduo*` globals (Dropdown, Popover, Ripple, Tooltips, …)
+    // that the `use*` composables delegate to. vite-ssg awaits this callback
+    // before mounting, so the globals exist before any page's onMounted runs.
+    // Guarded by `!SSR` so the IIFE (which touches window/document) never runs
+    // during the Node prerender.
+    if (!import.meta.env.SSR) {
+      await import("@vanduo-oss/framework/iife");
+    }
 
     router.afterEach((to) => {
       if (typeof document === "undefined") return;

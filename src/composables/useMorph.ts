@@ -30,7 +30,11 @@ export function useMorph(root: Ref<HTMLElement | null>): void {
     }
   };
 
-  const runMorph = (el: HTMLElement, e: MouseEvent | null, done: () => void): void => {
+  const runMorph = (
+    el: HTMLElement,
+    e: MouseEvent | null,
+    done: () => void,
+  ): void => {
     const wave = el.querySelector<HTMLElement>(".vd-morph-wave");
     if (wave) {
       const rect = el.getBoundingClientRect();
@@ -48,7 +52,8 @@ export function useMorph(root: Ref<HTMLElement | null>): void {
     const custom = getComputedStyle(el).getPropertyValue("--vd-morph-duration");
     if (custom) {
       const parsed = parseFloat(custom);
-      if (!isNaN(parsed)) duration = parsed * (custom.includes("ms") ? 1 : 1000);
+      if (!isNaN(parsed))
+        duration = parsed * (custom.includes("ms") ? 1 : 1000);
     }
 
     window.setTimeout(() => {
@@ -66,18 +71,20 @@ export function useMorph(root: Ref<HTMLElement | null>): void {
   onMounted(() => {
     const scope = root.value;
     if (!scope) return;
-    scope.querySelectorAll<HTMLElement>(".vd-morph, [data-vd-morph]").forEach((el) => {
-      if (el.getAttribute("data-vd-morph") === "manual") return;
-      ensureLayers(el);
-      let morphing = false;
-      const onClick = (e: MouseEvent): void => {
-        if (morphing) return;
-        morphing = true;
-        runMorph(el, e, () => (morphing = false));
-      };
-      el.addEventListener("click", onClick);
-      cleanups.push(() => el.removeEventListener("click", onClick));
-    });
+    scope
+      .querySelectorAll<HTMLElement>(".vd-morph, [data-vd-morph]")
+      .forEach((el) => {
+        if (el.getAttribute("data-vd-morph") === "manual") return;
+        ensureLayers(el);
+        let morphing = false;
+        const onClick = (e: MouseEvent): void => {
+          if (morphing) return;
+          morphing = true;
+          runMorph(el, e, () => (morphing = false));
+        };
+        el.addEventListener("click", onClick);
+        cleanups.push(() => el.removeEventListener("click", onClick));
+      });
   });
 
   onUnmounted(() => {

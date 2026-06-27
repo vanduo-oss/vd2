@@ -15,6 +15,10 @@ declare module '@vanduo-oss/charts/css';
 declare module '@vanduo-oss/flowchart/css';
 declare module '@vanduo-oss/music-player/css';
 
+// Side-effect-only IIFE bundle: attaches the window.Vanduo* globals that the
+// use* composables delegate to. Imported (client-only) in main.ts.
+declare module '@vanduo-oss/framework/iife';
+
 declare module '@vanduo-oss/hex-grid/hex-math' {
   export const TerrainType: Readonly<{
     GRASSLAND: 'Grassland';

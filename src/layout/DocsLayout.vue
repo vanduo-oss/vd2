@@ -15,7 +15,10 @@ const docTab = computed(() =>
   <div id="docs-view" class="is-active" :data-doc-tab="docTab">
     <div class="vd-container-responsive">
       <div class="vd-row">
-        <aside class="vd-col-12 vd-col-lg-2 doc-sidebar" aria-label="Docs navigation">
+        <aside
+          class="vd-col-12 vd-col-lg-2 doc-sidebar"
+          aria-label="Docs navigation"
+        >
           <VdSidebar />
         </aside>
         <div class="vd-col-12 vd-col-lg-10 doc-content">

@@ -39,7 +39,9 @@ const buttonText = computed(() => {
 
 const openDropdown = (): void => {
   open.value = true;
-  const selectedIdx = props.options.findIndex((o) => o.value === props.modelValue);
+  const selectedIdx = props.options.findIndex(
+    (o) => o.value === props.modelValue,
+  );
   activeIndex.value =
     selectedIdx >= 0 && !props.options[selectedIdx]?.disabled
       ? selectedIdx
@@ -114,11 +116,18 @@ const onKeydown = (e: KeyboardEvent): void => {
       }
       break;
     default:
-      if (open.value && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (
+        open.value &&
+        e.key.length === 1 &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        !e.altKey
+      ) {
         if (typeaheadTimer != null) window.clearTimeout(typeaheadTimer);
         typeaheadBuffer += e.key.toLowerCase();
         const match = props.options.findIndex(
-          (o) => !o.disabled && o.label.toLowerCase().startsWith(typeaheadBuffer),
+          (o) =>
+            !o.disabled && o.label.toLowerCase().startsWith(typeaheadBuffer),
         );
         if (match >= 0) activeIndex.value = match;
         typeaheadTimer = window.setTimeout(() => {
@@ -129,7 +138,11 @@ const onKeydown = (e: KeyboardEvent): void => {
 };
 
 const onDocumentClick = (e: MouseEvent): void => {
-  if (open.value && wrapper.value && !wrapper.value.contains(e.target as Node)) {
+  if (
+    open.value &&
+    wrapper.value &&
+    !wrapper.value.contains(e.target as Node)
+  ) {
     closeDropdown();
   }
 };
@@ -143,8 +156,19 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="wrapper" class="custom-select-wrapper">
-    <select :id="id || undefined" :name="name || undefined" :value="modelValue" tabindex="-1" aria-hidden="true">
-      <option v-for="opt in options" :key="opt.value" :value="opt.value" :disabled="opt.disabled">
+    <select
+      :id="id || undefined"
+      :name="name || undefined"
+      :value="modelValue"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <option
+        v-for="opt in options"
+        :key="opt.value"
+        :value="opt.value"
+        :disabled="opt.disabled"
+      >
         {{ opt.label }}
       </option>
     </select>
@@ -159,7 +183,11 @@ onBeforeUnmount(() => {
     >
       {{ buttonText }}
     </button>
-    <div class="custom-select-dropdown" :class="{ 'is-open': open }" role="listbox">
+    <div
+      class="custom-select-dropdown"
+      :class="{ 'is-open': open }"
+      role="listbox"
+    >
       <div
         v-for="(opt, i) in options"
         :key="opt.value"

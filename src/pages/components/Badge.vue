@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
 const variantsHtml = `<!-- Default (secondary color) -->
@@ -39,7 +38,10 @@ const positionedHtml = `<!-- Badge on a button -->
 </button>`;
 
 const classRows: [string, string][] = [
-  [".vd-badge", "Base badge. Inline-block with padding, rounded corners, and centered text."],
+  [
+    ".vd-badge",
+    "Base badge. Inline-block with padding, rounded corners, and centered text.",
+  ],
   [".vd-badge-primary", "Primary color background with white text."],
   [".vd-badge-secondary", "Secondary (teal/green) background."],
   [".vd-badge-success", "Green success background."],
@@ -50,7 +52,10 @@ const classRows: [string, string][] = [
   [".vd-badge-light", "Light gray background (inverted in dark mode)."],
   [".vd-badge-dark", "Dark gray background with light text."],
   [".vd-badge-pill", "Fully rounded pill shape (border-radius: 50rem)."],
-  [".vd-badge-outlined", "Transparent background with colored border and text."],
+  [
+    ".vd-badge-outlined",
+    "Transparent background with colored border and text.",
+  ],
   [".vd-badge-sm", "Compact size (font-size: 0.65em)."],
   [".vd-badge-lg", "Large size (font-size: 0.875em)."],
 ];
@@ -70,187 +75,245 @@ const varRows: [string, string][] = [
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="badges">
-      <h5 class="demo-title"><i class="ph ph-tag"></i>Badges</h5>
-      <p class="vd-mb-8">
-        Small inline status indicators, counters, and labels. Badges scale with
-        their parent font size and support contextual color variants, pill
-        shapes, and three size tiers.
-      </p>
+  <section id="badges">
+    <h5 class="demo-title"><i class="ph ph-tag"></i>Badges</h5>
+    <p class="vd-mb-8">
+      Small inline status indicators, counters, and labels. Badges scale with
+      their parent font size and support contextual color variants, pill
+      shapes, and three size tiers.
+    </p>
 
-      <!-- Variants + Pills/Sizes -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Contextual Variants</h6></div>
-            <div
-              class="vd-card-body"
-              style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center"
-            >
-              <span class="vd-badge">Default</span>
-              <span class="vd-badge vd-badge-primary">Primary</span>
-              <span class="vd-badge vd-badge-secondary">Secondary</span>
-              <span class="vd-badge vd-badge-success">Success</span>
-              <span class="vd-badge vd-badge-warning">Warning</span>
-              <span class="vd-badge vd-badge-error">Error</span>
-              <span class="vd-badge vd-badge-info">Info</span>
-              <span class="vd-badge vd-badge-light">Light</span>
-              <span class="vd-badge vd-badge-dark">Dark</span>
-            </div>
+    <!-- Variants + Pills/Sizes -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Contextual Variants</h6></div>
+          <div
+            class="vd-card-body"
+            style="
+              display: flex;
+              gap: 0.75rem;
+              flex-wrap: wrap;
+              align-items: center;
+            "
+          >
+            <span class="vd-badge">Default</span>
+            <span class="vd-badge vd-badge-primary">Primary</span>
+            <span class="vd-badge vd-badge-secondary">Secondary</span>
+            <span class="vd-badge vd-badge-success">Success</span>
+            <span class="vd-badge vd-badge-warning">Warning</span>
+            <span class="vd-badge vd-badge-error">Error</span>
+            <span class="vd-badge vd-badge-info">Info</span>
+            <span class="vd-badge vd-badge-light">Light</span>
+            <span class="vd-badge vd-badge-dark">Dark</span>
           </div>
-          <DocCodeSnippet :html="variantsHtml" />
         </div>
-
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Pill, Outlined &amp; Sizes</h6></div>
-            <div class="vd-card-body">
-              <p class="vd-text-sm vd-text-muted vd-mb-3">Pill shape</p>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem">
-                <span class="vd-badge vd-badge-pill vd-badge-primary">New</span>
-                <span class="vd-badge vd-badge-pill vd-badge-success">Done</span>
-                <span class="vd-badge vd-badge-pill vd-badge-error">Blocked</span>
-              </div>
-              <p class="vd-text-sm vd-text-muted vd-mb-3">Outlined</p>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem">
-                <span class="vd-badge vd-badge-outlined vd-badge-primary">Pro</span>
-                <span class="vd-badge vd-badge-outlined vd-badge-warning">Beta</span>
-              </div>
-              <p class="vd-text-sm vd-text-muted vd-mb-3">Sizes</p>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center">
-                <span class="vd-badge vd-badge-sm vd-badge-primary">Small</span>
-                <span class="vd-badge vd-badge-primary">Default</span>
-                <span class="vd-badge vd-badge-lg vd-badge-primary">Large</span>
-              </div>
-            </div>
-          </div>
-          <DocCodeSnippet :html="pillsHtml" />
-        </div>
+        <DocCodeSnippet :html="variantsHtml" />
       </div>
 
-      <!-- Positioned -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header">
-              <h6>Positioned Badges (Buttons &amp; Icons)</h6>
-            </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>Pill, Outlined &amp; Sizes</h6>
+          </div>
+          <div class="vd-card-body">
+            <p class="vd-text-sm vd-text-muted vd-mb-3">Pill shape</p>
             <div
-              class="vd-card-body"
-              style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center"
+              style="
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+              "
             >
-              <button class="vd-btn vd-btn-primary" style="position: relative">
-                Notifications
-                <span
-                  class="vd-badge vd-badge-error"
-                  style="position: absolute; top: -6px; right: -6px"
-                  >3</span
-                >
-              </button>
-              <button
-                class="vd-btn vd-btn-icon vd-btn-secondary"
-                style="position: relative"
+              <span class="vd-badge vd-badge-pill vd-badge-primary">New</span>
+              <span class="vd-badge vd-badge-pill vd-badge-success"
+                >Done</span
               >
-                <i class="ph ph-envelope"></i>
-                <span
-                  class="vd-badge vd-badge-pill vd-badge-primary"
-                  style="position: absolute; top: -4px; right: -4px"
-                  >12</span
-                >
-              </button>
-              <span style="position: relative; display: inline-block">
-                <i class="ph ph-shopping-cart" style="font-size: 1.5rem"></i>
-                <span
-                  class="vd-badge vd-badge-sm vd-badge-success vd-badge-pill"
-                  style="position: absolute; top: -4px; right: -8px"
-                  >New</span
-                >
-              </span>
+              <span class="vd-badge vd-badge-pill vd-badge-error"
+                >Blocked</span
+              >
             </div>
-          </div>
-          <DocCodeSnippet :html="positionedHtml" />
-        </div>
-      </div>
-
-      <!-- API Reference -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header">
-              <h6>
-                <i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary)"></i>API
-                Reference
-              </h6>
+            <p class="vd-text-sm vd-text-muted vd-mb-3">Outlined</p>
+            <div
+              style="
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+              "
+            >
+              <span class="vd-badge vd-badge-outlined vd-badge-primary"
+                >Pro</span
+              >
+              <span class="vd-badge vd-badge-outlined vd-badge-warning"
+                >Beta</span
+              >
             </div>
-            <div class="vd-card-body">
-              <h4>CSS Classes</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead>
-                    <tr><th>Class</th><th>Description</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="row in classRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h4 class="vd-mt-6">CSS Variables</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead>
-                    <tr><th>Variable</th><th>Default</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="row in varRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td><code>{{ row[1] }}</code></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <p class="vd-text-sm vd-text-muted vd-mb-3">Sizes</p>
+            <div
+              style="
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                align-items: center;
+              "
+            >
+              <span class="vd-badge vd-badge-sm vd-badge-primary">Small</span>
+              <span class="vd-badge vd-badge-primary">Default</span>
+              <span class="vd-badge vd-badge-lg vd-badge-primary">Large</span>
             </div>
           </div>
         </div>
+        <DocCodeSnippet :html="pillsHtml" />
       </div>
+    </div>
 
-      <!-- Accessibility -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header">
-              <h6>
-                <i class="ph ph-wheelchair mr-2" style="color: var(--vd-color-primary)"></i>Accessibility
-              </h6>
+    <!-- Positioned -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>Positioned Badges (Buttons &amp; Icons)</h6>
+          </div>
+          <div
+            class="vd-card-body"
+            style="
+              display: flex;
+              gap: 1.5rem;
+              flex-wrap: wrap;
+              align-items: center;
+            "
+          >
+            <button class="vd-btn vd-btn-primary" style="position: relative">
+              Notifications
+              <span
+                class="vd-badge vd-badge-error"
+                style="position: absolute; top: -6px; right: -6px"
+                >3</span
+              >
+            </button>
+            <button
+              class="vd-btn vd-btn-icon vd-btn-secondary"
+              style="position: relative"
+            >
+              <i class="ph ph-envelope"></i>
+              <span
+                class="vd-badge vd-badge-pill vd-badge-primary"
+                style="position: absolute; top: -4px; right: -4px"
+                >12</span
+              >
+            </button>
+            <span style="position: relative; display: inline-block">
+              <i class="ph ph-shopping-cart" style="font-size: 1.5rem"></i>
+              <span
+                class="vd-badge vd-badge-sm vd-badge-success vd-badge-pill"
+                style="position: absolute; top: -4px; right: -8px"
+                >New</span
+              >
+            </span>
+          </div>
+        </div>
+        <DocCodeSnippet :html="positionedHtml" />
+      </div>
+    </div>
+
+    <!-- API Reference -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>
+              <i
+                class="ph ph-list-dashes mr-2"
+                style="color: var(--vd-color-primary)"
+              ></i
+              >API Reference
+            </h6>
+          </div>
+          <div class="vd-card-body">
+            <h4>CSS Classes</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in classRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="vd-card-body">
-              <ul>
-                <li>
-                  Badges are inline elements; ensure they are placed inside a
-                  parent with sufficient text context.
-                </li>
-                <li>
-                  For counter badges (e.g., "3" on a notification bell), wrap the
-                  parent button in an <code>aria-label</code> that includes the
-                  count: <code>aria-label="Notifications, 3 unread"</code>.
-                </li>
-                <li>
-                  All badge color combinations meet WCAG contrast requirements
-                  against both light and dark backgrounds.
-                </li>
-                <li>
-                  Avoid using badges alone to convey critical status — pair with
-                  text or tooltips.
-                </li>
-              </ul>
+
+            <h4 class="vd-mt-6">CSS Variables</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Variable</th>
+                    <th>Default</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in varRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>
+                      <code>{{ row[1] }}</code>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>
+              <i
+                class="ph ph-wheelchair mr-2"
+                style="color: var(--vd-color-primary)"
+              ></i
+              >Accessibility
+            </h6>
+          </div>
+          <div class="vd-card-body">
+            <ul>
+              <li>
+                Badges are inline elements; ensure they are placed inside a
+                parent with sufficient text context.
+              </li>
+              <li>
+                For counter badges (e.g., "3" on a notification bell), wrap
+                the parent button in an <code>aria-label</code> that includes
+                the count: <code>aria-label="Notifications, 3 unread"</code>.
+              </li>
+              <li>
+                All badge color combinations meet WCAG contrast requirements
+                against both light and dark backgrounds.
+              </li>
+              <li>
+                Avoid using badges alone to convey critical status — pair with
+                text or tooltips.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>

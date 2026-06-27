@@ -58,7 +58,12 @@ onUnmounted(() => {
       :aria-expanded="isOpen"
       @click="toggle"
     >
-      <i class="ph" :class="current.icon" data-theme-icon aria-hidden="true"></i>
+      <i
+        class="ph"
+        :class="current.icon"
+        data-theme-icon
+        aria-hidden="true"
+      ></i>
     </button>
     <div class="vd-theme-switcher-menu" role="menu">
       <button

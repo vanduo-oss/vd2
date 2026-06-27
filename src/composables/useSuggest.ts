@@ -48,7 +48,9 @@ export function useSuggest(root: Ref<HTMLElement | null>): void {
           10,
         );
         const url = input.getAttribute("data-vd-suggest-url") || "";
-        const allowlist = (input.getAttribute("data-vd-suggest-allowlist") || "")
+        const allowlist = (
+          input.getAttribute("data-vd-suggest-allowlist") || ""
+        )
           .split(",")
           .map((v) => v.trim())
           .filter(Boolean);
@@ -176,9 +178,8 @@ export function useSuggest(root: Ref<HTMLElement | null>): void {
         };
 
         const highlight = (index: number): void => {
-          const listItems = list.querySelectorAll<HTMLElement>(
-            ".vd-suggest-item",
-          );
+          const listItems =
+            list.querySelectorAll<HTMLElement>(".vd-suggest-item");
           listItems.forEach((li) => li.classList.remove("is-highlighted"));
           if (index >= 0 && index < listItems.length) {
             highlighted = index;

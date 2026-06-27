@@ -9,7 +9,11 @@ const quickLinks = [
 ];
 
 const resources = [
-  { label: "GitHub", href: "https://github.com/vanduo-oss/framework", external: true },
+  {
+    label: "GitHub",
+    href: "https://github.com/vanduo-oss/framework",
+    external: true,
+  },
   {
     label: "NPM",
     href: "https://www.npmjs.com/package/@vanduo-oss/framework",

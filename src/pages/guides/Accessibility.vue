@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
 const focusCss = `/* Vanduo ships visible focus rings — never remove them outright */
@@ -21,81 +20,114 @@ const motionCss = `/* Effects (parallax, morph, glass) respect reduced-motion */
 }`;
 
 const checklist: [string, string][] = [
-  ["Keyboard reachable", "Every interactive control is focusable and operable with Tab/Enter/Space/arrows."],
-  ["Visible focus", "Keep the focus ring; use :focus-visible to scope it to keyboard users."],
-  ["Semantic roles", "Use real <button>/<a>/<nav>; components set role / aria-* for you."],
+  [
+    "Keyboard reachable",
+    "Every interactive control is focusable and operable with Tab/Enter/Space/arrows.",
+  ],
+  [
+    "Visible focus",
+    "Keep the focus ring; use :focus-visible to scope it to keyboard users.",
+  ],
+  [
+    "Semantic roles",
+    "Use real <button>/<a>/<nav>; components set role / aria-* for you.",
+  ],
   ["Labels & names", "Icon-only controls need aria-label; images need alt."],
-  ["Colour contrast", "Semantic tokens meet WCAG AA in both light and dark themes."],
+  [
+    "Colour contrast",
+    "Semantic tokens meet WCAG AA in both light and dark themes.",
+  ],
   ["Reduced motion", "Animated effects honour prefers-reduced-motion."],
-  ["Live regions", "Toasts and count changes use aria-live to announce updates."],
+  [
+    "Live regions",
+    "Toasts and count changes use aria-live to announce updates.",
+  ],
 ];
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="accessibility">
-      <h5 class="demo-title">
-        <i class="ph ph-wheelchair"></i>Accessibility Essentials
-        <code class="vd-text-sm">Guide</code>
-      </h5>
-      <p class="vd-mb-6">
-        Vanduo's components ship with sensible roles, labels, focus styles, and
-        motion guards. Accessibility is mostly about <em>not undoing</em> those
-        defaults as you compose — and filling the gaps only you can: meaningful
-        labels, alt text, and logical structure.
-      </p>
+  <section id="accessibility">
+    <h5 class="demo-title">
+      <i class="ph ph-wheelchair"></i>Accessibility Essentials
+      <code class="vd-text-sm">Guide</code>
+    </h5>
+    <p class="vd-mb-6">
+      Vanduo's components ship with sensible roles, labels, focus styles, and
+      motion guards. Accessibility is mostly about <em>not undoing</em> those
+      defaults as you compose — and filling the gaps only you can: meaningful
+      labels, alt text, and logical structure.
+    </p>
 
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-cursor"></i> Keep focus visible</h6></div>
-            <div class="vd-card-body">
-              <DocCodeSnippet :css="focusCss" :default-open="true" />
-            </div>
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-cursor"></i> Keep focus visible</h6>
           </div>
-        </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-tag"></i> Name every control</h6></div>
-            <div class="vd-card-body">
-              <DocCodeSnippet :html="ariaHtml" :default-open="true" />
-            </div>
+          <div class="vd-card-body">
+            <DocCodeSnippet :css="focusCss" :default-open="true" />
           </div>
         </div>
       </div>
-
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-person-simple-walk"></i> Respect reduced motion</h6></div>
-            <div class="vd-card-body">
-              <p>The effects composables already guard this; do the same in custom CSS:</p>
-              <DocCodeSnippet :css="motionCss" :default-open="true" />
-            </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-tag"></i> Name every control</h6>
+          </div>
+          <div class="vd-card-body">
+            <DocCodeSnippet :html="ariaHtml" :default-open="true" />
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="vd-card demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-list-checks"></i> Accessibility checklist</h6></div>
-        <div class="vd-card-body">
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Check</th><th>What it means</th></tr></thead>
-              <tbody>
-                <tr v-for="row in checklist" :key="row[0]">
-                  <td><strong>{{ row[0] }}</strong></td>
-                  <td>{{ row[1] }}</td>
-                </tr>
-              </tbody>
-            </table>
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6>
+              <i class="ph ph-person-simple-walk"></i> Respect reduced motion
+            </h6>
           </div>
-          <p class="vd-text-sm vd-text-muted vd-mt-3">
-            Every component page includes an Accessibility card documenting its
-            specific roles and keyboard support.
-          </p>
+          <div class="vd-card-body">
+            <p>
+              The effects composables already guard this; do the same in
+              custom CSS:
+            </p>
+            <DocCodeSnippet :css="motionCss" :default-open="true" />
+          </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+
+    <div class="vd-card demo-card">
+      <div class="vd-card-header">
+        <h6><i class="ph ph-list-checks"></i> Accessibility checklist</h6>
+      </div>
+      <div class="vd-card-body">
+        <div class="vd-table-responsive">
+          <table class="vd-table vd-table-striped">
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>What it means</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in checklist" :key="row[0]">
+                <td>
+                  <strong>{{ row[0] }}</strong>
+                </td>
+                <td>{{ row[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="vd-text-sm vd-text-muted vd-mt-3">
+          Every component page includes an Accessibility card documenting its
+          specific roles and keyboard support.
+        </p>
+      </div>
+    </div>
+  </section>
 </template>

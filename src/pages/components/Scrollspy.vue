@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useWaypoint } from "@/composables/useWaypoint";
@@ -27,8 +26,14 @@ VanduoWaypoint.init();
 VanduoWaypoint.refresh(navEl);`;
 
 const vue3Api: [string, string][] = [
-  ["useWaypoint(root)", "Composable — wires every [data-vd-waypoint-nav] inside the root ref; highlights the link of the topmost visible section. Call once in setup()."],
-  ["(automatic cleanup)", "The IntersectionObserver and click listeners are removed on component unmount."],
+  [
+    "useWaypoint(root)",
+    "Composable — wires every [data-vd-waypoint-nav] inside the root ref; highlights the link of the topmost visible section. Call once in setup().",
+  ],
+  [
+    "(automatic cleanup)",
+    "The IntersectionObserver and click listeners are removed on component unmount.",
+  ],
 ];
 
 // Port of the docs `data-waypoint-demo-nav` handler (docs/js/modules/demos.js):
@@ -93,252 +98,436 @@ const pillHtml = `<nav class="vd-waypoint-nav vd-waypoint-pill"
 </nav>`;
 
 const cssClasses: [string, string, string][] = [
-  [".vd-waypoint-nav", "Base scrollspy navigation container — required", "Base"],
-  [".vd-waypoint-border", "Adds a left border highlight on the active link (sidebar style)", "Modifier"],
-  [".vd-waypoint-pill", "Rounded pill-shaped background on the active link", "Modifier"],
-  [".vd-waypoint-underline", "Bottom underline indicator on the active link (tab style)", "Modifier"],
-  [".is-active", "Applied automatically to the currently visible section's link", "State"],
+  [
+    ".vd-waypoint-nav",
+    "Base scrollspy navigation container — required",
+    "Base",
+  ],
+  [
+    ".vd-waypoint-border",
+    "Adds a left border highlight on the active link (sidebar style)",
+    "Modifier",
+  ],
+  [
+    ".vd-waypoint-pill",
+    "Rounded pill-shaped background on the active link",
+    "Modifier",
+  ],
+  [
+    ".vd-waypoint-underline",
+    "Bottom underline indicator on the active link (tab style)",
+    "Modifier",
+  ],
+  [
+    ".is-active",
+    "Applied automatically to the currently visible section's link",
+    "State",
+  ],
 ];
 
 const dataAttrs: [string, string, string][] = [
-  ["data-vd-waypoint-nav", 'Selector for the scrollable container to observe (e.g. "#content" or "window")', "window"],
-  ["data-vd-waypoint-offset", "Pixel offset from the top to trigger activation earlier or later", "0"],
+  [
+    "data-vd-waypoint-nav",
+    'Selector for the scrollable container to observe (e.g. "#content" or "window")',
+    "window",
+  ],
+  [
+    "data-vd-waypoint-offset",
+    "Pixel offset from the top to trigger activation earlier or later",
+    "0",
+  ],
   ["data-vd-scrollspy-nav", "Alias for data-vd-waypoint-nav", "—"],
 ];
 
 const jsMethods: [string, string][] = [
-  ["VanduoWaypoint.init()", "Initialize all [data-vd-waypoint-nav] elements on the page"],
-  ["VanduoWaypoint.refresh(nav)", "Recalculate section positions after dynamic content changes"],
-  ["VanduoWaypoint.destroy(nav)", "Remove scroll listeners and IntersectionObservers for the given nav"],
+  [
+    "VanduoWaypoint.init()",
+    "Initialize all [data-vd-waypoint-nav] elements on the page",
+  ],
+  [
+    "VanduoWaypoint.refresh(nav)",
+    "Recalculate section positions after dynamic content changes",
+  ],
+  [
+    "VanduoWaypoint.destroy(nav)",
+    "Remove scroll listeners and IntersectionObservers for the given nav",
+  ],
 ];
 
 const events: [string, string, string][] = [
-  ["waypoint:change", "Fired on the nav element when the active section changes", "{ activeLink, sectionId }"],
+  [
+    "waypoint:change",
+    "Fired on the nav element when the active section changes",
+    "{ activeLink, sectionId }",
+  ],
 ];
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="scrollspy" ref="root">
-      <h5 class="demo-title">
-        <i class="ph ph-map-trifold"></i>Waypoint / Scrollspy
-      </h5>
+  <section id="scrollspy" ref="root">
+    <h5 class="demo-title">
+      <i class="ph ph-map-trifold"></i>Waypoint / Scrollspy
+    </h5>
 
-      <div class="vd-row">
-        <div class="vd-col-12">
-          <div id="demo-waypoint-sidebar" class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Sidebar Navigation Scrollspy</h6></div>
-            <div class="vd-card-body">
-              <div class="waypoint-demo-layout">
-                <nav
-                  class="vd-waypoint-nav vd-waypoint-border waypoint-demo-sidebar-nav"
-                  data-vd-waypoint-nav="#waypoint-demo-scroll"
-                  aria-label="Scrollspy sections"
-                >
-                  <a href="#wp-section-intro" class="is-active">Introduction</a>
-                  <a href="#wp-section-setup">Setup</a>
-                  <a href="#wp-section-usage">Usage</a>
-                  <a href="#wp-section-api">API</a>
-                </nav>
-                <div id="waypoint-demo-scroll" class="waypoint-demo-scroll">
-                  <div id="wp-section-intro" class="waypoint-demo-section">
-                    <h4 class="waypoint-demo-section-title">Introduction</h4>
-                    <p>
-                      Waypoint automatically highlights navigation links as the
-                      user scrolls through corresponding content sections. It
-                      observes section visibility and updates the
-                      <code>.is-active</code> class on the matching nav link.
-                    </p>
-                  </div>
-                  <div id="wp-section-setup" class="waypoint-demo-section">
-                    <h4>Setup</h4>
-                    <p>
-                      Add <code>data-vd-waypoint-nav</code> to the nav container
-                      and point it to the scrollable parent. Each link
-                      <code>href</code> should reference a section ID within the
-                      scroll container.
-                    </p>
-                  </div>
-                  <div id="wp-section-usage" class="waypoint-demo-section">
-                    <h4>Usage</h4>
-                    <p>
-                      Waypoint supports vertical scroll containers of any height.
-                      Links are highlighted top-down - the topmost visible
-                      section wins. Works with both window scroll and overflow
-                      containers.
-                    </p>
-                  </div>
-                  <div id="wp-section-api" class="waypoint-demo-section">
-                    <h4>API</h4>
-                    <p>
-                      Call <code>VanduoWaypoint.refresh(nav)</code> after dynamic
-                      content changes. Destroy with
-                      <code>VanduoWaypoint.destroy(nav)</code> to clean up
-                      observers.
-                    </p>
-                  </div>
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div
+          id="demo-waypoint-sidebar"
+          class="vd-card vd-card-glow demo-card"
+        >
+          <div class="vd-card-header">
+            <h6>Sidebar Navigation Scrollspy</h6>
+          </div>
+          <div class="vd-card-body">
+            <div class="waypoint-demo-layout">
+              <nav
+                class="vd-waypoint-nav vd-waypoint-border waypoint-demo-sidebar-nav"
+                data-vd-waypoint-nav="#waypoint-demo-scroll"
+                aria-label="Scrollspy sections"
+              >
+                <a href="#wp-section-intro" class="is-active">Introduction</a>
+                <a href="#wp-section-setup">Setup</a>
+                <a href="#wp-section-usage">Usage</a>
+                <a href="#wp-section-api">API</a>
+              </nav>
+              <div id="waypoint-demo-scroll" class="waypoint-demo-scroll">
+                <div id="wp-section-intro" class="waypoint-demo-section">
+                  <h4 class="waypoint-demo-section-title">Introduction</h4>
+                  <p>
+                    Waypoint automatically highlights navigation links as the
+                    user scrolls through corresponding content sections. It
+                    observes section visibility and updates the
+                    <code>.is-active</code> class on the matching nav link.
+                  </p>
+                </div>
+                <div id="wp-section-setup" class="waypoint-demo-section">
+                  <h4>Setup</h4>
+                  <p>
+                    Add <code>data-vd-waypoint-nav</code> to the nav container
+                    and point it to the scrollable parent. Each link
+                    <code>href</code> should reference a section ID within the
+                    scroll container.
+                  </p>
+                </div>
+                <div id="wp-section-usage" class="waypoint-demo-section">
+                  <h4>Usage</h4>
+                  <p>
+                    Waypoint supports vertical scroll containers of any
+                    height. Links are highlighted top-down - the topmost
+                    visible section wins. Works with both window scroll and
+                    overflow containers.
+                  </p>
+                </div>
+                <div id="wp-section-api" class="waypoint-demo-section">
+                  <h4>API</h4>
+                  <p>
+                    Call <code>VanduoWaypoint.refresh(nav)</code> after
+                    dynamic content changes. Destroy with
+                    <code>VanduoWaypoint.destroy(nav)</code> to clean up
+                    observers.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <DocCodeSnippet :html="sidebarHtml" />
         </div>
+        <DocCodeSnippet :html="sidebarHtml" />
       </div>
+    </div>
 
-      <div class="vd-row">
-        <div class="vd-col-12 vd-col-md-6">
-          <div id="demo-waypoint-underline" class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Underline Variant</h6></div>
-            <div class="vd-card-body">
-              <nav
-                class="vd-waypoint-nav vd-waypoint-underline waypoint-demo-tab-nav waypoint-demo-tab-nav-underline"
-                data-waypoint-demo-nav
-                aria-label="Underline variant preview"
-                role="tablist"
+    <div class="vd-row">
+      <div class="vd-col-12 vd-col-md-6">
+        <div
+          id="demo-waypoint-underline"
+          class="vd-card vd-card-glow demo-card"
+        >
+          <div class="vd-card-header"><h6>Underline Variant</h6></div>
+          <div class="vd-card-body">
+            <nav
+              class="vd-waypoint-nav vd-waypoint-underline waypoint-demo-tab-nav waypoint-demo-tab-nav-underline"
+              data-waypoint-demo-nav
+              aria-label="Underline variant preview"
+              role="tablist"
+            >
+              <button
+                type="button"
+                class="is-active"
+                role="tab"
+                aria-selected="true"
+                data-waypoint-demo-copy="Overview of the current section with a compact underline indicator."
               >
-                <button type="button" class="is-active" role="tab" aria-selected="true" data-waypoint-demo-copy="Overview of the current section with a compact underline indicator.">Overview</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="Feature-focused tab labels can switch active state without moving the page.">Features</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="Pricing can stay in-place while the active item updates visually.">Pricing</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="FAQ remains clickable without sending the reader somewhere else on the docs page.">FAQ</button>
-              </nav>
-              <p class="vd-text-sm vd-text-muted vd-mt-4" data-waypoint-demo-panel>
-                Overview of the current section with a compact underline
-                indicator.
-              </p>
-            </div>
-          </div>
-          <DocCodeSnippet :html="underlineHtml" />
-        </div>
-
-        <div class="vd-col-12 vd-col-md-6">
-          <div id="demo-waypoint-pill" class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Pill Variant</h6></div>
-            <div class="vd-card-body">
-              <nav
-                class="vd-waypoint-nav vd-waypoint-pill waypoint-demo-tab-nav waypoint-demo-tab-nav-pill"
-                data-waypoint-demo-nav
-                aria-label="Pill variant preview"
-                role="tablist"
+                Overview
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="Feature-focused tab labels can switch active state without moving the page."
               >
-                <button type="button" class="is-active" role="tab" aria-selected="true" data-waypoint-demo-copy="Getting started stays selected while the card remains anchored in place.">Getting Started</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="Components can be previewed as pills without triggering a page jump.">Components</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="Utilities now behave like local controls instead of placeholder links.">Utilities</button>
-                <button type="button" role="tab" aria-selected="false" data-waypoint-demo-copy="Theming is shown as another selectable state in the same card.">Theming</button>
-              </nav>
-              <p class="vd-text-sm vd-text-muted vd-mt-4" data-waypoint-demo-panel>
-                Getting started stays selected while the card remains anchored in
-                place.
-              </p>
+                Features
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="Pricing can stay in-place while the active item updates visually."
+              >
+                Pricing
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="FAQ remains clickable without sending the reader somewhere else on the docs page."
+              >
+                FAQ
+              </button>
+            </nav>
+            <p
+              class="vd-text-sm vd-text-muted vd-mt-4"
+              data-waypoint-demo-panel
+            >
+              Overview of the current section with a compact underline
+              indicator.
+            </p>
+          </div>
+        </div>
+        <DocCodeSnippet :html="underlineHtml" />
+      </div>
+
+      <div class="vd-col-12 vd-col-md-6">
+        <div id="demo-waypoint-pill" class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Pill Variant</h6></div>
+          <div class="vd-card-body">
+            <nav
+              class="vd-waypoint-nav vd-waypoint-pill waypoint-demo-tab-nav waypoint-demo-tab-nav-pill"
+              data-waypoint-demo-nav
+              aria-label="Pill variant preview"
+              role="tablist"
+            >
+              <button
+                type="button"
+                class="is-active"
+                role="tab"
+                aria-selected="true"
+                data-waypoint-demo-copy="Getting started stays selected while the card remains anchored in place."
+              >
+                Getting Started
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="Components can be previewed as pills without triggering a page jump."
+              >
+                Components
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="Utilities now behave like local controls instead of placeholder links."
+              >
+                Utilities
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-waypoint-demo-copy="Theming is shown as another selectable state in the same card."
+              >
+                Theming
+              </button>
+            </nav>
+            <p
+              class="vd-text-sm vd-text-muted vd-mt-4"
+              data-waypoint-demo-panel
+            >
+              Getting started stays selected while the card remains anchored
+              in place.
+            </p>
+          </div>
+        </div>
+        <DocCodeSnippet :html="pillHtml" />
+      </div>
+    </div>
+
+    <!-- API Reference -->
+    <div id="demo-waypoint-api" class="vd-card vd-card-glow demo-card">
+      <div class="vd-card-header">
+        <h6>
+          <i
+            class="ph ph-list-dashes mr-2"
+            style="color: var(--vd-color-primary)"
+          ></i
+          >API Reference
+        </h6>
+      </div>
+      <div class="vd-card-body">
+        <h4>Wiring</h4>
+        <EngineSwitch>
+          <template #vue3
+            ><DocCodeSnippet :js="vue3Wiring" :default-open="true"
+          /></template>
+          <template #vanilla
+            ><DocCodeSnippet :js="vanillaWiring" :default-open="true"
+          /></template>
+        </EngineSwitch>
+
+        <h4 class="vd-mt-6">CSS Classes</h4>
+        <div class="vd-table-responsive">
+          <table class="vd-table vd-table-striped">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in cssClasses" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Data Attributes</h4>
+        <div class="vd-table-responsive">
+          <table class="vd-table vd-table-striped">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in dataAttrs" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+                <td>
+                  <code>{{ row[2] }}</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <EngineSwitch>
+          <template #vue3>
+            <h4>Composable API</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in vue3Api" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-          <DocCodeSnippet :html="pillHtml" />
+          </template>
+          <template #vanilla>
+            <h4>JavaScript Methods</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in jsMethods" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </template>
+        </EngineSwitch>
+
+        <h4>Events</h4>
+        <div class="vd-table-responsive">
+          <table class="vd-table vd-table-striped">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Description</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in events" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+                <td>
+                  <code>{{ row[2] }}</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
 
-      <!-- API Reference -->
-      <div id="demo-waypoint-api" class="vd-card vd-card-glow demo-card">
-        <div class="vd-card-header">
-          <h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6>
-        </div>
-        <div class="vd-card-body">
-          <h4>Wiring</h4>
-          <EngineSwitch>
-            <template #vue3><DocCodeSnippet :js="vue3Wiring" :default-open="true" /></template>
-            <template #vanilla><DocCodeSnippet :js="vanillaWiring" :default-open="true" /></template>
-          </EngineSwitch>
-
-          <h4 class="vd-mt-6">CSS Classes</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Class</th><th>Description</th><th>Type</th></tr></thead>
-              <tbody>
-                <tr v-for="row in cssClasses" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                  <td>{{ row[2] }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h4>Data Attributes</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Attribute</th><th>Description</th><th>Default</th></tr></thead>
-              <tbody>
-                <tr v-for="row in dataAttrs" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                  <td><code>{{ row[2] }}</code></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <EngineSwitch>
-            <template #vue3>
-              <h4>Composable API</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Symbol</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in vue3Api" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </template>
-            <template #vanilla>
-              <h4>JavaScript Methods</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in jsMethods" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </template>
-          </EngineSwitch>
-
-          <h4>Events</h4>
-          <div class="vd-table-responsive">
-            <table class="vd-table vd-table-striped">
-              <thead><tr><th>Event</th><th>Description</th><th>Detail</th></tr></thead>
-              <tbody>
-                <tr v-for="row in events" :key="row[0]">
-                  <td><code>{{ row[0] }}</code></td>
-                  <td>{{ row[1] }}</td>
-                  <td><code>{{ row[2] }}</code></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <!-- Accessibility -->
+    <div class="vd-card vd-card-glow demo-card">
+      <div class="vd-card-header">
+        <h6>
+          <i
+            class="ph ph-wheelchair mr-2"
+            style="color: var(--vd-color-primary)"
+          ></i
+          >Accessibility
+        </h6>
       </div>
-
-      <!-- Accessibility -->
-      <div class="vd-card vd-card-glow demo-card">
-        <div class="vd-card-header">
-          <h6><i class="ph ph-wheelchair mr-2" style="color: var(--vd-color-primary);"></i>Accessibility</h6>
-        </div>
-        <div class="vd-card-body">
-          <ul>
-            <li>Navigation container uses <code>role="navigation"</code> with <code>aria-label="Table of contents"</code></li>
-            <li>Active link receives <code>aria-current="true"</code> in addition to the <code>.is-active</code> class</li>
-            <li>Links use standard anchor elements for native keyboard navigation and focus management</li>
-            <li>Smooth scrolling respects <code>prefers-reduced-motion</code> media query</li>
-            <li>Section targets use semantic heading hierarchy for screen reader landmark navigation</li>
-          </ul>
-        </div>
+      <div class="vd-card-body">
+        <ul>
+          <li>
+            Navigation container uses <code>role="navigation"</code> with
+            <code>aria-label="Table of contents"</code>
+          </li>
+          <li>
+            Active link receives <code>aria-current="true"</code> in addition
+            to the <code>.is-active</code> class
+          </li>
+          <li>
+            Links use standard anchor elements for native keyboard navigation
+            and focus management
+          </li>
+          <li>
+            Smooth scrolling respects
+            <code>prefers-reduced-motion</code> media query
+          </li>
+          <li>
+            Section targets use semantic heading hierarchy for screen reader
+            landmark navigation
+          </li>
+        </ul>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+  </section>
 </template>
 
 <style>
@@ -363,7 +552,10 @@ const events: [string, string, string][] = [
   color: var(--vd-text-secondary);
   text-decoration: none;
   border-left: 2px solid transparent;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 #scrollspy .waypoint-demo-sidebar-nav a:hover {
@@ -401,7 +593,10 @@ const events: [string, string, string][] = [
   background: transparent;
   color: var(--vd-text-primary);
   white-space: nowrap;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 #scrollspy .waypoint-demo-tab-nav button:hover {

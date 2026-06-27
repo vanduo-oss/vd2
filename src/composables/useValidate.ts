@@ -100,7 +100,10 @@ export function useValidate(root: Ref<HTMLElement | null>): void {
 
   const validateField = (field: HTMLInputElement): boolean => {
     const rulesStr = field.getAttribute("data-vd-rules") ?? "";
-    const fieldRules = rulesStr.split("|").map((r) => r.trim()).filter(Boolean);
+    const fieldRules = rulesStr
+      .split("|")
+      .map((r) => r.trim())
+      .filter(Boolean);
     const value = field.value;
     const errors: string[] = [];
 
@@ -109,7 +112,9 @@ export function useValidate(root: Ref<HTMLElement | null>): void {
       const param = params.join(":");
       const validator = name ? rules[name] : undefined;
       if (validator && !validator(value, param)) {
-        const customMsg = name ? field.getAttribute(`data-vd-msg-${name}`) : null;
+        const customMsg = name
+          ? field.getAttribute(`data-vd-msg-${name}`)
+          : null;
         let msg = customMsg ?? (name ? messages[name] : undefined) ?? "Invalid";
         if (param) msg = msg.replace("{0}", param);
         errors.push(msg);
@@ -166,7 +171,10 @@ export function useValidate(root: Ref<HTMLElement | null>): void {
         form.querySelector<HTMLElement>(".is-invalid")?.focus();
       }
       form.dispatchEvent(
-        new CustomEvent("validate:submit", { detail: { valid }, bubbles: true }),
+        new CustomEvent("validate:submit", {
+          detail: { valid },
+          bubbles: true,
+        }),
       );
     };
     form.addEventListener("submit", submitHandler);
@@ -176,9 +184,9 @@ export function useValidate(root: Ref<HTMLElement | null>): void {
   onMounted(() => {
     const el = root.value;
     if (!el) return;
-    el.querySelectorAll<HTMLFormElement>("[data-vd-validate], .vd-validate").forEach(
-      initForm,
-    );
+    el.querySelectorAll<HTMLFormElement>(
+      "[data-vd-validate], .vd-validate",
+    ).forEach(initForm);
   });
 
   onUnmounted(() => {

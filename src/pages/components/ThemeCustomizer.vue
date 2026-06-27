@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
@@ -177,232 +176,407 @@ const storageRows: [string, string, string][] = [
 ];
 
 const apiRows: [string, string, string][] = [
-  [".vd-theme-customizer-trigger", "Optional base styling component for the trigger button.", "Component"],
-  ["data-theme-customizer-trigger", "Attribute required on the trigger button to bind the click event that opens the panel.", "Attribute"],
-  ["data-primary", "Applied to <html>. Remaps --vd-primary-* CSS variables to the selected color.", "State Attribute"],
-  ["data-neutral", "Applied to <html>. Remaps --vd-gray-* CSS variables to the selected neutral scale.", "State Attribute"],
-  ["data-radius", "Applied to <html>. Sets --vd-radius-scale for component border-radius.", "State Attribute"],
-  ["data-font", "Applied to <html>. Sets --vd-font-family-base to the selected font stack.", "State Attribute"],
-  ["data-theme", "Applied to <html>. Forces light or dark mode. Removed when using system preference.", "State Attribute"],
+  [
+    ".vd-theme-customizer-trigger",
+    "Optional base styling component for the trigger button.",
+    "Component",
+  ],
+  [
+    "data-theme-customizer-trigger",
+    "Attribute required on the trigger button to bind the click event that opens the panel.",
+    "Attribute",
+  ],
+  [
+    "data-primary",
+    "Applied to <html>. Remaps --vd-primary-* CSS variables to the selected color.",
+    "State Attribute",
+  ],
+  [
+    "data-neutral",
+    "Applied to <html>. Remaps --vd-gray-* CSS variables to the selected neutral scale.",
+    "State Attribute",
+  ],
+  [
+    "data-radius",
+    "Applied to <html>. Sets --vd-radius-scale for component border-radius.",
+    "State Attribute",
+  ],
+  [
+    "data-font",
+    "Applied to <html>. Sets --vd-font-family-base to the selected font stack.",
+    "State Attribute",
+  ],
+  [
+    "data-theme",
+    "Applied to <html>. Forces light or dark mode. Removed when using system preference.",
+    "State Attribute",
+  ],
 ];
 
-const chipText = (hex: string): string => (["#fab005", "#fcc419", "#a9e34b"].includes(hex) ? "#212529" : "white");
+const chipText = (hex: string): string =>
+  ["#fab005", "#fcc419", "#a9e34b"].includes(hex) ? "#212529" : "white";
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="theme-customizer">
-      <h5 class="demo-title"><i class="ph ph-paint-roller"></i>Theme Customizer</h5>
-      <p class="vd-mb-8">
-        The Theme Customizer is a powerful component that allows users to
-        personalize the framework's appearance in real-time. It provides controls
-        for color palette (Fibonacci / Open Color), primary color, neutral color,
-        border radius, font family, and color
-        mode (light/dark/system). For color-mode-only needs, see the
-        <RouterLink to="/components/theme-switcher">Theme Switcher</RouterLink> or the
-        <RouterLink to="/guides/theme-customizer">Theme Customizer walkthrough</RouterLink>.
-      </p>
+  <section id="theme-customizer">
+    <h5 class="demo-title">
+      <i class="ph ph-paint-roller"></i>Theme Customizer
+    </h5>
+    <p class="vd-mb-8">
+      The Theme Customizer is a powerful component that allows users to
+      personalize the framework's appearance in real-time. It provides
+      controls for color palette (Fibonacci / Open Color), primary color,
+      neutral color, border radius, font family, and color mode
+      (light/dark/system). For color-mode-only needs, see the
+      <RouterLink to="/components/theme-switcher">Theme Switcher</RouterLink>
+      or the
+      <RouterLink to="/guides/theme-customizer"
+        >Theme Customizer walkthrough</RouterLink
+      >.
+    </p>
 
-      <!-- Live Demo: inline customizer -->
-      <div class="vd-card vd-card-glow demo-card vd-mb-8 theme-customizer-demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-play-circle"></i>Live Demo</h6></div>
-        <div class="vd-card-body">
-          <p class="vd-mb-5">Try all the theme options below. Changes apply immediately:</p>
-          <div class="vd-mb-5">
-            <button type="button" class="vd-theme-customizer-trigger" aria-label="Open theme customizer" @click="openCustomizer">
-              <i class="ph ph-paint-roller"></i>
-            </button>
-            <span class="vd-text-sm vd-text-muted vd-ml-2">Open the same dropdown panel used in the navbar.</span>
+    <!-- Live Demo: inline customizer -->
+    <div
+      class="vd-card vd-card-glow demo-card vd-mb-8 theme-customizer-demo-card"
+    >
+      <div class="vd-card-header">
+        <h6><i class="ph ph-play-circle"></i>Live Demo</h6>
+      </div>
+      <div class="vd-card-body">
+        <p class="vd-mb-5">
+          Try all the theme options below. Changes apply immediately:
+        </p>
+        <div class="vd-mb-5">
+          <button
+            type="button"
+            class="vd-theme-customizer-trigger"
+            aria-label="Open theme customizer"
+            @click="openCustomizer"
+          >
+            <i class="ph ph-paint-roller"></i>
+          </button>
+          <span class="vd-text-sm vd-text-muted vd-ml-2"
+            >Open the same dropdown panel used in the navbar.</span
+          >
+        </div>
+
+        <div class="theme-customizer-inline">
+          <!-- Color Mode -->
+          <div class="customizer-section vd-mb-5">
+            <label
+              class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold"
+              >Color Mode</label
+            >
+            <div class="vd-d-flex vd-gap-2">
+              <button
+                v-for="m in modes"
+                :key="m.value"
+                class="vd-btn vd-btn-sm vd-btn-secondary theme-mode-btn"
+                :class="{ active: themeStore.theme === m.value }"
+                @click="themeStore.setTheme(m.value)"
+              >
+                <i class="ph" :class="m.icon"></i> {{ m.label }}
+              </button>
+            </div>
           </div>
 
-          <div class="theme-customizer-inline">
-            <!-- Color Mode -->
-            <div class="customizer-section vd-mb-5">
-              <label class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold">Color Mode</label>
-              <div class="vd-d-flex vd-gap-2">
-                <button v-for="m in modes" :key="m.value" class="vd-btn vd-btn-sm vd-btn-secondary theme-mode-btn" :class="{ active: themeStore.theme === m.value }" @click="themeStore.setTheme(m.value)">
-                  <i class="ph" :class="m.icon"></i> {{ m.label }}
-                </button>
-              </div>
+          <!-- Primary Color -->
+          <div class="customizer-section vd-mb-5">
+            <label
+              class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold"
+              >Primary Color</label
+            >
+            <div class="vd-d-flex vd-flex-wrap vd-gap-2">
+              <button
+                v-for="c in primaryColors"
+                :key="c.key"
+                class="color-swatch"
+                :class="{ active: themeStore.primary === c.key }"
+                :style="`background: ${c.hex};`"
+                :title="c.label"
+                @click="themeStore.setPrimary(c.key)"
+              ></button>
             </div>
+          </div>
 
-            <!-- Primary Color -->
-            <div class="customizer-section vd-mb-5">
-              <label class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold">Primary Color</label>
-              <div class="vd-d-flex vd-flex-wrap vd-gap-2">
-                <button v-for="c in primaryColors" :key="c.key" class="color-swatch" :class="{ active: themeStore.primary === c.key }" :style="`background: ${c.hex};`" :title="c.label" @click="themeStore.setPrimary(c.key)"></button>
-              </div>
+          <!-- Neutral Color -->
+          <div class="customizer-section vd-mb-5">
+            <label
+              class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold"
+              >Neutral Color</label
+            >
+            <div class="vd-d-flex vd-gap-2">
+              <button
+                v-for="n in neutrals"
+                :key="n.key"
+                class="vd-btn vd-btn-sm vd-btn-secondary neutral-btn"
+                :class="{ active: themeStore.neutral === n.key }"
+                @click="themeStore.setNeutral(n.key)"
+              >
+                {{ n.label }}
+              </button>
             </div>
+          </div>
 
-            <!-- Neutral Color -->
-            <div class="customizer-section vd-mb-5">
-              <label class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold">Neutral Color</label>
-              <div class="vd-d-flex vd-gap-2">
-                <button v-for="n in neutrals" :key="n.key" class="vd-btn vd-btn-sm vd-btn-secondary neutral-btn" :class="{ active: themeStore.neutral === n.key }" @click="themeStore.setNeutral(n.key)">{{ n.label }}</button>
-              </div>
+          <!-- Border Radius -->
+          <div class="customizer-section vd-mb-5">
+            <label
+              class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold"
+              >Border Radius</label
+            >
+            <div class="vd-d-flex vd-gap-2 vd-align-items-center">
+              <button
+                v-for="r in radii"
+                :key="r"
+                class="vd-btn vd-btn-sm vd-btn-secondary radius-btn"
+                :class="{ active: themeStore.radius === r }"
+                @click="themeStore.setRadius(r)"
+              >
+                {{ r }}
+              </button>
             </div>
+          </div>
 
-            <!-- Border Radius -->
-            <div class="customizer-section vd-mb-5">
-              <label class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold">Border Radius</label>
-              <div class="vd-d-flex vd-gap-2 vd-align-items-center">
-                <button v-for="r in radii" :key="r" class="vd-btn vd-btn-sm vd-btn-secondary radius-btn" :class="{ active: themeStore.radius === r }" @click="themeStore.setRadius(r)">{{ r }}</button>
-              </div>
-            </div>
+          <!-- Font Family -->
+          <div class="customizer-section">
+            <label
+              class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold"
+              >Font Family</label
+            >
+            <select
+              class="vd-input vd-input-sm font-select"
+              style="max-width: 250px"
+              :value="themeStore.font"
+              @change="
+                themeStore.setFont(($event.target as HTMLSelectElement).value)
+              "
+            >
+              <option v-for="f in fonts" :key="f.value" :value="f.value">
+                {{ f.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <!-- Font Family -->
-            <div class="customizer-section">
-              <label class="customizer-label vd-d-block vd-mb-3 vd-text-sm vd-font-semibold">Font Family</label>
-              <select class="vd-input vd-input-sm font-select" style="max-width: 250px;" :value="themeStore.font" @change="themeStore.setFont(($event.target as HTMLSelectElement).value)">
-                <option v-for="f in fonts" :key="f.value" :value="f.value">{{ f.label }}</option>
-              </select>
+    <!-- Quick Start + Features -->
+    <div class="vd-row">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Quick Start</h6></div>
+          <div class="vd-card-body">
+            <p>
+              Add a trigger button anywhere in your page to open the
+              customizer panel:
+            </p>
+            <DocCodeSnippet :html="quickStartHtml" />
+            <p class="vd-mt-5">
+              <strong>Try it:</strong> Click the
+              <i class="ph ph-paint-roller"></i> icon in the navbar to open
+              the Theme Customizer.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Features</h6></div>
+          <div class="vd-card-body">
+            <ul>
+              <li>
+                <strong>Palette:</strong> Open Color (default) or Fibonacci
+                (golden-angle, optional)
+              </li>
+              <li>
+                <strong>Primary Color:</strong> 18 color options re-toned on
+                the active palette
+              </li>
+              <li>
+                <strong>Neutral Color:</strong> 6 gray scale variants
+                (Charcoal, Gray, Slate, Zinc, Neutral, Stone)
+              </li>
+              <li>
+                <strong>Border Radius:</strong> 5 presets (0, 0.125rem,
+                0.25rem, 0.375rem, 0.5rem)
+              </li>
+              <li>
+                <strong>Font Family:</strong> 5 curated options (JetBrains
+                Mono, System, Ubuntu, Lato, Open Sans)
+              </li>
+              <li>
+                <strong>Color Mode:</strong> System (default), Dark, or Light
+              </li>
+            </ul>
+            <p class="vd-mt-5 vd-text-sm vd-text-muted">
+              All preferences are persisted to <code>localStorage</code> and
+              restored on page load.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Available colors -->
+    <div class="vd-row">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Available Primary Colors</h6></div>
+          <div class="vd-card-body">
+            <div class="vd-d-flex vd-flex-wrap vd-gap-3">
+              <span
+                v-for="c in primaryColors"
+                :key="c.key"
+                class="vd-chip"
+                :style="`background: ${c.hex}; color: ${chipText(c.hex)};`"
+                >{{ c.label }}</span
+              >
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Quick Start + Features -->
-      <div class="vd-row">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Quick Start</h6></div>
-            <div class="vd-card-body">
-              <p>Add a trigger button anywhere in your page to open the customizer panel:</p>
-              <DocCodeSnippet :html="quickStartHtml" />
-              <p class="vd-mt-5"><strong>Try it:</strong> Click the <i class="ph ph-paint-roller"></i> icon in the navbar to open the Theme Customizer.</p>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Available Neutral Colors</h6></div>
+          <div class="vd-card-body">
+            <div class="vd-d-flex vd-flex-wrap vd-gap-3 vd-mb-5">
+              <span
+                v-for="n in neutrals"
+                :key="n.key"
+                class="vd-chip"
+                :style="`background: ${n.hex}; color: white;`"
+                >{{ n.label
+                }}{{ n.key === "charcoal" ? " (default)" : "" }}</span
+              >
             </div>
+            <p class="vd-text-sm vd-text-muted">
+              Neutral colors affect backgrounds, borders, and text throughout
+              the framework.
+            </p>
           </div>
         </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Features</h6></div>
-            <div class="vd-card-body">
-              <ul>
-                <li><strong>Palette:</strong> Fibonacci (golden-angle, default) or Open Color</li>
-                <li><strong>Primary Color:</strong> 18 color options re-toned on the active palette</li>
-                <li><strong>Neutral Color:</strong> 6 gray scale variants (Charcoal, Gray, Slate, Zinc, Neutral, Stone)</li>
-                <li><strong>Border Radius:</strong> 5 presets (0, 0.125rem, 0.25rem, 0.375rem, 0.5rem)</li>
-                <li><strong>Font Family:</strong> 5 curated options (JetBrains Mono, System, Ubuntu, Lato, Open Sans)</li>
-                <li><strong>Color Mode:</strong> System (default), Dark, or Light</li>
-              </ul>
-              <p class="vd-mt-5 vd-text-sm vd-text-muted">All preferences are persisted to <code>localStorage</code> and restored on page load.</p>
+      </div>
+    </div>
+
+    <!-- localStorage + JS API -->
+    <div class="vd-row">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>localStorage Keys</h6></div>
+          <div class="vd-card-body">
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Key</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in storageRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>
+                      <code>{{ row[1] }}</code>
+                    </td>
+                    <td>{{ row[2] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Available colors -->
-      <div class="vd-row">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Available Primary Colors</h6></div>
-            <div class="vd-card-body">
-              <div class="vd-d-flex vd-flex-wrap vd-gap-3">
-                <span v-for="c in primaryColors" :key="c.key" class="vd-chip" :style="`background: ${c.hex}; color: ${chipText(c.hex)};`">{{ c.label }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Available Neutral Colors</h6></div>
-            <div class="vd-card-body">
-              <div class="vd-d-flex vd-flex-wrap vd-gap-3 vd-mb-5">
-                <span v-for="n in neutrals" :key="n.key" class="vd-chip" :style="`background: ${n.hex}; color: white;`">{{ n.label }}{{ n.key === "charcoal" ? " (default)" : "" }}</span>
-              </div>
-              <p class="vd-text-sm vd-text-muted">Neutral colors affect backgrounds, borders, and text throughout the framework.</p>
-            </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>JavaScript API</h6></div>
+          <div class="vd-card-body">
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :js="apiVue3" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :js="apiJs" :default-open="true"
+              /></template>
+            </EngineSwitch>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- localStorage + JS API -->
-      <div class="vd-row">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>localStorage Keys</h6></div>
-            <div class="vd-card-body">
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Key</th><th>Default</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in storageRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td><td><code>{{ row[1] }}</code></td><td>{{ row[2] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>JavaScript API</h6></div>
-            <div class="vd-card-body">
-              <EngineSwitch>
-                <template #vue3><DocCodeSnippet :js="apiVue3" :default-open="true" /></template>
-                <template #vanilla><DocCodeSnippet :js="apiJs" :default-open="true" /></template>
-              </EngineSwitch>
-            </div>
+    <!-- API Reference -->
+    <h4 id="api" class="docs-heading">API Reference</h4>
+    <div class="vd-table-responsive" style="margin-bottom: 3rem">
+      <table class="vd-table vd-table-hover">
+        <thead>
+          <tr>
+            <th style="width: 25%">Class Name / Attribute</th>
+            <th style="width: 55%">Description</th>
+            <th style="width: 20%">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in apiRows" :key="row[0]">
+            <td>
+              <code>{{ row[0] }}</code>
+            </td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Coordination -->
+    <h4 class="docs-heading">Coordination with ThemeSwitcher</h4>
+    <div class="vd-row vd-mb-8">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Auto-Coordination</h6></div>
+          <div class="vd-card-body">
+            <p>
+              When both ThemeCustomizer and ThemeSwitcher are present on the
+              same page, they automatically stay in sync:
+            </p>
+            <ul class="vd-mt-4">
+              <li>
+                Changing theme via <strong>ThemeSwitcher</strong> button
+                triggers primary color swap if using defaults
+              </li>
+              <li>
+                Changing theme via <strong>ThemeCustomizer</strong> panel
+                updates ThemeSwitcher state
+              </li>
+              <li>Preferences are shared via <code>localStorage</code></li>
+            </ul>
+            <DocCodeSnippet class="vd-mt-5" :html="coordinationHtml" />
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- API Reference -->
-      <h4 id="api" class="docs-heading">API Reference</h4>
-      <div class="vd-table-responsive" style="margin-bottom: 3rem">
-        <table class="vd-table vd-table-hover">
-          <thead>
-            <tr><th style="width: 25%">Class Name / Attribute</th><th style="width: 55%">Description</th><th style="width: 20%">Type</th></tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in apiRows" :key="row[0]">
-              <td><code>{{ row[0] }}</code></td><td>{{ row[1] }}</td><td>{{ row[2] }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Coordination -->
-      <h4 class="docs-heading">Coordination with ThemeSwitcher</h4>
-      <div class="vd-row vd-mb-8">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Auto-Coordination</h6></div>
-            <div class="vd-card-body">
-              <p>When both ThemeCustomizer and ThemeSwitcher are present on the same page, they automatically stay in sync:</p>
-              <ul class="vd-mt-4">
-                <li>Changing theme via <strong>ThemeSwitcher</strong> button triggers primary color swap if using defaults</li>
-                <li>Changing theme via <strong>ThemeCustomizer</strong> panel updates ThemeSwitcher state</li>
-                <li>Preferences are shared via <code>localStorage</code></li>
-              </ul>
-              <DocCodeSnippet class="vd-mt-5" :html="coordinationHtml" />
-            </div>
+    <!-- CSS customization + Events -->
+    <div class="vd-row">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>CSS Customization</h6></div>
+          <div class="vd-card-body">
+            <p>Override the customizer panel styles:</p>
+            <DocCodeSnippet :css="cssCustomCss" />
           </div>
         </div>
       </div>
-
-      <!-- CSS customization + Events -->
-      <div class="vd-row">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>CSS Customization</h6></div>
-            <div class="vd-card-body">
-              <p>Override the customizer panel styles:</p>
-              <DocCodeSnippet :css="cssCustomCss" />
-            </div>
-          </div>
-        </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Events</h6></div>
-            <div class="vd-card-body">
-              <p>Listen for customizer events:</p>
-              <DocCodeSnippet :js="eventsJs" />
-            </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Events</h6></div>
+          <div class="vd-card-body">
+            <p>Listen for customizer events:</p>
+            <DocCodeSnippet :js="eventsJs" />
           </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+  </section>
 </template>

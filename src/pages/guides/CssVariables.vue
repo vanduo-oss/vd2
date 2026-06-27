@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
 const overrideCss = `/* Override tokens in your own stylesheet — cascades everywhere */
@@ -22,84 +21,105 @@ const darkCss = `/* Dark mode just remaps the same token names */
 }`;
 
 const tiers: [string, string][] = [
-  ["Palette", "--vd-blue-6, --vd-gray-0…9 — active scales (Fibonacci by default; --vd-oc-*/--vd-fib-* are the raw palette sources)"],
-  ["Semantic", "--vd-color-primary, --vd-bg-primary, --vd-text-primary, --vd-border-color"],
+  [
+    "Palette",
+    "--vd-blue-6, --vd-gray-0…9 — active scales (Open Color by default; --vd-oc-*/--vd-fib-* are the raw palette sources)",
+  ],
+  [
+    "Semantic",
+    "--vd-color-primary, --vd-bg-primary, --vd-text-primary, --vd-border-color",
+  ],
   ["Component", "--vd-btn-border-radius, --vd-card-bg — per-component knobs"],
 ];
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="css-variables">
-      <h5 class="demo-title">
-        <i class="ph ph-paint-roller"></i>CSS Variables &amp; Theming
-        <code class="vd-text-sm">Guide</code>
-      </h5>
-      <p class="vd-mb-6">
-        Every colour, space, radius, and font in Vanduo is a CSS custom property
-        (<code>--vd-*</code>). Override them in your own stylesheet and the whole
-        system updates — no recompile, no JavaScript. This token layer is shared
-        by both engines and is owned by <code>@vanduo-oss/core</code>.
-      </p>
+  <section id="css-variables">
+    <h5 class="demo-title">
+      <i class="ph ph-paint-roller"></i>CSS Variables &amp; Theming
+      <code class="vd-text-sm">Guide</code>
+    </h5>
+    <p class="vd-mb-6">
+      Every colour, space, radius, and font in Vanduo is a CSS custom property
+      (<code>--vd-*</code>). Override them in your own stylesheet and the
+      whole system updates — no recompile, no JavaScript. This token layer is
+      shared by both engines and is owned by <code>@vanduo-oss/core</code>.
+    </p>
 
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-globe"></i> Global overrides</h6></div>
-            <div class="vd-card-body">
-              <DocCodeSnippet :css="overrideCss" :default-open="true" />
-            </div>
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-globe"></i> Global overrides</h6>
           </div>
-        </div>
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-selection"></i> Scoped overrides</h6></div>
-            <div class="vd-card-body">
-              <p>Custom properties cascade, so you can re-theme one subtree:</p>
-              <DocCodeSnippet :css="scopedCss" :default-open="true" />
-            </div>
+          <div class="vd-card-body">
+            <DocCodeSnippet :css="overrideCss" :default-open="true" />
           </div>
         </div>
       </div>
-
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-stack"></i> The three token tiers</h6></div>
-            <div class="vd-card-body">
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Tier</th><th>Examples</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in tiers" :key="row[0]">
-                      <td><strong>{{ row[0] }}</strong></td>
-                      <td><code>{{ row[1] }}</code></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="vd-text-sm vd-text-muted vd-mt-3">
-                Semantic tokens reference palette tokens; component tokens
-                reference semantic ones. Override at the tier that matches your
-                intent.
-              </p>
-            </div>
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-selection"></i> Scoped overrides</h6>
+          </div>
+          <div class="vd-card-body">
+            <p>Custom properties cascade, so you can re-theme one subtree:</p>
+            <DocCodeSnippet :css="scopedCss" :default-open="true" />
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="vd-card demo-card">
-        <div class="vd-card-header"><h6><i class="ph ph-moon"></i> Dark mode is the same mechanism</h6></div>
-        <div class="vd-card-body">
-          <DocCodeSnippet :css="darkCss" :default-open="true" />
-          <p class="vd-text-sm vd-text-muted vd-mt-3">
-            In vd2 you rarely write this by hand — the
-            <a href="/guides/theme-customizer-guide">theme store</a> flips
-            <code>data-theme</code> for you. See also
-            <a href="/core/color-palette">the colour palette</a>.
-          </p>
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-stack"></i> The three token tiers</h6>
+          </div>
+          <div class="vd-card-body">
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Tier</th>
+                    <th>Examples</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in tiers" :key="row[0]">
+                    <td>
+                      <strong>{{ row[0] }}</strong>
+                    </td>
+                    <td>
+                      <code>{{ row[1] }}</code>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="vd-text-sm vd-text-muted vd-mt-3">
+              Semantic tokens reference palette tokens; component tokens
+              reference semantic ones. Override at the tier that matches your
+              intent.
+            </p>
+          </div>
         </div>
       </div>
-    </section>
-  </DocsLayout>
+    </div>
+
+    <div class="vd-card demo-card">
+      <div class="vd-card-header">
+        <h6><i class="ph ph-moon"></i> Dark mode is the same mechanism</h6>
+      </div>
+      <div class="vd-card-body">
+        <DocCodeSnippet :css="darkCss" :default-open="true" />
+        <p class="vd-text-sm vd-text-muted vd-mt-3">
+          In vd2 you rarely write this by hand — the
+          <a href="/guides/theme-customizer-guide">theme store</a> flips
+          <code>data-theme</code> for you. See also
+          <a href="/core/color-palette">the colour palette</a>.
+        </p>
+      </div>
+    </div>
+  </section>
 </template>

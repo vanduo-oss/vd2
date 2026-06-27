@@ -18,13 +18,43 @@ export interface SanitizeOptions {
 }
 
 const BASE_ALLOWED = [
-  "B", "STRONG", "I", "EM", "BR", "A", "SPAN", "U", "DIV", "P", "KBD", "CODE", "SMALL", "MARK",
+  "B",
+  "STRONG",
+  "I",
+  "EM",
+  "BR",
+  "A",
+  "SPAN",
+  "U",
+  "DIV",
+  "P",
+  "KBD",
+  "CODE",
+  "SMALL",
+  "MARK",
 ];
 const SVG_ALLOWED = ["SVG", "PATH", "LINE", "CIRCLE", "POLYLINE", "RECT", "G"];
 const SAFE_SVG_ATTRS = new Set([
-  "xmlns", "width", "height", "viewBox", "fill", "stroke", "stroke-width",
-  "stroke-linecap", "stroke-linejoin", "d", "cx", "cy", "r", "x1", "y1", "x2", "y2",
-  "points", "transform", "class",
+  "xmlns",
+  "width",
+  "height",
+  "viewBox",
+  "fill",
+  "stroke",
+  "stroke-width",
+  "stroke-linecap",
+  "stroke-linejoin",
+  "d",
+  "cx",
+  "cy",
+  "r",
+  "x1",
+  "y1",
+  "x2",
+  "y2",
+  "points",
+  "transform",
+  "class",
 ]);
 
 /** Attribute-safe text escape — used as the SSR / no-DOMParser fallback. */
@@ -37,7 +67,10 @@ function escapeText(input: string): string {
     .replace(/'/g, "&#39;");
 }
 
-export function sanitizeHtml(input: string, options: SanitizeOptions = {}): string {
+export function sanitizeHtml(
+  input: string,
+  options: SanitizeOptions = {},
+): string {
   if (!input) return "";
   // SSR / non-DOM environments: fail closed to escaped text.
   if (typeof DOMParser === "undefined") return escapeText(input);

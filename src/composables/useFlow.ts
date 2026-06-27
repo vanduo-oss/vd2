@@ -18,12 +18,15 @@ export function useFlow(root: Ref<HTMLElement | null>): void {
     const track = el.querySelector<HTMLElement>(".vd-flow-track");
     if (!track) return;
 
-    const slides = Array.from(track.querySelectorAll<HTMLElement>(".vd-flow-slide"));
+    const slides = Array.from(
+      track.querySelectorAll<HTMLElement>(".vd-flow-slide"),
+    );
     if (slides.length === 0) return;
 
     const isFade = el.classList.contains("vd-flow-fade");
     const autoplay = el.hasAttribute("data-vd-autoplay");
-    const interval = parseInt(el.getAttribute("data-vd-interval") ?? "", 10) || 5000;
+    const interval =
+      parseInt(el.getAttribute("data-vd-interval") ?? "", 10) || 5000;
     const loop = el.getAttribute("data-vd-loop") !== "false";
 
     const state = { current: 0, total: slides.length };
@@ -42,7 +45,8 @@ export function useFlow(root: Ref<HTMLElement | null>): void {
 
     el.setAttribute("role", "region");
     el.setAttribute("aria-roledescription", "carousel");
-    if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", "Carousel");
+    if (!el.getAttribute("aria-label"))
+      el.setAttribute("aria-label", "Carousel");
 
     const liveRegion = document.createElement("div");
     liveRegion.setAttribute("aria-live", "polite");
@@ -54,13 +58,16 @@ export function useFlow(root: Ref<HTMLElement | null>): void {
 
     // Bridge bare indicator buttons → styled, interactive dots.
     const indicators = Array.from(
-      el.querySelectorAll<HTMLElement>(".vd-flow-indicators button, .vd-flow-indicator"),
+      el.querySelectorAll<HTMLElement>(
+        ".vd-flow-indicators button, .vd-flow-indicator",
+      ),
     );
     indicators.forEach((ind, i) => {
       ind.classList.add("vd-flow-indicator");
       ind.setAttribute("role", "tab");
       ind.setAttribute("aria-selected", i === 0 ? "true" : "false");
-      if (!ind.getAttribute("aria-label")) ind.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      if (!ind.getAttribute("aria-label"))
+        ind.setAttribute("aria-label", `Go to slide ${i + 1}`);
     });
 
     const goTo = (index: number, announce = true): void => {
@@ -87,7 +94,8 @@ export function useFlow(root: Ref<HTMLElement | null>): void {
         s.setAttribute("aria-hidden", i !== target ? "true" : "false");
       });
 
-      if (announce) liveRegion.textContent = `Slide ${target + 1} of ${state.total}`;
+      if (announce)
+        liveRegion.textContent = `Slide ${target + 1} of ${state.total}`;
 
       el.dispatchEvent(
         new CustomEvent("flow:change", {
@@ -205,7 +213,9 @@ export function useFlow(root: Ref<HTMLElement | null>): void {
   onMounted(() => {
     const el = root.value;
     if (!el) return;
-    el.querySelectorAll<HTMLElement>(".vd-flow, .vd-carousel").forEach(initInstance);
+    el.querySelectorAll<HTMLElement>(".vd-flow, .vd-carousel").forEach(
+      initInstance,
+    );
   });
 
   onUnmounted(() => {

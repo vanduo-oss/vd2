@@ -4,7 +4,6 @@
 // real component — framework/css/components/code-snippet.css +
 // framework/js/components/code-snippet.js — which powers every "View Code"
 // block across these docs (the DocCodeSnippet component used below).
-import DocsLayout from "@/layout/DocsLayout.vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
 const basicHtml = `<div class="vd-code-snippet" data-collapsible>
@@ -31,16 +30,40 @@ document.addEventListener('codesnippet:toggle', (e) => {
 });`;
 
 const classRows: [string, string][] = [
-  [".vd-code-snippet", "Root wrapper. Add data-collapsible to make it a togglable View Code block."],
-  [".vd-code-snippet-toggle", "The “View Code” button that expands/collapses the content."],
-  [".vd-code-snippet-toggle-icon", "Chevron indicator inside the toggle, rotated by state."],
-  [".vd-code-snippet-content", "The collapsible region holding the header and body."],
-  [".vd-code-snippet-header", "Row holding the language tabs and the copy button."],
-  [".vd-code-snippet-tabs", "Tablist wrapping one .vd-code-snippet-tab per language."],
-  [".vd-code-snippet-tab", "A language tab. Add is-active to mark the visible pane."],
+  [
+    ".vd-code-snippet",
+    "Root wrapper. Add data-collapsible to make it a togglable View Code block.",
+  ],
+  [
+    ".vd-code-snippet-toggle",
+    "The “View Code” button that expands/collapses the content.",
+  ],
+  [
+    ".vd-code-snippet-toggle-icon",
+    "Chevron indicator inside the toggle, rotated by state.",
+  ],
+  [
+    ".vd-code-snippet-content",
+    "The collapsible region holding the header and body.",
+  ],
+  [
+    ".vd-code-snippet-header",
+    "Row holding the language tabs and the copy button.",
+  ],
+  [
+    ".vd-code-snippet-tabs",
+    "Tablist wrapping one .vd-code-snippet-tab per language.",
+  ],
+  [
+    ".vd-code-snippet-tab",
+    "A language tab. Add is-active to mark the visible pane.",
+  ],
   [".vd-code-snippet-copy", "Copy-to-clipboard button for the active pane."],
   [".vd-code-snippet-body", "Container for the code panes."],
-  [".vd-code-snippet-pane", "One <pre> per language (data-lang). is-active shows it."],
+  [
+    ".vd-code-snippet-pane",
+    "One <pre> per language (data-lang). is-active shows it.",
+  ],
   [".vd-code-snippet-single", "Modifier for a snippet with no language tabs."],
   [".vd-code-snippet-inline", "Inline, non-collapsible code presentation."],
   [".vd-code-snippet-line-numbers", "Adds a gutter with line numbers."],
@@ -49,112 +72,161 @@ const classRows: [string, string][] = [
 const attrRows: [string, string][] = [
   ["data-collapsible", "Makes the snippet a collapsible View Code block."],
   ["data-expanded", 'Set to "true" to render the snippet expanded on load.'],
-  ["data-lang", "Language key on each tab and pane (e.g. html, css, javascript)."],
-  ["data-extract", "Selector on a pane — pulls its HTML from the live demo it documents."],
+  [
+    "data-lang",
+    "Language key on each tab and pane (e.g. html, css, javascript).",
+  ],
+  [
+    "data-extract",
+    "Selector on a pane — pulls its HTML from the live demo it documents.",
+  ],
 ];
 
 const jsRows: [string, string][] = [
-  ["VanduoCodeSnippet.init(root)", "Scans root for .vd-code-snippet blocks and wires toggle, tabs, and copy."],
-  ["codesnippet:toggle", "Event fired on the snippet when expanded/collapsed. detail.expanded is a boolean."],
+  [
+    "VanduoCodeSnippet.init(root)",
+    "Scans root for .vd-code-snippet blocks and wires toggle, tabs, and copy.",
+  ],
+  [
+    "codesnippet:toggle",
+    "Event fired on the snippet when expanded/collapsed. detail.expanded is a boolean.",
+  ],
 ];
 </script>
 
 <template>
-  <DocsLayout>
-    <section id="code-snippet">
-      <h5 class="demo-title"><i class="ph ph-code"></i>Code Snippet</h5>
-      <p class="vd-mb-8">
-        The collapsible “View Code” block used throughout these docs. It supports
-        a togglable reveal, multiple language tabs, one-click copy, and pulling
-        markup straight from the live demo it documents. Styles ship in
-        <code>framework/css/components/code-snippet.css</code> and behavior in
-        <code>framework/js/components/code-snippet.js</code>.
-      </p>
+  <section id="code-snippet">
+    <h5 class="demo-title"><i class="ph ph-code"></i>Code Snippet</h5>
+    <p class="vd-mb-8">
+      The collapsible “View Code” block used throughout these docs. It
+      supports a togglable reveal, multiple language tabs, one-click copy, and
+      pulling markup straight from the live demo it documents. Styles ship in
+      <code>framework/css/components/code-snippet.css</code> and behavior in
+      <code>framework/js/components/code-snippet.js</code>.
+    </p>
 
-      <!-- Basic collapsible -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Collapsible (single language)</h6></div>
-            <div class="vd-card-body">
-              <p class="vd-mb-3 vd-text-sm vd-text-muted">Click “View Code” to expand the block.</p>
-              <DocCodeSnippet :html="basicHtml" />
-            </div>
+    <!-- Basic collapsible -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>Collapsible (single language)</h6>
           </div>
-        </div>
-
-        <div class="vd-col-12 vd-col-md-6">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Multiple language tabs</h6></div>
-            <div class="vd-card-body">
-              <p class="vd-mb-3 vd-text-sm vd-text-muted">Provide more than one language to get HTML / CSS / JavaScript tabs.</p>
-              <DocCodeSnippet :html="basicHtml" :css="demoCss" :js="demoJs" />
-            </div>
+          <div class="vd-card-body">
+            <p class="vd-mb-3 vd-text-sm vd-text-muted">
+              Click “View Code” to expand the block.
+            </p>
+            <DocCodeSnippet :html="basicHtml" />
           </div>
         </div>
       </div>
 
-      <!-- Expanded by default -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6>Expanded by default</h6></div>
-            <div class="vd-card-body">
-              <p class="vd-mb-3 vd-text-sm vd-text-muted">Add <code>data-expanded="true"</code> to render the snippet open on load.</p>
-              <DocCodeSnippet :js="demoJs" default-open />
+      <div class="vd-col-12 vd-col-md-6">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Multiple language tabs</h6></div>
+          <div class="vd-card-body">
+            <p class="vd-mb-3 vd-text-sm vd-text-muted">
+              Provide more than one language to get HTML / CSS / JavaScript
+              tabs.
+            </p>
+            <DocCodeSnippet :html="basicHtml" :css="demoCss" :js="demoJs" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expanded by default -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header"><h6>Expanded by default</h6></div>
+          <div class="vd-card-body">
+            <p class="vd-mb-3 vd-text-sm vd-text-muted">
+              Add <code>data-expanded="true"</code> to render the snippet open
+              on load.
+            </p>
+            <DocCodeSnippet :js="demoJs" default-open />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- API Reference -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>
+              <i
+                class="ph ph-list-dashes mr-2"
+                style="color: var(--vd-color-primary)"
+              ></i
+              >API Reference
+            </h6>
+          </div>
+          <div class="vd-card-body">
+            <h4>CSS Classes</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in classRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 class="vd-mt-6">Data Attributes</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in attrRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 class="vd-mt-6">JavaScript &amp; Events</h4>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Method / Event</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in jsRows" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- API Reference -->
-      <div class="vd-row vd-mb-6">
-        <div class="vd-col-12">
-          <div class="vd-card vd-card-glow demo-card">
-            <div class="vd-card-header"><h6><i class="ph ph-list-dashes mr-2" style="color: var(--vd-color-primary);"></i>API Reference</h6></div>
-            <div class="vd-card-body">
-              <h4>CSS Classes</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Class</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in classRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h4 class="vd-mt-6">Data Attributes</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Attribute</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in attrRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h4 class="vd-mt-6">JavaScript &amp; Events</h4>
-              <div class="vd-table-responsive">
-                <table class="vd-table vd-table-striped">
-                  <thead><tr><th>Method / Event</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr v-for="row in jsRows" :key="row[0]">
-                      <td><code>{{ row[0] }}</code></td>
-                      <td>{{ row[1] }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </DocsLayout>
+    </div>
+  </section>
 </template>

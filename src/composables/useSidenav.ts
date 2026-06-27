@@ -17,7 +17,10 @@ export function useSidenav(root: Ref<HTMLElement | null>): void {
   const overlays: HTMLElement[] = [];
 
   const open = (el: HTMLElement, overlay: HTMLElement): void => {
-    if (!el.classList.contains("vd-sidenav-fixed") && !el.classList.contains("vd-offcanvas-fixed")) {
+    if (
+      !el.classList.contains("vd-sidenav-fixed") &&
+      !el.classList.contains("vd-offcanvas-fixed")
+    ) {
       overlay.classList.add("is-visible");
     }
     el.classList.add("is-open");
@@ -45,56 +48,68 @@ export function useSidenav(root: Ref<HTMLElement | null>): void {
 
     const overlayFor = new Map<HTMLElement, HTMLElement>();
 
-    scope.querySelectorAll<HTMLElement>(".vd-sidenav, .vd-offcanvas").forEach((el) => {
-      const position = el.getAttribute("data-vd-position");
-      if (position) {
-        const prefix = el.classList.contains("vd-offcanvas") ? "vd-offcanvas" : "vd-sidenav";
-        el.classList.add(`${prefix}-${position}`);
-      }
-
-      const overlay = document.createElement("div");
-      overlay.className = "vd-sidenav-overlay";
-      document.body.appendChild(overlay);
-      overlays.push(overlay);
-      overlayFor.set(el, overlay);
-
-      el.setAttribute("role", "navigation");
-      el.setAttribute("aria-hidden", "true");
-
-      const closeBtn = el.querySelector<HTMLElement>(".vd-sidenav-close, .vd-offcanvas-close");
-      if (closeBtn) {
-        const h = (): void => close(el, overlay);
-        closeBtn.addEventListener("click", h);
-        cleanups.push(() => closeBtn.removeEventListener("click", h));
-      }
-
-      const onOverlay = (): void => {
-        if (el.dataset.backdrop !== "static") close(el, overlay);
-      };
-      overlay.addEventListener("click", onOverlay);
-      cleanups.push(() => overlay.removeEventListener("click", onOverlay));
-
-      const onEsc = (e: KeyboardEvent): void => {
-        if (e.key === "Escape" && el.classList.contains("is-open") && el.dataset.keyboard !== "false") {
-          close(el, overlay);
+    scope
+      .querySelectorAll<HTMLElement>(".vd-sidenav, .vd-offcanvas")
+      .forEach((el) => {
+        const position = el.getAttribute("data-vd-position");
+        if (position) {
+          const prefix = el.classList.contains("vd-offcanvas")
+            ? "vd-offcanvas"
+            : "vd-sidenav";
+          el.classList.add(`${prefix}-${position}`);
         }
-      };
-      document.addEventListener("keydown", onEsc);
-      cleanups.push(() => document.removeEventListener("keydown", onEsc));
-    });
 
-    scope.querySelectorAll<HTMLElement>("[data-sidenav-toggle]").forEach((btn) => {
-      const onClick = (e: Event): void => {
-        e.preventDefault();
-        const targetId = btn.dataset.sidenavToggle;
-        if (!targetId) return;
-        const el = document.querySelector<HTMLElement>(targetId);
-        const overlay = el ? overlayFor.get(el) : undefined;
-        if (el && overlay) toggle(el, overlay);
-      };
-      btn.addEventListener("click", onClick);
-      cleanups.push(() => btn.removeEventListener("click", onClick));
-    });
+        const overlay = document.createElement("div");
+        overlay.className = "vd-sidenav-overlay";
+        document.body.appendChild(overlay);
+        overlays.push(overlay);
+        overlayFor.set(el, overlay);
+
+        el.setAttribute("role", "navigation");
+        el.setAttribute("aria-hidden", "true");
+
+        const closeBtn = el.querySelector<HTMLElement>(
+          ".vd-sidenav-close, .vd-offcanvas-close",
+        );
+        if (closeBtn) {
+          const h = (): void => close(el, overlay);
+          closeBtn.addEventListener("click", h);
+          cleanups.push(() => closeBtn.removeEventListener("click", h));
+        }
+
+        const onOverlay = (): void => {
+          if (el.dataset.backdrop !== "static") close(el, overlay);
+        };
+        overlay.addEventListener("click", onOverlay);
+        cleanups.push(() => overlay.removeEventListener("click", onOverlay));
+
+        const onEsc = (e: KeyboardEvent): void => {
+          if (
+            e.key === "Escape" &&
+            el.classList.contains("is-open") &&
+            el.dataset.keyboard !== "false"
+          ) {
+            close(el, overlay);
+          }
+        };
+        document.addEventListener("keydown", onEsc);
+        cleanups.push(() => document.removeEventListener("keydown", onEsc));
+      });
+
+    scope
+      .querySelectorAll<HTMLElement>("[data-sidenav-toggle]")
+      .forEach((btn) => {
+        const onClick = (e: Event): void => {
+          e.preventDefault();
+          const targetId = btn.dataset.sidenavToggle;
+          if (!targetId) return;
+          const el = document.querySelector<HTMLElement>(targetId);
+          const overlay = el ? overlayFor.get(el) : undefined;
+          if (el && overlay) toggle(el, overlay);
+        };
+        btn.addEventListener("click", onClick);
+        cleanups.push(() => btn.removeEventListener("click", onClick));
+      });
   });
 
   onUnmounted(() => {

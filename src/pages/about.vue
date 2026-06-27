@@ -54,10 +54,11 @@
             respect them deeply.
           </p>
           <p>
-            Vanduo does <strong>not</strong> operate on a Virtual DOM. There is
-            no reconciliation algorithm running behind the scenes, no diffing
-            tree, no synthetic event system. And that's by design — not by
-            limitation.
+            And Vanduo is <strong>not</strong> a runtime you have to adopt, or a
+            framework that asks your whole application to bend around it. It has
+            no interest in owning your stack. It replaces nothing, demands
+            nothing, and competes for nothing — it asks only for the chance to
+            make your pages feel considered, whatever you've built them with.
           </p>
 
           <hr class="founders-divider" />
@@ -79,12 +80,57 @@
           </p>
           <p>That's where Vanduo lives.</p>
           <p>
-            We built Vanduo for the projects that come <em>before</em> and
-            <em>around</em> the complex ones — the spaces where HTML, CSS, and a
-            sprinkle of vanilla JavaScript are not just enough, but are
-            <em>the right tool for the job.</em> Vanduo gives those projects a
-            design system that would make any SPA jealous, without asking you to
-            install a single dependency.
+            But here is the deeper answer: at its core, Vanduo is not a
+            framework at all. It is a <strong>design language</strong> — a system
+            of proportion, rhythm, and harmony that simply happens to be spoken
+            in HTML, CSS, and JavaScript.
+          </p>
+          <p>
+            And the grammar of that language is older than the web, older than
+            us. It is the <strong>golden ratio</strong> and the
+            <strong>Fibonacci sequence</strong> — the same proportions that coil
+            a nautilus shell, arrange the seeds in a sunflower, branch a tree,
+            and turn a galaxy on its arm. Nature has been composing with these
+            numbers for billions of years; we simply borrowed her vocabulary.
+            When spacing, type, and layout follow the proportions the universe
+            already trusts, a design feels balanced before you've touched a
+            single value — because, on some quiet level, it already is.
+          </p>
+
+          <hr class="founders-divider" />
+
+          <h3>Two natures, one water</h3>
+          <p>
+            And because Vanduo is a design language rather than a runtime, it is
+            not bound to any single way of reaching the screen. Water is still,
+            and water flows. The same substance, two ways of being — a calm lake
+            and a running river are both, unmistakably, water. Vanduo is built
+            the same way: one design language, served by two engines.
+          </p>
+          <p>
+            Its <strong>still</strong> nature is <strong>Vanilla</strong> —
+            zero-build, zero-dependency, pure HTML, CSS, and a sprinkle of
+            JavaScript. Drop in a stylesheet and you're productive in under a
+            minute: no <code>node_modules</code>, no bundler, nothing standing
+            between your words and the screen — a design system that would make
+            any SPA jealous, and asks for nothing in return. This is where Vanduo
+            began, and it will always be its heart.
+          </p>
+          <p>
+            Its <strong>flowing</strong> nature is <strong>Vue&nbsp;3</strong> —
+            composables, reactivity, server-side rendering. When your project
+            already lives in a reactive world, Vanduo flows right into it; the
+            very page you're reading is rendered this way. Same look, same feel,
+            same tokens — only the wiring beneath ever changes.
+          </p>
+          <p>
+            A single source of truth feeds them both, so the design comes out
+            identical either way. Reach for whichever engine fits the work in
+            front of you — flip the
+            <strong>Vanilla&nbsp;⇄&nbsp;Vue&nbsp;3</strong> toggle anywhere in
+            these docs and watch one component answer in two tongues: not a
+            compatibility layer bolted on after the fact, but two faces of one
+            design. That, too, is the shape of the water.
           </p>
 
           <hr class="founders-divider" />
@@ -114,8 +160,8 @@
           <h3>Our hopes, dreams, and ambitions</h3>
           <p>
             We hope to keep Vanduo <strong>lean</strong>. Every kilobyte should
-            earn its place. If something doesn't serve you or your users, we want
-            the courage to leave it out.
+            earn its place. If something doesn't serve you or your users, we
+            want the courage to leave it out.
           </p>
           <p>
             We dream of keeping Vanduo <strong>honest</strong>. No magic, no
@@ -132,8 +178,9 @@
           <p>
             And above all, our deepest ambition is to keep Vanduo
             <strong>for you</strong>. Not for hype cycles, not for benchmarks,
-            not for conference talks — for the developer sitting at a desk at 2 AM
-            who just wants their site to look great without fighting a framework.
+            not for conference talks — for the developer sitting at a desk at 2
+            AM who just wants their site to look great without fighting a
+            framework.
           </p>
           <p>
             We're not there yet on all of these. But having the right ambitions
@@ -145,8 +192,8 @@
           <h3>For every kind of builder</h3>
           <p>The way people build for the web is changing — fast.</p>
           <p>
-            There are <strong>vibe coders</strong> spinning up entire projects in
-            an afternoon with AI at the wheel. There are
+            There are <strong>vibe coders</strong> spinning up entire projects
+            in an afternoon with AI at the wheel. There are
             <strong>weekend builders</strong> turning side ideas into real
             products between Saturday coffee and Sunday dinner. There are
             <strong>solo devs</strong> wearing every hat,
@@ -205,8 +252,8 @@
           </p>
           <p>
             Water doesn't compete with fire. It doesn't compete with earth. It
-            just flows, adapts, and gives life wherever it goes. Just as water is
-            essential for life, we believe a good CSS framework should be
+            just flows, adapts, and gives life wherever it goes. Just as water
+            is essential for life, we believe a good CSS framework should be
             essential yet unobtrusive -- flowing naturally into your projects
             without forcing you to change your workflow. Water adapts to its
             container; Vanduo adapts to your design.
@@ -235,8 +282,8 @@
           <div class="vd-card about-card">
             <div class="vd-card-body">
               <h3 style="color: var(--vd-color-primary)">
-                <i class="ph ph-info vd-mr-2" style="margin-right: 0.75rem"></i>What
-                "Vanduo" Means
+                <i class="ph ph-info vd-mr-2" style="margin-right: 0.75rem"></i
+                >What "Vanduo" Means
               </h3>
               <p>
                 <strong>Vanduo</strong> (pronounced <em>van-doo-oh</em>) is
@@ -256,7 +303,10 @@
                   href="https://en.wikipedia.org/wiki/Lithuanian_language"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style="text-decoration: underline; color: var(--vd-color-primary)"
+                  style="
+                    text-decoration: underline;
+                    color: var(--vd-color-primary);
+                  "
                   >Lithuanian</a
                 >: <em>vanduo</em> means "water."
               </p>

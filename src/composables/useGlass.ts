@@ -15,7 +15,9 @@ export function useGlass(root: Ref<HTMLElement | null>): void {
 
     scope.querySelectorAll<HTMLElement>("[data-glass-scroll]").forEach((el) => {
       const selector = el.dataset.glassSentinel;
-      let sentinel: Element | null = selector ? document.querySelector(selector) : null;
+      let sentinel: Element | null = selector
+        ? document.querySelector(selector)
+        : null;
       if (!sentinel) sentinel = el.previousElementSibling;
 
       if (!sentinel) {

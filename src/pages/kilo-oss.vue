@@ -3,10 +3,14 @@
 </script>
 
 <template>
-  <section id="kilo-oss-page" class="about-section" style="padding-bottom: 6rem;">
+  <section
+    id="kilo-oss-page"
+    class="about-section"
+    style="padding-bottom: 6rem"
+  >
     <div class="about-header">
       <div class="vd-container-responsive">
-        <h2 style="color: var(--vd-color-primary);">
+        <h2 style="color: var(--vd-color-primary)">
           <i class="ph ph-heart"></i> Kilo Loves Open Source
         </h2>
         <p class="vd-text-lg vd-text-muted">
@@ -15,7 +19,7 @@
       </div>
     </div>
 
-    <div class="vd-container-responsive" style="padding-top: 3rem;">
+    <div class="vd-container-responsive" style="padding-top: 3rem">
       <div class="vd-row">
         <div class="vd-col-12">
           <div class="vd-card vd-glass about-card">
@@ -52,8 +56,8 @@
               <p>
                 Open-source projects thrive when maintainers can spend more time
                 shipping, less time stuck in maintenance overhead. Sponsorship
-                support allows us to keep improving docs, harden core components,
-                and respond to community feedback faster.
+                support allows us to keep improving docs, harden core
+                components, and respond to community feedback faster.
               </p>
               <p>
                 Vanduo remains fully open source, MIT licensed, and

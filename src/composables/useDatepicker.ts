@@ -13,8 +13,18 @@ import { onMounted, onUnmounted, type Ref } from "vue";
  */
 const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const escapeRegexChar = (c: string): string =>
@@ -211,7 +221,10 @@ function initInstance(
     return false;
   };
 
-  const ensureMonthInRange = (y: number, m: number): { y: number; m: number } => {
+  const ensureMonthInRange = (
+    y: number,
+    m: number,
+  ): { y: number; m: number } => {
     if (!minDate && !maxDate) return { y, m };
     const first = new Date(y, m, 1);
     const last = new Date(y, m + 1, 0);
@@ -348,7 +361,11 @@ function initInstance(
     const isFocused = focusedDate && isSameDay(date, focusedDate);
     btn.tabIndex = isFocused ? 0 : -1;
     btn.addEventListener("click", () => {
-      focusedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      focusedDate = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+      );
       selectDate(date);
     });
 
@@ -465,7 +482,11 @@ function initInstance(
         });
       }
       for (let d = 1; d <= daysInMonth; d++) {
-        cells.push({ day: d, outside: false, date: new Date(viewYear, viewMonth, d) });
+        cells.push({
+          day: d,
+          outside: false,
+          date: new Date(viewYear, viewMonth, d),
+        });
       }
       const totalCells = firstDay + daysInMonth;
       const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
@@ -545,8 +566,17 @@ function initInstance(
 
     const key = e.key;
     const handled = [
-      "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown",
-      "Home", "End", "PageUp", "PageDown", "Enter", " ", "Escape",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Home",
+      "End",
+      "PageUp",
+      "PageDown",
+      "Enter",
+      " ",
+      "Escape",
     ];
     if (!handled.includes(key)) return;
 
