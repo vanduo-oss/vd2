@@ -37,15 +37,15 @@ describe('useTheme model', () => {
   it('applies framework-faithful defaults', () => {
     applyPreference(defaultPreference());
     // theme "system" removes data-theme; primary defaults to black on light OS.
-    expect(document.documentElement.getAttribute('data-palette')).toBe('fibonacci');
+    expect(document.documentElement.getAttribute('data-palette')).toBe('open-color');
     expect(document.documentElement.getAttribute('data-theme')).toBeNull();
     expect(document.documentElement.getAttribute('data-neutral')).toBe('charcoal');
     expect(document.documentElement.getAttribute('data-radius')).toBe('0.5');
     expect(document.documentElement.getAttribute('data-font')).toBe('ubuntu');
   });
 
-  it('defaults the palette to Fibonacci', () => {
-    expect(defaultPreference().palette).toBe('fibonacci');
+  it('defaults the palette to Open Color', () => {
+    expect(defaultPreference().palette).toBe('open-color');
   });
 
   it('restores a stored preference', () => {
@@ -67,7 +67,7 @@ describe('useTheme model', () => {
 
   it('falls back to the default palette for an unknown stored value', () => {
     window.localStorage.setItem('vanduo-palette', 'bogus');
-    expect(loadPreference().palette).toBe('fibonacci');
+    expect(loadPreference().palette).toBe('open-color');
   });
 });
 
@@ -104,6 +104,6 @@ describe('useThemeStore', () => {
     theme.reset();
     expect(theme.theme).toBe('system');
     expect(theme.radius).toBe('0.5');
-    expect(theme.palette).toBe('fibonacci');
+    expect(theme.palette).toBe('open-color');
   });
 });

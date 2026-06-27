@@ -94,6 +94,13 @@ export default [
     },
   },
   {
-    ignores: ['dist/**', 'node_modules/**', 'playwright-report/**', 'test-results/**'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'playwright-report/**',
+      'test-results/**',
+      // Throwaway local screenshot/debug scripts (not application code).
+      '__*.mjs',
+    ],
   },
 ];
