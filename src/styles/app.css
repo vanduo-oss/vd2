@@ -39,7 +39,7 @@ body {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
@@ -168,27 +168,35 @@ body {
 .vd-pad-xs {
   padding: var(--vd-space-fib-3, 0.3125rem);
 }
+
 .vd-pad-sm {
   padding: var(--vd-space-fib-5, 0.5rem);
 }
+
 .vd-pad-md {
   padding: var(--vd-space-fib-8, 0.8125rem);
 }
+
 .vd-pad-lg {
   padding: var(--vd-space-fib-13, 1.3125rem);
 }
+
 .vd-pad-xl {
   padding: var(--vd-space-fib-21, 2.125rem);
 }
+
 .vd-pad-2xl {
   padding: var(--vd-space-fib-34, 3.4375rem);
 }
+
 .vd-pad-3xl {
   padding: var(--vd-space-fib-55, 5.5625rem);
 }
+
 .vd-pad-4xl {
   padding: var(--vd-space-fib-89, 8.9375rem);
 }
+
 .vd-pad-5xl {
   padding: var(--vd-space-fib-144, 14.4375rem);
 }

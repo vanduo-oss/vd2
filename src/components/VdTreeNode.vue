@@ -22,6 +22,9 @@ const hasChildren = computed(
 );
 
 const onToggle = (): void => {
+  // The tree mutates its shared, reactive node model in place by design — the
+  // parent VdTree owns the node objects and reacts to the change.
+  // eslint-disable-next-line vue/no-mutating-props
   props.node.open = !props.node.open;
   emit("toggle", props.node);
 };

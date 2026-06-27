@@ -2,7 +2,6 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
     "moduleResolution": "bundler",
     "module": "ESNext",
     "target": "ESNext",
@@ -17,7 +16,7 @@
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "types": ["vite/client", "node"]
   },

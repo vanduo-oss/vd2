@@ -4,7 +4,10 @@ import vueParser from 'vue-eslint-parser';
 
 export default [
   js.configs.recommended,
-  ...vue.configs['flat/recommended'],
+  // `flat/essential` = bug-prevention rules only. Formatting is owned by
+  // Prettier, so we deliberately avoid `flat/recommended`'s stylistic rules
+  // (max-attributes-per-line, singleline-html-element-content-newline, …).
+  ...vue.configs['flat/essential'],
   {
     languageOptions: {
       ecmaVersion: 2022,
@@ -49,16 +52,18 @@ export default [
       },
     },
     rules: {
+      // TypeScript (vue-tsc) handles undefined identifiers and DOM lib types;
+      // base `no-undef` only produces false positives on types in a TS project.
+      'no-undef': 'off',
+      // SFC <script> strings must escape `</script>` as `<\/script>` to avoid
+      // closing the block early — a necessary escape eslint can't see is needed.
+      'no-useless-escape': 'off',
       'no-var': 'error',
       'prefer-const': 'error',
-      'no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      // TypeScript (vue-tsc, noUnusedLocals/noUnusedParameters) already enforces
+      // unused-variable checks across the typed codebase and understands type
+      // signatures; base `no-unused-vars` only adds false positives here.
+      'no-unused-vars': 'off',
       'no-console': ['error', { allow: ['warn', 'error'] }],
       'no-restricted-syntax': [
         'warn',

@@ -1,6 +1,6 @@
         /* ── Custom Font Faces ───────────────────────────── */
         @font-face {
-            font-family: 'Roboto';
+            font-family: Roboto;
             src: url('/fonts/roboto/Roboto-Regular.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
@@ -8,7 +8,7 @@
         }
 
         @font-face {
-            font-family: 'Lato';
+            font-family: Lato;
             src: url('/fonts/lato/Lato-Regular.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
@@ -24,7 +24,7 @@
         }
 
         @font-face {
-            font-family: 'Michroma';
+            font-family: Michroma;
             src: url('/fonts/michroma/michroma-regular.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
@@ -34,19 +34,19 @@
         /* ── Custom Font Tokens ─────────────────────────── */
         [data-font='google-sans'] {
             /* Inter substitutes the proprietary Google Sans face used in the theme picker */
-            --vd-font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --vd-font-family-sans: 'Inter', -apple-system, blinkmacsystemfont, sans-serif;
         }
 
         [data-font='roboto'] {
-            --vd-font-family-sans: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            --vd-font-family-sans: 'Roboto', -apple-system, blinkmacsystemfont, sans-serif;
         }
 
         [data-font='lato'] {
-            --vd-font-family-sans: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            --vd-font-family-sans: 'Lato', -apple-system, blinkmacsystemfont, sans-serif;
         }
 
         [data-font='noto-sans'] {
-            --vd-font-family-sans: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --vd-font-family-sans: 'Noto Sans', -apple-system, blinkmacsystemfont, sans-serif;
         }
 
         /* ── Global ─────────────────────────────────────── */
@@ -140,12 +140,12 @@
 
         /* Michroma — navbar brand and hero title (home page only) */
         .vd-navbar-brand-wrap > a {
-            font-family: 'Michroma', sans-serif;
+            font-family: Michroma, sans-serif;
             text-transform: lowercase;
         }
 
         #home .hero-title {
-            font-family: 'Michroma', sans-serif;
+            font-family: Michroma, sans-serif;
             text-transform: lowercase;
             width: 100%;
             box-sizing: border-box;
@@ -223,7 +223,7 @@
         }
 
         .vd-footer-brand-title {
-            font-family: 'Michroma', sans-serif;
+            font-family: Michroma, sans-serif;
             text-transform: lowercase;
             font-weight: 400;
             font-size: calc(var(--vd-font-size-xl) * 1.25);
@@ -732,16 +732,21 @@
             height: calc(100vh - 80px - var(--docs-view-stack-gap, 0px));
             overflow-y: auto;
             padding-right: 0.5rem;
+
             --doc-sidebar-title-align-fudge: 0px;
+
             /* Align morph toggle vertical center with first h5.demo-title (40px btn vs section title) */
             padding-top: calc(1rem - 2.5px + var(--doc-sidebar-title-align-fudge));
+
             --doc-sidebar-header-gap: 1rem;
+
             border-right: none;
             display: flex;
             flex-direction: column;
             background: transparent;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
+
             --doc-tabs-height: 0px;
         }
 
@@ -819,7 +824,7 @@
 
         .doc-nav-list {
             list-style: none;
-            padding: 0 0 4rem 0;
+            padding: 0 0 4rem;
             margin: 0;
         }
 
@@ -881,9 +886,10 @@
             border-radius: var(--vd-input-border-radius, var(--vd-btn-border-radius));
             background: transparent;
             flex-shrink: 0;
+
             /* Keep filter visible at top of sidebar during page scroll */
             position: sticky;
-            top: var(--doc-tabs-height, 0px);
+            top: var(--doc-tabs-height, 0);
             z-index: 10;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
@@ -988,7 +994,9 @@
                 height: auto;
                 max-height: calc(100vh - 70px - var(--docs-view-stack-gap, 0px));
                 overflow: visible;
+
                 --doc-sidebar-header-gap: 0.5rem;
+
                 display: flex;
                 flex-direction: column;
                 border-right: none;
@@ -1009,7 +1017,7 @@
                 top: 0.375rem;
                 left: 0.375rem;
                 right: 0.375rem;
-                height: var(--doc-mobile-controls-height, 0px);
+                height: var(--doc-mobile-controls-height, 0);
                 background: color-mix(in srgb, var(--vd-bg-primary) 84%, transparent);
                 border: 1px solid color-mix(in srgb, var(--vd-border-color) 60%, transparent);
                 border-radius: 0.75rem;
@@ -1081,7 +1089,7 @@
                 color-mix(in srgb, var(--vd-bg-secondary) 88%, transparent) 0%,
                 color-mix(in srgb, var(--vd-bg-primary) 92%, transparent) 100%),
                 linear-gradient(0deg, var(--vd-glass-bg-light), var(--vd-glass-bg-light));
-            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 -8px 32px rgb(0 0 0 / 6%);
         }
 
 
@@ -1199,10 +1207,13 @@
         }
 
         /* ── Global ambient gradient — all pages ──────────────────────────── */
+
         /* Lives on body with background-attachment: fixed so the orbs cover   */
+
         /* the full viewport on every route and never clip at section edges.   */
 
         /* Suppress the white specular highlight pseudo-element on home cards  */
+
         /* and footer — it reads as an unwanted white stripe over dark bgs.   */
         section#home .vd-glass::before,
         footer.vd-glass::before {
@@ -1217,8 +1228,8 @@
             --vd-glass-bg-dark: var(--vd-bg-primary);
             --vd-glass-bg-opacity: 1;
             --vd-card-bg: var(--vd-bg-primary);
+
             background: var(--vd-bg-primary);
-            background-color: var(--vd-bg-primary);
             background-image: none;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
@@ -1403,7 +1414,7 @@
 
         .open-color-swatch.is-light {
             color: var(--vd-color-gray-900);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgb(255 255 255 / 10%);
         }
 
         .open-color-footer {
@@ -1448,6 +1459,7 @@
             gap: var(--vd-grid-gutter);
             margin-left: 0;
             margin-right: 0;
+            align-items: stretch;
         }
 
         #home-features .philosophy-cards>* {
@@ -1457,10 +1469,6 @@
             min-width: 0;
             width: auto;
             display: flex;
-        }
-
-        #home-features .philosophy-cards {
-            align-items: stretch;
         }
 
         #home-features .philosophy-cards .vd-card {
@@ -1493,7 +1501,6 @@
         }
 
         @media (min-width: 768px) {
-
             #home-features .philosophy-cards {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1513,7 +1520,6 @@
         }
 
         @media (min-width: 992px) {
-
             #home-features .philosophy-cards {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -1583,6 +1589,7 @@
         }
 
         /* ── About page styles ──────────────────────────── */
+
         /* Top banners: About, Changelog, Labs (and docs-landing via .about-header) */
         .about-header,
         .changelog-header,
@@ -1590,8 +1597,8 @@
             padding: 144px 0 55px;
             text-align: center;
             background: linear-gradient(135deg,
-                rgba(var(--vd-color-primary-rgb, var(--vd-color-primary-rgb)), 0.16) 0%,
-                rgba(var(--vd-color-info-rgb, var(--vd-color-info-rgb)), 0.1) 100%);
+                rgb(var(--vd-color-primary-rgb, var(--vd-color-primary-rgb)), 0.16) 0%,
+                rgb(var(--vd-color-info-rgb, var(--vd-color-info-rgb)), 0.1) 100%);
         }
 
         .about-header h1,
@@ -1772,7 +1779,7 @@
             width: 1.5rem;
             height: 1.5rem;
             border-radius: 0.35rem;
-            background: rgba(var(--vd-color-primary-rgb), 0.08);
+            background: rgb(var(--vd-color-primary-rgb), 0.08);
             color: var(--vd-text-secondary);
             font-size: 0.85rem;
         }
@@ -1788,8 +1795,8 @@
             padding: 0.15rem 0.45rem;
             line-height: 1.2;
             color: var(--vd-text-muted);
-            border-color: rgba(var(--vd-color-primary-rgb), 0.18);
-            background: rgba(var(--vd-color-primary-rgb), 0.04);
+            border-color: rgb(var(--vd-color-primary-rgb), 0.18);
+            background: rgb(var(--vd-color-primary-rgb), 0.04);
         }
 
         #docs-landing .docs-landing-card-meta {
@@ -1951,6 +1958,7 @@
         .labs-main {
             padding: 3rem 0 6rem;
             min-width: 0;
+
             /* Do not use overflow-x: auto on the whole column — it becomes a wide touch
                scroller (~600px+) and iOS can show content clipped on one edge while the
                user pans horizontally. Wide tables/snippets belong in card-local scroll. */
@@ -2091,6 +2099,7 @@
         /* ── View visibility ────────────────────────────── */
         #docs-view {
             display: none;
+
             --docs-view-stack-gap: 1.5rem;
         }
 
@@ -2196,9 +2205,11 @@
             0% {
                 transform: rotate(0deg);
             }
+
             58% {
                 transform: rotate(318deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
@@ -2316,7 +2327,7 @@
             position: fixed;
             inset: 0;
             z-index: 9998;
-            background: rgba(0, 0, 0, 0.45);
+            background: rgb(0 0 0 / 45%);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             opacity: 0;
@@ -2343,7 +2354,7 @@
             -webkit-backdrop-filter: blur(var(--vd-glass-blur, 12px)) saturate(var(--vd-glass-saturate, 1.8));
             border: 1px solid var(--vd-glass-border-light);
             border-radius: calc(var(--vd-card-border-radius) * 1.5);
-            box-shadow: var(--vd-glass-shadow), 0 30px 70px rgba(0, 0, 0, 0.45);
+            box-shadow: var(--vd-glass-shadow), 0 30px 70px rgb(0 0 0 / 45%);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease, transform 0.2s ease;
@@ -2480,7 +2491,7 @@
         }
 
         .global-search-result-title mark {
-            background: rgba(var(--vd-color-primary-rgb, 232, 166, 19), 0.25);
+            background: rgb(var(--vd-color-primary-rgb, 232, 166, 19), 0.25);
             color: var(--vd-color-primary);
             border-radius: 2px;
             padding: 0 1px;
@@ -2654,7 +2665,7 @@
             background: var(--vd-bg-primary);
             border: 1px solid var(--vd-border-color);
             border-radius: var(--vd-card-border-radius);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+            box-shadow: 0 12px 40px rgb(0 0 0 / 35%), 0 0 0 1px rgb(255 255 255 / 4%) inset;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             max-height: 380px;
