@@ -225,9 +225,9 @@ const chipText = (hex: string): string =>
     <p class="vd-mb-8">
       The Theme Customizer is a powerful component that allows users to
       personalize the framework's appearance in real-time. It provides
-      controls for color palette (Fibonacci / Open Color), primary color,
-      neutral color, border radius, font family, and color mode
-      (light/dark/system). For color-mode-only needs, see the
+      controls for primary color, neutral color, border radius, font family,
+      and color mode (light/dark/system), all on top of the default
+      <strong>Open Color</strong> palette. For color-mode-only needs, see the
       <RouterLink to="/components/theme-switcher">Theme Switcher</RouterLink>
       or the
       <RouterLink to="/guides/theme-customizer"

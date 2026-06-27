@@ -4,10 +4,8 @@ import { useThemeStore } from "@/stores/theme";
 import {
   FONT_OPTIONS,
   NEUTRAL_COLORS,
-  PALETTE_OPTIONS,
   PRIMARY_COLORS,
   RADIUS_OPTIONS,
-  type Palette,
   type RadiusOption,
 } from "@/composables/useTheme";
 
@@ -83,24 +81,13 @@ defineExpose({ open, close, toggle });
             </button>
           </div>
           <div class="tc-body">
-            <div class="tc-section">
-              <label class="tc-label">Palette</label>
-              <div class="tc-palette-group">
-                <button
-                  v-for="p in PALETTE_OPTIONS"
-                  :key="p.key"
-                  type="button"
-                  class="tc-palette-btn"
-                  :class="{ 'is-active': theme.palette === p.key }"
-                  :data-palette="p.key"
-                  :title="p.description"
-                  @click="theme.setPalette(p.key as Palette)"
-                >
-                  {{ p.name }}
-                </button>
-              </div>
-            </div>
-
+            <!--
+              Palette switch (Open Color / Fibonacci) intentionally hidden on
+              the docs site for now — Open Color is the default everywhere.
+              The framework customizer still ships the toggle; this is a vd2
+              site-only override. Restore the `tc-section` with PALETTE_OPTIONS
+              to bring it back.
+            -->
             <div class="tc-section">
               <label class="tc-label">Primary Color</label>
               <div class="tc-color-grid">

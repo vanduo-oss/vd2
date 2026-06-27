@@ -53,20 +53,50 @@ const scale = (
     };
   });
 
-// Fibonacci (optional) scales — brand, neutrals, status.
+// Open Color (the default palette) — brand, neutrals, and status families.
+const families: { title: string; subtitle: string; scale: Swatch[] }[] = [
+  {
+    title: "Primary — Brand",
+    subtitle: "The default brand color — primary actions and emphasis",
+    scale: scale("oc", "primary", 5),
+  },
+  {
+    title: "Secondary",
+    subtitle: "Secondary actions and accents",
+    scale: scale("oc", "secondary", 5),
+  },
+  {
+    title: "Gray — Neutrals",
+    subtitle: "Backgrounds, borders, text, and UI structure",
+    scale: scale("oc", "gray", 6),
+  },
+  {
+    title: "Danger — Red",
+    subtitle: "Error states, destructive actions",
+    scale: scale("oc", "danger", 6),
+  },
+  {
+    title: "Success — Green",
+    subtitle: "Success states, confirmations",
+    scale: scale("oc", "success", 6),
+  },
+  {
+    title: "Warning — Yellow",
+    subtitle: "Warnings, cautions, attention",
+    scale: scale("oc", "warning", 6),
+  },
+  {
+    title: "Info — Blue",
+    subtitle: "Information, help, neutral feedback",
+    scale: scale("oc", "info", 6),
+  },
+];
+
+// Fibonacci (optional) — the golden-angle palette, shown for opt-in comparison.
 const fibPrimary = scale("fib", "primary", 5);
-const fibSecondary = scale("fib", "secondary", 5);
 const fibGray = scale("fib", "gray", 6);
-const fibDanger = scale("fib", "danger", 6);
-const fibSuccess = scale("fib", "success", 6);
-const fibWarning = scale("fib", "warning", 6);
-const fibInfo = scale("fib", "info", 6);
 
-// Open Color (optional) — shown for comparison/opt-in.
-const ocPrimary = scale("oc", "primary", 5);
-const ocGray = scale("oc", "gray", 6);
-
-// Golden accent track (Fibonacci-only) — the golden-angle showcase.
+// Golden accent track (Fibonacci-only) — the golden-angle signature.
 const golden: Swatch[] = Array.from({ length: 8 }, (_, i) => {
   const varName = `--vd-fib-golden-${i + 1}`;
   const hex = hexOf(varName);
@@ -93,7 +123,7 @@ const hueNames = [
   "pink",
 ];
 const hues = hueNames.map((label) => {
-  const varName = `--vd-fib-${label}-5`;
+  const varName = `--vd-oc-${label}-5`;
   const hex = hexOf(varName);
   return { label, varRef: `var(${varName})`, hex, fg: fgFor(hex) };
 });
@@ -129,7 +159,7 @@ const cssUsage = `/* Active scales follow the active palette (Open Color by defa
 
 const themingCss = `:root {
   /* Pin a specific palette regardless of the runtime switch */
-  --vd-primary-5: var(--vd-fib-primary-5);
+  --vd-primary-5: var(--vd-oc-primary-5);
 }
 
 /* Or address either palette's raw scale directly */
@@ -176,7 +206,7 @@ const themingCss = `:root {
               <RouterLink to="/components/theme-customizer"
                 >Theme Customizer</RouterLink
               >
-              exposes a live palette toggle.
+              exposes the same live controls.
             </p>
           </div>
         </div>
@@ -324,217 +354,22 @@ const themingCss = `:root {
       </div>
     </div>
 
-    <!-- Golden accent track -->
+    <!-- Color families (Open Color, the default) — 3-up grid -->
     <div class="vd-row">
-      <div class="vd-col-12">
+      <div
+        v-for="fam in families"
+        :key="fam.title"
+        class="vd-col-12 vd-col-md-6 vd-col-lg-4"
+      >
         <div class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
-            <h6><i class="ph ph-asterisk"></i> Golden accent track</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Eight hues stepped by the golden angle —
-              <code>--vd-golden-1</code> … <code>--vd-golden-8</code>. The
-              signature of the Fibonacci palette.
-            </p>
-          </div>
-          <div class="vd-card-body">
-            <div
-              style="display: flex; flex-wrap: wrap; gap: 0"
-              class="color-scale"
-            >
-              <div
-                v-for="s in golden"
-                :key="s.name"
-                class="color-swatch"
-                :style="`${swatchStyle(s)} flex: 1 1 110px; flex-direction: column; align-items: flex-start; gap: 0.25rem;`"
-              >
-                <span class="color-swatch-name">{{ s.name }}</span>
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Primary + Secondary -->
-    <div class="vd-row">
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Primary — Brand</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Golden-angle hue 0 — the "Water" brand color
-            </p>
+            <h6>{{ fam.title }}</h6>
+            <p class="vd-text-sm vd-text-muted vd-mb-0">{{ fam.subtitle }}</p>
           </div>
           <div class="vd-card-body" style="padding: 0">
             <div class="color-scale">
               <div
-                v-for="s in fibPrimary"
-                :key="s.name"
-                class="color-swatch"
-                :style="swatchStyle(s)"
-              >
-                <span class="color-swatch-name"
-                  >{{ s.name }}{{ s.star ? " ★" : "" }}</span
-                >
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Secondary</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Golden-angle hue 1 (≈ +137.5°) — secondary actions
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="color-scale">
-              <div
-                v-for="s in fibSecondary"
-                :key="s.name"
-                class="color-swatch"
-                :style="swatchStyle(s)"
-              >
-                <span class="color-swatch-name"
-                  >{{ s.name }}{{ s.star ? " ★" : "" }}</span
-                >
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gray (Neutrals) -->
-    <div class="vd-row">
-      <div class="vd-col-12">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Gray — Neutrals</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Used for backgrounds, borders, text, and UI structure
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="vd-row" style="margin: 0">
-              <div
-                v-for="s in fibGray"
-                :key="s.name"
-                class="vd-col-12 vd-col-md-6 vd-col-lg-4"
-                style="padding: 0"
-              >
-                <div class="color-swatch" :style="swatchStyle(s)">
-                  <span class="color-swatch-name">{{ s.name }}</span>
-                  <span class="color-swatch-hex">{{ s.hex }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Danger + Success -->
-    <div class="vd-row">
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Danger — Red</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Error states, destructive actions
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="color-scale">
-              <div
-                v-for="s in fibDanger"
-                :key="s.name"
-                class="color-swatch"
-                :style="swatchStyle(s)"
-              >
-                <span class="color-swatch-name"
-                  >{{ s.name }}{{ s.star ? " ★" : "" }}</span
-                >
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Success — Green</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Success states, confirmations
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="color-scale">
-              <div
-                v-for="s in fibSuccess"
-                :key="s.name"
-                class="color-swatch"
-                :style="swatchStyle(s)"
-              >
-                <span class="color-swatch-name"
-                  >{{ s.name }}{{ s.star ? " ★" : "" }}</span
-                >
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Warning + Info -->
-    <div class="vd-row">
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Warning — Amber</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Warnings, cautions, attention
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="color-scale">
-              <div
-                v-for="s in fibWarning"
-                :key="s.name"
-                class="color-swatch"
-                :style="swatchStyle(s)"
-              >
-                <span class="color-swatch-name"
-                  >{{ s.name }}{{ s.star ? " ★" : "" }}</span
-                >
-                <span class="color-swatch-hex">{{ s.hex }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vd-col-12 vd-col-lg-6">
-        <div class="vd-card vd-card-glow demo-card">
-          <div class="vd-card-header">
-            <h6>Info — Blue</h6>
-            <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Information, help, neutral feedback
-            </p>
-          </div>
-          <div class="vd-card-body" style="padding: 0">
-            <div class="color-scale">
-              <div
-                v-for="s in fibInfo"
+                v-for="s in fam.scale"
                 :key="s.name"
                 class="color-swatch"
                 :style="swatchStyle(s)"
@@ -560,8 +395,8 @@ const themingCss = `:root {
               classes
             </h6>
             <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Every hue keeps its recognizable name, re-toned on the phi ramp.
-              Use <code>vd-bg-{color}-{shade}</code> /
+              Every hue keeps its recognizable name. Use
+              <code>vd-bg-{color}-{shade}</code> /
               <code>vd-text-{color}-{shade}</code>.
             </p>
           </div>
@@ -579,32 +414,54 @@ const themingCss = `:root {
       </div>
     </div>
 
-    <!-- Open Color (optional) -->
+    <!-- Fibonacci (optional) -->
     <div class="vd-row">
       <div class="vd-col-12">
         <div class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header">
             <h6>
-              <i class="ph ph-stack"></i> Open Color
+              <i class="ph ph-spiral"></i> Fibonacci palette
               <span class="vd-badge vd-badge-info" style="font-size: 0.7rem"
                 >optional</span
               >
             </h6>
             <p class="vd-text-sm vd-text-muted vd-mb-0">
-              Prefer the classic look? Set
-              <code>data-palette="open-color"</code>
-              to switch every scale to Open Color.
+              A <em>golden-angle generated</em> system — hues stepped by ≈137.5°
+              on golden-ratio shade ramps. Opt in with
+              <code>data-palette="fibonacci"</code> and every scale follows.
             </p>
           </div>
           <div class="vd-card-body">
+            <!-- Golden accent track -->
+            <p class="vd-text-sm vd-text-muted vd-mb-2">
+              <i class="ph ph-asterisk"></i> Golden accent track —
+              <code>--vd-golden-1</code> … <code>--vd-golden-8</code>, the
+              signature of the Fibonacci palette.
+            </p>
+            <div
+              style="display: flex; flex-wrap: wrap; gap: 0"
+              class="color-scale vd-mb-6"
+            >
+              <div
+                v-for="s in golden"
+                :key="s.name"
+                class="color-swatch"
+                :style="`${swatchStyle(s)} flex: 1 1 110px; flex-direction: column; align-items: flex-start; gap: 0.25rem;`"
+              >
+                <span class="color-swatch-name">{{ s.name }}</span>
+                <span class="color-swatch-hex">{{ s.hex }}</span>
+              </div>
+            </div>
+
+            <!-- Fibonacci brand + neutral sample -->
             <div class="vd-row">
               <div class="vd-col-12 vd-col-lg-6">
                 <p class="vd-text-sm vd-text-muted vd-mb-2">
-                  Primary (Open Color cyan)
+                  Primary (Fibonacci "Water")
                 </p>
                 <div class="color-scale">
                   <div
-                    v-for="s in ocPrimary"
+                    v-for="s in fibPrimary"
                     :key="s.name"
                     class="color-swatch"
                     :style="swatchStyle(s)"
@@ -618,11 +475,11 @@ const themingCss = `:root {
               </div>
               <div class="vd-col-12 vd-col-lg-6">
                 <p class="vd-text-sm vd-text-muted vd-mb-2">
-                  Gray (Open Color)
+                  Gray (Fibonacci)
                 </p>
                 <div class="color-scale">
                   <div
-                    v-for="s in ocGray"
+                    v-for="s in fibGray"
                     :key="s.name"
                     class="color-swatch"
                     :style="swatchStyle(s)"
@@ -681,15 +538,15 @@ const themingCss = `:root {
                 class="ph ph-palette"
                 style="color: var(--vd-color-primary)"
               ></i>
-              Default palette generated by <code>@vanduo-oss/core</code> ·
-              optional
+              Default palette:
               <a
                 href="https://yeun.github.io/open-color/"
                 target="_blank"
                 rel="noopener"
                 ><strong>Open Color</strong></a
               >
-              palette by Heeyeun Jeong — MIT Licensed
+              by Heeyeun Jeong — MIT Licensed · optional Fibonacci palette
+              generated by <code>@vanduo-oss/core</code>
             </p>
           </div>
         </div>
