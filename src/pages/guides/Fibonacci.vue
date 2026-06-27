@@ -1,5 +1,37 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/core/golden-ratio",
+    icon: "ph-shapes",
+    title: "Golden ratio",
+    desc: "The φ scale the type and layout rhythm is built on.",
+    badge: "Core",
+  },
+  {
+    to: "/core/grid-system",
+    icon: "ph-grid-four",
+    title: "Grid system",
+    desc: "12-column grid with Fibonacci-tuned gutters.",
+    badge: "Core",
+  },
+  {
+    to: "/core/shadows-glow",
+    icon: "ph-square",
+    title: "Shadows & glow",
+    desc: "Elevation steps that follow the same proportional scale.",
+    badge: "Core",
+  },
+  {
+    to: "/core/typography",
+    icon: "ph-text-aa",
+    title: "Typography",
+    desc: "A modular type scale derived from the sequence.",
+    badge: "Core",
+  },
+];
 
 const spacingHtml = `<!-- Fibonacci spacing utilities (rem-based) -->
 <div class="vd-p-fib-5">  <!-- padding -->
@@ -104,11 +136,16 @@ const scale: [string, string][] = [
           A linear 4/8/12/16 scale gives every step the same visual jump,
           which flattens hierarchy. A Fibonacci scale grows proportionally, so
           small and large spaces stay distinct and the eye reads structure
-          faster. See it in practice in
-          <a href="/core/golden-ratio">Golden ratio</a> and
-          <a href="/core/grid-system">Grid system</a>.
+          faster.
         </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-spiral"
+      title="See the scale in practice"
+      :links="relatedComponents"
+    />
   </section>
 </template>

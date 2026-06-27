@@ -1,5 +1,30 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/core/color-palette",
+    icon: "ph-palette",
+    title: "Color palette",
+    desc: "Every palette and semantic token you can override.",
+    badge: "Core",
+  },
+  {
+    to: "/components/theme-switcher",
+    icon: "ph-palette",
+    title: "Theme switcher",
+    desc: "Drop-in light / dark / system toggle.",
+    badge: "Component",
+  },
+  {
+    to: "/components/theme-customizer",
+    icon: "ph-sliders",
+    title: "Theme customizer",
+    desc: "Live-edit tokens and preview the result instantly.",
+    badge: "Component",
+  },
+];
 
 const overrideCss = `/* Override tokens in your own stylesheet — cascades everywhere */
 :root {
@@ -115,11 +140,17 @@ const tiers: [string, string][] = [
         <DocCodeSnippet :css="darkCss" :default-open="true" />
         <p class="vd-text-sm vd-text-muted vd-mt-3">
           In vd2 you rarely write this by hand — the
-          <a href="/guides/theme-customizer-guide">theme store</a> flips
-          <code>data-theme</code> for you. See also
-          <a href="/core/color-palette">the colour palette</a>.
+          <a href="/guides/theme-customizer">theme store</a> flips
+          <code>data-theme</code> for you.
         </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-paint-roller"
+      title="Theming in action"
+      :links="relatedComponents"
+    />
   </section>
 </template>

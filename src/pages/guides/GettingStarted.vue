@@ -1,6 +1,38 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const nextLinks = [
+  {
+    to: "/guides/first-layout",
+    icon: "ph-layout",
+    title: "Your first layout",
+    desc: "Grid, containers, and breakpoints.",
+    badge: "Guide",
+  },
+  {
+    to: "/guides/css-variables",
+    icon: "ph-sliders",
+    title: "CSS variables & theming",
+    desc: "Make the system yours with token overrides.",
+    badge: "Guide",
+  },
+  {
+    to: "/guides/utilities-cheat-sheet",
+    icon: "ph-list-bullets",
+    title: "Utilities cheat sheet",
+    desc: "The spacing and text helpers at a glance.",
+    badge: "Guide",
+  },
+  {
+    to: "/components/button",
+    icon: "ph-cursor-click",
+    title: "Browse components",
+    desc: "Start with Button and explore the reference.",
+    badge: "Component",
+  },
+];
 
 // ── Vue 3 path ──────────────────────────────────────────────
 const scaffoldShell = `pnpm create vite my-app --template vue-ts
@@ -165,30 +197,6 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
       </template>
     </EngineSwitch>
 
-    <div class="vd-card demo-card">
-      <div class="vd-card-header">
-        <h6><i class="ph ph-compass"></i> Next steps</h6>
-      </div>
-      <div class="vd-card-body">
-        <ul>
-          <li>
-            <a href="/guides/first-layout">Your first layout</a> — grid,
-            containers, and breakpoints.
-          </li>
-          <li>
-            <a href="/guides/css-variables">CSS variables &amp; theming</a> —
-            make it yours.
-          </li>
-          <li>
-            <a href="/guides/utilities-cheat-sheet">Utilities cheat sheet</a>
-            — the spacing/text helpers.
-          </li>
-          <li>
-            <a href="/docs-landing">Component reference</a> — browse every
-            component.
-          </li>
-        </ul>
-      </div>
-    </div>
+    <GuideLinkCards icon="ph-compass" title="Next steps" :links="nextLinks" />
   </section>
 </template>

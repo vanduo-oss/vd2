@@ -1,5 +1,37 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/core/grid-system",
+    icon: "ph-grid-four",
+    title: "Grid system",
+    desc: "The full column, offset, and gutter reference.",
+    badge: "Core",
+  },
+  {
+    to: "/components/navbar",
+    icon: "ph-browser",
+    title: "Navbar",
+    desc: "A responsive top bar to anchor your layout.",
+    badge: "Component",
+  },
+  {
+    to: "/components/sidenav",
+    icon: "ph-sidebar",
+    title: "Sidenav",
+    desc: "Collapsible side navigation for app shells.",
+    badge: "Component",
+  },
+  {
+    to: "/components/footer",
+    icon: "ph-layout",
+    title: "Footer",
+    desc: "Multi-column footer that lands the page.",
+    badge: "Component",
+  },
+];
 
 const gridHtml = `<div class="vd-container-responsive">
   <div class="vd-row">
@@ -132,5 +164,12 @@ const containers: [string, string][] = [
         </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-stack"
+      title="Build out the layout"
+      :links="relatedComponents"
+    />
   </section>
 </template>

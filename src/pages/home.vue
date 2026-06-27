@@ -6,6 +6,8 @@ interface Feature {
   icon: string;
   title: string;
   body: string;
+  /** Where "Read the guide" on the revealed card face leads. */
+  guide: { to: string; label: string };
 }
 
 const features: Feature[] = [
@@ -13,46 +15,55 @@ const features: Feature[] = [
     icon: "ph-intersect",
     title: "Two Engines, One System",
     body: "Ship the same design system two ways — a zero-build Vanilla engine you drop in over a CDN, or first-class Vue 3 components and composables. Identical tokens, identical look. Choose an engine per project, or run both side by side.",
+    guide: { to: "/guides/vanduo-ecosystem", label: "The Vanduo Ecosystem" },
   },
   {
     icon: "ph-atom",
     title: "Vue 3, First-Class",
     body: "Typed <script setup> components, a composable for every interaction, Pinia-friendly stores, and static rendering via vite-ssg. It's tree-shakeable ESM, so you pull in only the pieces you actually use.",
+    guide: { to: "/guides/runtime-architecture", label: "Runtime Architecture" },
   },
   {
     icon: "ph-leaf",
     title: "Zero-Build Vanilla",
     body: "No toolchain? No problem. The Vanilla engine is pure HTML, CSS, and JavaScript — drop in a CDN link and you're productive in a minute. The styling even holds up with JavaScript disabled.",
+    guide: { to: "/guides/esm-vs-iife", label: "ESM vs IIFE vs Vue" },
   },
   {
     icon: "ph-database",
     title: "One Source of Truth",
     body: "Design tokens live in @vanduo-oss/core as DTCG JSON and feed both engines. Change a token once and the Vanilla CSS and the Vue components re-skin in lockstep — never drifting out of sync.",
+    guide: { to: "/guides/css-variables", label: "CSS Variables & Theming" },
   },
   {
     icon: "ph-spiral",
     title: "Fibonacci & Golden Ratio",
     body: "Spacing, type scale, shadows, and grid layouts are derived from the Fibonacci sequence and the Golden Ratio. Both engines inherit the same proportions, so layouts feel balanced without manual tweaking.",
+    guide: { to: "/guides/fibonacci", label: "The Fibonacci Scale" },
   },
   {
     icon: "ph-wheelchair",
     title: "Accessible by Default",
     body: "ARIA roles, visible focus rings, semantic markup, keyboard-first interactions, and prefers-reduced-motion support ship in both engines. Accessibility is on from the start — never a bolt-on.",
+    guide: { to: "/guides/accessibility", label: "Accessibility Essentials" },
   },
   {
     icon: "ph-moon-stars",
     title: "Dark Mode & Live Theming",
     body: "Light, dark, and system-synced themes driven by CSS variables, with a drop-in switcher and a live customizer. Theme once at the token layer and every component re-skins instantly — in either engine.",
+    guide: { to: "/guides/theme-customizer", label: "Theme Customizer" },
   },
   {
     icon: "ph-shield-check",
     title: "Conflict-Free",
     body: "Every class is namespaced with vd- and the Vue components scope cleanly, so Vanduo coexists with Bootstrap, Tailwind, or legacy styles without cascade surprises — whichever engine you reach for.",
+    guide: { to: "/guides/migration", label: "Migration Guide" },
   },
   {
     icon: "ph-toggle-left",
     title: "Dual-Engine Docs",
     body: "These docs flip between Vanilla and Vue 3 with a single toggle — every demo, API table, and snippet in both flavours. Typed, copy-paste-ready, and written to read like the platform itself.",
+    guide: { to: "/guides/vanduo-ecosystem", label: "The Vanduo Ecosystem" },
   },
 ];
 
@@ -89,18 +100,18 @@ const sampleIcons = [
   { cls: "ph ph-info", color: "var(--vd-color-info)" },
 ];
 
-// Golden accent track + neutrals — the golden-angle signature, shown from the
-// palette-independent --vd-fib-* / --vd-golden-* scales so it always reflects
-// the Fibonacci palette regardless of the active theme.
+// Open Color hues — the default palette, shown from the palette-independent
+// --vd-oc-* scales so the strip always reflects Open Color regardless of the
+// active theme.
 const swatches = [
-  { label: "Golden 1", bg: "var(--vd-golden-1)" },
-  { label: "Golden 2", bg: "var(--vd-golden-2)" },
-  { label: "Golden 3", bg: "var(--vd-golden-3)" },
-  { label: "Golden 4", bg: "var(--vd-golden-4)" },
-  { label: "Golden 5", bg: "var(--vd-golden-5)" },
-  { label: "Golden 6", bg: "var(--vd-golden-6)" },
-  { label: "Gray 1", bg: "var(--vd-fib-gray-1)", light: true },
-  { label: "Gray 8", bg: "var(--vd-fib-gray-8)" },
+  { label: "Red", bg: "var(--vd-oc-red-6)" },
+  { label: "Orange", bg: "var(--vd-oc-orange-6)" },
+  { label: "Yellow", bg: "var(--vd-oc-yellow-6)", light: true },
+  { label: "Green", bg: "var(--vd-oc-green-6)" },
+  { label: "Teal", bg: "var(--vd-oc-teal-6)" },
+  { label: "Blue", bg: "var(--vd-oc-blue-6)" },
+  { label: "Violet", bg: "var(--vd-oc-violet-6)" },
+  { label: "Pink", bg: "var(--vd-oc-pink-6)" },
 ];
 </script>
 
@@ -216,6 +227,20 @@ const swatches = [
               >
                 <h4 class="feature-morph-title">{{ feature.title }}</h4>
                 <p class="feature-morph-body">{{ feature.body }}</p>
+                <RouterLink
+                  :to="feature.guide.to"
+                  class="vd-btn vd-btn-primary feature-morph-link"
+                  :tabindex="flipped[i] ? 0 : -1"
+                  :aria-hidden="flipped[i] ? undefined : 'true'"
+                  :aria-label="`Read the guide: ${feature.guide.label}`"
+                  @click.stop
+                  @keydown.enter.stop
+                  @keydown.space.stop
+                >
+                  <i class="ph ph-book-open-text" aria-hidden="true"></i>
+                  Read the guide
+                  <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                </RouterLink>
               </span>
             </div>
           </div>
@@ -284,13 +309,13 @@ const swatches = [
           class="open-color-title vd-mb-3"
           style="color: var(--vd-color-primary)"
         >
-          Fibonacci Palette
+          Open Color Palette
         </h3>
         <p class="open-color-subtitle vd-text-muted vd-mb-8">
-          Vanduo's default palette is golden-angle generated — hues stepped by
-          ≈137.5° with golden-ratio shade ramps, so color shares the same DNA as
-          its spacing and grid. Open Color stays available as an optional
-          choice.
+          Vanduo ships with <strong>Open Color</strong> (MIT) as its default
+          palette — the friendly, battle-tested scale you already know. Prefer
+          color that shares the golden-angle DNA of Vanduo's spacing and grid?
+          The <strong>Fibonacci</strong> palette is one toggle away.
         </p>
         <div class="vd-row">
           <div class="vd-col-12">
@@ -309,15 +334,15 @@ const swatches = [
                 </div>
               </div>
               <p class="open-color-footer vd-text-sm vd-text-muted">
-                The golden accent track, generated by
-                <code>@vanduo-oss/core</code>. Prefer the classic look?
                 <a
                   href="https://yeun.github.io/open-color/"
                   target="_blank"
                   rel="noopener"
                   ><strong>Open Color</strong></a
                 >
-                (MIT) is one toggle away.
+                by Heeyeun Jeong (MIT), shipped through
+                <code>@vanduo-oss/core</code>. The optional golden-angle
+                Fibonacci palette is one toggle away.
                 <RouterLink to="/core/color-palette"
                   >See the full palette in the documentation &rarr;</RouterLink
                 >

@@ -1392,6 +1392,51 @@ footer.vd-glass::before {
   opacity: 0.75;
 }
 
+/* Home: "Read the guide" link on the revealed card face */
+#home-features .feature-morph-card .feature-morph-link {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: auto;
+  align-self: center;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding-block: 0.45rem;
+  padding-inline: 1rem;
+}
+
+/* The morph faces set pointer-events:none; re-enable the link, but only on the
+   visible (current) face so the hidden face never intercepts clicks. */
+#home-features .feature-morph-card .vd-morph-current .feature-morph-link {
+  pointer-events: auto;
+}
+
+#home-features .feature-morph-card .feature-morph-link .ph-arrow-right {
+  transition: transform 0.18s ease;
+}
+
+#home-features .feature-morph-card .feature-morph-link:hover .ph-arrow-right,
+#home-features
+  .feature-morph-card
+  .feature-morph-link:focus-visible
+  .ph-arrow-right {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home-features .feature-morph-card .feature-morph-link .ph-arrow-right {
+    transition: none;
+  }
+
+  #home-features
+    .feature-morph-card
+    .feature-morph-link:hover
+    .ph-arrow-right {
+    transform: none;
+  }
+}
+
 /* Home: icons section */
 .icons-section-title,
 .icons-section-subtitle {

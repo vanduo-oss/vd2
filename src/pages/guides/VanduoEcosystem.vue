@@ -1,5 +1,44 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const nextLinks = [
+  {
+    to: "/guides/runtime-architecture",
+    icon: "ph-cpu",
+    title: "Runtime architecture",
+    desc: "How vd2 replaces Vanduo.init with Vue composables.",
+    badge: "Guide",
+  },
+  {
+    to: "/guides/esm-vs-iife",
+    icon: "ph-package",
+    title: "ESM vs IIFE",
+    desc: "The Vanilla engine's two builds vs vd2's ESM-only Vue.",
+    badge: "Guide",
+  },
+  {
+    to: "/guides/theme-customizer",
+    icon: "ph-paint-brush",
+    title: "Theme customizer",
+    desc: "Theming through the Pinia store.",
+    badge: "Guide",
+  },
+  {
+    to: "/guides/css-variables",
+    icon: "ph-sliders",
+    title: "CSS variables & theming",
+    desc: "The token layer both engines share.",
+    badge: "Guide",
+  },
+  {
+    to: "/core/color-palette",
+    icon: "ph-palette",
+    title: "Color palette",
+    desc: "The core tokens that feed every engine.",
+    badge: "Core",
+  },
+];
 
 const depsShell = `# vd2 depends on the shared token core + the framework's component CSS
 pnpm add @vanduo-oss/core      # design tokens (SSOT)
@@ -144,31 +183,10 @@ const engines: [string, string, string][] = [
       </div>
     </div>
 
-    <div class="vd-card demo-card">
-      <div class="vd-card-header">
-        <h6><i class="ph ph-compass"></i> Where to go next</h6>
-      </div>
-      <div class="vd-card-body">
-        <ul>
-          <li>
-            <a href="/guides/runtime-architecture">Runtime architecture</a> —
-            how vd2 replaces the Vanilla <code>Vanduo.init</code> runtime with
-            composables.
-          </li>
-          <li>
-            <a href="/guides/esm-vs-iife">ESM vs IIFE</a> — the Vanilla
-            engine's two builds vs vd2's ESM-only Vue.
-          </li>
-          <li>
-            <a href="/guides/theme-customizer-guide">Theme customizer</a> —
-            theming through the Pinia store.
-          </li>
-          <li>
-            <a href="/guides/css-variables">CSS variables &amp; theming</a> —
-            the token layer both engines share.
-          </li>
-        </ul>
-      </div>
-    </div>
+    <GuideLinkCards
+      icon="ph-compass"
+      title="Where to go next"
+      :links="nextLinks"
+    />
   </section>
 </template>

@@ -1,5 +1,37 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/components/button",
+    icon: "ph-cursor-click",
+    title: "Button",
+    desc: ".btn → .vd-btn, same variants and sizes.",
+    badge: "Component",
+  },
+  {
+    to: "/components/card",
+    icon: "ph-credit-card",
+    title: "Card",
+    desc: ".card / .card-body map straight to vd- equivalents.",
+    badge: "Component",
+  },
+  {
+    to: "/components/alert",
+    icon: "ph-warning",
+    title: "Alert",
+    desc: ".alert → .vd-alert with the same contextual colours.",
+    badge: "Component",
+  },
+  {
+    to: "/components/badge",
+    icon: "ph-tag",
+    title: "Badge",
+    desc: ".badge → .vd-badge, pills and counters included.",
+    badge: "Component",
+  },
+];
 
 const beforeHtml = `<!-- Bootstrap -->
 <button class="btn btn-primary btn-lg">Save</button>
@@ -105,10 +137,16 @@ const classMap: [string, string][] = [
           See
           <a href="/guides/runtime-architecture">Runtime architecture</a> for
           the full mapping and
-          <a href="/guides/theme-customizer-guide">Theme customizer</a> for
-          theming.
+          <a href="/guides/theme-customizer">Theme customizer</a> for theming.
         </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-arrows-left-right"
+      title="The components you'll re-prefix first"
+      :links="relatedComponents"
+    />
   </section>
 </template>

@@ -1,5 +1,30 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/components/theme-customizer",
+    icon: "ph-sliders",
+    title: "Theme customizer",
+    desc: "The full live editor — drive every data-* attribute by hand.",
+    badge: "Component",
+  },
+  {
+    to: "/components/theme-switcher",
+    icon: "ph-palette",
+    title: "Theme switcher",
+    desc: "The compact light / dark / system control.",
+    badge: "Component",
+  },
+  {
+    to: "/core/color-palette",
+    icon: "ph-swatches",
+    title: "Color palette",
+    desc: "Browse the hues and neutrals the store chooses from.",
+    badge: "Core",
+  },
+];
 
 const storeJs = `// vd2 theming is a Pinia store, not global JS calls
 import { useThemeStore } from '@/stores/theme';
@@ -126,13 +151,14 @@ const attrs: [string, string, string][] = [
       </div>
       <div class="vd-card-body">
         <DocCodeSnippet :js="persistJs" :default-open="true" />
-        <p class="vd-text-sm vd-text-muted vd-mt-3">
-          Try it live on the
-          <a href="/components/theme-customizer">Theme Customizer</a> and
-          <a href="/components/theme-switcher">Theme Switcher</a> component
-          pages.
-        </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-palette"
+      title="Try it live"
+      :links="relatedComponents"
+    />
   </section>
 </template>

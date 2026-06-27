@@ -1,5 +1,44 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import GuideLinkCards from "@/components/GuideLinkCards.vue";
+
+const relatedComponents = [
+  {
+    to: "/components/modal",
+    icon: "ph-rectangle",
+    title: "Modal",
+    desc: "Focus trap, Esc to close, and aria-modal handled for you.",
+    badge: "Component",
+  },
+  {
+    to: "/components/toast",
+    icon: "ph-bell",
+    title: "Toast",
+    desc: "aria-live regions announce updates to screen readers.",
+    badge: "Component",
+  },
+  {
+    to: "/components/tabs",
+    icon: "ph-tabs",
+    title: "Tabs",
+    desc: "Roving arrow-key navigation with the correct ARIA roles.",
+    badge: "Component",
+  },
+  {
+    to: "/components/tooltip",
+    icon: "ph-chat-text",
+    title: "Tooltip",
+    desc: "Keyboard- and focus-reachable, never hover-only.",
+    badge: "Component",
+  },
+  {
+    to: "/components/pagination",
+    icon: "ph-dots-three",
+    title: "Pagination",
+    desc: "Labelled nav landmark with aria-current on the active page.",
+    badge: "Component",
+  },
+];
 
 const focusCss = `/* Vanduo ships visible focus rings — never remove them outright */
 .vd-btn:focus-visible {
@@ -129,5 +168,12 @@ const checklist: [string, string][] = [
         </p>
       </div>
     </div>
+
+    <GuideLinkCards
+      class="vd-mt-6"
+      icon="ph-list-checks"
+      title="Accessibility built into these components"
+      :links="relatedComponents"
+    />
   </section>
 </template>
