@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdPagination from '@/components/VdPagination.vue';
+import { VdPagination } from "@vanduo-oss/vue";
 
 describe('VdPagination', () => {
   it('renders prev and next items', () => {

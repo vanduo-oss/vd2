@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
-import type { ThemeMode } from "@/composables/useTheme";
+import type { ThemeMode } from "@vanduo-oss/vue";
 
 // The live demos drive the real global theme store, exactly like the docs
 // switcher (which toggles the whole site).

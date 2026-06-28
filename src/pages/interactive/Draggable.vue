@@ -2,7 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useDraggable } from "@/composables/useDraggable";
+import { useDraggable } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDraggable(root);
@@ -36,7 +36,7 @@ document.addEventListener('draggable:drag',  (e) => console.log('drag',  e.detai
 document.addEventListener('draggable:end',   (e) => console.log('end',   e.detail));`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useDraggable } from '@/composables/useDraggable';
+import { useDraggable } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDraggable(root);   // wires .vd-draggable / containers / drop-zones inside root`;

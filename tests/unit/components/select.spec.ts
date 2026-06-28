@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdSelect from '@/components/VdSelect.vue';
+import { VdSelect } from "@vanduo-oss/vue";
 
 const options = [
   { value: 'a', label: 'Apple' },

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { h } from 'vue';
-import VdButtonGroup from '@/components/VdButtonGroup.vue';
-import VdButton from '@/components/VdButton.vue';
+import { VdButtonGroup } from "@vanduo-oss/vue";
+import { VdButton } from "@vanduo-oss/vue";
 
 describe('VdButtonGroup', () => {
   it('renders slot content as children', () => {

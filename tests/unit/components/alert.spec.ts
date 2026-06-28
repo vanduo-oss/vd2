@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdAlert from '@/components/VdAlert.vue';
+import { VdAlert } from "@vanduo-oss/vue";
 
 describe('VdAlert', () => {
   it('renders the success variant class', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, ref } from 'vue';
-import { useDatepicker } from '@/composables/useDatepicker';
+import { useDatepicker } from "@vanduo-oss/vue";
 
 const Harness = defineComponent({
   props: { value: { type: String, default: '' }, format: { type: String, default: '' } },

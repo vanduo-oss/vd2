@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeAll } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, ref } from 'vue';
-import { useWaypoint } from '@/composables/useWaypoint';
+import { useWaypoint } from "@vanduo-oss/vue";
 
 const Harness = defineComponent({
   setup() {

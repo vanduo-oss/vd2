@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdProgress from '@/components/VdProgress.vue';
+import { VdProgress } from "@vanduo-oss/vue";
 
 describe('VdProgress', () => {
   it('sets aria-valuenow to the value', () => {

@@ -36,11 +36,12 @@
   "dependencies": {
     "@unhead/vue": "2.1.15",
     "@vanduo-oss/charts": "^0.1.0",
-    "@vanduo-oss/core": "file:../core",
+    "@vanduo-oss/core": "^1.0.1",
     "@vanduo-oss/flowchart": "^1.1.0",
-    "@vanduo-oss/framework": "file:../framework",
+    "@vanduo-oss/framework": "^1.6.0",
     "@vanduo-oss/hex-grid": "^1.1.0",
     "@vanduo-oss/music-player": "^1.1.0",
+    "@vanduo-oss/vue": "file:../vue",
     "pinia": "^3.0.4",
     "vue": "^3.5.38",
     "vue-router": "^5.1.0"

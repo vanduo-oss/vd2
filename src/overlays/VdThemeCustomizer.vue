@@ -7,7 +7,7 @@ import {
   PRIMARY_COLORS,
   RADIUS_OPTIONS,
   type RadiusOption,
-} from "@/composables/useTheme";
+} from "@vanduo-oss/vue";
 
 const theme = useThemeStore();
 const isOpen = ref(false);

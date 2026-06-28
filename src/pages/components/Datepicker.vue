@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useDatepicker } from "@/composables/useDatepicker";
+import { useDatepicker } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDatepicker(root);
@@ -11,7 +11,7 @@ useDatepicker(root);
 const vue3Wiring = `// Vue 3 — the useDatepicker composable wires every
 // [data-vd-datepicker] input inside the root ref.
 import { ref } from 'vue';
-import { useDatepicker } from '@/composables/useDatepicker';
+import { useDatepicker } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDatepicker(root);   // cleanup is automatic on unmount

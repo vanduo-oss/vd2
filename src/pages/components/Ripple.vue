@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useRipple } from "@/composables/useRipple";
+import { useRipple } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useRipple(root);
@@ -14,7 +14,7 @@ VanduoRipple.init();
 VanduoRipple.destroyAll();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useRipple } from '@/composables/useRipple';
+import { useRipple } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useRipple(root);   // wires every .vd-ripple inside root; cleanup on unmount`;

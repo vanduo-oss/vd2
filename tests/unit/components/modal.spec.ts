@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdModal from '@/components/VdModal.vue';
+import { VdModal } from "@vanduo-oss/vue";
 
 describe('VdModal', () => {
   it('does not render when open is false', () => {

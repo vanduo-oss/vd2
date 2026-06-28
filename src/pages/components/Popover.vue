@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { usePopover } from "@/composables/usePopover";
+import { usePopover } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 usePopover(root);
@@ -54,7 +54,7 @@ VanduoBubble.hide(trigger);
 VanduoBubble.hideAll();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { usePopover } from '@/composables/usePopover';
+import { usePopover } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 usePopover(root);   // wires every [data-vd-bubble] inside root; cleanup on unmount`;

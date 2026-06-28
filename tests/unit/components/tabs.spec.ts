@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdTabs from '@/components/VdTabs.vue';
+import { VdTabs } from "@vanduo-oss/vue";
 
 describe('VdTabs', () => {
   const tabs = [

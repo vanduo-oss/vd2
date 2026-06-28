@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useExpandingCards } from "@/composables/useExpandingCards";
+import { useExpandingCards } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useExpandingCards(root);
@@ -84,7 +84,7 @@ const vanillaWiring = `// Auto-wired on init for every [data-vd-expanding-cards]
 VanduoExpandingCards.init();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useExpandingCards } from '@/composables/useExpandingCards';
+import { useExpandingCards } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useExpandingCards(root);   // wires every [data-vd-expanding-cards] inside root`;

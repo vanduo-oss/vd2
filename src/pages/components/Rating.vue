@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdRating from "@/components/VdRating.vue";
+import { VdRating } from "@vanduo-oss/vue";
 
 const basic = ref(0);
 const preset = ref(3);
@@ -80,7 +80,7 @@ const jsMethods: [string, string][] = [
 
 // Engine-specific usage: the Vue component vs the Vanilla data-attribute markup.
 const vue3Usage = `<script setup lang="ts">
-import VdRating from '@/components/VdRating.vue';
+import { VdRating } from "@vanduo-oss/vue";
 const value = ref(3);
 <\/script>
 

@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useSidenav } from "@/composables/useSidenav";
+import { useSidenav } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSidenav(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useSidenav } from '@/composables/useSidenav';
+import { useSidenav } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSidenav(root);   // wires [data-sidenav-toggle] triggers; cleanup on unmount`;
