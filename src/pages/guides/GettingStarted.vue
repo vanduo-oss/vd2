@@ -38,26 +38,27 @@ const nextLinks = [
 // ── Vue 3 path ──────────────────────────────────────────────
 const scaffoldShell = `pnpm create vite my-app --template vue-ts
 cd my-app
-pnpm add @vanduo-oss/framework @vanduo-oss/core`;
+pnpm add @vanduo-oss/vue`;
 
-const mainJs = `// main.ts — import the framework CSS once
-import '@vanduo-oss/framework/css';
+const mainJs = `// main.ts — register VD2 and its styles
 import { createApp } from 'vue';
+import { VanduoVue } from '@vanduo-oss/vue';
+import '@vanduo-oss/vue/css';
 import App from './App.vue';
 
-createApp(App).mount('#app');`;
+createApp(App).use(VanduoVue).mount('#app');`;
 
-const pageHtml = `<!-- App.vue — compose framework classes; no CSS to write -->
+const pageHtml = `<!-- App.vue — import VD2 components and compose -->
+<script setup lang="ts">
+import { VdCard, VdButton } from '@vanduo-oss/vue';
+<\/script>
+
 <template>
-  <nav class="vd-navbar">
-    <a class="vd-navbar-brand" href="#">My App</a>
-  </nav>
-
-  <header class="vd-container-responsive" style="padding: 4rem 0">
+  <VdCard>
     <h1 class="vd-h1">Build fast with Vanduo</h1>
-    <p class="vd-lead vd-text-muted">A Fibonacci-tuned design system.</p>
-    <button class="vd-btn vd-btn-primary vd-btn-lg">Get started</button>
-  </header>
+    <p class="vd-lead vd-text-muted">First-class Vue 3 components.</p>
+    <VdButton variant="primary" size="lg">Get started</VdButton>
+  </VdCard>
 </template>`;
 
 // ── Vanilla (no-build) path ──────────────────────────────────
@@ -126,11 +127,15 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
             <div class="vd-card demo-card">
               <div class="vd-card-header">
                 <h6>
-                  <i class="ph ph-number-circle-two"></i> Import the CSS once
+                  <i class="ph ph-number-circle-two"></i> Register VD2 &amp; its
+                  styles
                 </h6>
               </div>
               <div class="vd-card-body">
-                <p>Load the framework's component styles in your entry file:</p>
+                <p>
+                  Add the <code>VanduoVue</code> plugin and the stylesheet once
+                  in your entry file:
+                </p>
                 <DocCodeSnippet :js="mainJs" :default-open="true" />
               </div>
             </div>
@@ -142,14 +147,14 @@ const vanillaPageHtml = `<!-- Compose the same classes directly in HTML -->
             <div class="vd-card demo-card">
               <div class="vd-card-header">
                 <h6>
-                  <i class="ph ph-number-circle-three"></i> Compose your first
-                  page
+                  <i class="ph ph-number-circle-three"></i> Use the components
                 </h6>
               </div>
               <div class="vd-card-body">
                 <p>
-                  Use <code>vd-</code> classes in any template — they're styled
-                  for you:
+                  Import <code>Vd*</code> components from
+                  <code>@vanduo-oss/vue</code> — typed, tree-shakeable, ready to
+                  use:
                 </p>
                 <DocCodeSnippet :html="pageHtml" :default-open="true" />
               </div>

@@ -6,25 +6,14 @@ on:
   pull_request:
     branches: [main]
 
-# core/framework install from npm (@vanduo-oss/* is excluded from the .npmrc
-# minimum-release-age delay). The unpublished @vanduo-oss/vue (file:../vue) is
-# checked out as a sibling and built before vd2. See deploy.yml.
+# All @vanduo-oss/* dependencies install from npm (the @vanduo-oss/* scope is
+# excluded from the .npmrc minimum-release-age delay), so this is single-repo.
 jobs:
   build-test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout vd2
-        uses: actions/checkout@v4
-        with:
-          path: vd2
-
-      - name: Checkout @vanduo-oss/vue
-        uses: actions/checkout@v4
-        with:
-          repository: vanduo-oss/vue
-          ref: main
-          path: vue
+      - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
         with:
@@ -33,33 +22,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
 
-      - name: Build @vanduo-oss/vue
-        working-directory: vue
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install vd2
-        working-directory: vd2
-        run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm run stylelint
+      - run: pnpm run format:check
 
-      - name: Checks
-        working-directory: vd2
-        run: |
-          pnpm run typecheck
-          pnpm run lint
-          pnpm run stylelint
-          pnpm run format:check
+      - run: pnpm test
 
-      - name: Test
-        working-directory: vd2
-        run: pnpm test
-
-      - name: Build
-        working-directory: vd2
-        run: pnpm run build
-
-      - name: Bundle size
-        working-directory: vd2
-        run: pnpm run test:size
+      - run: pnpm run build
+      - run: pnpm run test:size

@@ -1,13 +1,9 @@
 name: Deploy to GitHub Pages
 
 # Builds the vite-ssg site and publishes dist/ to GitHub Pages (https://vanduo.dev).
-#
-# @vanduo-oss/core and @vanduo-oss/framework now install from npm (the .npmrc
-# excludes the @vanduo-oss/* scope from the minimum-release-age delay). The only
-# first-party dependency still consumed locally is @vanduo-oss/vue (file:../vue)
-# — not yet published — so it is checked out as a sibling and built before vd2.
-# vue is a public vanduo-oss repo; if it becomes private, add a PAT secret and
-# pass `token: ${{ secrets.VANDUO_CHECKOUT_TOKEN }}` to its checkout step.
+# All @vanduo-oss/* dependencies now install from npm (the .npmrc excludes the
+# @vanduo-oss/* scope from the minimum-release-age delay), so this is a plain
+# single-repo build — no sibling checkouts.
 
 on:
   push:
@@ -28,17 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout vd2
-        uses: actions/checkout@v4
-        with:
-          path: vd2
-
-      - name: Checkout @vanduo-oss/vue
-        uses: actions/checkout@v4
-        with:
-          repository: vanduo-oss/vue
-          ref: main
-          path: vue
+      - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
         with:
@@ -47,29 +33,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
 
-      - name: Build @vanduo-oss/vue
-        working-directory: vue
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-
-      - name: Install & build vd2
-        working-directory: vd2
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - name: Disable Jekyll processing
-        run: touch vd2/dist/.nojekyll
+        run: touch dist/.nojekyll
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: vd2/dist
+          path: dist
 
   deploy:
     needs: build
