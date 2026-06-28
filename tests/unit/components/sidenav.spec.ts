@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdSidenav from '@/components/VdSidenav.vue';
+import { VdSidenav } from "@vanduo-oss/vue";
 
 describe('VdSidenav', () => {
   it('does not render when modelValue is false', () => {

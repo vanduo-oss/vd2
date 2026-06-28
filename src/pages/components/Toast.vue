@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useToast } from "@/composables/useToast";
+import { useToast } from "@vanduo-oss/vue";
 
 const toast = useToast();
 
-const typesJs = `import { useToast } from '@/composables/useToast';
+const typesJs = `import { useToast } from "@vanduo-oss/vue";
 const toast = useToast();
 
 toast.success('Operation completed successfully!');

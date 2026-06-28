@@ -6,7 +6,7 @@ import VdNavbar from "@/layout/VdNavbar.vue";
 import VdFooter from "@/layout/VdFooter.vue";
 import DocsLayout from "@/layout/DocsLayout.vue";
 import GlobalSearchModal from "@/overlays/GlobalSearchModal.vue";
-import VdToastContainer from "@/components/VdToastContainer.vue";
+import { VdToastContainer } from "@vanduo-oss/vue";
 import { useThemeStore } from "@/stores/theme";
 import { useEngineStore } from "@/stores/engine";
 

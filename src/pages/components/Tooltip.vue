@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useTooltips } from "@/composables/useTooltips";
+import { useTooltips } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTooltips(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useTooltips } from '@/composables/useTooltips';
+import { useTooltips } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTooltips(root);   // wires [data-tooltip] inside root; cleanup on unmount`;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
-import { useToastStore } from '@/composables/useToast';
+import { useToastStore } from "@vanduo-oss/vue";
 
 describe('useToastStore', () => {
   it('adds a toast to the queue and returns an id', () => {

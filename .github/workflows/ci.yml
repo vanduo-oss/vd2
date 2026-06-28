@@ -6,9 +6,9 @@ on:
   pull_request:
     branches: [main]
 
-# vd2 depends on @vanduo-oss/core and @vanduo-oss/framework via `file:../`, so
-# those sibling repos are checked out and core is built (its dist/ is gitignored
-# upstream; framework ships a committed dist/). See deploy.yml for details.
+# core/framework install from npm (@vanduo-oss/* is excluded from the .npmrc
+# minimum-release-age delay). The unpublished @vanduo-oss/vue (file:../vue) is
+# checked out as a sibling and built before vd2. See deploy.yml.
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -19,19 +19,12 @@ jobs:
         with:
           path: vd2
 
-      - name: Checkout @vanduo-oss/core
+      - name: Checkout @vanduo-oss/vue
         uses: actions/checkout@v4
         with:
-          repository: vanduo-oss/core
+          repository: vanduo-oss/vue
           ref: main
-          path: core
-
-      - name: Checkout @vanduo-oss/framework
-        uses: actions/checkout@v4
-        with:
-          repository: vanduo-oss/framework
-          ref: main
-          path: framework
+          path: vue
 
       - uses: pnpm/action-setup@v4
         with:
@@ -41,8 +34,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Build @vanduo-oss/core
-        working-directory: core
+      - name: Build @vanduo-oss/vue
+        working-directory: vue
         run: |
           pnpm install --frozen-lockfile
           pnpm run build

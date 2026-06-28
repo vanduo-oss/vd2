@@ -4,7 +4,7 @@ import {
   applyPreference,
   defaultPreference,
   loadPreference,
-} from '@/composables/useTheme';
+} from "@vanduo-oss/vue";
 import { useThemeStore } from '@/stores/theme';
 
 const clearThemeAttrs = (): void => {

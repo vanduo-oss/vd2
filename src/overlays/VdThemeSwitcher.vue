@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useThemeStore } from "@/stores/theme";
-import type { ThemeMode } from "@/composables/useTheme";
+import type { ThemeMode } from "@vanduo-oss/vue";
 
 const theme = useThemeStore();
 const root = ref<HTMLElement | null>(null);

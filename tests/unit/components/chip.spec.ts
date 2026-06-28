@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdChip from '@/components/VdChip.vue';
+import { VdChip } from "@vanduo-oss/vue";
 
 describe('VdChip', () => {
   it('renders slot content', () => {

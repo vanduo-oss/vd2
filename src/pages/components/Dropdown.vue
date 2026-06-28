@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useDropdown } from "@/composables/useDropdown";
+import { useDropdown } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDropdown(root);
@@ -18,7 +18,7 @@ VanduoDropdown.close(document.querySelector('#my-dropdown'));
 VanduoDropdown.destroyAll();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useDropdown } from '@/composables/useDropdown';
+import { useDropdown } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useDropdown(root);   // wires every .vd-dropdown inside root; cleanup on unmount

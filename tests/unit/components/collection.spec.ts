@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdCollection from '@/components/VdCollection.vue';
+import { VdCollection } from "@vanduo-oss/vue";
 
 const items = [
   { id: 1, title: 'Item one', subtitle: 'A' },

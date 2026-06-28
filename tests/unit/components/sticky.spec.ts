@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, ref } from 'vue';
-import { useAffix } from '@/composables/useAffix';
+import { useAffix } from "@vanduo-oss/vue";
 
 const Harness = defineComponent({
   setup() {

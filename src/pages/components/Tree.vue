@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdTree from "@/components/VdTree.vue";
-import type { TreeNode } from "@/components/VdTreeNode.vue";
+import { VdTree } from "@vanduo-oss/vue";
+import type { TreeNode } from "@vanduo-oss/vue";
 
 const basicTree: TreeNode[] = [
   {
@@ -263,7 +263,7 @@ const events: [string, string][] = [
 
 // Engine-specific usage: the Vue component vs the Vanilla data-attribute markup.
 const vue3Usage = `<script setup lang="ts">
-import VdTree from '@/components/VdTree.vue';
+import { VdTree } from "@vanduo-oss/vue";
 const nodes = [
   { id: 'src', label: 'src', icon: 'ph ph-folder', children: [
     { id: 'btn', label: 'Button.vue', icon: 'ph ph-file-vue' },

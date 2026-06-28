@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useAffix } from "@/composables/useAffix";
+import { useAffix } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useAffix(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useAffix } from '@/composables/useAffix';
+import { useAffix } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useAffix(root);   // wires .vd-affix / [data-vd-affix] inside root; cleanup on unmount

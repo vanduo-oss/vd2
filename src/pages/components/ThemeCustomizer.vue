@@ -3,7 +3,7 @@ import { RouterLink } from "vue-router";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
 import { useThemeStore } from "@/stores/theme";
-import type { RadiusOption, ThemeMode } from "@/composables/useTheme";
+import type { RadiusOption, ThemeMode } from "@vanduo-oss/vue";
 
 const themeStore = useThemeStore();
 

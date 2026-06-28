@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdTransfer from "@/components/VdTransfer.vue";
+import { VdTransfer } from "@vanduo-oss/vue";
 
 const items = [
   { id: "html", label: "HTML" },
@@ -79,7 +79,7 @@ const events: [string, string][] = [
 
 // Vue 3 usage (the Vanilla data-attribute form is shown via transferHtml/transferJs).
 const vue3Usage = `<script setup lang="ts">
-import VdTransfer from '@/components/VdTransfer.vue';
+import { VdTransfer } from "@vanduo-oss/vue";
 const items = [
   { id: 'html', label: 'HTML' },
   { id: 'css',  label: 'CSS' },

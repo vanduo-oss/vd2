@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useSpotlight } from "@/composables/useSpotlight";
+import { useSpotlight } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSpotlight(root);
@@ -51,7 +51,7 @@ VanduoSpotlight.start([
 VanduoSpotlight.stop();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useSpotlight } from '@/composables/useSpotlight';
+import { useSpotlight } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSpotlight(root);   // wires every [data-vd-spotlight] inside root`;

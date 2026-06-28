@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useSuggest } from "@/composables/useSuggest";
+import { useSuggest } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSuggest(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useSuggest } from '@/composables/useSuggest';
+import { useSuggest } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSuggest(root);   // wires [data-vd-suggest] inside root; cleanup on unmount

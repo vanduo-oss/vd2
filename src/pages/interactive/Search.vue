@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useSearch } from "@/composables/useSearch";
+import { useSearch } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSearch(root);
@@ -23,7 +23,7 @@ const { sources } = await VanduoSearch.query('button');
 VanduoSearch.unregister('sections');`;
 
 const vue3Wiring = `import { ref, onMounted } from 'vue';
-import { useSearch } from '@/composables/useSearch';
+import { useSearch } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useSearch(root);

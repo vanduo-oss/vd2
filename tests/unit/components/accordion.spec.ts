@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdAccordion from '@/components/VdAccordion.vue';
+import { VdAccordion } from "@vanduo-oss/vue";
 
 describe('VdAccordion', () => {
   const items = [

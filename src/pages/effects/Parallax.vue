@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useParallax } from "@/composables/useParallax";
+import { useParallax } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useParallax(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useParallax } from '@/composables/useParallax';
+import { useParallax } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useParallax(root);   // rAF scroll handler + reduced-motion guard; cleanup on unmount`;

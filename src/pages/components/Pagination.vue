@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdPagination from "@/components/VdPagination.vue";
+import { VdPagination } from "@vanduo-oss/vue";
 
 // Authored page — there is no original `pagination.html`; demos are built from the
 // real framework component (framework/js/components/pagination.js + CSS).
@@ -111,7 +111,7 @@ const events: [string, string][] = [
 
 // Engine-specific usage: the Vue component vs the Vanilla data-attribute markup.
 const vue3Usage = `<script setup lang="ts">
-import VdPagination from '@/components/VdPagination.vue';
+import { VdPagination } from "@vanduo-oss/vue";
 const page = ref(1);
 <\/script>
 

@@ -2,14 +2,14 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useWaypoint } from "@/composables/useWaypoint";
+import { useWaypoint } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useWaypoint(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useWaypoint } from '@/composables/useWaypoint';
+import { useWaypoint } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useWaypoint(root);   // wires [data-vd-waypoint-nav] inside root; cleanup on unmount

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useImageBox } from "@/composables/useImageBox";
+import { useImageBox } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useImageBox(root);
@@ -11,7 +11,7 @@ const vanillaWiring = `// Auto-wired on init for every [data-image-box].
 VanduoImageBox.init();`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useImageBox } from '@/composables/useImageBox';
+import { useImageBox } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useImageBox(root);   // wires every [data-image-box] inside root`;

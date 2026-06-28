@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdBox from "@/components/primitives/VdBox.vue";
-import VdStack from "@/components/primitives/VdStack.vue";
-import VdInline from "@/components/primitives/VdInline.vue";
-import VdCenter from "@/components/primitives/VdCenter.vue";
-import VdCover from "@/components/primitives/VdCover.vue";
-import VdFrame from "@/components/primitives/VdFrame.vue";
-import VdSwitcher from "@/components/primitives/VdSwitcher.vue";
+import { VdBox } from "@vanduo-oss/vue";
+import { VdStack } from "@vanduo-oss/vue";
+import { VdInline } from "@vanduo-oss/vue";
+import { VdCenter } from "@vanduo-oss/vue";
+import { VdCover } from "@vanduo-oss/vue";
+import { VdFrame } from "@vanduo-oss/vue";
+import { VdSwitcher } from "@vanduo-oss/vue";
 
 // ── Box ──────────────────────────────────────────────────────
 const boxVanilla = `<div class="vd-box" data-pad="fib-13">

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdTree from '@/components/VdTree.vue';
-import type { TreeNode } from '@/components/VdTreeNode.vue';
+import { VdTree } from "@vanduo-oss/vue";
+import type { TreeNode } from "@vanduo-oss/vue";
 
 const nodes: TreeNode[] = [
   {

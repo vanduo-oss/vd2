@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useValidate } from "@/composables/useValidate";
+import { useValidate } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useValidate(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useValidate } from '@/composables/useValidate';
+import { useValidate } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useValidate(root);   // wires [data-vd-validate] forms inside root; cleanup on unmount`;

@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useTimepicker } from "@/composables/useTimepicker";
+import { useTimepicker } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTimepicker(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useTimepicker } from '@/composables/useTimepicker';
+import { useTimepicker } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTimepicker(root);   // wires [data-vd-timepicker] inside root; cleanup on unmount

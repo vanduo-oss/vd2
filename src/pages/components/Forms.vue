@@ -2,12 +2,12 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import VdCustomSelect from "@/components/VdCustomSelect.vue";
+import { VdCustomSelect } from "@vanduo-oss/vue";
 
 // The custom-select is the one input with engine-specific wiring (plain inputs
 // are pure CSS and identical across engines).
 const vue3CustomSelect = `<script setup lang="ts">
-import VdCustomSelect from '@/components/VdCustomSelect.vue';
+import { VdCustomSelect } from "@vanduo-oss/vue";
 const value = ref('');
 const options = [{ value: '1', label: 'Option 1' }];
 <\/script>

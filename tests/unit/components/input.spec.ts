@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdInput from '@/components/VdInput.vue';
+import { VdInput } from "@vanduo-oss/vue";
 
 describe('VdInput', () => {
   it('renders an input with the model value', () => {

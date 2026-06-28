@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useTimeline } from "@/composables/useTimeline";
+import { useTimeline } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTimeline(root);
@@ -130,7 +130,7 @@ VanduoTimeline.init();
 Vanduo.reinit('timeline', root);`;
 
 const vue3Wiring = `import { ref } from 'vue';
-import { useTimeline } from '@/composables/useTimeline';
+import { useTimeline } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useTimeline(root);   // wires every .vd-timeline-animated inside root`;

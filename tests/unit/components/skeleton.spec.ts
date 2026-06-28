@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdSkeleton from '@/components/VdSkeleton.vue';
+import { VdSkeleton } from "@vanduo-oss/vue";
 
 describe('VdSkeleton', () => {
   it('renders text variant by default', () => {

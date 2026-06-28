@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useGlass } from "@/composables/useGlass";
+import { useGlass } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useGlass(root);
@@ -10,8 +10,8 @@ useGlass(root);
 // Engine-specific wiring (the markup, classes and data-* are identical; the
 // scroll-activation observer logic runs automatically in both engines).
 const vue3Wiring = `import { ref } from 'vue';
-import { useGlass } from '@/composables/useGlass';
-import { useNavbarGlassScroll } from '@/composables/useNavbarGlassScroll';
+import { useGlass } from "@vanduo-oss/vue";
+import { useNavbarGlassScroll } from "@vanduo-oss/vue";
 
 // Generic scroll-activated glass (data-glass-scroll)
 const root = ref<HTMLElement | null>(null);

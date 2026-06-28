@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdTable from '@/components/VdTable.vue';
+import { VdTable } from "@vanduo-oss/vue";
 
 const columns = [
   { key: 'name', label: 'Name' },

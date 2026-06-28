@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import VdStack from '@/components/primitives/VdStack.vue';
-import VdInline from '@/components/primitives/VdInline.vue';
+import { VdStack } from "@vanduo-oss/vue";
+import { VdInline } from "@vanduo-oss/vue";
 
 describe('layout primitives', () => {
   it('VdStack applies vd-stack and the data-gap attribute', () => {

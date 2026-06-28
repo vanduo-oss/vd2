@@ -1,5 +1,6 @@
 import { ViteSSG } from "vite-ssg";
 import { createPinia } from "pinia";
+import { VanduoVue, loadVanduoRuntime } from "@vanduo-oss/vue";
 import App from "./App.vue";
 import { buildRoutes } from "./router";
 import "@vanduo-oss/framework/css";
@@ -27,15 +28,13 @@ export const createApp = ViteSSG(
   },
   async ({ app, initialState }) => {
     app.use(createPinia());
+    app.use(VanduoVue);
 
-    // Load the framework's vanilla JS (IIFE) on the client only. It attaches
-    // the `window.Vanduo*` globals (Dropdown, Popover, Ripple, Tooltips, …)
-    // that the `use*` composables delegate to. vite-ssg awaits this callback
-    // before mounting, so the globals exist before any page's onMounted runs.
-    // Guarded by `!SSR` so the IIFE (which touches window/document) never runs
-    // during the Node prerender.
+    // The VD2 plugin kicks off the framework's client JS (window.Vanduo*
+    // globals that the composables delegate to); await it before mount so the
+    // globals exist before any page's onMounted runs. No-ops during SSR.
     if (!import.meta.env.SSR) {
-      await import("@vanduo-oss/framework/iife");
+      await loadVanduoRuntime();
     }
 
     // Page <title> is managed per route by @unhead in App.vue (so it stays in

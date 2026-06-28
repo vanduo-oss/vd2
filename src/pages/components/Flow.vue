@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useFlow } from "@/composables/useFlow";
+import { useFlow } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useFlow(root);
 
 // Engine-specific wiring (the markup, classes and data-* are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useFlow } from '@/composables/useFlow';
+import { useFlow } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useFlow(root);   // wires every .vd-flow inside root; cleanup on unmount

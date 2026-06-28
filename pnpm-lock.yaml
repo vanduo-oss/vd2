@@ -20,20 +20,23 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/core':
-        specifier: file:../core
-        version: file:../core
+        specifier: ^1.0.1
+        version: 1.0.1
       '@vanduo-oss/flowchart':
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/framework':
-        specifier: file:../framework
-        version: file:../framework
+        specifier: ^1.6.0
+        version: 1.6.0
       '@vanduo-oss/hex-grid':
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.38(typescript@6.0.3))
       '@vanduo-oss/music-player':
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.38(typescript@6.0.3))
+      '@vanduo-oss/vue':
+        specifier: file:../vue
+        version: file:../vue(pinia@3.0.4(typescript@6.0.3)(vue@3.5.38(typescript@6.0.3)))(vue@3.5.38(typescript@6.0.3))
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.5.38(typescript@6.0.3))
@@ -722,8 +725,8 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/core@file:../core':
-    resolution: {directory: ../core, type: directory}
+  '@vanduo-oss/core@1.0.1':
+    resolution: {integrity: sha512-tl1PZwjygQ7W8d4m3q/0LGSN/t3wV/V42YFMlZvTUNGbKCKtOHgKz5o2VLaFKEX2u/zLEKJf1NWYjRXx9Jku3g==}
     engines: {node: '>=18'}
 
   '@vanduo-oss/flowchart@1.1.0':
@@ -735,8 +738,8 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/framework@file:../framework':
-    resolution: {directory: ../framework, type: directory}
+  '@vanduo-oss/framework@1.6.0':
+    resolution: {integrity: sha512-bTM66ir9er3tDNdKZOkU1cbZ0Xs4iAUmmvjhUDB6eYSCbMNoMngVYhqF+aVAl65dJCZV23w3bQmi8coRjh8SAQ==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
 
   '@vanduo-oss/hex-grid@1.1.0':
@@ -756,6 +759,13 @@ packages:
     peerDependenciesMeta:
       vue:
         optional: true
+
+  '@vanduo-oss/vue@file:../vue':
+    resolution: {directory: ../vue, type: directory}
+    engines: {node: '>=20', pnpm: '>=10'}
+    peerDependencies:
+      pinia: '>=2.1.0'
+      vue: '>=3.3.0'
 
   '@vitejs/plugin-vue@6.0.7':
     resolution: {integrity: sha512-km+p+XdSz9Sxm5rqUbqcSfZYaAniKxWBj1KURl+Jr7UaPvvX7BmaWMdP69I5rrFDeQGyxAG7NXdc57vz+snhWg==}
@@ -2803,13 +2813,13 @@ snapshots:
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
-  '@vanduo-oss/core@file:../core': {}
+  '@vanduo-oss/core@1.0.1': {}
 
   '@vanduo-oss/flowchart@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.38(typescript@6.0.3)
 
-  '@vanduo-oss/framework@file:../framework': {}
+  '@vanduo-oss/framework@1.6.0': {}
 
   '@vanduo-oss/hex-grid@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
@@ -2817,6 +2827,13 @@ snapshots:
 
   '@vanduo-oss/music-player@1.1.0(vue@3.5.38(typescript@6.0.3))':
     optionalDependencies:
+      vue: 3.5.38(typescript@6.0.3)
+
+  '@vanduo-oss/vue@file:../vue(pinia@3.0.4(typescript@6.0.3)(vue@3.5.38(typescript@6.0.3)))(vue@3.5.38(typescript@6.0.3))':
+    dependencies:
+      '@vanduo-oss/core': 1.0.1
+      '@vanduo-oss/framework': 1.6.0
+      pinia: 3.0.4(typescript@6.0.3)(vue@3.5.38(typescript@6.0.3))
       vue: 3.5.38(typescript@6.0.3)
 
   '@vitejs/plugin-vue@6.0.7(vite@8.1.0(@types/node@26.0.1)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.38(typescript@6.0.3))':

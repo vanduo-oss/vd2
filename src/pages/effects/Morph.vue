@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { useMorph } from "@/composables/useMorph";
-import { useMorphBadges } from "@/composables/useMorphBadges";
+import { useMorph } from "@vanduo-oss/vue";
+import { useMorphBadges } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useMorph(root);
@@ -11,8 +11,8 @@ useMorphBadges(root);
 
 // Engine-specific wiring (the markup and classes are identical).
 const vue3Wiring = `import { ref } from 'vue';
-import { useMorph } from '@/composables/useMorph';
-import { useMorphBadges } from '@/composables/useMorphBadges';
+import { useMorph } from "@vanduo-oss/vue";
+import { useMorphBadges } from "@vanduo-oss/vue";
 
 const root = ref<HTMLElement | null>(null);
 useMorph(root);        // auto wave/shine + current⇄next swap

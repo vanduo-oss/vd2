@@ -2,15 +2,12 @@ name: Deploy to GitHub Pages
 
 # Builds the vite-ssg site and publishes dist/ to GitHub Pages (https://vanduo.dev).
 #
-# vd2 consumes two first-party packages via `file:../` rather than the registry:
-#   - @vanduo-oss/framework  (ships a committed dist/, used as-is)
-#   - @vanduo-oss/core       (dist/ is gitignored upstream, so we build it here;
-#                             lifecycle scripts are blocked by .npmrc, so the
-#                             build must be invoked explicitly)
-# They are checked out as siblings so the `file:../core` / `file:../framework`
-# specifiers resolve. Both are public vanduo-oss repos, so the default
-# GITHUB_TOKEN can clone them. If either becomes private, add a PAT secret and
-# pass `token: ${{ secrets.VANDUO_CHECKOUT_TOKEN }}` to those checkout steps.
+# @vanduo-oss/core and @vanduo-oss/framework now install from npm (the .npmrc
+# excludes the @vanduo-oss/* scope from the minimum-release-age delay). The only
+# first-party dependency still consumed locally is @vanduo-oss/vue (file:../vue)
+# — not yet published — so it is checked out as a sibling and built before vd2.
+# vue is a public vanduo-oss repo; if it becomes private, add a PAT secret and
+# pass `token: ${{ secrets.VANDUO_CHECKOUT_TOKEN }}` to its checkout step.
 
 on:
   push:
@@ -22,7 +19,6 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one in-flight deploy; don't cancel a running one (let it finish).
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -37,19 +33,12 @@ jobs:
         with:
           path: vd2
 
-      - name: Checkout @vanduo-oss/core
+      - name: Checkout @vanduo-oss/vue
         uses: actions/checkout@v4
         with:
-          repository: vanduo-oss/core
+          repository: vanduo-oss/vue
           ref: main
-          path: core
-
-      - name: Checkout @vanduo-oss/framework
-        uses: actions/checkout@v4
-        with:
-          repository: vanduo-oss/framework
-          ref: main
-          path: framework
+          path: vue
 
       - uses: pnpm/action-setup@v4
         with:
@@ -59,8 +48,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Build @vanduo-oss/core (regenerates its gitignored dist/)
-        working-directory: core
+      - name: Build @vanduo-oss/vue
+        working-directory: vue
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
