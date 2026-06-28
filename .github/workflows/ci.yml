@@ -35,3 +35,11 @@ jobs:
 
       - run: pnpm run build
       - run: pnpm run test:size
+
+      # Functional e2e only. The visual-parity suite is intentionally excluded
+      # here: its snapshots are platform-specific (captured on macOS/darwin) and
+      # would need separate Linux baselines, so it stays a local check.
+      - name: E2E (functional)
+        run: |
+          pnpm exec playwright install --with-deps chromium
+          pnpm exec playwright test --project='Chromium Desktop' tests/e2e/layout-navigation.spec.ts
