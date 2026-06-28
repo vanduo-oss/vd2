@@ -69,7 +69,7 @@ const { engine } = storeToRefs(engineStore);
               >vd2 0.2.0</span
             >
             <span style="color: var(--vd-text-secondary); font-size: 0.95rem">
-              <i class="ph ph-calendar mr-1"></i>June 25, 2026
+              <i class="ph ph-calendar mr-1"></i>June 28, 2026
             </span>
             <span class="vd-badge vd-badge-info" style="font-size: 0.75rem"
               >Vue 3 engine</span
@@ -85,6 +85,107 @@ const { engine } = storeToRefs(engineStore);
                   ></i
                   >vd2 (Vue 3 + SSR)
                 </h4>
+                <div class="change-group">
+                  <h5>New</h5>
+                  <ul class="change-list">
+                    <li class="change-item">
+                      <i
+                        class="ph ph-package"
+                        style="color: var(--vd-color-primary)"
+                      ></i>
+                      <div>
+                        <strong
+                          >@vanduo-oss/vue (VD2) — first-class Vue 3</strong
+                        >
+                        <p>
+                          The 41 <code>Vd*</code> components (incl. 7 layout
+                          primitives) and 30 composables now ship as
+                          <code>@vanduo-oss/vue</code>
+                          <code>0.1.0</code> — one install (<code
+                            >pnpm add @vanduo-oss/vue</code
+                          >), with a <code>VanduoVue</code> plugin and
+                          <code>@vanduo-oss/vue/css</code>. vd2 dogfoods the
+                          package and consumes <code>core</code>/<code
+                            >framework</code
+                          >
+                          from npm.
+                        </p>
+                      </div>
+                    </li>
+                    <li class="change-item">
+                      <i
+                        class="ph ph-sparkle"
+                        style="color: var(--vd-color-info)"
+                      ></i>
+                      <div>
+                        <strong>Home, Primitives &amp; guide badges</strong>
+                        <p>
+                          A new "VD2 — Framework Evolved" home section, the
+                          restored <a href="#docs/primitives">Primitives</a>
+                          docs page, and engine-scope badges on every guide
+                          (Vanilla / Vue 3 / both).
+                        </p>
+                      </div>
+                    </li>
+                    <li class="change-item">
+                      <i
+                        class="ph ph-magnifying-glass"
+                        style="color: var(--vd-color-info)"
+                      ></i>
+                      <div>
+                        <strong>SEO</strong>
+                        <p>
+                          Per-page <code>title</code>, description, canonical
+                          and Open Graph/Twitter tags baked into the static
+                          HTML, plus <code>robots.txt</code> and a generated
+                          <code>sitemap.xml</code>.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="change-group">
+                  <h5>Changed</h5>
+                  <ul class="change-list">
+                    <li class="change-item">
+                      <i
+                        class="ph ph-moon-stars"
+                        style="color: var(--vd-color-warning)"
+                      ></i>
+                      <div>
+                        <strong
+                          >Charcoal dark theme &amp; one-install docs</strong
+                        >
+                        <p>
+                          The dark background moved from pure black to the
+                          charcoal neutral (<code>--vd-charcoal-9</code>), and
+                          Getting Started's Vue tab is now a single
+                          <code>@vanduo-oss/vue</code> install.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="change-group">
+                  <h5>Fixed</h5>
+                  <ul class="change-list">
+                    <li class="change-item">
+                      <i
+                        class="ph ph-bug"
+                        style="color: var(--vd-color-success)"
+                      ></i>
+                      <div>
+                        <strong>Docs interactions</strong>
+                        <p>
+                          Code snippets stay expanded across engine switches;
+                          the Draggable demo drops items into the zone; and the
+                          global search modal's hint/empty states render
+                          correctly.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
                 <div class="change-group">
                   <h5>Highlights</h5>
                   <ul class="change-list">
