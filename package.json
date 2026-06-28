@@ -41,7 +41,7 @@
     "@vanduo-oss/framework": "^1.6.0",
     "@vanduo-oss/hex-grid": "^1.1.0",
     "@vanduo-oss/music-player": "^1.1.0",
-    "@vanduo-oss/vue": "^0.1.0",
+    "@vanduo-oss/vue": "^0.2.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.38",
     "vue-router": "^5.1.0"
@@ -69,7 +69,7 @@
     "vue-tsc": "^3.3.5"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=24",
     "pnpm": ">=10"
   },
   "packageManager": "pnpm@10.28.2"
