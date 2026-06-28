@@ -1099,34 +1099,39 @@ VanduoMusicPlayer.attach(el);`"
             <code>prefers-reduced-motion</code>.
           </li>
         </ul>
+      </div>
+    </div>
 
-        <h4 class="vd-mt-6">Attribution</h4>
-        <p class="vd-text-sm vd-text-muted vd-mb-0">
-          <i
-            class="ph ph-music-notes"
-            style="color: var(--vd-color-primary); margin-right: 0.375rem"
-          ></i>
-          <strong>Bundled demo audio:</strong> a curated track set from
-          <a
-            href="https://stellardrone.bandcamp.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Stellardrone</a
-          >
-          from the album <em>Invent the Universe</em>. Source:
-          <a
-            href="https://stellardrone.bandcamp.com/album/invent-the-universe"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Bandcamp</a
-          >. Licensed under
-          <a
-            href="https://creativecommons.org/licenses/by/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >CC BY 4.0</a
-          >. No changes were made to the bundled audio files.
-        </p>
+    <!-- Attribution -->
+    <div class="vd-row vd-mt-6">
+      <div class="vd-col-12">
+        <div class="vd-alert vd-alert-info">
+          <i class="ph ph-music-notes"></i>
+          <div>
+            <strong>Attribution — bundled demo audio</strong>
+            <p class="vd-mb-0 vd-mt-1">
+              A curated track set from
+              <a
+                href="https://stellardrone.bandcamp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Stellardrone</a
+              >, from the album <em>Invent the Universe</em>. Source:
+              <a
+                href="https://stellardrone.bandcamp.com/album/invent-the-universe"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Bandcamp</a
+              >. Licensed under
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >CC BY 4.0</a
+              >. No changes were made to the bundled audio files.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

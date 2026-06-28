@@ -214,6 +214,30 @@ const apiRows: [string, string][] = [
       </div>
     </div>
 
+    <!-- Attribution -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-alert vd-alert-info">
+          <i class="ph ph-info"></i>
+          <div>
+            <strong>Attribution</strong>
+            <p class="vd-mb-0 vd-mt-1">
+              Interaction and layout are adapted from the MIT-licensed CodePen
+              <a
+                href="https://codepen.io/z-/pen/OBPJKK"
+                target="_blank"
+                rel="noopener noreferrer"
+                >“Expanding flex cards”</a
+              >
+              by Zed Dash. Vanduo adds prefixed class names, documentation,
+              optional keyboard navigation, and reduced-motion handling. Photo
+              strip images are Vanduo demo assets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Engine wiring -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12">
