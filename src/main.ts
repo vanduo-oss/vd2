@@ -28,7 +28,9 @@ export const createApp = ViteSSG(
   },
   async ({ app, initialState }) => {
     app.use(createPinia());
-    app.use(VanduoVue);
+    // The docs site overrides core's generic default dark primary (amber ->
+    // blue); @vanduo-oss/vue ships the generic baseline, so we inject it here.
+    app.use(VanduoVue, { themeDefaults: { PRIMARY_DARK: "blue" } });
 
     // The VD2 plugin kicks off the framework's client JS (window.Vanduo*
     // globals that the composables delegate to); await it before mount so the
