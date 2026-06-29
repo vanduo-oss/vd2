@@ -1,6 +1,26 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
+
+const vue3Usage = `<script setup lang="ts">
+import { VdPreloader } from "@vanduo-oss/vue";
+<\/script>
+
+<template>
+  <VdPreloader text="Loading…" />
+  <VdPreloader variant="success" size="lg" />
+</template>`;
+
+const vue3Api: [string, string][] = [
+  [
+    ":variant",
+    "primary | secondary | success | warning | error | info (default primary).",
+  ],
+  [":size", "sm | md | lg | xl (default md)."],
+  [":theme", "light | dark (default light)."],
+  [":text", "Optional caption below the loader."],
+];
 
 const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
 <div class="vd-dynamic-loader">
@@ -175,7 +195,36 @@ const patternsHtml = `<!-- Standalone quad loader (page / panel) -->
               imports <code>spinner.css</code>). No separate "required CSS"
               block.
             </p>
-            <DocCodeSnippet :html="patternsHtml" />
+            <EngineSwitch>
+              <template #vanilla
+                ><DocCodeSnippet :html="patternsHtml"
+              /></template>
+              <template #vue3><DocCodeSnippet :html="vue3Usage" /></template>
+            </EngineSwitch>
+            <EngineSwitch>
+              <template #vue3>
+                <h4 class="vd-mt-6">VdPreloader API (Vue 3)</h4>
+                <div class="vd-table-responsive">
+                  <table class="vd-table vd-table-hover">
+                    <thead>
+                      <tr>
+                        <th>Prop</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in vue3Api" :key="row[0]">
+                        <td>
+                          <code>{{ row[0] }}</code>
+                        </td>
+                        <td>{{ row[1] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+              <template #vanilla><span></span></template>
+            </EngineSwitch>
             <p class="vd-text-sm vd-text-muted vd-mt-3 vd-mb-0">
               <strong>This documentation site</strong> builds similar
               placeholders in <code>docs/js/app.js</code> (section fetch, scroll

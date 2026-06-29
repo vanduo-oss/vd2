@@ -1,5 +1,23 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
+
+const vue3Usage = `<script setup lang="ts">
+import { VdSkeleton } from "@vanduo-oss/vue";
+<\/script>
+
+<template>
+  <VdSkeleton shape="text" :lines="3" />
+  <VdSkeleton shape="circle" size="lg" />
+  <VdSkeleton shape="rect" width="200px" />
+</template>`;
+
+const vue3Api: [string, string][] = [
+  [":shape", "text | circle | rect | card | button (default text)."],
+  [":size", "sm | md | lg | xl (default md)."],
+  [":width", 'Explicit CSS width, e.g. "200px".'],
+  [":lines", 'Number of lines when shape="text" (default 1).'],
+];
 
 const textHtml = `<!-- Heading placeholder -->
 <div class="vd-skeleton vd-skeleton-heading"></div>
@@ -358,7 +376,17 @@ const classRows: [string, string][] = [
             </h6>
           </div>
           <div class="vd-card-body">
-            <h4>CSS Classes</h4>
+            <h4>Usage</h4>
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="textHtml" :default-open="true"
+              /></template>
+            </EngineSwitch>
+
+            <h4 class="vd-mt-6">CSS Classes</h4>
             <div class="vd-table-responsive">
               <table class="vd-table vd-table-striped">
                 <thead>
@@ -377,6 +405,35 @@ const classRows: [string, string][] = [
                 </tbody>
               </table>
             </div>
+
+            <EngineSwitch>
+              <template #vue3>
+                <h4 class="vd-mt-6">Component API (Vue 3)</h4>
+                <div class="vd-table-responsive">
+                  <table class="vd-table vd-table-striped">
+                    <thead>
+                      <tr>
+                        <th>Prop</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in vue3Api" :key="row[0]">
+                        <td>
+                          <code>{{ row[0] }}</code>
+                        </td>
+                        <td>{{ row[1] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+              <template #vanilla>
+                <p class="vd-text-muted vd-mt-6">
+                  Pure CSS — apply the classes above. No JavaScript API.
+                </p>
+              </template>
+            </EngineSwitch>
           </div>
         </div>
       </div>

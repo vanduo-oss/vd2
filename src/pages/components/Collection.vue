@@ -1,5 +1,26 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
+
+const vue3Usage = `<script setup lang="ts">
+import { VdCollection } from "@vanduo-oss/vue";
+const items = [
+  { id: 1, title: "Ada Lovelace", subtitle: "Engineer", avatar: "/ada.jpg" },
+  { id: 2, title: "Alan Turing", subtitle: "Mathematician" },
+];
+<\/script>
+
+<template>
+  <VdCollection :items="items" header="Team" hoverable bordered />
+</template>`;
+
+const vue3Api: [string, string][] = [
+  [":items", "Array of { id, title, subtitle?, avatar?, action? }."],
+  [":header", "Optional list header text."],
+  [":hoverable", "Hover highlight on rows."],
+  [":bordered", "Adds an outer border."],
+  [":size", "sm | md | lg (default md)."],
+];
 
 const avatarStyle =
   "display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;";
@@ -157,7 +178,14 @@ const people = [
         <div class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Usage</h6></div>
           <div class="vd-card-body">
-            <DocCodeSnippet :html="usageHtml" />
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="usageHtml" :default-open="true"
+              /></template>
+            </EngineSwitch>
           </div>
         </div>
       </div>
@@ -184,5 +212,30 @@ const people = [
         </tbody>
       </table>
     </div>
+
+    <EngineSwitch>
+      <template #vue3>
+        <h4 class="docs-heading vd-mt-6">Component API (Vue 3)</h4>
+        <div class="vd-table-responsive" style="margin-bottom: 3rem">
+          <table class="vd-table vd-table-hover">
+            <thead>
+              <tr>
+                <th style="width: 25%">Prop</th>
+                <th style="width: 75%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in vue3Api" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+      <template #vanilla><div style="margin-bottom: 3rem"></div></template>
+    </EngineSwitch>
   </section>
 </template>
