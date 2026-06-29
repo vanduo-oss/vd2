@@ -17,8 +17,8 @@ importers:
         specifier: 2.1.15
         version: 2.1.15(vue@3.5.39(typescript@6.0.3))
       '@vanduo-oss/charts':
-        specifier: ^0.1.0
-        version: 0.1.0(vue@3.5.39(typescript@6.0.3))
+        specifier: ^0.2.0
+        version: 0.2.0(vue@3.5.39(typescript@6.0.3))
       '@vanduo-oss/core':
         specifier: ^1.0.1
         version: 1.0.1
@@ -26,8 +26,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.39(typescript@6.0.3))
       '@vanduo-oss/framework':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.7.0
+        version: 1.7.0
       '@vanduo-oss/hex-grid':
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.39(typescript@6.0.3))
@@ -35,8 +35,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.39(typescript@6.0.3))
       '@vanduo-oss/vue':
-        specifier: ^0.2.0
-        version: 0.2.0(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(vue@3.5.39(typescript@6.0.3))
+        specifier: ^0.3.0
+        version: 0.3.0(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(vue@3.5.39(typescript@6.0.3))
       highlight.js:
         specifier: 11.11.1
         version: 11.11.1
@@ -719,8 +719,8 @@ packages:
     peerDependencies:
       vue: '>=3.5.18'
 
-  '@vanduo-oss/charts@0.1.0':
-    resolution: {integrity: sha512-5BLOx3UXNLSFasHihUXng5zGReAJ11dKt/wh1IgWYeleFX+3rcY9ptcpZHXUC9yLIduoKIQuZ6MTsT/VQuIC3w==}
+  '@vanduo-oss/charts@0.2.0':
+    resolution: {integrity: sha512-3xeJunYnMJSeDAJPgeGvVokWQlj/ChZcspD96faD5Vmmhm3BgCNfvXn5GtBtQk3l8fut5P/EQc3yTRQB9LE0Aw==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -741,8 +741,8 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/framework@1.6.0':
-    resolution: {integrity: sha512-bTM66ir9er3tDNdKZOkU1cbZ0Xs4iAUmmvjhUDB6eYSCbMNoMngVYhqF+aVAl65dJCZV23w3bQmi8coRjh8SAQ==}
+  '@vanduo-oss/framework@1.7.0':
+    resolution: {integrity: sha512-Xg5jpbSn11B6t5ibvg99RjMcmaqeYgdApxcMU1bkz5Mh310r5pHTYRrGwc7SX2nXvjhZcwwCKUJCdLXsfMNH9w==}
     engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
 
   '@vanduo-oss/hex-grid@1.1.0':
@@ -763,9 +763,9 @@ packages:
       vue:
         optional: true
 
-  '@vanduo-oss/vue@0.2.0':
-    resolution: {integrity: sha512-owHzs7ru8dcCKJoAn5U2raYDeQ0XXpxqlqD+wlNQ9ocY8dX6sBbp2cdth/aO4CQem1Ji4tZo9UEWer+5/zwUmg==}
-    engines: {node: '>=24', pnpm: '>=10'}
+  '@vanduo-oss/vue@0.3.0':
+    resolution: {integrity: sha512-vxQFcZrKMktGvLuAtvU+ORofBslIfPlXIe1Fty/unS3mk3RQEPsapq/8iJhOpzp4gdr8EfRxZeQZ7ZUUKsTzNQ==}
+    engines: {node: '>=20.19.0 || >=22.12.0 || >=24', pnpm: '>=9'}
     peerDependencies:
       pinia: '>=2.1.0'
       vue: '>=3.3.0'
@@ -2831,7 +2831,7 @@ snapshots:
       unhead: 2.1.15
       vue: 3.5.39(typescript@6.0.3)
 
-  '@vanduo-oss/charts@0.1.0(vue@3.5.39(typescript@6.0.3))':
+  '@vanduo-oss/charts@0.2.0(vue@3.5.39(typescript@6.0.3))':
     optionalDependencies:
       vue: 3.5.39(typescript@6.0.3)
 
@@ -2841,7 +2841,7 @@ snapshots:
     optionalDependencies:
       vue: 3.5.39(typescript@6.0.3)
 
-  '@vanduo-oss/framework@1.6.0': {}
+  '@vanduo-oss/framework@1.7.0': {}
 
   '@vanduo-oss/hex-grid@1.1.0(vue@3.5.39(typescript@6.0.3))':
     optionalDependencies:
@@ -2851,10 +2851,10 @@ snapshots:
     optionalDependencies:
       vue: 3.5.39(typescript@6.0.3)
 
-  '@vanduo-oss/vue@0.2.0(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(vue@3.5.39(typescript@6.0.3))':
+  '@vanduo-oss/vue@0.3.0(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(vue@3.5.39(typescript@6.0.3))':
     dependencies:
       '@vanduo-oss/core': 1.0.1
-      '@vanduo-oss/framework': 1.6.0
+      '@vanduo-oss/framework': 1.7.0
       pinia: 3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3))
       vue: 3.5.39(typescript@6.0.3)
 

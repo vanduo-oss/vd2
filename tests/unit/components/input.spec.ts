@@ -22,11 +22,11 @@ describe('VdInput', () => {
 
   it('applies size and variant classes', () => {
     const wrapper = mount(VdInput, {
-      props: { modelValue: '', size: 'lg', variant: 'error' },
+      props: { modelValue: '', size: 'lg', variant: 'danger' },
     });
     const input = wrapper.find('input');
     expect(input.classes()).toContain('vd-input-lg');
-    expect(input.classes()).toContain('vd-input-error');
+    expect(input.classes()).toContain('vd-input-danger');
   });
 
   it('is disabled when prop is set', () => {
