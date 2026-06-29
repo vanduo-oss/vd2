@@ -33,7 +33,7 @@ const hoverHtml = `<!-- Hover Table -->
   <tbody>
     <tr><td>#001</td><td><span class="vd-badge vd-badge-success">Active</span></td><td>2024-01-15</td></tr>
     <tr><td>#002</td><td><span class="vd-badge vd-badge-warning">Pending</span></td><td>2024-01-16</td></tr>
-    <tr><td>#003</td><td><span class="vd-badge vd-badge-error">Failed</span></td><td>2024-01-17</td></tr>
+    <tr><td>#003</td><td><span class="vd-badge vd-badge-danger">Failed</span></td><td>2024-01-17</td></tr>
   </tbody>
 </table>`;
 
@@ -174,7 +174,7 @@ const apiRows: [string, string, string][] = [
                 </tr>
                 <tr>
                   <td>#003</td>
-                  <td><span class="vd-badge vd-badge-error">Failed</span></td>
+                  <td><span class="vd-badge vd-badge-danger">Failed</span></td>
                   <td>2024-01-17</td>
                 </tr>
               </tbody>

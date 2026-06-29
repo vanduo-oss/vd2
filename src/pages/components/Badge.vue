@@ -8,7 +8,7 @@ const variantsHtml = `<!-- Default (secondary color) -->
 <span class="vd-badge vd-badge-secondary">Secondary</span>
 <span class="vd-badge vd-badge-success">Success</span>
 <span class="vd-badge vd-badge-warning">Warning</span>
-<span class="vd-badge vd-badge-error">Error</span>
+<span class="vd-badge vd-badge-danger">Danger</span>
 <span class="vd-badge vd-badge-info">Info</span>
 <span class="vd-badge vd-badge-light">Light</span>
 <span class="vd-badge vd-badge-dark">Dark</span>`;
@@ -26,7 +26,7 @@ const pillsHtml = `<!-- Pill badges (fully rounded) -->
 const positionedHtml = `<!-- Badge on a button -->
 <button class="vd-btn vd-btn-primary" style="position:relative;">
   Notifications
-  <span class="vd-badge vd-badge-error"
+  <span class="vd-badge vd-badge-danger"
         style="position:absolute; top:-6px; right:-6px;">3</span>
 </button>
 
@@ -46,8 +46,14 @@ const classRows: [string, string][] = [
   [".vd-badge-secondary", "Secondary (teal/green) background."],
   [".vd-badge-success", "Green success background."],
   [".vd-badge-warning", "Amber warning background."],
-  [".vd-badge-error", "Red error background."],
-  [".vd-badge-danger", "Alias for .vd-badge-error."],
+  [
+    ".vd-badge-danger",
+    'Red danger background — the unified status name (matches Vue variant="danger").',
+  ],
+  [
+    ".vd-badge-error",
+    "Retained backward-compatible alias for .vd-badge-danger.",
+  ],
   [".vd-badge-info", "Cyan info background."],
   [".vd-badge-light", "Light gray background (inverted in dark mode)."],
   [".vd-badge-dark", "Dark gray background with light text."],
@@ -102,7 +108,7 @@ const varRows: [string, string][] = [
             <span class="vd-badge vd-badge-secondary">Secondary</span>
             <span class="vd-badge vd-badge-success">Success</span>
             <span class="vd-badge vd-badge-warning">Warning</span>
-            <span class="vd-badge vd-badge-error">Error</span>
+            <span class="vd-badge vd-badge-danger">Danger</span>
             <span class="vd-badge vd-badge-info">Info</span>
             <span class="vd-badge vd-badge-light">Light</span>
             <span class="vd-badge vd-badge-dark">Dark</span>
@@ -128,7 +134,9 @@ const varRows: [string, string][] = [
             >
               <span class="vd-badge vd-badge-pill vd-badge-primary">New</span>
               <span class="vd-badge vd-badge-pill vd-badge-success">Done</span>
-              <span class="vd-badge vd-badge-pill vd-badge-error">Blocked</span>
+              <span class="vd-badge vd-badge-pill vd-badge-danger"
+                >Blocked</span
+              >
             </div>
             <p class="vd-text-sm vd-text-muted vd-mb-3">Outlined</p>
             <div
@@ -184,7 +192,7 @@ const varRows: [string, string][] = [
             <button class="vd-btn vd-btn-primary" style="position: relative">
               Notifications
               <span
-                class="vd-badge vd-badge-error"
+                class="vd-badge vd-badge-danger"
                 style="position: absolute; top: -6px; right: -6px"
                 >3</span
               >

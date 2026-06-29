@@ -45,6 +45,19 @@ const darkCss = `/* Dark mode just remaps the same token names */
   --vd-text-primary: #e6e8ee;
 }`;
 
+// useThemeBridge — sync an app-owned light/dark toggle onto Vanduo (vue 0.3.0).
+const bridgeJs = `import { computed } from 'vue';
+import { useThemeBridge } from '@vanduo-oss/vue';
+import { useColorMode } from '@nuxtjs/color-mode'; // any owner of light/dark
+
+// Vanduo keys dark mode off [data-theme] on <html>. When another system owns
+// the toggle, hand it that system's mode ref and Vanduo follows along:
+const colorMode = useColorMode();
+useThemeBridge(computed(() => colorMode.preference));
+
+// On mount and on every change, the bridge sets [data-theme] AND re-derives
+// the default accent for the active scheme — no duplicate toggle UI needed.`;
+
 const tiers: [string, string][] = [
   [
     "Palette",
@@ -142,6 +155,30 @@ const tiers: [string, string][] = [
           In vd2 you rarely write this by hand — the
           <a href="/guides/theme-customizer">theme store</a> flips
           <code>data-theme</code> for you.
+        </p>
+      </div>
+    </div>
+
+    <div id="theme-bridge" class="vd-card demo-card vd-mt-6">
+      <div class="vd-card-header">
+        <h6>
+          <i class="ph ph-arrows-left-right"></i> Bridge an app-owned toggle
+          <code class="vd-text-sm">Vue 3</code>
+        </h6>
+      </div>
+      <div class="vd-card-body">
+        <p>
+          Already have a light/dark toggle (e.g.
+          <code>@nuxtjs/color-mode</code>, a Pinia store, or your own ref)? The
+          <code>useThemeBridge</code> composable from
+          <code>@vanduo-oss/vue</code> keeps Vanduo in sync with it instead of
+          adding a second source of truth.
+        </p>
+        <DocCodeSnippet :js="bridgeJs" :default-open="true" />
+        <p class="vd-text-sm vd-text-muted vd-mt-3">
+          Pass a <code>Ref&lt;'light' | 'dark' | 'system'&gt;</code>. The bridge
+          re-syncs on mount and whenever the ref changes — useful for SSR / Nuxt
+          apps where the host framework owns colour mode.
         </p>
       </div>
     </div>

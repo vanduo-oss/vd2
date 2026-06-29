@@ -5,7 +5,7 @@ const variantsHtml = `<button class="vd-btn vd-btn-primary">Primary</button>
 <button class="vd-btn vd-btn-secondary">Secondary</button>
 <button class="vd-btn vd-btn-success">Success</button>
 <button class="vd-btn vd-btn-warning">Warning</button>
-<button class="vd-btn vd-btn-error">Error</button>
+<button class="vd-btn vd-btn-danger">Danger</button>
 <button class="vd-btn vd-btn-info">Info</button>
 <button class="vd-btn vd-btn-outline">Outline</button>
 <button class="vd-btn vd-btn-outline-primary">Outline Primary</button>
@@ -57,7 +57,7 @@ const ghostHtml = `<button class="vd-btn vd-btn-ghost">Ghost</button>
 const iconHtml = `<button class="vd-btn vd-btn-icon vd-btn-primary" aria-label="Add item"><i class="ph ph-plus"></i></button>
 <button class="vd-btn vd-btn-icon vd-btn-secondary" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
 <button class="vd-btn vd-btn-icon vd-btn-success" aria-label="Confirm"><i class="ph ph-check"></i></button>
-<button class="vd-btn vd-btn-icon vd-btn-error" aria-label="Delete"><i class="ph ph-trash"></i></button>
+<button class="vd-btn vd-btn-icon vd-btn-danger" aria-label="Delete"><i class="ph ph-trash"></i></button>
 <button class="vd-btn vd-btn-icon vd-btn-outline" aria-label="More options"><i class="ph ph-dots-three"></i></button>`;
 
 const loadingHtml = `<button class="vd-btn vd-btn-primary is-loading">Loading</button>
@@ -92,8 +92,13 @@ const classRef: ClassRef[] = [
     type: "Variant",
   },
   {
+    cls: ".vd-btn-danger",
+    desc: 'Danger/destructive action color — unified status name (matches Vue variant="danger")',
+    type: "Variant",
+  },
+  {
     cls: ".vd-btn-error",
-    desc: "Error/destructive action color",
+    desc: "Retained backward-compatible alias for .vd-btn-danger",
     type: "Variant",
   },
   { cls: ".vd-btn-info", desc: "Informational action color", type: "Variant" },
@@ -157,7 +162,7 @@ const classRef: ClassRef[] = [
             <button class="vd-btn vd-btn-secondary">Secondary</button>
             <button class="vd-btn vd-btn-success">Success</button>
             <button class="vd-btn vd-btn-warning">Warning</button>
-            <button class="vd-btn vd-btn-error">Error</button>
+            <button class="vd-btn vd-btn-danger">Danger</button>
             <button class="vd-btn vd-btn-info">Info</button>
             <button class="vd-btn vd-btn-outline">Outline</button>
             <button class="vd-btn vd-btn-outline-primary">
@@ -244,7 +249,10 @@ const classRef: ClassRef[] = [
             >
               <i class="ph ph-check"></i>
             </button>
-            <button class="vd-btn vd-btn-icon vd-btn-error" aria-label="Delete">
+            <button
+              class="vd-btn vd-btn-icon vd-btn-danger"
+              aria-label="Delete"
+            >
               <i class="ph ph-trash"></i>
             </button>
             <button

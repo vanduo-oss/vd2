@@ -74,7 +74,7 @@ const apiRows: [string, string, string][] = [
               Success Toast
             </button>
             <button
-              class="vd-btn vd-btn-error"
+              class="vd-btn vd-btn-danger"
               @click="toast.error('An error occurred!')"
             >
               Error Toast

@@ -40,6 +40,10 @@ import FormValidationPage from "@/pages/components/FormValidation.vue";
 import DatepickerPage from "@/pages/components/Datepicker.vue";
 import TimepickerPage from "@/pages/components/Timepicker.vue";
 import RatingPage from "@/pages/components/Rating.vue";
+import SwitchPage from "@/pages/components/Switch.vue";
+import SliderPage from "@/pages/components/Slider.vue";
+import SeparatorPage from "@/pages/components/Separator.vue";
+import MenuPage from "@/pages/components/Menu.vue";
 import ChartsPage from "@/pages/canvas/Charts.vue";
 import FlowchartPage from "@/pages/canvas/Flowchart.vue";
 import HexPage from "@/pages/canvas/Hex.vue";
@@ -126,6 +130,10 @@ const componentPages: Record<string, ReturnType<typeof definePage>> = {
   datepicker: DatepickerPage,
   timepicker: TimepickerPage,
   rating: RatingPage,
+  switch: SwitchPage,
+  slider: SliderPage,
+  separator: SeparatorPage,
+  menu: MenuPage,
   charts: ChartsPage,
   flowchart: FlowchartPage,
   hex: HexPage,

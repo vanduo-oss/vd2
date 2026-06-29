@@ -19,8 +19,8 @@ const variantsHtml = `<!-- Primary alert -->
 <!-- Warning alert -->
 <div class="vd-alert vd-alert-warning">...</div>
 
-<!-- Error alert (also .vd-alert-danger alias) -->
-<div class="vd-alert vd-alert-error">...</div>
+<!-- Danger alert (.vd-alert-error remains as an alias) -->
+<div class="vd-alert vd-alert-danger">...</div>
 
 <!-- Info alert -->
 <div class="vd-alert vd-alert-info">...</div>`;
@@ -98,8 +98,14 @@ const classRows: [string, string][] = [
   [".vd-alert-primary", "Blue accent variant for general information."],
   [".vd-alert-success", "Green accent variant for positive feedback."],
   [".vd-alert-warning", "Amber accent variant for cautionary messages."],
-  [".vd-alert-error", "Red accent variant for errors and failures."],
-  [".vd-alert-danger", "Alias for .vd-alert-error."],
+  [
+    ".vd-alert-danger",
+    'Red accent variant — the unified status name (matches Vue variant="danger").',
+  ],
+  [
+    ".vd-alert-error",
+    "Retained backward-compatible alias for .vd-alert-danger.",
+  ],
   [".vd-alert-info", "Cyan accent variant for tips and hints."],
   [".vd-alert-dismissible", "Adds right padding for a close button."],
   [".vd-alert-close", "Close button positioned at top-right."],
@@ -147,10 +153,10 @@ const classRows: [string, string][] = [
                 <strong>Warning.</strong> Your subscription expires in 3 days.
               </div>
             </div>
-            <div class="vd-alert vd-alert-error vd-mb-3">
+            <div class="vd-alert vd-alert-danger vd-mb-3">
               <i class="ph ph-x-circle"></i>
               <div>
-                <strong>Error.</strong> Unable to connect to the server. Please
+                <strong>Danger.</strong> Unable to connect to the server. Please
                 try again.
               </div>
             </div>

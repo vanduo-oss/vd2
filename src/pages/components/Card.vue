@@ -77,7 +77,7 @@ const imageHtml = `<div class="vd-card">
   </div>
 </div>`;
 
-const actionableHtml = `<div class="vd-card vd-card-actionable vd-card-glow" role="button" tabindex="0">
+const actionableHtml = `<div class="vd-card vd-card-interactive vd-card-glow" role="button" tabindex="0">
   <div class="vd-card-body">
     <i class="ph ph-rocket-launch" style="font-size: 2rem; color: var(--vd-color-primary);
        margin-bottom: 0.75rem; display: block;"></i>
@@ -123,8 +123,8 @@ const classRef: [string, string, string][] = [
     "Media",
   ],
   [
-    ".vd-card-actionable",
-    "Hover lift + cursor pointer + focus ring for clickable cards",
+    ".vd-card-interactive",
+    "Hover lift + cursor pointer + focus ring for clickable cards (renamed from .vd-card-actionable in framework 1.7.0)",
     "Modifier",
   ],
   [".vd-card-header", "Card header section with bottom border", "Structure"],
@@ -404,13 +404,13 @@ const classRef: [string, string, string][] = [
       <i class="ph ph-hand-pointing mr-1"></i>Actionable Cards
     </h5>
     <p class="vd-text-sm vd-text-muted vd-mb-4">
-      Add <code>.vd-card-actionable</code> for hover lift, cursor pointer, and
+      Add <code>.vd-card-interactive</code> for hover lift, cursor pointer, and
       focus ring — perfect for clickable cards that navigate or trigger modals.
     </p>
     <div class="vd-row vd-mb-10">
       <div class="vd-col-12 vd-col-md-6 vd-col-lg-4">
         <div
-          class="vd-card vd-card-actionable vd-card-glow"
+          class="vd-card vd-card-interactive vd-card-glow"
           role="button"
           tabindex="0"
         >

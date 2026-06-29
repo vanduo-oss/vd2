@@ -227,7 +227,7 @@ const a11yHtml = `<!-- Decorative: label is visible, hide the icon -->
             <button class="vd-btn vd-btn-success">
               <i class="ph ph-check mr-2"></i> Save
             </button>
-            <button class="vd-btn vd-btn-error">
+            <button class="vd-btn vd-btn-danger">
               <i class="ph ph-trash mr-2"></i> Delete
             </button>
             <button class="vd-btn vd-btn-outline">

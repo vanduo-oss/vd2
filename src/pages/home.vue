@@ -264,7 +264,7 @@ const swatches = [
         <div class="vd-row">
           <div class="vd-col-12">
             <div
-              class="vd-card vd-card-glow vd-card-actionable vd-glass icons-card home-card-no-glow"
+              class="vd-card vd-card-glow vd-card-interactive vd-glass icons-card home-card-no-glow"
             >
               <div class="icons-weights">
                 <div
@@ -323,7 +323,7 @@ const swatches = [
         <div class="vd-row">
           <div class="vd-col-12">
             <div
-              class="vd-card vd-card-glow vd-card-actionable vd-glass open-color-card home-card-no-glow"
+              class="vd-card vd-card-glow vd-card-interactive vd-glass open-color-card home-card-no-glow"
             >
               <div class="open-color-grid">
                 <div
@@ -381,32 +381,50 @@ const swatches = [
                 <li class="whats-new-item">
                   <i class="ph ph-toggle-right" aria-hidden="true"></i>
                   <span
-                    ><strong>New Vue components</strong> — Switch, Slider,
-                    Separator and Menu in <code>@vanduo-oss/vue</code>.</span
+                    ><strong>New Vue components</strong> —
+                    <RouterLink to="/components/switch">Switch</RouterLink>,
+                    <RouterLink to="/components/slider">Slider</RouterLink>,
+                    <RouterLink to="/components/separator"
+                      >Separator</RouterLink
+                    >
+                    and <RouterLink to="/components/menu">Menu</RouterLink> in
+                    <code>@vanduo-oss/vue</code>.</span
                   >
                 </li>
                 <li class="whats-new-item">
                   <i class="ph ph-text-aa" aria-hidden="true"></i>
                   <span
                     ><strong>Form ergonomics</strong> —
-                    <code>VdInput</code> gains label / hint / error / prefix /
-                    suffix and a number model, on a unified status-variant
-                    palette.</span
+                    <RouterLink to="/components/forms"
+                      ><code>VdInput</code></RouterLink
+                    >
+                    gains label / hint / error / prefix / suffix and a number
+                    model, on a unified status-variant palette.</span
                   >
                 </li>
                 <li class="whats-new-item">
                   <i class="ph ph-chart-line" aria-hidden="true"></i>
                   <span
-                    ><strong>Charts</strong> — per-point colour, multi-series,
-                    axis ranges, data labels and reference-line annotations in
+                    ><strong
+                      ><RouterLink to="/canvas/charts"
+                        >Charts</RouterLink
+                      ></strong
+                    >
+                    — per-point colour, multi-series, axis ranges, data labels
+                    and reference-line annotations in
                     <code>@vanduo-oss/charts</code>.</span
                   >
                 </li>
                 <li class="whats-new-item">
                   <i class="ph ph-cube" aria-hidden="true"></i>
                   <span
-                    ><strong>Framework</strong> — Separator &amp; Slider styles
-                    plus unified status-palette aliases in
+                    ><strong>Framework</strong> —
+                    <RouterLink to="/components/separator"
+                      >Separator</RouterLink
+                    >
+                    &amp;
+                    <RouterLink to="/components/slider">Slider</RouterLink>
+                    styles plus unified status-palette aliases in
                     <code>@vanduo-oss/framework</code>.</span
                   >
                 </li>
@@ -414,8 +432,10 @@ const swatches = [
                   <i class="ph ph-paint-roller" aria-hidden="true"></i>
                   <span
                     ><strong>Theming</strong> — a
-                    <code>useThemeBridge</code> composable to sync an app's
-                    light/dark state.</span
+                    <RouterLink to="/guides/css-variables"
+                      ><code>useThemeBridge</code></RouterLink
+                    >
+                    composable to sync an app's light/dark state.</span
                   >
                 </li>
               </ul>
@@ -435,7 +455,7 @@ const swatches = [
         <div class="vd-row">
           <div class="vd-col-12">
             <div
-              class="vd-card vd-card-glow vd-card-actionable vd-glass vd-text-center home-card-no-glow"
+              class="vd-card vd-card-glow vd-card-interactive vd-glass vd-text-center home-card-no-glow"
               style="padding: 3rem 2rem"
             >
               <i
@@ -484,5 +504,19 @@ const swatches = [
 
 .whats-new-item strong {
   color: var(--vd-text-primary);
+}
+
+.whats-new-item a {
+  color: var(--vd-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.whats-new-item a:hover {
+  text-decoration: underline;
+}
+
+.whats-new-item strong a {
+  color: inherit;
 }
 </style>

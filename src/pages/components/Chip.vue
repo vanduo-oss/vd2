@@ -11,7 +11,7 @@ const usageHtml = `<!-- Chip Variants -->
 <span class="vd-chip vd-chip-primary">Primary</span>
 <span class="vd-chip vd-chip-success">Success</span>
 <span class="vd-chip vd-chip-warning">Warning</span>
-<span class="vd-chip vd-chip-error">Error</span>
+<span class="vd-chip vd-chip-danger">Danger</span>
 <span class="vd-chip vd-chip-info">Info</span>
 
 <!-- Dismissible Chip -->
@@ -28,7 +28,7 @@ const apiRows: [string, string, string][] = [
   ],
   [
     ".vd-chip-[variant]",
-    "Solid color modifier (e.g., -primary, -secondary, -success, -warning, -error, -info).",
+    "Solid color modifier on the unified status vocabulary (-primary, -secondary, -success, -warning, -danger, -info). -error is a retained alias for -danger.",
     "Modifier",
   ],
   [
@@ -68,7 +68,7 @@ const apiRows: [string, string, string][] = [
             <span class="vd-chip vd-chip-secondary">Secondary</span>
             <span class="vd-chip vd-chip-success">Success</span>
             <span class="vd-chip vd-chip-warning">Warning</span>
-            <span class="vd-chip vd-chip-error">Error</span>
+            <span class="vd-chip vd-chip-danger">Danger</span>
             <span class="vd-chip vd-chip-info">Info</span>
           </div>
         </div>
@@ -88,8 +88,8 @@ const apiRows: [string, string, string][] = [
             <span class="vd-chip vd-chip-outline vd-chip-success"
               >Outline Success</span
             >
-            <span class="vd-chip vd-chip-outline vd-chip-error"
-              >Outline Error</span
+            <span class="vd-chip vd-chip-outline vd-chip-danger"
+              >Outline Danger</span
             >
           </div>
         </div>

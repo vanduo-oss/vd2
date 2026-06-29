@@ -231,6 +231,13 @@ export const nav: NavTree = {
               file: "components/dropdown.html",
             },
             {
+              id: "menu",
+              title: "Menu",
+              route: "/components/menu",
+              icon: "list-dashes",
+              keywords: ["menu", "dropdown", "actions", "context", "items"],
+            },
+            {
               id: "popover",
               title: "Popover",
               route: "/components/popover",
@@ -751,6 +758,27 @@ export const nav: NavTree = {
               file: "components/rating.html",
             },
             {
+              id: "switch",
+              title: "Switch",
+              route: "/components/switch",
+              icon: "toggle-right",
+              keywords: [
+                "switch",
+                "toggle",
+                "on",
+                "off",
+                "checkbox",
+                "boolean",
+              ],
+            },
+            {
+              id: "slider",
+              title: "Slider",
+              route: "/components/slider",
+              icon: "sliders-horizontal",
+              keywords: ["slider", "range", "input", "value", "drag"],
+            },
+            {
               id: "stepper",
               title: "Stepper",
               route: "/components/stepper",
@@ -861,6 +889,13 @@ export const nav: NavTree = {
                 "layout",
               ],
               file: "primitives/primitives.html",
+            },
+            {
+              id: "separator",
+              title: "Separator",
+              route: "/components/separator",
+              icon: "minus",
+              keywords: ["separator", "divider", "hr", "rule", "split"],
             },
             {
               id: "sidenav",

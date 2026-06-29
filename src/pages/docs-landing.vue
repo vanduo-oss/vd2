@@ -129,7 +129,7 @@ const cards: DocsCard[] = [
           :class="card.linkClass"
         >
           <div
-            class="vd-card vd-card-glow vd-card-actionable vd-glass about-card docs-landing-card"
+            class="vd-card vd-card-glow vd-card-interactive vd-glass about-card docs-landing-card"
             :class="card.cardClass"
           >
             <div class="vd-card-body docs-landing-card-body">

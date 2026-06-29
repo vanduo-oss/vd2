@@ -1791,7 +1791,7 @@ footer.vd-glass::before {
     box-shadow 0.3s ease;
 }
 
-.about-card.vd-card-actionable:hover {
+.about-card.vd-card-interactive:hover {
   transform: translateY(-5px);
 }
 
@@ -1799,12 +1799,12 @@ footer.vd-glass::before {
   transition: color 0.3s ease;
 }
 
-.about-card.vd-card-actionable:hover .vd-card-body i {
+.about-card.vd-card-interactive:hover .vd-card-body i {
   color: var(--vd-color-primary) !important;
 }
 
 /* Glow uses framework .vd-card-glow:hover from vanduo.min.css (do not reset here). */
-a:hover .vd-card-actionable.vd-card-glow {
+a:hover .vd-card-interactive.vd-card-glow {
   box-shadow:
     0 0 15px 0 var(--vd-card-glow-color),
     var(--vd-shadow-xl);

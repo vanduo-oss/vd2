@@ -374,7 +374,7 @@ const dataAttrs: [string, string][] = [
           <div class="vd-col-12 vd-col-md-4 vd-mb-4">
             <RouterLink
               to="/guides/getting-started"
-              class="vd-card vd-card-actionable vd-card-glow"
+              class="vd-card vd-card-interactive vd-card-glow"
               style="text-decoration: none"
             >
               <div class="vd-card-body">
@@ -389,7 +389,7 @@ const dataAttrs: [string, string][] = [
           <div class="vd-col-12 vd-col-md-4 vd-mb-4">
             <RouterLink
               to="/guides/first-layout"
-              class="vd-card vd-card-actionable vd-card-glow"
+              class="vd-card vd-card-interactive vd-card-glow"
               style="text-decoration: none"
             >
               <div class="vd-card-body">
@@ -404,7 +404,7 @@ const dataAttrs: [string, string][] = [
           <div class="vd-col-12 vd-col-md-4 vd-mb-4">
             <RouterLink
               to="/guides/esm-vs-iife"
-              class="vd-card vd-card-actionable vd-card-glow"
+              class="vd-card vd-card-interactive vd-card-glow"
               style="text-decoration: none"
             >
               <div class="vd-card-body">

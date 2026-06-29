@@ -22,6 +22,47 @@ const donutData = [
   { channel: "Email", revenue: 1800 },
 ];
 
+// New in @vanduo-oss/charts 0.2.0 — multi-series, data labels, annotations.
+const seriesData = [
+  { month: "Jan", product: 120, service: 80 },
+  { month: "Feb", product: 180, service: 110 },
+  { month: "Mar", product: 150, service: 130 },
+  { month: "Apr", product: 220, service: 160 },
+];
+const series = [
+  { name: "Product", y: "product" },
+  { name: "Service", y: "service" },
+];
+const funnelData = [
+  { stage: "Visit", users: 4200 },
+  { stage: "Signup", users: 2600 },
+  { stage: "Trial", users: 1500 },
+  { stage: "Paid", users: 820 },
+];
+// Per-datum colour: highlight the strong stages.
+const barColor = (row: Record<string, unknown>): string =>
+  Number(row.users) >= 2600 ? "#22c55e" : "#64748b";
+const trendData = [
+  { week: "W1", mrr: 120 },
+  { week: "W2", mrr: 168 },
+  { week: "W3", mrr: 153 },
+  { week: "W4", mrr: 244 },
+];
+const targetLine = [{ y: 200, label: "Target", color: "#e5484d" }];
+
+const featuresUsage = `<!-- Multiple series (grouped bars) -->
+<VdChart type="bar" :data="data" x="month" legend
+         :series="[{ name: 'Product', y: 'product' },
+                   { name: 'Service', y: 'service' }]" />
+
+<!-- Value labels + per-point colour -->
+<VdChart type="bar" :data="data" x="stage" y="users" :data-labels="true"
+         :color="(row) => row.users >= 2600 ? '#22c55e' : '#64748b'" />
+
+<!-- Reference line + pinned axis range -->
+<VdChart type="line" :data="data" x="week" y="mrr" :y-min="0" :y-max="300"
+         :annotations="[{ y: 200, label: 'Target', color: '#e5484d' }]" />`;
+
 const installShell = `pnpm add @vanduo-oss/charts`;
 
 const vue3Usage = `<script setup lang="ts">
@@ -90,6 +131,30 @@ const vue3Api: [string, string][] = [
   [
     ":theme / :tooltip / :responsive",
     "Theme overrides, custom/disabled tooltip, responsive resize.",
+  ],
+  [
+    ":series",
+    "Multiple series — grouped bars, or one line/area path each (Series[]). New in 0.2.0.",
+  ],
+  [
+    ":color",
+    "A CSS color, a category-field name, or a per-datum (row) => color. New in 0.2.0.",
+  ],
+  [
+    ":data-labels",
+    "true or { format, color } — draw value labels on each mark. New in 0.2.0.",
+  ],
+  [
+    ":annotations",
+    "Reference lines: [{ y?, x?, label?, color?, dash? }]. New in 0.2.0.",
+  ],
+  [
+    ":y-min / :y-max / :y-tick-count",
+    "Pin axis bounds and tick density (otherwise auto-scaled). New in 0.2.0.",
+  ],
+  [
+    ":legend",
+    "true or { position } — shown by default for multi-series charts. New in 0.2.0.",
   ],
 ];
 
@@ -167,6 +232,79 @@ const vanillaOptions: [string, string][] = [
         </div>
       </div>
     </div>
+
+    <!-- New in 0.2.0 — multi-series, data labels, per-point colour, annotations -->
+    <h3 class="vd-mb-2" style="color: var(--vd-color-primary)">
+      <i class="ph ph-sparkle" aria-hidden="true"></i> New in 0.2.0
+    </h3>
+    <p class="vd-text-muted vd-mb-6">
+      Multi-series, value labels, per-point colour, reference-line annotations
+      and pinned axis ranges — all opt-in, so default charts render unchanged.
+    </p>
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12 vd-col-lg-4 vd-mb-4">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-chart-bar"></i> Multi-Series</h6>
+          </div>
+          <div class="vd-card-body">
+            <VdChart
+              type="bar"
+              :data="seriesData"
+              x="month"
+              :series="series"
+              legend
+              title="Product vs service"
+              :height="300"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="vd-col-12 vd-col-lg-4 vd-mb-4">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-tag"></i> Labels + Per-Point Colour</h6>
+          </div>
+          <div class="vd-card-body">
+            <VdChart
+              type="bar"
+              :data="funnelData"
+              x="stage"
+              y="users"
+              :data-labels="true"
+              :color="barColor"
+              title="Activation funnel"
+              :height="300"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="vd-col-12 vd-col-lg-4 vd-mb-4">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-chart-line-up"></i> Annotation + Axis Range</h6>
+          </div>
+          <div class="vd-card-body">
+            <VdChart
+              type="line"
+              :data="trendData"
+              x="week"
+              y="mrr"
+              :y-min="0"
+              :y-max="300"
+              :annotations="targetLine"
+              title="MRR vs target"
+              :height="300"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <DocCodeSnippet
+      class="vd-mb-8"
+      :html="featuresUsage"
+      :default-open="true"
+    />
 
     <div class="vd-card vd-card-glow demo-card">
       <div class="vd-card-header">

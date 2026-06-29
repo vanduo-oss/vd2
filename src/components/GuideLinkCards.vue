@@ -41,7 +41,7 @@ withDefaults(
               ? { href: link.to, target: '_blank', rel: 'noopener' }
               : { to: link.to }
           "
-          class="vd-card vd-glass vd-card-actionable guide-link"
+          class="vd-card vd-glass vd-card-interactive guide-link"
         >
           <span class="guide-link-icon">
             <i :class="`ph ${link.icon}`" aria-hidden="true"></i>

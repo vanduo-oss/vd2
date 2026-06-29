@@ -2,7 +2,61 @@
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
-import { VdCustomSelect } from "@vanduo-oss/vue";
+import { VdCustomSelect, VdInput } from "@vanduo-oss/vue";
+
+// VdInput component demo state (new ergonomics in @vanduo-oss/vue 0.3.0).
+const fullName = ref("Ada Lovelace");
+const emailField = ref("ada@");
+const amount = ref<string | number>(42);
+const handle = ref("");
+
+const vue3InputUsage = `<script setup lang="ts">
+import { VdInput } from "@vanduo-oss/vue";
+const email = ref("");
+const amount = ref(0);
+<\/script>
+
+<template>
+  <!-- Label + helper text -->
+  <VdInput v-model="email" type="email" label="Email"
+           hint="We'll never share it." />
+
+  <!-- Error message also styles the field as danger -->
+  <VdInput v-model="email" type="email" label="Email"
+           error="Enter a valid email address." />
+
+  <!-- Prefix / suffix + number model (emits a number) -->
+  <VdInput v-model="amount" type="number" label="Amount"
+           prefix="$" suffix="USD" />
+</template>`;
+
+const vanillaInputUsage = `<!-- VdInput renders this structure; write it directly in Vanilla -->
+<div class="vd-form-group">
+  <label class="vd-form-label" for="email">Email</label>
+  <div class="vd-input-group">
+    <input id="email" type="email" class="vd-input vd-input-danger"
+           aria-invalid="true" aria-describedby="email-error" />
+  </div>
+  <span id="email-error" class="vd-form-error">Enter a valid email address.</span>
+</div>`;
+
+const vdInputApi: [string, string][] = [
+  [
+    "v-model (modelValue)",
+    'Two-way value. Emits a number when type="number", otherwise a string.',
+  ],
+  [":label", "Field label rendered above the input."],
+  [":hint", "Helper text below the input (hidden when error is set)."],
+  [":error", "Error message; its presence also styles the input as danger."],
+  [":prefix / :suffix", "Static text/symbol before / after the input."],
+  [":variant", "'success' | 'danger' validation state (error implies danger)."],
+  [":size", "'sm' | 'md' | 'lg' input height (default 'md')."],
+  [
+    "native attrs",
+    "type, placeholder, disabled, readonly, required, min/max/step, pattern, autocomplete…",
+  ],
+  ["@blur / @focus", "Forwarded focus events."],
+];
 
 // The custom-select is the one input with engine-specific wiring (plain inputs
 // are pure CSS and identical across engines).
@@ -198,10 +252,122 @@ const classRef: [string, string, string][] = [
     <div class="vd-alert vd-alert-info vd-mb-6">
       <i class="ph ph-info"></i>
       <div>
-        The main Vanduo bundle still includes framework-wide defaults for native
-        form controls in v1.4.1. Use the documented <code>.vd-*</code>
-        form classes for stable component markup, and load app-specific
-        overrides after Vanduo when embedding into an existing design system.
+        Vanduo ships framework-wide defaults for native form controls. Use the
+        documented <code>.vd-*</code> form classes for stable component markup,
+        and load app-specific overrides after Vanduo when embedding into an
+        existing design system. In Vue&nbsp;3, the
+        <code>&lt;VdInput&gt;</code> component (below) wraps this markup with
+        label / hint / error / prefix / suffix props.
+      </div>
+    </div>
+
+    <!-- VdInput component (new ergonomics in @vanduo-oss/vue 0.3.0) -->
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div id="demo-form-vd-input" class="vd-card vd-card-glow demo-card">
+          <div class="vd-card-header">
+            <h6>
+              <i
+                class="ph ph-text-aa mr-2"
+                style="color: var(--vd-color-primary)"
+              ></i
+              >VdInput — label / hint / error / prefix / suffix
+            </h6>
+          </div>
+          <div class="vd-card-body">
+            <p class="vd-text-muted vd-mb-5">
+              The Vue&nbsp;3 <code>&lt;VdInput&gt;</code> bundles the common
+              field anatomy — label, helper text, validation message and affixes
+              — into one component on the unified status-variant palette.
+              <code>type="number"</code> binds a real number.
+            </p>
+            <div class="vd-row">
+              <div class="vd-col-12 vd-col-md-6">
+                <VdInput
+                  v-model="fullName"
+                  label="Full name"
+                  hint="As it appears on your card."
+                />
+                <VdInput
+                  v-model="emailField"
+                  type="email"
+                  label="Email"
+                  error="Enter a valid email address."
+                  class="vd-mt-4"
+                />
+              </div>
+              <div class="vd-col-12 vd-col-md-6">
+                <VdInput
+                  v-model="amount"
+                  type="number"
+                  label="Amount"
+                  prefix="$"
+                  suffix="USD"
+                  :min="0"
+                  :step="1"
+                />
+                <p class="vd-text-sm vd-text-muted vd-mt-2">
+                  Bound value: <strong>{{ amount }}</strong> ({{
+                    typeof amount
+                  }})
+                </p>
+                <VdInput
+                  v-model="handle"
+                  label="Handle"
+                  prefix="@"
+                  variant="success"
+                  hint="That username is available."
+                  class="vd-mt-4"
+                />
+              </div>
+            </div>
+
+            <h4 class="vd-mt-6">Usage</h4>
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3InputUsage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="vanillaInputUsage" :default-open="true"
+              /></template>
+            </EngineSwitch>
+
+            <EngineSwitch>
+              <template #vue3>
+                <h4 class="vd-mt-6">Component API</h4>
+                <div class="vd-table-responsive">
+                  <table class="vd-table vd-table-striped">
+                    <thead>
+                      <tr>
+                        <th>Prop / event</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in vdInputApi" :key="row[0]">
+                        <td>
+                          <code>{{ row[0] }}</code>
+                        </td>
+                        <td>{{ row[1] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+              <template #vanilla>
+                <p class="vd-text-muted vd-mt-4">
+                  In the Vanilla engine, compose the same look with
+                  <code>.vd-form-group</code>, <code>.vd-form-label</code>,
+                  <code>.vd-input-group</code> (+
+                  <code>.vd-input-group-prefix</code> / <code>-suffix</code>),
+                  the <code>.vd-input-danger</code> /
+                  <code>.vd-input-success</code> state classes, and
+                  <code>.vd-form-error</code> / <code>.vd-form-help</code> text.
+                </p>
+              </template>
+            </EngineSwitch>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -150,9 +150,14 @@ watch(engine, applyEngineFilter);
                       <div>
                         <strong>Separator &amp; Slider styles</strong>
                         <p>
-                          <code>.vd-separator</code> (with
-                          <code>-vertical</code> / <code>-labeled</code>) and a
-                          styled range <code>.vd-slider</code>.
+                          <RouterLink to="/components/separator"
+                            ><code>.vd-separator</code></RouterLink
+                          >
+                          (with <code>-vertical</code> / <code>-labeled</code>)
+                          and a styled range
+                          <RouterLink to="/components/slider"
+                            ><code>.vd-slider</code></RouterLink
+                          >.
                         </p>
                       </div>
                     </li>
@@ -198,9 +203,19 @@ watch(engine, applyEngineFilter);
                       <div>
                         <strong>Switch, Slider, Separator &amp; Menu</strong>
                         <p>
-                          Four new components — <code>VdSwitch</code>,
-                          <code>VdSlider</code>, <code>VdSeparator</code>, and
-                          <code>VdMenu</code>.
+                          Four new components —
+                          <RouterLink to="/components/switch"
+                            ><code>VdSwitch</code></RouterLink
+                          >,
+                          <RouterLink to="/components/slider"
+                            ><code>VdSlider</code></RouterLink
+                          >,
+                          <RouterLink to="/components/separator"
+                            ><code>VdSeparator</code></RouterLink
+                          >, and
+                          <RouterLink to="/components/menu"
+                            ><code>VdMenu</code></RouterLink
+                          >.
                         </p>
                       </div>
                     </li>
@@ -212,12 +227,18 @@ watch(engine, applyEngineFilter);
                       <div>
                         <strong>Form-control ergonomics</strong>
                         <p>
-                          <code>VdInput</code> gains <code>label</code> /
-                          <code>hint</code> / <code>error</code> /
-                          <code>prefix</code> / <code>suffix</code> and a number
-                          model; <code>VdSelect</code> /
-                          <code>VdRadioGroup</code> are generic over their
-                          value; new <code>useThemeBridge</code> composable.
+                          <RouterLink to="/components/forms"
+                            ><code>VdInput</code></RouterLink
+                          >
+                          gains <code>label</code> / <code>hint</code> /
+                          <code>error</code> / <code>prefix</code> /
+                          <code>suffix</code> and a number model;
+                          <code>VdSelect</code> / <code>VdRadioGroup</code> are
+                          generic over their value; new
+                          <RouterLink to="/guides/css-variables"
+                            ><code>useThemeBridge</code></RouterLink
+                          >
+                          composable.
                         </p>
                       </div>
                     </li>
@@ -254,7 +275,10 @@ watch(engine, applyEngineFilter);
                     class="ph ph-chart-line mr-2"
                     style="color: var(--vd-color-primary)"
                   ></i
-                  >@vanduo-oss/charts <code>0.2.0</code>
+                  ><RouterLink to="/canvas/charts"
+                    >@vanduo-oss/charts</RouterLink
+                  >
+                  <code>0.2.0</code>
                 </h4>
                 <div class="change-group">
                   <h5>New</h5>

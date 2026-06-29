@@ -1246,7 +1246,7 @@ A Fibonacci-scaled component library for modern web apps.</textarea>
             <button class="vd-btn vd-btn-outline-secondary" @click="close">
               Cancel
             </button>
-            <button class="vd-btn vd-btn-error" @click="close">
+            <button class="vd-btn vd-btn-danger" @click="close">
               <i class="ph ph-trash mr-1"></i>Delete Permanently
             </button>
           </div>
