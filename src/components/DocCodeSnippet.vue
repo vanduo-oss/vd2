@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
 import { ENGINE_SNIPPET_GROUP } from "@/components/engineSnippetGroup";
+import { highlightCode } from "@/utils/highlight";
 
 interface Props {
   /** The demo markup shown in the HTML tab (mirrors the Vanilla data-extract). */
@@ -31,6 +32,11 @@ const langs = computed<Lang[]>(() => {
   if (props.js) list.push({ key: "js", label: "JavaScript", code: props.js });
   return list;
 });
+
+// Pre-highlight each tab once (syntax tokens themed via Vanduo tokens in CSS).
+const highlightedLangs = computed(() =>
+  langs.value.map((l) => ({ ...l, highlighted: highlightCode(l.code, l.key) })),
+);
 
 // Inside an EngineSwitch, expand-state is shared by ordinal position so the
 // snippet stays open when the reader flips engines; standalone it's local.
@@ -113,12 +119,12 @@ const copy = async (): Promise<void> => {
       </div>
       <div class="vd-code-snippet-body">
         <pre
-          v-for="l in langs"
+          v-for="l in highlightedLangs"
           :key="l.key"
           class="vd-code-snippet-pane"
           :class="{ 'is-active': active === l.key }"
           :data-lang="l.key"
-        ><code>{{ l.code }}</code></pre>
+        ><code class="hljs" v-html="l.highlighted"></code></pre>
       </div>
     </div>
   </div>

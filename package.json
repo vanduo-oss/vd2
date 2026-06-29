@@ -1,6 +1,6 @@
 {
   "name": "@vanduo-oss/vd2",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Vue 3 + vite-ssg documentation site for @vanduo-oss/framework",
   "private": true,
   "type": "module",
@@ -42,6 +42,7 @@
     "@vanduo-oss/hex-grid": "^1.1.0",
     "@vanduo-oss/music-player": "^1.1.0",
     "@vanduo-oss/vue": "^0.2.0",
+    "highlight.js": "11.11.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.38",
     "vue-router": "^5.1.0"

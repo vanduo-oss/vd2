@@ -5,6 +5,40 @@ All notable changes to `vd2` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] - 2026-06-29
+
+### Added
+
+- **Foundations polish** — a deep Fibonacci guide (colored sequence,
+  Standard-vs-Fibonacci comparison, proportional spacing bars, layout-class
+  demos), an interactive Typography type-scale playground, and live WCAG
+  contrast badges on the Colors palette.
+- **Home "Cool Breeze I" what's-new section** linking to the changelog.
+- **Code-snippet syntax highlighting** — `DocCodeSnippet` now highlights HTML /
+  CSS / JS / TS / shell via highlight.js, themed with Vanduo tokens (light/dark
+  aware).
+- **`EngineBadge`** component for engine-specific section headers and a
+  reusable **`useClickOutside`** composable.
+
+### Changed
+
+- **Vanduo Ecosystem guide** rewritten to cover the whole `@vanduo-oss` family
+  (core, framework, vue + standalone charts / hex-grid / music-player /
+  flowchart); the docs site itself is intentionally excluded.
+- **Sidebar** — removed the per-item engine labels in guides; engine scope now
+  lives on the relevant section headers.
+- **Changelog** — strict per-engine filtering, and it now documents package
+  releases ONLY (never docs-site content — see the `changelog-content-policy`
+  OpenSpec change). The latest entry is the engine-tagged "Cool Breeze I" card.
+
+### Fixed
+
+- **Theme customizer** now closes on an outside click.
+- **Component-docs correctness pass** — fixed invented classes and wrong
+  event/API payloads and defaults across Fab, Flow, Stepper, Scrollspy,
+  FormValidation, Tabs, Transfer, Tree, and Sidenav (verified against the
+  installed framework 1.6.0 / vue 0.2.0).
+
 ## [0.2.0] - 2026-06-23
 
 ### Added

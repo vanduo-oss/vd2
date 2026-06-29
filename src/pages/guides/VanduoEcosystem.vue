@@ -18,13 +18,6 @@ const nextLinks = [
     badge: "Guide",
   },
   {
-    to: "/guides/theme-customizer",
-    icon: "ph-paint-brush",
-    title: "Theme customizer",
-    desc: "Theming through the Pinia store.",
-    badge: "Guide",
-  },
-  {
     to: "/guides/css-variables",
     icon: "ph-sliders",
     title: "CSS variables & theming",
@@ -40,33 +33,60 @@ const nextLinks = [
   },
 ];
 
-const depsShell = `# vd2 depends on the shared token core + the framework's component CSS
-pnpm add @vanduo-oss/core      # design tokens (SSOT)
-pnpm add @vanduo-oss/framework # component CSS (and the Vanilla runtime)`;
-
-const importJs = `// vd2 (Vue 3 engine) — what an app actually imports
-import '@vanduo-oss/framework/css';      // component CSS
-import { useThemeStore } from '@/stores/theme';
-// token *data* (colour list, neutrals, radii, fonts) comes from core:
-import { PRIMARY_COLORS } from '@vanduo-oss/core';`;
-
-const engines: [string, string, string][] = [
+// Two interchangeable engines + the shared token core.
+const core: [string, string, string][] = [
   [
     "@vanduo-oss/core",
     "Design-token source of truth",
-    "Framework-agnostic DTCG tokens → CSS vars + typed TS + JSON. No runtime.",
+    "Framework-agnostic DTCG tokens compiled to CSS variables, typed TS, and JSON. No runtime — both engines consume it, so the palette, spacing, radii, and fonts never drift.",
   ],
   [
     "@vanduo-oss/framework",
-    "Vanilla zero-build engine",
-    "The original CDN / static / SPA engine. Owns component CSS + imperative JS. A feature, not debt.",
+    "Vanilla (zero-build) engine",
+    "Pure HTML/CSS/JS you drop in over a CDN or a bundler. Owns the component CSS and an imperative runtime driven by data-* attributes.",
   ],
   [
-    "@vanduo-oss/vd2",
-    "Vue 3 + SSR engine",
-    "This site. Reimplements the framework's behaviour as Vue composables + Pinia; consumes core tokens + framework CSS.",
+    "@vanduo-oss/vue",
+    "Vue 3 engine",
+    "First-class typed Vd* components and composables (the engine these docs are built on). Tree-shakeable ESM, SSR/SSG-ready; consumes core tokens + framework CSS.",
   ],
 ];
+
+// Standalone, framework-agnostic add-on packages — install only what you need.
+const addons: [string, string, string][] = [
+  [
+    "@vanduo-oss/charts",
+    "SVG charts",
+    "Data-in, SVG-out bar / line / area / scatter / donut charts. Token-themed and SSR-safe, with an optional typed ./vue subpath.",
+  ],
+  [
+    "@vanduo-oss/hex-grid",
+    "Canvas hex grids",
+    "VdHexGrid — interactive canvas hex grids with terrain, pathfinding, and theme-aware rendering.",
+  ],
+  [
+    "@vanduo-oss/music-player",
+    "HTML5 audio player",
+    "A drop-in audio player (playlist, shuffle, repeat) styled with the Vanduo design language.",
+  ],
+  [
+    "@vanduo-oss/flowchart",
+    "SVG flowchart editor",
+    "A standalone SVG flowchart / diagram editor for documentation and tools.",
+  ],
+];
+
+const vanillaShell = `# Vanilla engine — drop-in CSS + JS (or a CDN <link> / <script>)
+pnpm add @vanduo-oss/core @vanduo-oss/framework`;
+
+const vueShell = `# Vue 3 engine — pulls core + framework as dependencies
+pnpm add @vanduo-oss/vue`;
+
+const addonsShell = `# Optional standalone packages — work with either engine
+pnpm add @vanduo-oss/charts
+pnpm add @vanduo-oss/hex-grid
+pnpm add @vanduo-oss/music-player
+pnpm add @vanduo-oss/flowchart`;
 </script>
 
 <template>
@@ -76,20 +96,20 @@ const engines: [string, string, string][] = [
       <code class="vd-text-sm">Guide</code>
     </h5>
     <p class="vd-mb-6">
-      Vanduo is intentionally a <strong>dual-engine</strong> design system. The
-      same look, feel, and Fibonacci-based design language is served by two
-      engines that share a single source of design tokens. Understanding the
-      three packages explains why some guides differ between the original docs
-      and this Vue site.
+      Vanduo is a <strong>dual-engine</strong> design system — one look and one
+      Fibonacci-based design language, served either by a zero-build Vanilla
+      engine or by first-class Vue 3, both fed from a single token core. Around
+      that core sits a small family of <strong>standalone packages</strong> you
+      install only when you need them. Everything ships under the
+      <code>@vanduo-oss</code> scope.
     </p>
 
+    <!-- Core trio -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12">
         <div class="vd-card demo-card">
           <div class="vd-card-header">
-            <h6>
-              <i class="ph ph-stack"></i> Three packages, one design language
-            </h6>
+            <h6><i class="ph ph-stack"></i> The core trio</h6>
           </div>
           <div class="vd-card-body">
             <div class="vd-table-responsive">
@@ -102,7 +122,7 @@ const engines: [string, string, string][] = [
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="row in engines" :key="row[0]">
+                  <tr v-for="row in core" :key="row[0]">
                     <td>
                       <code>{{ row[0] }}</code>
                     </td>
@@ -121,6 +141,45 @@ const engines: [string, string, string][] = [
       </div>
     </div>
 
+    <!-- Standalone packages -->
+    <div class="vd-row vd-mb-6">
+      <div class="vd-col-12">
+        <div class="vd-card demo-card">
+          <div class="vd-card-header">
+            <h6><i class="ph ph-puzzle-piece"></i> Standalone packages</h6>
+          </div>
+          <div class="vd-card-body">
+            <p class="vd-mb-4">
+              Self-contained, framework-agnostic add-ons. They follow the same
+              tokens and theme, and work whether you ship the Vanilla or the Vue
+              engine.
+            </p>
+            <div class="vd-table-responsive">
+              <table class="vd-table vd-table-striped">
+                <thead>
+                  <tr>
+                    <th>Package</th>
+                    <th>What it is</th>
+                    <th>Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in addons" :key="row[0]">
+                    <td>
+                      <code>{{ row[0] }}</code>
+                    </td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- When to use which engine -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12 vd-col-md-6">
         <div class="vd-card demo-card">
@@ -145,7 +204,7 @@ const engines: [string, string, string][] = [
       <div class="vd-col-12 vd-col-md-6">
         <div class="vd-card demo-card">
           <div class="vd-card-header">
-            <h6><i class="ph ph-atom"></i> When to use vd2 (Vue)</h6>
+            <h6><i class="ph ph-atom"></i> When to use the Vue 3 engine</h6>
           </div>
           <div class="vd-card-body">
             <ul>
@@ -161,20 +220,23 @@ const engines: [string, string, string][] = [
       </div>
     </div>
 
+    <!-- Install -->
     <div class="vd-row vd-mb-6">
       <div class="vd-col-12">
         <div class="vd-card demo-card">
           <div class="vd-card-header">
-            <h6><i class="ph ph-package"></i> What a vd2 app installs</h6>
+            <h6><i class="ph ph-package"></i> Install</h6>
           </div>
           <div class="vd-card-body">
-            <DocCodeSnippet :shell="depsShell" :default-open="true" />
-            <p class="vd-mt-4">
-              vd2 pulls <strong>component CSS</strong> from the framework and
-              <strong>token data</strong> from core — it does not load the
-              framework's imperative JS. Behaviour is reimplemented in Vue:
-            </p>
-            <DocCodeSnippet :js="importJs" :default-open="true" />
+            <p class="vd-mb-3">Pick an engine:</p>
+            <DocCodeSnippet :shell="vanillaShell" :default-open="true" />
+            <DocCodeSnippet
+              class="vd-mt-3"
+              :shell="vueShell"
+              :default-open="true"
+            />
+            <p class="vd-mt-5 vd-mb-3">Then add any standalone packages:</p>
+            <DocCodeSnippet :shell="addonsShell" :default-open="true" />
           </div>
         </div>
       </div>
