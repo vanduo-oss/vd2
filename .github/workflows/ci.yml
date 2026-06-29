@@ -8,6 +8,11 @@ on:
 
 # All @vanduo-oss/* dependencies install from npm (the @vanduo-oss/* scope is
 # excluded from the .npmrc minimum-release-age delay), so this is single-repo.
+
+# Least-privilege default token: this workflow only reads the repo.
+permissions:
+  contents: read
+
 jobs:
   build-test:
     runs-on: ubuntu-latest

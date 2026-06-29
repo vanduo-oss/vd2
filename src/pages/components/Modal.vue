@@ -650,8 +650,7 @@ const vue3Api: [string, string][] = [
                   <div class="vd-form-group vd-mb-0">
                     <label class="vd-label" for="m-desc">Description</label
                     ><textarea id="m-desc" class="vd-input" rows="3">
-A Fibonacci-scaled component library for modern web apps.</textarea
-                    >
+A Fibonacci-scaled component library for modern web apps.</textarea>
                   </div>
                 </div>
                 <div
