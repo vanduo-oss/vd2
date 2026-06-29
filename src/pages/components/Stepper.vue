@@ -99,7 +99,7 @@ const jsMethods: [string, string][] = [
 const events: [string, string][] = [
   [
     "stepper:change",
-    "Fired on the stepper element when the active step changes. event.detail contains { index, previousIndex, step }.",
+    "Fired on the stepper element when the active step changes. event.detail contains { current, previous, total }.",
   ],
 ];
 

@@ -17,8 +17,8 @@ useTabs(root);   // wires [data-tab-target] inside root; cleanup on unmount`;
 const vanillaWiring = `// Wire every [data-tab-target] trigger (document, or a root element)
 VanduoTabs.init();
 
-// switch programmatically
-VanduoTabs.show(tabsEl, 'pane-2');`;
+// switch programmatically (pass a tab id or the trigger element)
+VanduoTabs.show('pane-2');`;
 
 const vue3Api: [string, string][] = [
   [
@@ -591,10 +591,12 @@ const classRows: [string, string][] = [
                         </td>
                       </tr>
                       <tr>
-                        <td><code>VanduoTabs.show(el, targetId)</code></td>
+                        <td><code>VanduoTabs.show(target)</code></td>
                         <td>
-                          Programmatically switch to the pane with the given
-                          <code>id</code> inside the tabs container.
+                          Programmatically switch tabs. <code>target</code> is a
+                          tab id (matched against
+                          <code>[data-tab-target]</code>) or the trigger
+                          element.
                         </td>
                       </tr>
                     </tbody>

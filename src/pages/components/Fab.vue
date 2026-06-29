@@ -17,24 +17,24 @@ const extendedHtml = `<button class="vd-fab vd-fab-extended" aria-label="Create 
   <i class="ph ph-check"></i><span>Save</span>
 </button>`;
 
-const colorsHtml = `<button class="vd-fab vd-fab-primary"><i class="ph ph-plus"></i></button>
+const colorsHtml = `<button class="vd-fab"><i class="ph ph-plus"></i></button>
 <button class="vd-fab vd-fab-secondary"><i class="ph ph-pencil-simple"></i></button>
 <button class="vd-fab vd-fab-success"><i class="ph ph-check"></i></button>
 <button class="vd-fab vd-fab-danger"><i class="ph ph-trash"></i></button>
 <button class="vd-fab vd-fab-glass"><i class="ph ph-star"></i></button>`;
 
-const positionHtml = `<!-- Pin a FAB to a viewport corner -->
-<button class="vd-fab vd-fab-primary vd-fab-bottom-right" aria-label="Compose">
+const positionHtml = `<!-- Pin a FAB to a viewport corner (base .vd-fab is already primary) -->
+<button class="vd-fab vd-fab-bottom-left" aria-label="Compose">
   <i class="ph ph-pencil-simple"></i>
 </button>
 
-<!-- Other corners -->
+<!-- Other positions -->
 <button class="vd-fab vd-fab-top-left">…</button>
 <button class="vd-fab vd-fab-top-right">…</button>
-<button class="vd-fab vd-fab-bottom-left">…</button>`;
+<button class="vd-fab vd-fab-center">…</button>`;
 
 const speedDialHtml = `<div class="vd-fab-menu" :class="{ 'is-open': open }">
-  <button class="vd-fab vd-fab-primary"
+  <button class="vd-fab"
           aria-label="Toggle actions"
           :aria-expanded="open"
           @click="open = !open">
@@ -56,12 +56,15 @@ const speedDialHtml = `<div class="vd-fab-menu" :class="{ 'is-open': open }">
 const classRows: [string, string][] = [
   [".vd-fab", "Base FAB. Round, elevated. 56 px by default."],
   [".vd-fab-sm / .vd-fab-lg", "Size variants — 40 px / 72 px."],
-  [".vd-fab-primary / -secondary / -success / -danger", "Color variants."],
+  [
+    ".vd-fab-secondary / -success / -danger",
+    "Color variants — the base .vd-fab is already primary.",
+  ],
   [".vd-fab-extended", "Wider pill-shaped variant with an icon + label."],
   [".vd-fab-glass", "Glass-styled variant (uses `--vd-glass-*` tokens)."],
   [
-    ".vd-fab-top-left / -top-right / -bottom-left / -bottom-right",
-    "Fixed-position modifiers that pin the FAB to a viewport corner.",
+    ".vd-fab-top-left / -top-right / -bottom-left / -center",
+    "Fixed-position modifiers that pin the FAB to a viewport corner (or bottom-center).",
   ],
   [".vd-fab-menu", "Speed-dial wrapper (relative, column layout)."],
   [
@@ -74,11 +77,14 @@ const cssVars: [string, string, string][] = [
   ["--vd-fab-size", "3.5rem (56 px)", "Default diameter"],
   ["--vd-fab-size-sm", "2.5rem (40 px)", "Small diameter"],
   ["--vd-fab-size-lg", "4.5rem (72 px)", "Large diameter"],
-  ["--vd-fab-extended-padding-x", "1.25rem", "Extended horizontal padding"],
-  ["--vd-fab-menu-gap", "0.75rem", "Gap between speed-dial buttons"],
-  ["--vd-fab-shadow", "var(--vd-shadow-lg)", "Elevation shadow"],
-  ["--vd-fab-z-index", "1040", "Stacking above page content"],
-  ["--vd-fab-offset", "1.5rem", "Distance from viewport edges"],
+  ["--vd-fab-menu-gap", "0.8125rem", "Gap between speed-dial buttons"],
+  [
+    "--vd-fab-shadow",
+    "0 3px 8px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.15)",
+    "Elevation shadow",
+  ],
+  ["--vd-fab-z-index", "1030", "Stacking above page content"],
+  ["--vd-fab-offset", "1.3125rem", "Distance from viewport edges"],
 ];
 </script>
 
@@ -108,13 +114,13 @@ const cssVars: [string, string, string][] = [
               flex-wrap: wrap;
             "
           >
-            <button class="vd-fab vd-fab-sm vd-fab-primary" aria-label="Small">
+            <button class="vd-fab vd-fab-sm" aria-label="Small">
               <i class="ph ph-plus"></i>
             </button>
-            <button class="vd-fab vd-fab-primary" aria-label="Default">
+            <button class="vd-fab" aria-label="Default">
               <i class="ph ph-plus"></i>
             </button>
-            <button class="vd-fab vd-fab-lg vd-fab-primary" aria-label="Large">
+            <button class="vd-fab vd-fab-lg" aria-label="Large">
               <i class="ph ph-plus"></i>
             </button>
           </div>
@@ -162,7 +168,7 @@ const cssVars: [string, string, string][] = [
               flex-wrap: wrap;
             "
           >
-            <button class="vd-fab vd-fab-primary" aria-label="New">
+            <button class="vd-fab" aria-label="New">
               <i class="ph ph-plus"></i>
             </button>
             <button class="vd-fab vd-fab-secondary" aria-label="Edit">
@@ -203,28 +209,28 @@ const cssVars: [string, string, string][] = [
               "
             >
               <button
-                class="vd-fab vd-fab-sm vd-fab-primary"
+                class="vd-fab vd-fab-sm"
                 style="position: absolute; top: 1rem; left: 1rem"
                 aria-label="Top-left"
               >
                 <i class="ph ph-arrow-up-left"></i>
               </button>
               <button
-                class="vd-fab vd-fab-sm vd-fab-primary"
+                class="vd-fab vd-fab-sm"
                 style="position: absolute; top: 1rem; right: 1rem"
                 aria-label="Top-right"
               >
                 <i class="ph ph-arrow-up-right"></i>
               </button>
               <button
-                class="vd-fab vd-fab-sm vd-fab-primary"
+                class="vd-fab vd-fab-sm"
                 style="position: absolute; bottom: 1rem; left: 1rem"
                 aria-label="Bottom-left"
               >
                 <i class="ph ph-arrow-down-left"></i>
               </button>
               <button
-                class="vd-fab vd-fab-primary"
+                class="vd-fab"
                 style="position: absolute; bottom: 1rem; right: 1rem"
                 aria-label="Bottom-right (default)"
               >
@@ -253,7 +259,7 @@ const cssVars: [string, string, string][] = [
           >
             <div class="vd-fab-menu" :class="{ 'is-open': speedDialOpen }">
               <button
-                class="vd-fab vd-fab-primary"
+                class="vd-fab"
                 aria-label="Toggle speed dial"
                 :aria-expanded="speedDialOpen"
                 @click="speedDialOpen = !speedDialOpen"

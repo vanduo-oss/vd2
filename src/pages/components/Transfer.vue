@@ -50,7 +50,10 @@ const cssClasses: [string, string][] = [
   [".vd-transfer-search", "Search input inside each panel for filtering items"],
   [".vd-transfer-list", "Scrollable list container holding items"],
   [".vd-transfer-item", "Individual item row with a checkbox"],
-  [".vd-transfer-item.is-checked", "Checked state on an item (ready to move)"],
+  [
+    ".vd-transfer-item.is-selected",
+    "Selected state on an item (ready to move)",
+  ],
   [".vd-transfer-actions", "Center column holding the move buttons"],
   [".vd-transfer-btn", "Arrow button to move checked items between panels"],
 ];
@@ -294,8 +297,8 @@ const vue3Api: [string, string][] = [
           </li>
           <li>
             Search inputs are labelled with
-            <code>aria-label="Filter available items"</code> /
-            <code>"Filter selected items"</code>
+            <code>aria-label="Search source"</code> /
+            <code>"Search target"</code>
           </li>
           <li>
             Panel headers use <code>aria-live="polite"</code> to announce count

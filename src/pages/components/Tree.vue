@@ -202,8 +202,17 @@ const structureHtml = `<!-- Auto-generated structure -->
 const cssClasses: [string, string][] = [
   [".vd-tree", "Auto-generated root container for the tree"],
   [".vd-tree-node", "Individual tree node (may contain children)"],
+  [
+    ".vd-tree-node-content",
+    "The clickable row wrapper (toggle + icon + label)",
+  ],
   [".vd-tree-toggle", "Expand/collapse arrow for branch nodes"],
-  [".vd-tree-label", "Text label of the node (may include an icon)"],
+  [
+    ".vd-tree-toggle-placeholder",
+    "Spacer that aligns leaf nodes with branch toggles",
+  ],
+  [".vd-tree-icon", "Optional file/folder icon span before the label"],
+  [".vd-tree-label", "Text label of the node"],
   [
     ".vd-tree-checkbox",
     "Checkbox input rendered when data-vd-tree-checkbox is set",

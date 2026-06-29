@@ -16,7 +16,7 @@ useFlow(root);   // wires every .vd-flow inside root; cleanup on unmount
 
 // react to slide changes
 root.value?.addEventListener('flow:change', (e) => {
-  console.log('slide', e.detail.index);
+  console.log('slide', e.detail.current); // { current, previous, total }
 });`;
 
 const vanillaWiring = `// Wire every .vd-flow carousel (document, or a root element)
@@ -116,8 +116,8 @@ const dataAttrs: [string, string, string][] = [
   ["data-vd-interval", "Time in milliseconds between auto-advances", "5000"],
   [
     "data-vd-loop",
-    'Loop back to start after last slide when set to "true"',
-    "false",
+    'Loops back to the first slide after the last; set to "false" to disable',
+    "true",
   ],
 ];
 

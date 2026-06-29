@@ -51,7 +51,7 @@ const cssVars: [string, string][] = [
   ["--vd-sidenav-width", "233px"],
   ["--vd-sidenav-width-lg", "377px"],
   ["--vd-sidenav-bg", "var(--vd-color-white)"],
-  ["--vd-sidenav-overlay-bg", "rgba(0, 0, 0, 0.5)"],
+  ["--vd-sidenav-overlay-bg", "rgba(0, 0, 0, 0.35)"],
   ["--vd-sidenav-z-index", "1040"],
   ["--vd-sidenav-overlay-z-index", "1030"],
   [

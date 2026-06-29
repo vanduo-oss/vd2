@@ -158,7 +158,7 @@ const events: [string, string, string][] = [
   [
     "waypoint:change",
     "Fired on the nav element when the active section changes",
-    "{ activeLink, sectionId }",
+    "{ activeId, link }",
   ],
 ];
 </script>

@@ -470,8 +470,9 @@ const noop = (e: Event): void => e.preventDefault();
               <tr>
                 <td><code>validate:submit</code></td>
                 <td>
-                  Fired on the form when all fields pass validation on submit.
-                  <code>event.detail</code> contains form data as a plain object
+                  Fired on the form on submit. <code>event.detail</code> is
+                  <code>{ valid }</code> — a boolean indicating whether every
+                  field passed validation.
                 </td>
               </tr>
             </tbody>
