@@ -1,11 +1,36 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 
 const removed = reactive<Record<string, boolean>>({});
 const remove = (id: string): void => {
   removed[id] = true;
 };
+
+const vue3Usage = `<script setup lang="ts">
+import { VdChip } from "@vanduo-oss/vue";
+<\/script>
+
+<template>
+  <VdChip variant="primary">Default</VdChip>
+  <VdChip variant="success" outline>Outline</VdChip>
+  <VdChip variant="danger" dismissible @dismiss="onRemove">Removable</VdChip>
+</template>`;
+
+const vue3Api: [string, string][] = [
+  [
+    ":variant",
+    'primary | secondary | success | warning | danger | info (default "primary").',
+  ],
+  [":size", "sm | md | lg."],
+  [":outline", "Transparent background with a coloured border."],
+  [":dismissible", "Renders a close button that emits dismiss."],
+  [":clickable", "Makes the chip emit click on activation."],
+  [":avatar", "Image src rendered as a leading avatar."],
+  ["default slot", "Chip label."],
+  ["@dismiss / @click", "Emitted on close / click (when clickable)."],
+];
 
 const usageHtml = `<!-- Chip Variants -->
 <span class="vd-chip vd-chip-primary">Primary</span>
@@ -147,14 +172,21 @@ const apiRows: [string, string, string][] = [
         <div class="vd-card vd-card-glow demo-card">
           <div class="vd-card-header"><h6>Usage</h6></div>
           <div class="vd-card-body">
-            <DocCodeSnippet :html="usageHtml" />
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="usageHtml" :default-open="true"
+              /></template>
+            </EngineSwitch>
           </div>
         </div>
       </div>
     </div>
 
     <h4 id="api" class="docs-heading">API Reference</h4>
-    <div class="vd-table-responsive" style="margin-bottom: 3rem">
+    <div class="vd-table-responsive">
       <table class="vd-table vd-table-hover">
         <thead>
           <tr>
@@ -174,5 +206,30 @@ const apiRows: [string, string, string][] = [
         </tbody>
       </table>
     </div>
+
+    <EngineSwitch>
+      <template #vue3>
+        <h4 class="docs-heading vd-mt-6">Component API (Vue 3)</h4>
+        <div class="vd-table-responsive" style="margin-bottom: 3rem">
+          <table class="vd-table vd-table-hover">
+            <thead>
+              <tr>
+                <th style="width: 25%">Prop / slot / event</th>
+                <th style="width: 75%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in vue3Api" :key="row[0]">
+                <td>
+                  <code>{{ row[0] }}</code>
+                </td>
+                <td>{{ row[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+      <template #vanilla><div style="margin-bottom: 3rem"></div></template>
+    </EngineSwitch>
   </section>
 </template>

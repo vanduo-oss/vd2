@@ -1,5 +1,35 @@
 <script setup lang="ts">
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
+
+const vue3Usage = `<script setup lang="ts">
+import { VdBadge } from "@vanduo-oss/vue";
+<\/script>
+
+<template>
+  <VdBadge>Primary</VdBadge>            <!-- default variant is primary -->
+  <VdBadge variant="success">Done</VdBadge>
+  <VdBadge variant="danger" pill>Blocked</VdBadge>
+</template>`;
+
+const vanillaUsage = `<span class="vd-badge vd-badge-primary">Primary</span>
+<span class="vd-badge vd-badge-success">Done</span>
+<span class="vd-badge vd-badge-pill vd-badge-danger">Blocked</span>
+
+<!-- Bare .vd-badge (no modifier) renders the neutral/secondary colour. -->`;
+
+const vue3Api: [string, string][] = [
+  [
+    ":variant",
+    'primary | secondary | success | warning | danger | info (default "primary"). The bare Vanilla .vd-badge is neutral/secondary, but the Vue component defaults to primary.',
+  ],
+  [":pill", "Fully-rounded pill shape."],
+  ["default slot", "Badge content."],
+  [
+    "(size / outline)",
+    "Vanilla-only via .vd-badge-sm / -lg / -outlined — not exposed as VdBadge props.",
+  ],
+];
 
 const variantsHtml = `<!-- Default (secondary color) -->
 <span class="vd-badge">Default</span>
@@ -236,7 +266,17 @@ const varRows: [string, string][] = [
             </h6>
           </div>
           <div class="vd-card-body">
-            <h4>CSS Classes</h4>
+            <h4>Usage</h4>
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="vanillaUsage" :default-open="true"
+              /></template>
+            </EngineSwitch>
+
+            <h4 class="vd-mt-6">CSS Classes</h4>
             <div class="vd-table-responsive">
               <table class="vd-table vd-table-striped">
                 <thead>
@@ -255,6 +295,35 @@ const varRows: [string, string][] = [
                 </tbody>
               </table>
             </div>
+
+            <EngineSwitch>
+              <template #vue3>
+                <h4 class="vd-mt-6">Component API (Vue 3)</h4>
+                <div class="vd-table-responsive">
+                  <table class="vd-table vd-table-striped">
+                    <thead>
+                      <tr>
+                        <th>Prop / slot</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in vue3Api" :key="row[0]">
+                        <td>
+                          <code>{{ row[0] }}</code>
+                        </td>
+                        <td>{{ row[1] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+              <template #vanilla>
+                <p class="vd-text-muted vd-mt-6">
+                  Pure CSS — apply the classes above. No JavaScript API.
+                </p>
+              </template>
+            </EngineSwitch>
 
             <h4 class="vd-mt-6">CSS Variables</h4>
             <div class="vd-table-responsive">

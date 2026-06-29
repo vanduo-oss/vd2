@@ -1,8 +1,44 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
+import EngineSwitch from "@/components/EngineSwitch.vue";
 
 const dismissed = ref(false);
+
+const vue3Usage = `<script setup lang="ts">
+import { VdAlert } from "@vanduo-oss/vue";
+<\/script>
+
+<template>
+  <VdAlert variant="success" title="Saved">Your changes are saved.</VdAlert>
+
+  <!-- danger replaces the former error spelling -->
+  <VdAlert variant="danger" dismissible @dismiss="onDismiss">
+    Unable to connect to the server.
+  </VdAlert>
+</template>`;
+
+const vanillaUsage = `<div class="vd-alert vd-alert-success">
+  <i class="ph ph-check-circle"></i>
+  <div>Your changes are saved.</div>
+</div>
+
+<div class="vd-alert vd-alert-danger vd-alert-dismissible">
+  <i class="ph ph-x-circle"></i>
+  <div>Unable to connect to the server.</div>
+  <button class="vd-alert-close" aria-label="Close alert">&times;</button>
+</div>`;
+
+const vue3Api: [string, string][] = [
+  [
+    ":variant",
+    'primary | secondary | success | warning | danger | info (default "info"). Selects the leading icon automatically.',
+  ],
+  [":title", "Optional bold title rendered above the slot content."],
+  [":dismissible", "Renders a close button that emits dismiss."],
+  ["default slot", "Alert body content."],
+  ["@dismiss", "Emitted when the close button is clicked."],
+];
 
 const variantsHtml = `<!-- Primary alert -->
 <div class="vd-alert vd-alert-primary">
@@ -263,7 +299,17 @@ const classRows: [string, string][] = [
             </h6>
           </div>
           <div class="vd-card-body">
-            <h4>CSS Classes</h4>
+            <h4>Usage</h4>
+            <EngineSwitch>
+              <template #vue3
+                ><DocCodeSnippet :html="vue3Usage" :default-open="true"
+              /></template>
+              <template #vanilla
+                ><DocCodeSnippet :html="vanillaUsage" :default-open="true"
+              /></template>
+            </EngineSwitch>
+
+            <h4 class="vd-mt-6">CSS Classes</h4>
             <div class="vd-table-responsive">
               <table class="vd-table vd-table-striped">
                 <thead>
@@ -282,6 +328,35 @@ const classRows: [string, string][] = [
                 </tbody>
               </table>
             </div>
+
+            <EngineSwitch>
+              <template #vue3>
+                <h4 class="vd-mt-6">Component API (Vue 3)</h4>
+                <div class="vd-table-responsive">
+                  <table class="vd-table vd-table-striped">
+                    <thead>
+                      <tr>
+                        <th>Prop / slot / event</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in vue3Api" :key="row[0]">
+                        <td>
+                          <code>{{ row[0] }}</code>
+                        </td>
+                        <td>{{ row[1] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+              <template #vanilla>
+                <p class="vd-text-muted vd-mt-6">
+                  Pure CSS — apply the classes above. No JavaScript API.
+                </p>
+              </template>
+            </EngineSwitch>
           </div>
         </div>
       </div>
