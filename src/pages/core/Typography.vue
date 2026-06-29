@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import { RouterLink } from "vue-router";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 
@@ -82,6 +83,17 @@ const scale: ScaleRow[] = [
     text: "The quick brown fox jumps over the lazy dog",
   },
 ];
+
+// Interactive type-scale playground (xs … 6xl, left → right).
+const playgroundSteps = [...scale].reverse();
+const sampleText = ref("The quick brown fox jumps over the lazy dog");
+const stepIdx = ref(
+  Math.max(
+    0,
+    playgroundSteps.findIndex((s) => s.cls === "vd-text-base"),
+  ),
+);
+const current = computed(() => playgroundSteps[stepIdx.value]);
 
 const leading = [
   {
@@ -243,6 +255,60 @@ const apiRows: [string, string, string][] = [
               <RouterLink to="/core/golden-ratio">Golden Ratio</RouterLink>
               page for the proportional system these derive from.
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive playground -->
+    <div class="vd-row">
+      <div class="vd-col-12">
+        <div class="vd-card vd-card-glow demo-card vd-mb-8">
+          <div class="vd-card-header">
+            <h6>
+              <i class="ph ph-sliders-horizontal"></i> Type-scale playground
+            </h6>
+          </div>
+          <div class="vd-card-body">
+            <p class="vd-mb-5 vd-text-sm vd-text-muted">
+              Type your own copy and drag through the scale — the preview, the
+              utility class, and the size update live.
+            </p>
+            <input
+              v-model="sampleText"
+              type="text"
+              class="vd-input vd-mb-5"
+              placeholder="Type sample text…"
+              aria-label="Sample text"
+            />
+            <input
+              v-model.number="stepIdx"
+              type="range"
+              class="vd-range"
+              :min="0"
+              :max="playgroundSteps.length - 1"
+              step="1"
+              style="width: 100%"
+              aria-label="Type scale step"
+            />
+            <div
+              class="vd-mt-3"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+              "
+            >
+              <code>.{{ current.cls }}</code>
+              <span class="vd-badge vd-badge-primary">{{ current.badge }}</span>
+            </div>
+            <div class="type-playground-preview vd-mt-5">
+              <span :class="current.cls">{{
+                sampleText || "The quick brown fox"
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -415,3 +481,14 @@ const apiRows: [string, string, string][] = [
     </div>
   </section>
 </template>
+
+<style scoped>
+.type-playground-preview {
+  padding: 1.5rem;
+  border: 1px solid var(--vd-border-color);
+  border-radius: var(--vd-radius-fib-5, 0.5rem);
+  background: var(--vd-bg-secondary);
+  overflow-wrap: anywhere;
+  line-height: var(--vd-line-height-tight);
+}
+</style>

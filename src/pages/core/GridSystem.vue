@@ -415,7 +415,7 @@ const containers = [
             </p>
             <div class="vd-d-flex vd-flex-col vd-gap-5">
               <div>
-                <code class="vd-text-sm">.gap-fib-3</code> (3px)
+                <code class="vd-text-sm">.vd-gap-fib-3</code> (3px)
                 <div class="vd-grid-fib-3 vd-gap-fib-3 vd-mt-2">
                   <div
                     class="vd-bg-primary vd-text-white vd-p-3 vd-rounded-md vd-text-center vd-text-sm"
@@ -435,7 +435,7 @@ const containers = [
                 </div>
               </div>
               <div>
-                <code class="vd-text-sm">.gap-fib-8</code> (8px)
+                <code class="vd-text-sm">.vd-gap-fib-8</code> (8px)
                 <div class="vd-grid-fib-3 vd-gap-fib-8 vd-mt-2">
                   <div
                     class="vd-bg-success vd-text-white vd-p-3 vd-rounded-md vd-text-center vd-text-sm"
@@ -455,7 +455,7 @@ const containers = [
                 </div>
               </div>
               <div>
-                <code class="vd-text-sm">.gap-fib-21</code> (21px)
+                <code class="vd-text-sm">.vd-gap-fib-21</code> (21px)
                 <div class="vd-grid-fib-3 vd-gap-fib-21 vd-mt-2">
                   <div
                     class="vd-bg-info vd-text-white vd-p-3 vd-rounded-md vd-text-center vd-text-sm"

@@ -33,6 +33,16 @@ const contrast = (a: string, b: string): number => {
 const fgFor = (hex: string): string =>
   contrast(hex, "#ffffff") >= contrast(hex, "#212529") ? "#ffffff" : "#212529";
 
+/** WCAG rating for a contrast ratio (against the swatch's chosen text colour). */
+const wcagLabel = (ratio: number): string =>
+  ratio >= 7 ? "AAA" : ratio >= 4.5 ? "AA" : ratio >= 3 ? "AA Large" : "Fail";
+const wcagOf = (s: Swatch): string => wcagLabel(contrast(s.hex, s.fg));
+const contrastTitle = (s: Swatch): string =>
+  `Contrast vs ${s.fg === "#ffffff" ? "white" : "dark"} text — ${contrast(
+    s.hex,
+    s.fg,
+  ).toFixed(2)}:1 (${wcagOf(s)})`;
+
 /** Build a 0–9 scale for a family, painted live from the namespaced palette var. */
 const scale = (
   prefix: PalettePrefix,
@@ -336,9 +346,10 @@ const themingCss = `:root {
             <div class="vd-alert vd-alert-warning vd-mb-0">
               <i class="ph ph-shield-check"></i>
               <div>
-                <strong>Contrast &amp; accessibility.</strong> The default brand
-                step is <code>primary-5</code> (★), tuned for AA contrast with
-                white text. Because the
+                <strong>Contrast &amp; accessibility.</strong> The ★ marks each
+                family's main step; its badge shows the WCAG rating against the
+                most legible text colour, and hovering any swatch reveals the
+                exact ratio. Because the
                 <RouterLink to="/components/theme-customizer"
                   >Theme Customizer</RouterLink
                 >
@@ -373,10 +384,14 @@ const themingCss = `:root {
                 :key="s.name"
                 class="color-swatch"
                 :style="swatchStyle(s)"
+                :title="contrastTitle(s)"
               >
                 <span class="color-swatch-name"
                   >{{ s.name }}{{ s.star ? " ★" : "" }}</span
                 >
+                <span v-if="s.star" class="color-swatch-wcag">{{
+                  wcagOf(s)
+                }}</span>
                 <span class="color-swatch-hex">{{ s.hex }}</span>
               </div>
             </div>
@@ -465,10 +480,14 @@ const themingCss = `:root {
                     :key="s.name"
                     class="color-swatch"
                     :style="swatchStyle(s)"
+                    :title="contrastTitle(s)"
                   >
                     <span class="color-swatch-name"
                       >{{ s.name }}{{ s.star ? " ★" : "" }}</span
                     >
+                    <span v-if="s.star" class="color-swatch-wcag">{{
+                      wcagOf(s)
+                    }}</span>
                     <span class="color-swatch-hex">{{ s.hex }}</span>
                   </div>
                 </div>
@@ -569,6 +588,16 @@ const themingCss = `:root {
 
 .color-swatch-hex {
   opacity: 0.8;
+}
+
+.color-swatch-wcag {
+  font-size: var(--vd-font-size-xs);
+  font-weight: var(--vd-font-weight-semibold);
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
 }
 
 .color-scale {
