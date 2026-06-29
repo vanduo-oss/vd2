@@ -355,6 +355,81 @@ const swatches = [
         </div>
       </div>
 
+      <!-- What's New — Cool Breeze I -->
+      <div id="whats-new" style="padding: 4rem 0; scroll-margin-top: 80px">
+        <h3
+          class="vd-text-center vd-mb-2"
+          style="color: var(--vd-color-primary)"
+        >
+          <i class="ph ph-wind" aria-hidden="true"></i> Cool Breeze I
+        </h3>
+        <p class="vd-text-center vd-text-muted vd-mb-8">
+          What's new across the Vanduo packages in the latest release — a fresh
+          batch of components, charts, and framework polish.
+        </p>
+        <div class="vd-row">
+          <div class="vd-col-12">
+            <div
+              class="vd-card vd-card-glow vd-glass home-card-no-glow"
+              style="padding: 2rem; max-width: 760px; margin: 0 auto"
+            >
+              <ul
+                class="vd-stack"
+                data-gap="fib-8"
+                style="list-style: none; margin: 0; padding: 0"
+              >
+                <li class="whats-new-item">
+                  <i class="ph ph-toggle-right" aria-hidden="true"></i>
+                  <span
+                    ><strong>New Vue components</strong> — Switch, Slider,
+                    Separator and Menu in <code>@vanduo-oss/vue</code>.</span
+                  >
+                </li>
+                <li class="whats-new-item">
+                  <i class="ph ph-text-aa" aria-hidden="true"></i>
+                  <span
+                    ><strong>Form ergonomics</strong> —
+                    <code>VdInput</code> gains label / hint / error / prefix /
+                    suffix and a number model, on a unified status-variant
+                    palette.</span
+                  >
+                </li>
+                <li class="whats-new-item">
+                  <i class="ph ph-chart-line" aria-hidden="true"></i>
+                  <span
+                    ><strong>Charts</strong> — per-point colour, multi-series,
+                    axis ranges, data labels and reference-line annotations in
+                    <code>@vanduo-oss/charts</code>.</span
+                  >
+                </li>
+                <li class="whats-new-item">
+                  <i class="ph ph-cube" aria-hidden="true"></i>
+                  <span
+                    ><strong>Framework</strong> — Separator &amp; Slider styles
+                    plus unified status-palette aliases in
+                    <code>@vanduo-oss/framework</code>.</span
+                  >
+                </li>
+                <li class="whats-new-item">
+                  <i class="ph ph-paint-roller" aria-hidden="true"></i>
+                  <span
+                    ><strong>Theming</strong> — a
+                    <code>useThemeBridge</code> composable to sync an app's
+                    light/dark state.</span
+                  >
+                </li>
+              </ul>
+              <div class="vd-text-center vd-mt-6">
+                <RouterLink to="/changelog" class="vd-btn vd-btn-primary">
+                  <i class="ph ph-scroll" aria-hidden="true"></i> Read the full
+                  changelog
+                </RouterLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Call to Action -->
       <div id="cta" style="padding: 5rem 0">
         <div class="vd-row">
@@ -390,3 +465,24 @@ const swatches = [
     </div>
   </section>
 </template>
+
+<style scoped>
+.whats-new-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--vd-text-secondary);
+  line-height: 1.5;
+}
+
+.whats-new-item > i {
+  flex: 0 0 auto;
+  margin-top: 0.1em;
+  font-size: 1.4rem;
+  color: var(--vd-color-primary);
+}
+
+.whats-new-item strong {
+  color: var(--vd-text-primary);
+}
+</style>
