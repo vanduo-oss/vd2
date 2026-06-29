@@ -305,3 +305,24 @@ const sidenavHtml = `<aside class="vd-sidenav">
     </div>
   </section>
 </template>
+
+<style scoped>
+/*
+ * The Navigation index shows the sidenav as an always-visible INLINE preview
+ * (no toggle). The framework's `.vd-sidenav` is a fixed full-height drawer
+ * (position: fixed; height: 100vh; transform: translateX(-100%)); inside a
+ * `.vd-card-glow` demo card — whose glow applies a non-`none` transform, making
+ * it the containing block for fixed descendants — that drawer escapes into a
+ * scroll-tracking overlay across the page sidebar. Neutralize the drawer
+ * positioning so it renders in flow inside the demo card.
+ */
+.demo-card .vd-sidenav {
+  position: relative;
+  inset: auto;
+  height: auto;
+  width: 100%;
+  transform: none;
+  z-index: auto;
+  box-shadow: none;
+}
+</style>
