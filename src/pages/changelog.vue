@@ -1,21 +1,58 @@
 <script setup lang="ts">
 // The changelog is ~4,000 lines of static, hand-written release notes with no
-// framework JS behaviour. The static body is imported verbatim and rendered via
-// v-html (its styles already live in src/styles/docs.css). The page header and
-// engine toggle are rendered by Vue (outside the v-html so they aren't wiped),
-// and the timeline is filtered by the global engine choice: entries tagged
-// data-engine="vanilla|vue3" are hidden in the other view (untagged = always
-// shown). Trusted first-party content → v-html is safe here.
+// framework JS behaviour. The static body (the Framework / Vanilla history) is
+// imported verbatim and rendered via v-html (its styles already live in
+// src/styles/docs.css). The page header and engine toggle are rendered by Vue
+// (outside the v-html so they aren't wiped). Trusted first-party content →
+// v-html is safe here.
+//
+// Filtering is STRICT and engine-driven: every release block carries a
+// data-engine tag (the whole v-html body is the `vanilla` framework history;
+// the vd2 card is `vue3`). An entry shows only when its own — or nearest
+// ancestor's — tag includes the active engine; untagged entries are hidden, and
+// any group/column left empty is collapsed so no shell remains.
+import { nextTick, onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import content from "./changelog-content.html?raw";
 import { useEngineStore } from "@/stores/engine";
 
 const engineStore = useEngineStore();
 const { engine } = storeToRefs(engineStore);
+
+const rootRef = ref<HTMLElement | null>(null);
+
+const applyEngineFilter = (active: string): void => {
+  const root = rootRef.value;
+  if (!root) return;
+
+  // 1. Show a tagged element only if its tag set includes the active engine.
+  root.querySelectorAll<HTMLElement>("[data-engine]").forEach((el) => {
+    const tags = (el.dataset.engine ?? "").split(/\s+/).filter(Boolean);
+    el.hidden = !tags.includes(active);
+  });
+  // 2. Collapse a change-group whose items were all filtered out…
+  root.querySelectorAll<HTMLElement>(".change-group").forEach((group) => {
+    const items = [...group.querySelectorAll<HTMLElement>(".change-item")];
+    group.hidden = items.length > 0 && items.every((i) => i.hidden);
+  });
+  // 3. …and a version-body column whose groups all collapsed.
+  root
+    .querySelectorAll<HTMLElement>(".version-body .vd-col-12")
+    .forEach((col) => {
+      const groups = [...col.querySelectorAll<HTMLElement>(".change-group")];
+      col.hidden = groups.length > 0 && groups.every((g) => g.hidden);
+    });
+};
+
+onMounted(async () => {
+  await nextTick();
+  applyEngineFilter(engine.value);
+});
+watch(engine, applyEngineFilter);
 </script>
 
 <template>
-  <section id="changelog" :data-engine-view="engine">
+  <section id="changelog" ref="rootRef">
     <div class="changelog-header">
       <div class="vd-container-responsive">
         <h2 style="color: var(--vd-color-primary)">
@@ -59,7 +96,7 @@ const { engine } = storeToRefs(engineStore);
     </div>
 
     <!-- Vue 3 engine (vd2) — newest, shown only in the Vue 3 view -->
-    <div style="padding: 3rem 0 0">
+    <div style="padding: 3rem 0 0" data-engine="vue3">
       <div class="vd-container-responsive" style="max-width: 1200px">
         <article class="version-card" data-engine="vue3">
           <header class="version-header">
@@ -230,6 +267,7 @@ const { engine } = storeToRefs(engineStore);
       </div>
     </div>
 
-    <div v-html="content"></div>
+    <!-- Framework / Vanilla engine history (every card is a framework release) -->
+    <div data-engine="vanilla" v-html="content"></div>
   </section>
 </template>

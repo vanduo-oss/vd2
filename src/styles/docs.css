@@ -910,31 +910,6 @@ section:last-of-type {
   overflow-wrap: break-word;
 }
 
-/* Guide engine-scope hint badge (Vanilla / Vue 3 / both) */
-.doc-nav-engine {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.15rem;
-  margin-left: 0.35rem;
-  color: var(--vd-text-secondary);
-  opacity: 0.6;
-}
-
-.doc-nav-link:hover .doc-nav-engine,
-.doc-nav-link.active .doc-nav-engine {
-  opacity: 0.9;
-}
-
-.doc-nav-engine i {
-  margin-right: 0;
-  font-size: 0.8em;
-}
-
-.doc-nav-engine.is-vue {
-  color: var(--vd-color-primary);
-}
-
 .doc-nav-link:hover {
   color: var(--vd-color-primary);
   background-color: var(--vd-bg-secondary);
@@ -1563,114 +1538,6 @@ footer.vd-glass::before {
 .open-color-footer {
   margin-top: 1.5rem;
   text-align: center;
-}
-
-/* Home: VD2 — Framework Evolved (theme-aware illustration + copy) */
-#vd2-evolved .vd2-evolved-row {
-  gap: 2.5rem 0;
-}
-
-#vd2-evolved .vd2-evolved-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-}
-
-#vd2-evolved .vd2-evolved-eyebrow .ph-sparkle {
-  font-size: 0.9rem;
-}
-
-#vd2-evolved .vd2-evolved-title {
-  color: var(--vd-color-primary);
-  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem);
-  line-height: 1.1;
-  margin: 0 0 1rem;
-}
-
-#vd2-evolved .vd2-evolved-lead {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin: 0 0 1.5rem;
-  max-width: 38rem;
-}
-
-#vd2-evolved .vd2-evolved-list {
-  list-style: none;
-  margin: 0 0 1.75rem;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-#vd2-evolved .vd2-evolved-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  color: var(--vd-text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-#vd2-evolved .vd2-evolved-list li i {
-  color: var(--vd-color-primary);
-  font-size: 1.4rem;
-  flex: 0 0 auto;
-  margin-top: 0.05em;
-}
-
-#vd2-evolved .vd2-evolved-list strong {
-  color: var(--vd-text-primary);
-}
-
-#vd2-evolved .vd2-evolved-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-#vd2-evolved .vd2-evolved-cta .vd-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: auto;
-  white-space: nowrap;
-}
-
-/* Framed illustration — the active theme's image is the only one fetched. */
-#vd2-evolved .vd2-evolved-figure {
-  width: 100%;
-  aspect-ratio: 1400 / 762;
-  padding: 0;
-  border-radius: var(--vd-card-border-radius, 1rem);
-  background-image: url("/images/vanduo-bots-light.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-[data-theme="dark"] #vd2-evolved .vd2-evolved-figure {
-  background-image: url("/images/vanduo-bots-dark.png");
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) #vd2-evolved .vd2-evolved-figure {
-    background-image: url("/images/vanduo-bots-dark.png");
-  }
-}
-
-@media (width < 992px) {
-  #vd2-evolved .vd2-evolved-art {
-    order: -1;
-  }
-
-  #vd2-evolved .vd2-evolved-lead {
-    max-width: none;
-  }
 }
 
 /* Philosophy cards (docs page #docs/philosophy) */
@@ -3386,11 +3253,13 @@ a:hover .vd-card-actionable.vd-card-glow {
   outline-offset: 2px;
 }
 
-/* Changelog: a single timeline filtered by the selected engine.
-           Untagged entries (and data-engine="both") always show. */
-#changelog[data-engine-view="vue3"] [data-engine="vanilla"],
-#changelog[data-engine-view="vanilla"] [data-engine="vue3"] {
-  display: none;
+/* Changelog: a single timeline filtered STRICTLY by the selected engine in JS
+   (changelog.vue). An entry shows only when its own (or nearest ancestor's)
+   data-engine tag includes the active engine; untagged entries are hidden, and
+   groups/columns left empty are collapsed. This guarantees the JS-set [hidden]
+   wins over any component display rule. */
+#changelog [hidden] {
+  display: none !important;
 }
 
 .changelog-engine-toggle {

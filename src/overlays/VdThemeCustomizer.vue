@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import { useThemeStore } from "@/stores/theme";
+import { useClickOutside } from "@/composables/useClickOutside";
 import {
   FONT_OPTIONS,
   NEUTRAL_COLORS,
@@ -11,6 +12,8 @@ import {
 
 const theme = useThemeStore();
 const isOpen = ref(false);
+const panelRef = ref<HTMLElement | null>(null);
+const triggerRef = ref<HTMLElement | null>(null);
 
 const open = (): void => {
   isOpen.value = true;
@@ -21,6 +24,11 @@ const close = (): void => {
 const toggle = (): void => {
   isOpen.value ? close() : open();
 };
+
+// Close when a click lands outside the panel (and isn't the trigger). The
+// teleported panel + corner trigger made the backdrop unreliable, so this is
+// the authoritative outside-click close.
+useClickOutside([panelRef, triggerRef], close, isOpen);
 
 const onFont = (event: Event): void => {
   theme.setFont((event.target as HTMLSelectElement).value);
@@ -45,6 +53,7 @@ defineExpose({ open, close, toggle });
 <template>
   <div class="vd-theme-customizer" :class="{ 'is-open': isOpen }">
     <button
+      ref="triggerRef"
       type="button"
       class="vd-theme-customizer-trigger"
       data-theme-customizer-trigger
@@ -63,6 +72,7 @@ defineExpose({ open, close, toggle });
       ></div>
 
       <aside
+        ref="panelRef"
         class="vd-theme-customizer-panel"
         :class="{ 'is-open': isOpen }"
         role="dialog"

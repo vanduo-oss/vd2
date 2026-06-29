@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import DocCodeSnippet from "@/components/DocCodeSnippet.vue";
 import EngineSwitch from "@/components/EngineSwitch.vue";
+import EngineBadge from "@/components/EngineBadge.vue";
 import { useEngineStore } from "@/stores/engine";
 
 // This guide is a side-by-side comparison, but it should still lead with the
@@ -93,9 +94,7 @@ const mapping: [string, string][] = [
           <div class="vd-card-header">
             <h6 class="runtime-head">
               <i class="ph ph-terminal-window"></i> Vanilla runtime
-              <span v-if="engine === 'vanilla'" class="runtime-active-badge"
-                >Active engine</span
-              >
+              <EngineBadge engine="vanilla" style="margin-left: auto" />
             </h6>
           </div>
           <div class="vd-card-body">
@@ -118,9 +117,7 @@ const mapping: [string, string][] = [
           <div class="vd-card-header">
             <h6 class="runtime-head">
               <i class="ph ph-atom"></i> vd2 composable
-              <span v-if="engine === 'vue3'" class="runtime-active-badge"
-                >Active engine</span
-              >
+              <EngineBadge engine="vue3" style="margin-left: auto" />
             </h6>
           </div>
           <div class="vd-card-body">
@@ -193,18 +190,6 @@ const mapping: [string, string][] = [
   display: flex;
   align-items: center;
   gap: 0.4rem;
-}
-
-.runtime-active-badge {
-  margin-left: auto;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  color: var(--vd-color-primary);
-  background: rgba(var(--vd-color-primary-rgb), 0.12);
 }
 
 .runtime-card-active {
