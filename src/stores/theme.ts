@@ -17,6 +17,24 @@ export const useThemeStore = defineStore("theme", () => {
   const prefs = reactive<ThemePreference>(defaultPreference());
   const ready = ref(false);
 
+  // Per-mode default neutral. The engine has a single NEUTRAL default (no
+  // NEUTRAL_DARK), so we mirror the package's per-mode default-primary
+  // behaviour: stone in light, charcoal in dark, auto-following the mode while
+  // the neutral is still one of those two defaults — an explicit pick
+  // (slate / gray / zinc / neutral) sticks across mode changes.
+  const DOCS_NEUTRAL = { light: "stone", dark: "charcoal" } as const;
+  const resolveScheme = (theme: ThemeMode): "light" | "dark" =>
+    theme === "system"
+      ? typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+      : (theme as "light" | "dark");
+  const docsDefaultNeutral = (theme: ThemeMode): string =>
+    DOCS_NEUTRAL[resolveScheme(theme)];
+  const isDocsDefaultNeutral = (neutral: string): boolean =>
+    neutral === DOCS_NEUTRAL.light || neutral === DOCS_NEUTRAL.dark;
+
   const commit = (): void => {
     applyPreference(prefs);
     persistPreference(prefs);
@@ -26,6 +44,9 @@ export const useThemeStore = defineStore("theme", () => {
   const init = (): void => {
     if (ready.value) return;
     Object.assign(prefs, loadPreference());
+    if (isDocsDefaultNeutral(prefs.neutral)) {
+      prefs.neutral = docsDefaultNeutral(prefs.theme);
+    }
     applyPreference(prefs);
     ready.value = true;
 
@@ -36,11 +57,17 @@ export const useThemeStore = defineStore("theme", () => {
       const mq = window.matchMedia("(prefers-color-scheme: dark)");
       if (!mq || typeof mq.addEventListener !== "function") return;
       mq.addEventListener("change", () => {
-        // Re-evaluate the auto-default primary when the OS scheme flips.
+        // Re-evaluate the auto-default primary/neutral when the OS scheme flips.
+        let dirty = false;
         if (prefs.theme === "system" && isDefaultPrimary(prefs.primary)) {
           prefs.primary = defaultPrimary("system");
-          commit();
+          dirty = true;
         }
+        if (prefs.theme === "system" && isDocsDefaultNeutral(prefs.neutral)) {
+          prefs.neutral = docsDefaultNeutral("system");
+          dirty = true;
+        }
+        if (dirty) commit();
       });
     }
   };
@@ -50,9 +77,12 @@ export const useThemeStore = defineStore("theme", () => {
     commit();
   };
   const setTheme = (theme: ThemeMode): void => {
-    // Keep auto-default primary in step with the chosen scheme.
+    // Keep the auto-default primary/neutral in step with the chosen scheme.
     if (isDefaultPrimary(prefs.primary)) {
       prefs.primary = defaultPrimary(theme);
+    }
+    if (isDocsDefaultNeutral(prefs.neutral)) {
+      prefs.neutral = docsDefaultNeutral(theme);
     }
     prefs.theme = theme;
     commit();

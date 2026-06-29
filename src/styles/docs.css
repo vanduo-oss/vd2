@@ -1328,6 +1328,46 @@ footer.vd-glass::before {
   box-shadow: var(--vd-glass-float-shadow);
 }
 
+/* Same charcoal-flush / outline-only treatment under SYSTEM dark (no explicit
+   data-theme). Without this the home + docs-landing glass cards keep a lighter
+   glass fill in OS-dark and miss the outline look the components/guides use. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) section#home .vd-card.vd-glass,
+  :root:not([data-theme]) section#docs-landing .vd-card.vd-glass,
+  :root:not([data-theme]) footer.vd-footer.vd-glass {
+    --vd-glass-bg-light: var(--vd-bg-primary);
+    --vd-glass-bg-dark: var(--vd-bg-primary);
+    --vd-glass-bg-opacity: 1;
+    --vd-card-bg: var(--vd-bg-primary);
+
+    background: var(--vd-bg-primary);
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  :root:not([data-theme]) section#home .vd-card.vd-glass::after,
+  :root:not([data-theme]) section#docs-landing .vd-card.vd-glass::after,
+  :root:not([data-theme]) footer.vd-footer.vd-glass::after {
+    display: none;
+  }
+
+  :root:not([data-theme]) section#home .vd-card.vd-glass::before,
+  :root:not([data-theme]) section#docs-landing .vd-card.vd-glass::before {
+    display: none;
+  }
+
+  :root:not([data-theme])
+    section#home
+    .vd-card.vd-glass.vd-glass-floating:hover,
+  :root:not([data-theme])
+    section#home
+    .vd-card.vd-glass.vd-glass-floating:focus-within {
+    box-shadow: var(--vd-glass-float-shadow);
+  }
+}
+
 /* Hero CTA: Fibonacci 3:2:1 (Getting Started : Components : GitHub) */
 .hero-cta-buttons {
   display: grid;

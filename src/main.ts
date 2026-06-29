@@ -30,6 +30,8 @@ export const createApp = ViteSSG(
     app.use(createPinia());
     // The docs site overrides core's generic default dark primary (amber ->
     // blue); @vanduo-oss/vue ships the generic baseline, so we inject it here.
+    // (The per-mode default neutral — stone in light, charcoal in dark — is
+    // handled in the theme store, since the engine has no NEUTRAL_DARK default.)
     app.use(VanduoVue, { themeDefaults: { PRIMARY_DARK: "blue" } });
 
     // The VD2 plugin kicks off the framework's client JS (window.Vanduo*
